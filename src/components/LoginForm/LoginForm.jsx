@@ -11,6 +11,7 @@ import {
   WrapperForm,
 } from './LoginForm.styled';
 import { Logo } from 'components/Logo/Logo';
+import { WrapperLogo } from 'components/Logo/Logo.styled';
 
 export const LoginForm = () => {
   //const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export const LoginForm = () => {
     resetForm();
   };
   return (
-    <div>
+    <WrapperLogo>
       <WrapperForm>
         <Logo />
         <Formik
@@ -35,29 +36,24 @@ export const LoginForm = () => {
           onSubmit={hendleSubmit}
         >
           <FormStyled autoComplete="off">
-            {/* <label>
-            <span>Email</span> */}
             <WrapperField>
               <FieldStyled
-                type="text"
+                type="email"
                 name="email"
                 title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                 placeholder="E-mail"
                 required
               />
               <FormError name="email" />
-              {/* </label> */}
-              {/* <label>
-            <span>Password</span> */}
+
               <FieldStyled
-                type="tel"
+                type="pasword"
                 name="password"
-                title="Phone number must be digits and can contain spaces, dashes"
+                title="Enter the password more difficult, letter, digit, capital letter."
                 placeholder="Password"
                 required
               />
               <FormError name="password" />
-              {/* </label> */}
             </WrapperField>
             <WrapperButton>
               <Button type="submit" text="log in" />
@@ -66,6 +62,6 @@ export const LoginForm = () => {
           </FormStyled>
         </Formik>
       </WrapperForm>
-    </div>
+    </WrapperLogo>
   );
 };

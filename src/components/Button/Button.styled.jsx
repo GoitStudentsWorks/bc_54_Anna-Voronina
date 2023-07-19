@@ -35,7 +35,7 @@ export const ButtonStyled = styled.button`
       border: ${({ theme }) => theme.borders.normal};
       border-color: ${({ theme }) => theme.colors.blue};
     `}
-
+ /* Вариант "third" */
       ${({ variant }) =>
     variant === 'third' &&
     css`
