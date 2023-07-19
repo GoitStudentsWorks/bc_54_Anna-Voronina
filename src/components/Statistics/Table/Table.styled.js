@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { getRandomHexColor } from 'services/randomColor/randomColor';
 
 export const WrapperTable = styled.table`
   width: 280px;
@@ -9,9 +10,12 @@ export const WrapperTable = styled.table`
 `;
 
 export const StyledThead = styled.thead`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  tr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+  }
 
   width: 280px;
   height: 56px;
@@ -35,5 +39,12 @@ export const StyledTbody = styled.tbody`
     border-bottom: 1px solid black;
     display: flex;
     justify-content: space-between;
+    padding-bottom: 16px;
   }
+`;
+
+export const StyledSpan = styled.td`
+  width: 24px;
+  border-radius: 2px;
+  background-color: ${getRandomHexColor()};
 `;

@@ -27,7 +27,7 @@ export const store = configureStore({
   reducer: {
     global: globalReducer,
     auth: persistedReducer,
-    transactions: transactionsReducer,
+    transaction: transactionsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

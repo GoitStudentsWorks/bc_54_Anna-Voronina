@@ -12,4 +12,9 @@ export const StyledSelect = styled.select`
   font-size: 18px;
   font-style: normal;
   padding-left: 20px;
+
+  option {
+    width: 280px;
+    height: 157px;
+  }
 `;

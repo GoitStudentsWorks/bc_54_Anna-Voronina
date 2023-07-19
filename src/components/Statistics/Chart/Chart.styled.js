@@ -4,6 +4,7 @@ export const ChartWrapper = styled.div`
   position: relative;
   display: flex;
   width: 280px;
+  height: 280px;
 `;
 
 export const StyledSpan = styled.span`
