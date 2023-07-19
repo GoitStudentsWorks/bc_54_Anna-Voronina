@@ -1,11 +1,11 @@
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
-import { BgImage } from './RegisterPage.styled';
+import { RegisterPageWrapper } from './RegisterPage.styled';
 
 const RegisterPage = () => {
   return (
-    <BgImage>
+    <RegisterPageWrapper>
       <RegisterForm />
-    </BgImage>
+    </RegisterPageWrapper>
   );
 };
 
