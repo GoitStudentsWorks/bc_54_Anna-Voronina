@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import bgImage from 'assets/images/bgLoginPage.png';
 
 export const BgImage = styled.div`
-  max-width: 1280px;
-  height: 720px;
+  max-width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -12,11 +12,7 @@ export const BgImage = styled.div`
   background-position: center;
   background-repeat: no-repeat;
 
-  background: linear-gradient(
-    46deg,
-    rgba(142, 46, 121, 0.68) 0%,
-    rgba(171, 51, 173, 0.68) 100%
-  );
+  background: linear-gradient(46deg, rgba(142, 46, 121, 0.68) 0%, rgba(171, 51, 173, 0.68) 100%);
   background: linear-gradient(
     220deg,
     rgba(109, 84, 235, 0.73) 3.47%,
