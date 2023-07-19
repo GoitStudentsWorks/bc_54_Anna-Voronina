@@ -13,9 +13,11 @@ import {
 import { Logo } from 'components/Logo/Logo';
 import { WrapperLogo } from 'components/Logo/Logo.styled';
 import { Link } from 'react-router-dom';
+import { logInThunk } from 'redux/auth/authOperations';
+import { useDispatch } from 'react-redux';
 
 export const LoginForm = () => {
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const initialValues = {
     email: '',
@@ -23,7 +25,7 @@ export const LoginForm = () => {
   };
 
   const hendleSubmit = (value, { resetForm }) => {
-    //dispatch(logIn(value));
+    dispatch(logInThunk(value));
     console.log(value);
     resetForm();
   };
