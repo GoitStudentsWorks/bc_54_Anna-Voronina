@@ -71,7 +71,7 @@ export const delTransaction = createAsyncThunk(
 );
 
 export const getSummary = createAsyncThunk(
-  'transactions/delTransaction',
+  'transactions/getSummary',
   async ({ month, year }, { rejectedWithValue }) => {
     try {
       const { data } = await fetchTransactionsSummary({ month, year });
