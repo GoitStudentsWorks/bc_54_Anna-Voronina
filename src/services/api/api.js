@@ -12,7 +12,7 @@ export const clearAuthHeader = () => {
 };
 
 // Get current user info
-export const fetchAuthUsers = async () => {
+export const fetchCurrentUser = async () => {
   const { data } = await instance.get('/users/current');
   return data;
 };
