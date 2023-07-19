@@ -3,8 +3,8 @@ import { GlobalStyle } from 'services/styles/GlobalStyle';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { lazy } from 'react';
 
-const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const DashboardPage = lazy(() => import('pages/DashboardPage/DashboardPage'));
+const HomePage = lazy(() => import('pages/Home/HomePage'));
 const SummaryPage = lazy(() => import('pages/SummaryPage/SummaryPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
