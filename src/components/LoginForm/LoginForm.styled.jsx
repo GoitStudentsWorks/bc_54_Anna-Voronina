@@ -1,5 +1,5 @@
 import { ButtonStyled } from 'components/Button/Button.styled';
-import { Form } from 'formik';
+import { Field, Form } from 'formik';
 import styled from 'styled-components';
 
 export const WrapperForm = styled.div`
@@ -15,13 +15,43 @@ export const WrapperForm = styled.div`
 `;
 
 export const FormStyled = styled(Form)`
+  padding: ${({ theme }) => theme.spacing(3)};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(10)};
+`;
+
+export const WrapperField = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 `;
 
-export const WrapperButton = styled(FormStyled)`
+export const FieldStyled = styled(Field)`
+  margin-top: 35px;
+  width: ${({ theme }) => theme.spacing(102)};
+  height: ${({ theme }) => theme.spacing(9)};
+  outline: none;
+  border: none;
+  border-bottom: 2px solid grey;
+  background-color: rgba(255, 255, 255, 0);
+  color: grey;
+
+  &:focus {
+    outline: none;
+    border: none;
+    border-bottom: 2px solid grey;
+  }
+`;
+
+export const WrapperButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   gap: ${({ theme }) => theme.spacing(5)};
 `;
 

@@ -10,6 +10,8 @@ export const Button = ({ onClick = null, text, type = 'button', variant = 'prima
 };
 
 Button.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  variant: PropTypes.string,
 };

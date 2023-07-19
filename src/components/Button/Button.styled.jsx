@@ -17,6 +17,7 @@ export const ButtonStyled = styled.button`
   letter-spacing: 1.8px;
   text-transform: uppercase;
   border: none;
+  cursor: pointer;
 
   /* Вариант "primary" */
   ${({ variant }) =>
