@@ -12,7 +12,7 @@ export const clearAuthHeader = () => {
 };
 
 // Get current user info
-export const fetchAuthUsers = async () => {
+export const fetchCurrentUser = async () => {
   const { data } = await instance.get('/users/current');
   return data;
 };
@@ -50,17 +50,23 @@ export const fetchCategories = async () => {
 // Sign up new user
 export const signUp = async user => {
   const { data } = await instance.post('/auth/sign-up', user);
+  setAuthHeader(data.token);
   return data;
 };
 
 // Sign in existing user
 export const signIn = async user => {
   const { data } = await instance.post(`/auth/sign-in`, user);
+  setAuthHeader(data.token);
   return data;
 };
 
 // Sign out existing user
-export const signOut = id => instance.delete(`/auth/sign-out/${id}`);
+export const signOut = id => {
+  instance.delete(`/auth/sign-out/${id}`);
+  clearAuthHeader();
+};
+
 // Get transactions summary for period
 export const fetchTransactionsSummary = async ({ month, year }) => {
   const { data } = await instance.get('/api/transactions-summary', {
