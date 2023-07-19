@@ -6,8 +6,10 @@ import { lazy } from 'react';
 const DashboardPage = lazy(() => import('pages/DashboardPage/DashboardPage'));
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const SummaryPage = lazy(() => import('pages/SummaryPage/SummaryPage'));
+const CurrencyPage = lazy(()=> import('pages/CurrencyPage/CurrencyPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
+
 
 export const App = () => {
   return (
@@ -17,6 +19,7 @@ export const App = () => {
           <Route index element={<DashboardPage />} />
           <Route path="home" element={<HomePage />} />
           <Route path="statistic" element={<SummaryPage />} />
+          <Route path="currency" element={<CurrencyPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
         </Route>
