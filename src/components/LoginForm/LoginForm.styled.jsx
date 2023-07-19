@@ -11,11 +11,11 @@ export const WrapperForm = styled.div`
   margin: 0 auto;
   border-radius: ${({ theme }) => theme.radii.normal};
   box-shadow: ${({ theme }) => theme.shadows.primary};
+
   background-color: ${({ theme }) => theme.colors.modalBackground};
 `;
 
 export const FormStyled = styled(Form)`
-  padding: ${({ theme }) => theme.spacing(3)};
   display: flex;
   justify-content: center;
   align-items: center;
