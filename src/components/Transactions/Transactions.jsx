@@ -46,9 +46,10 @@ const Transactions = () => {
     // console.log(transactions);
     dispatch(getAllTransactionsThunk());
     dispatch(getTransactionsCategoriesThunk());
+    console.log(transactions);
   }, []);
 
-  const sortedTransactions = transactions.slice().sort((a, b) => {
+  const sortedTransactions = [...transactions].sort((a, b) => {
     return new Date(b.transactionDate) - new Date(a.transactionDate);
   });
 
@@ -66,40 +67,51 @@ const Transactions = () => {
           {sortedTransactions.map(transaction => {
             return (
               <li key={transaction.id}>
-                <ul>
-                  <li>
-                    <h4>Date</h4>
+                <TransactionDetails>
+                  <TransactionDetailsItem>
+                    <TransactionDetailsItemTitle>
+                      Date
+                    </TransactionDetailsItemTitle>
                     <p>{transaction.date}</p>
-                  </li>
-                  <li>
-                    <h4>Type</h4>
+                  </TransactionDetailsItem>
+                  <TransactionDetailsItem>
+                    <TransactionDetailsItemTitle>
+                      Type
+                    </TransactionDetailsItemTitle>
                     <p>{transaction.type ?? '-'}</p>
-                  </li>
-                  <li>
-                    <h4>Category</h4>
+                  </TransactionDetailsItem>
+                  <TransactionDetailsItem>
+                    <TransactionDetailsItemTitle>
+                      Category
+                    </TransactionDetailsItemTitle>
                     <p>{transaction.category}</p>
-                  </li>
-                  <li>
-                    <h4>Comment</h4>
+                  </TransactionDetailsItem>
+                  <TransactionDetailsItem>
+                    <TransactionDetailsItemTitle>
+                      Comment
+                    </TransactionDetailsItemTitle>
                     <p>{transaction.comment}</p>
-                  </li>
-                  <li>
-                    <h4>Sum</h4>
-                    <p>{transaction.sum}</p>
-                  </li>
-                  <li>
+                  </TransactionDetailsItem>
+                  <TransactionDetailsItem>
+                    <TransactionDetailsItemTitle>
+                      Sum
+                    </TransactionDetailsItemTitle>
+                    <SumText>{transaction.sum}</SumText>
+                  </TransactionDetailsItem>
+                  <ButtonContainer>
                     <ButtonEditTransaction
                       type="button"
                       onClick={handleEditClick(transaction)}
-                      text={((<StyledBiPencil />), 'Edit')}
-                    />
+                    >
+                      {((<StyledBiPencil />), 'Edit')}
+                    </ButtonEditTransaction>
                     <ButtonDelTransaction
                       type="button"
                       onClick={handleDeleteTransaction(transaction.id)}
                       text="Delete"
                     />
-                  </li>
-                </ul>
+                  </ButtonContainer>
+                </TransactionDetails>
               </li>
             );
           })}
@@ -107,57 +119,65 @@ const Transactions = () => {
       </MediaQuery>
 
       <MediaQuery minWidth={768}>
-        <tbody>
-          <thead>
-            <th>Date</th>
-            <th>Type</th>
-            <th>Category</th>
-            <th>Comment</th>
-            <th>Sum</th>
-          </thead>
-          {sortedTransactions.map(transaction => {
-            return (
-              <tr key={transaction.id}>
-                <td>
-                  <h4>Date</h4>
-                  <p>{transaction.date}</p>
-                </td>
-                <td>
-                  <h4>Type</h4>
-                  <p>{transaction.type ?? '-'}</p>
-                </td>
-                <td>
-                  <h4>Category</h4>
-                  <p>{transaction.category}</p>
-                </td>
-                <td>
-                  <h4>Comment</h4>
-                  <p>{transaction.comment}</p>
-                </td>
-                <td>
-                  <h4>Sum</h4>
-                  <p>{transaction.sum}</p>
-                </td>
-                <td>
-                  <BtnEditTransaction
-                    type="button"
-                    onClick={console.log(1)}
-                    text={<StyledBiPencil />}
-                  />
-                  <ButtonDelTransaction
-                    type="button"
-                    onClick={handleDeleteTransaction(transaction.id)}
-                    text="Delete"
-                  />
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
+        <Table>
+          <TableHead>
+            <TableHeader>Date</TableHeader>
+            <TableHeader>Type</TableHeader>
+            <TableHeader>Category</TableHeader>
+            <TableHeader>Comment</TableHeader>
+            <TableHeader>Sum</TableHeader>
+          </TableHead>
+          <TableBody>
+            {sortedTransactions.map(transaction => {
+              return (
+                <TableRow key={transaction.id}>
+                  <TableRow>
+                    <TransactionDetailsItemTitle>
+                      Date
+                    </TransactionDetailsItemTitle>
+                    <p>{transaction.date}</p>
+                  </TableRow>
+                  <TableRow>
+                    <TransactionDetailsItemTitle>
+                      Type
+                    </TransactionDetailsItemTitle>
+                    <p>{transaction.type ?? '-'}</p>
+                  </TableRow>
+                  <TableRow>
+                    <h4>Category</h4>
+                    <p>{transaction.category}</p>
+                  </TableRow>
+                  <TableRow>
+                    <TransactionDetailsItemTitle>
+                      Comment
+                    </TransactionDetailsItemTitle>
+                    <p>{transaction.comment}</p>
+                  </TableRow>
+                  <TableRow>
+                    <TransactionDetailsItemTitle>
+                      Sum
+                    </TransactionDetailsItemTitle>
+                    <Sum>{transaction.sum}</Sum>
+                  </TableRow>
+                  <ButtonContainer>
+                    <BtnEditTransaction type="button" onClick={handleEditClick}>
+                      <StyledBiPencil />
+                    </BtnEditTransaction>
+                    <ButtonDelTransaction
+                      type="button"
+                      onClick={handleDeleteTransaction(transaction.id)}
+                      text="Delete"
+                    />
+                  </ButtonContainer>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
       </MediaQuery>
     </>
   ) : (
-    <NoTransactions />
+    <h1>No transactions yet! Add them by pressing "+" button</h1>
   );
 };
 

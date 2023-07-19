@@ -16,7 +16,7 @@ export const TransactionDetailsItem = styled.li`
   display: flex;
   justify-content: space-between;
   color: white;
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
+  font-weight: ${({ theme }) => theme.fontWeights.normal};
   background: linear-gradient(220deg, #6d54eb 3.47%, #652392 90.06%);
   padding: 12px 20px;
   font-size: 16px;
@@ -33,7 +33,7 @@ export const TransactionDetailsItem = styled.li`
 `;
 
 export const TransactionDetailsItemTitle = styled.p`
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
 `;
 
 export const SumText = styled.span`
@@ -79,7 +79,7 @@ export const TableHead = styled.tr`
 `;
 
 export const TableHeader = styled.th`
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
   font-size: 16px;
   color: #fbfbfb;
   text-align: left;
@@ -87,7 +87,7 @@ export const TableHeader = styled.th`
 
 export const TableRow = styled.tr`
   font: ${({ theme }) => theme.fonts.secondary};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
+  font-weight: ${({ theme }) => theme.fontWeights.normal};
   border-top: none;
   font-size: 14px;
   color: #fbfbfb;
@@ -115,7 +115,7 @@ export const TableRow = styled.tr`
 export const Sum = styled.td`
   border-top: none;
   text-align: right;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
   color: ${props => props.color};
 `;
 
@@ -177,7 +177,7 @@ export const ButtonEditTransaction = styled(Button)`
   }
 `;
 
-export const BtnEditTransaction = styled(Button)`
+export const BtnEditTransaction = styled.button`
   background: transparent;
   border-radius: 50%;
   border: none;
@@ -198,14 +198,15 @@ export const StyledBiPencil = styled(BiPencil)`
   height: 14px;
   fill: rgba(255, 255, 255, 0.6);
 `;
-export const NoTransactions = styled.div`
-  display: block;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-size: 16px;
-  color: #fbfbfb;
-  text-align: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  max-width: 200px;
-  margin: 0 auto;
-`;
+const TransactionsDetailsList
+// export const NoTransactions = styled.div`
+//   display: block;
+//   font-weight: ${({ theme }) => theme.fontWeights.bold};
+//   font-size: 16px;
+//   color: #fbfbfb;
+//   text-align: center;
+//   padding-top: 40px;
+//   padding-bottom: 40px;
+//   max-width: 200px;
+//   margin: 0 auto;
+// `;

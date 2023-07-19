@@ -19,6 +19,7 @@ import { Button } from 'components/Button/Button';
 import { Modal } from 'components/Modal/Modal';
 import { selectIsModalEditTransactionOpen } from 'redux/global/globalSelectors';
 import { closeModalEditTransaction } from 'redux/global/globalSlice';
+import { GrClose } from 'react-icons/gr';
 const isOpen = useSelector(selectIsModalEditTransactionOpen);
 const validationSchema = Yup.object({
   amount: Yup.number('must be a number').required(
@@ -79,13 +80,7 @@ export const EditTransactions = () => {
     return () => {
       window.removeEventListener('keydown', onClose);
     };
-  }, [dispatch]);
-
-  const svgClose = (
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none">
-      <path stroke="#FBFBFB" d="m1 1 16 16M1 17 17 1" />
-    </svg>
-  ); // from react icons
+  }, [dispatch]); // from react icons
 
   // const closeBeckdrop = e => {
   //   if (e.target === e.currentTarget) {
@@ -103,7 +98,9 @@ export const EditTransactions = () => {
     isOpen ? (
       <>
         <Modal>
-          <Button onClick={closeBtn} text={svgClose} type="button" />
+          <button onClick={closeBtn} type="button">
+            <GrClose />
+          </button>
 
           <h1>Edit transactions</h1>
           <div>

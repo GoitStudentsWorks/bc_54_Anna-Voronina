@@ -1,5 +1,7 @@
+import Transactions from 'components/Transactions/Transactions';
+
 const DashboardPage = () => {
-  return <div>DashboardPage</div>;
+  return <Transactions />;
 };
 
 export default DashboardPage;
