@@ -8,7 +8,7 @@ import {
   updateTransaction,
 } from 'services/api/api';
 
-export const getTransactionsCategories = createAsyncThunk(
+export const getTransactionsCategoriesThunk = createAsyncThunk(
   'transactions/fetchCategories',
   async (_, { rejectedWithValue }) => {
     try {
@@ -20,7 +20,7 @@ export const getTransactionsCategories = createAsyncThunk(
   }
 );
 
-export const getAllTransactions = createAsyncThunk(
+export const getAllTransactionsThunk = createAsyncThunk(
   'transactions/fetchAll',
   async (_, { rejectedWithValue }) => {
     try {
@@ -33,7 +33,7 @@ export const getAllTransactions = createAsyncThunk(
   }
 );
 
-export const addTransaction = createAsyncThunk(
+export const addTransactionThunk = createAsyncThunk(
   'transactions/addTransaction',
   async (_, { rejectedWithValue }) => {
     try {
@@ -46,7 +46,7 @@ export const addTransaction = createAsyncThunk(
   }
 );
 
-export const editTransaction = createAsyncThunk(
+export const editTransactionThunk = createAsyncThunk(
   'transactions/editTransaction',
   async (id, { rejectedWithValue }) => {
     try {
@@ -58,7 +58,7 @@ export const editTransaction = createAsyncThunk(
   }
 );
 
-export const delTransaction = createAsyncThunk(
+export const delTransactionThunk = createAsyncThunk(
   'transactions/delTransaction',
   async (id, { rejectedWithValue }) => {
     try {
@@ -70,7 +70,7 @@ export const delTransaction = createAsyncThunk(
   }
 );
 
-export const getSummary = createAsyncThunk(
+export const getSummaryThunk = createAsyncThunk(
   'transactions/getSummary',
   async ({ month, year }, { rejectedWithValue }) => {
     try {
