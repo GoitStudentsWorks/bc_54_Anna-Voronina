@@ -6,7 +6,7 @@ import {
   delTransaction,
   getSummary,
   editTransaction,
-} from './operation';
+} from './transactionOperations';
 
 const initialState = {
   transactions: [],

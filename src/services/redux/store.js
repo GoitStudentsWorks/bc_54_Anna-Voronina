@@ -11,6 +11,8 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
+import { globalReducer } from './global/globalSlice';
+import { transactionsReducer } from './transaction/transactionSlice';
 
 const persistConfig = {
   key: 'token',
@@ -23,7 +25,9 @@ const persistedReducer = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
+    global: globalReducer,
     auth: persistedReducer,
+    transactions: transactionsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
