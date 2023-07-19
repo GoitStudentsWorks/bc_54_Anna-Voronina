@@ -31,7 +31,6 @@ import {
 } from 'redux/transaction/transactionOperations';
 import { Button } from 'components/Button/Button';
 import MediaQuery from 'react-responsive';
-// import { BtnAddTransaction } from 'components/BtnAddTransaction/BtnAddTransaction';
 // import { setUpdatedTransaction } from 'redux/global/slice';
 
 const Transactions = () => {
@@ -87,13 +86,13 @@ const Transactions = () => {
                   <li>
                     <Button
                       type="button"
-                      onClick={handleDeleteTransaction(transaction.id)}
-                      text="Delete"
+                      onClick={() => console.log(1)}
+                      text={<StyledBiPencil />}
                     />
                     <Button
                       type="button"
-                      onClick={() => console.log(1)}
-                      text={((<StyledBiPencil />), 'Edit')}
+                      onClick={handleDeleteTransaction(transaction.id)}
+                      text="Delete"
                     />
                   </li>
                 </ul>
@@ -138,13 +137,13 @@ const Transactions = () => {
                 <td>
                   <Button
                     type="button"
-                    onClick={handleDeleteTransaction(transaction.id)}
-                    text="Delete"
+                    onClick={() => console.log(1)}
+                    text={<StyledBiPencil />} // svg in text prop
                   />
                   <Button
                     type="button"
-                    onClick={() => console.log(1)}
-                    text={((<StyledBiPencil />), 'Edit')} // svg in text prop
+                    onClick={handleDeleteTransaction(transaction.id)}
+                    text="Delete"
                   />
                 </td>
               </tr>
