@@ -11,6 +11,7 @@ body {
   color: #FBFBFB;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 code {
