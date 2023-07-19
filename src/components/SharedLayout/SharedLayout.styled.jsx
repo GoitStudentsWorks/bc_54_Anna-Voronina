@@ -13,12 +13,12 @@ export const Container = styled.div`
     padding-right: 28px;
   }
 
-  @media only screen and (min-width: 1280px) {
+  /* @media only screen and (min-width: 1280px) {
     display: flex;
     gap: 70px;
 
     max-width: 1280px;
     padding-left: 16px;
     padding-right: 16px;
-  }
+  } */
 `;

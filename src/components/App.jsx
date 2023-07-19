@@ -1,7 +1,13 @@
+import { lazy, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { GlobalStyle } from 'services/styles/GlobalStyle';
+import { ProtectedRoute } from 'routes/ProtectedRoute';
+import { PublicRoute } from 'routes/PublicRoute';
+import { selectIsRefreshing } from 'redux/auth/authSelectors';
+import { fetchCurrentUserThunk } from 'redux/auth/authOperations';
 import { SharedLayout } from './SharedLayout/SharedLayout';
-import { lazy } from 'react';
+import { GlobalStyle } from 'services/styles/GlobalStyle';
+import NotFound from 'pages/NotFound/NotFound';
 
 const DashboardPage = lazy(() => import('pages/DashboardPage/DashboardPage'));
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
@@ -12,19 +18,68 @@ const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 
 
 export const App = () => {
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(fetchCurrentUserThunk());
+  }, [dispatch]);
+
   return (
     <>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<DashboardPage />} />
-          <Route path="home" element={<HomePage />} />
-          <Route path="statistic" element={<SummaryPage />} />
-          <Route path="currency" element={<CurrencyPage />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<RegisterPage />} />
-        </Route>
-      </Routes>
-      <div>React homework template</div>
+      {isRefreshing ? (
+        <h1>Loading...</h1>
+      ) : (
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route
+              index
+              element={
+                <ProtectedRoute
+                  component={<DashboardPage />}
+                  redirectTo="/login"
+                />
+              }
+            />
+            <Route
+              path="/home"
+              element={
+                <ProtectedRoute component={<HomePage />} redirectTo="/login" />
+              }
+            />
+            <Route
+              path="/statistic"
+              element={
+                <ProtectedRoute
+                  component={<SummaryPage />}
+                  redirectTo="/login"
+                />
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute
+                  component={<LoginPage />}
+                  restricted
+                  redirectTo="/"
+                />
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute
+                  component={<RegisterPage />}
+                  restricted
+                  redirectTo="/"
+                />
+              }
+            />
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      )}
       <GlobalStyle />
     </>
   );
