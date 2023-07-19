@@ -7,7 +7,7 @@ export const WrapperForm = styled.div`
   justify-content: center;
   align-items: center;
   width: 533px;
-  height: 570px;
+
   margin: 0 auto;
   border-radius: ${({ theme }) => theme.radii.normal};
   box-shadow: ${({ theme }) => theme.shadows.primary};
@@ -16,6 +16,7 @@ export const WrapperForm = styled.div`
 `;
 
 export const FormStyled = styled(Form)`
+  padding-bottom: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
