@@ -16,6 +16,7 @@ import {
 // import { Backdrop } from 'components/Backdrop/Backdrop';
 import moment from 'moment';
 import { Button } from 'components/Button/Button';
+import { Modal } from 'components/Modal/Modal';
 
 const validationSchema = Yup.object({
   amount: Yup.number('must be a number').required(
@@ -82,13 +83,13 @@ export const EditTransactions = () => {
     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none">
       <path stroke="#FBFBFB" d="m1 1 16 16M1 17 17 1" />
     </svg>
-  );
+  ); // from react icons
 
   // const closeBeckdrop = e => {
   //   if (e.target === e.currentTarget) {
   //     dispatch(closeEditModal());
   //   }
-  // };
+  // }; //add backdrop
   const closeBtn = () => {
     dispatch(closeEditModal());
   }; //add to Button component
@@ -98,7 +99,7 @@ export const EditTransactions = () => {
   return (
     // <Backdrop onClick={closeBeckdrop}>
     <>
-      <div>
+      <Modal>
         <Button onClick={closeBtn} text={svgClose} type="button" />
 
         <h1>Edit transactions</h1>
@@ -162,22 +163,16 @@ export const EditTransactions = () => {
 
           <input
             onChange={formik.handleChange}
-            className={css.inputComment}
             type="text"
             name="comment"
             placeholder="Comment"
             value={formik.values.comment}
           />
 
-          <Button className={css.btnSave} type="submit" text="SAVE" />
+          <Button type="submit" text="SAVE" />
         </form>
-        <Button
-          onClick={closeBtn}
-          className={css.btnCancel}
-          type="button"
-          text="CANCEL"
-        />
-      </div>
+        <Button onClick={closeBtn} type="button" text="CANCEL" />
+      </Modal>
       {/* </Backdrop>*/}
     </>
   );
