@@ -14,7 +14,7 @@ export const NotFoundContainer = styled.main`
       rgba(109, 84, 235, 0.73) 3.47%,
       rgba(101, 35, 146, 0.73) 90.06%
     ),
-    linear-gradient(220deg, #6d54eb 3.47%, #652392 90.06%);
+    linear-gradient(230deg, #6d54eb 3.47%, #652392 90.06%);
 `;
 
 export const NotFoundWrapper = styled.div`
