@@ -72,7 +72,14 @@ export const fetchTransactionsSummary = async ({ month, year }) => {
   return data;
 };
 
-export const getCurrencyCourse = async () => {
-  const { data } = await axios.get('https://api.monobank.ua/bank/currency');
+export const getCurrencyData = async () => {
+  const start_date = '2023-01-01';
+  const end_date = '2023-07-19';
+
+  const { data } = await axios.get(
+    `https://api.monobank.ua/bank/currency?date=${Math.floor(
+      new Date(start_date).getTime() / 1000
+    )}&end_date=${Math.floor(new Date(end_date).getTime() / 1000)}`
+  );
   return data;
 };
