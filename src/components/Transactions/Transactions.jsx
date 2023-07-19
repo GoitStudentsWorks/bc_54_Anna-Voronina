@@ -30,7 +30,7 @@ import {
   delTransactionThunk,
 } from 'redux/transaction/transactionOperations';
 import { Button } from 'components/Button/Button';
-import MediaQuery from 'react-responsive/types/Component';
+import MediaQuery from 'react-responsive';
 // import { BtnAddTransaction } from 'components/BtnAddTransaction/BtnAddTransaction';
 // import { setUpdatedTransaction } from 'redux/global/slice';
 
@@ -70,7 +70,7 @@ const Transactions = () => {
                   </li>
                   <li>
                     <h4>Type</h4>
-                    <p>{transaction.type || '-'}</p>
+                    <p>{transaction.type ?? '-'}</p>
                   </li>
                   <li>
                     <h4>Category</h4>
@@ -121,7 +121,7 @@ const Transactions = () => {
                 </td>
                 <td>
                   <h4>Type</h4>
-                  <p>{transaction.type || '-'}</p>
+                  <p>{transaction.type ?? '-'}</p>
                 </td>
                 <td>
                   <h4>Category</h4>
