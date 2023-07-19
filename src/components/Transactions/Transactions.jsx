@@ -93,7 +93,7 @@ const Transactions = () => {
                     <Button
                       type="button"
                       onClick={() => console.log(1)}
-                      text="Edit" // svg in text prop
+                      text={((<StyledBiPencil />), 'Edit')}
                     />
                   </li>
                 </ul>
@@ -144,7 +144,7 @@ const Transactions = () => {
                   <Button
                     type="button"
                     onClick={() => console.log(1)}
-                    text="Edit" // svg in text prop
+                    text={((<StyledBiPencil />), 'Edit')} // svg in text prop
                   />
                 </td>
               </tr>
@@ -154,7 +154,7 @@ const Transactions = () => {
       </MediaQuery>
     </>
   ) : (
-    <h2>No transactions yet</h2>
+    <h1>No transactions yet. You can add them by putting "+" button</h1>
   );
 };
 
