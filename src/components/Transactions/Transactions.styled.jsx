@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Button } from 'components/Button/Button';
 import { BiPencil } from 'react-icons/bi';
 
 export const TransactionDetails = styled.ul`
@@ -127,7 +128,7 @@ export const ButtonContainer = styled.td`
   padding-bottom: 12px;
 `;
 
-export const ButtonDelTransaction = styled.button`
+export const ButtonDelTransaction = styled(Button)`
   text-align: center;
   background: linear-gradient(
     167deg,
@@ -153,7 +154,7 @@ export const ButtonDelTransaction = styled.button`
     box-shadow: 1px 5px 8px 0px rgba(0, 0, 0, 0.5);
   }
 `;
-export const ButtonEditTransaction = styled.button`
+export const ButtonEditTransaction = styled(Button)`
   display: flex;
   align-items: center;
   gap: 4px;
@@ -176,7 +177,7 @@ export const ButtonEditTransaction = styled.button`
   }
 `;
 
-export const BtnEditTransaction = styled.button`
+export const BtnEditTransaction = styled(Button)`
   background: transparent;
   border-radius: 50%;
   border: none;

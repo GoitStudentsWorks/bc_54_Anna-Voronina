@@ -31,12 +31,16 @@ import {
 } from 'redux/transaction/transactionOperations';
 import { Button } from 'components/Button/Button';
 import MediaQuery from 'react-responsive';
+import { useNavigate } from 'react-router-dom';
+import { selectIsModalLogoutOpen } from 'redux/global/globalSelectors';
+import { openModalEditTransaction } from 'redux/global/globalSlice';
 // import { setUpdatedTransaction } from 'redux/global/slice';
 
 const Transactions = () => {
   const dispatch = useDispatch();
   const transactions = useSelector(selectTransactions);
-  const categories = useSelector(selectCategories);
+  // const categories = useSelector(selectCategories);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // console.log(transactions);
@@ -48,9 +52,9 @@ const Transactions = () => {
     return new Date(b.transactionDate) - new Date(a.transactionDate);
   });
 
-  // const handleEditClick = object => {
-  //   dispatch(setUpdatedTransaction(object));
-  // };
+  const handleEditClick = object => {
+    dispatch(openModalEditTransaction(object));
+  };
   const handleDeleteTransaction = id => {
     dispatch(delTransactionThunk(id));
   };
@@ -84,12 +88,12 @@ const Transactions = () => {
                     <p>{transaction.sum}</p>
                   </li>
                   <li>
-                    <Button
+                    <ButtonEditTransaction
                       type="button"
-                      onClick={() => console.log(1)}
-                      text={<StyledBiPencil />}
+                      onClick={handleEditClick(transaction)}
+                      text={((<StyledBiPencil />), 'Edit')}
                     />
-                    <Button
+                    <ButtonDelTransaction
                       type="button"
                       onClick={handleDeleteTransaction(transaction.id)}
                       text="Delete"
@@ -135,12 +139,12 @@ const Transactions = () => {
                   <p>{transaction.sum}</p>
                 </td>
                 <td>
-                  <Button
+                  <BtnEditTransaction
                     type="button"
-                    onClick={() => console.log(1)}
-                    text={<StyledBiPencil />} // svg in text prop
+                    onClick={console.log(1)}
+                    text={<StyledBiPencil />}
                   />
-                  <Button
+                  <ButtonDelTransaction
                     type="button"
                     onClick={handleDeleteTransaction(transaction.id)}
                     text="Delete"
@@ -153,7 +157,7 @@ const Transactions = () => {
       </MediaQuery>
     </>
   ) : (
-    <h1>No transactions yet. You can add them by putting "+" button</h1>
+    <NoTransactions />
   );
 };
 

@@ -13,11 +13,13 @@ import {
 // import Flatpickr from 'react-flatpickr';
 // import 'flatpickr/dist/flatpickr.min.css';
 // import { customStyles } from 'utils/selectStyle';
-// import { Backdrop } from 'components/Backdrop/Backdrop';
+// import { Backdrop } from 'components/Backdrop/Backdrop'; // create backdrop in styled
 import moment from 'moment';
 import { Button } from 'components/Button/Button';
 import { Modal } from 'components/Modal/Modal';
-
+import { selectIsModalEditTransactionOpen } from 'redux/global/globalSelectors';
+import { closeModalEditTransaction } from 'redux/global/globalSlice';
+const isOpen = useSelector(selectIsModalEditTransactionOpen);
 const validationSchema = Yup.object({
   amount: Yup.number('must be a number').required(
     'Please enter amount of transaction'
@@ -70,7 +72,7 @@ export const EditTransactions = () => {
   useEffect(() => {
     const onClose = event => {
       if (event.code === 'Escape') {
-        dispatch(closeEditModal());
+        dispatch(closeModalEditTransaction());
       }
     };
     window.addEventListener('keydown', onClose);
@@ -91,90 +93,92 @@ export const EditTransactions = () => {
   //   }
   // }; //add backdrop
   const closeBtn = () => {
-    dispatch(closeEditModal());
+    dispatch(closeModalEditTransaction());
   }; //add to Button component
 
   const { type, transactionDate, categoryId } = formik.values;
 
   return (
     // <Backdrop onClick={closeBeckdrop}>
-    <>
-      <Modal>
-        <Button onClick={closeBtn} text={svgClose} type="button" />
+    isOpen ? (
+      <>
+        <Modal>
+          <Button onClick={closeBtn} text={svgClose} type="button" />
 
-        <h1>Edit transactions</h1>
-        <div>
-          <Button
-            type="button"
-            onClick={() => {
-              formik.setFieldValue('type', true);
-            }}
-            text="Income"
-          />
-
-          {/* slash between transactions type */}
-          <p>/</p>
-          <Button
-            type="button"
-            onClick={() => {
-              formik.setFieldValue('type', false);
-            }}
-            text="Expense"
-          />
-        </div>
-
-        <form className={css.form} onSubmit={formik.handleSubmit}>
-          {!type && (
-            <Select
-              defaultValue={options.find(e => e.value === categoryId)}
-              styles={customStyles}
-              options={options}
-              isDisabled={true}
-              onChange={({ value }) => {
-                formik.setFieldValue('categoryId', value);
+          <h1>Edit transactions</h1>
+          <div>
+            <Button
+              type="button"
+              onClick={() => {
+                formik.setFieldValue('type', true);
               }}
-            />
-          )}
-          <div className={css.formBlock}>
-            <input
-              onChange={formik.handleChange}
-              className={css.inputLine}
-              type="text"
-              name="amount"
-              placeholder="Transaction amount"
-              value={formik.values.amount}
+              text="Income"
             />
 
-            <Flatpickr
-              defaultValue={transactionDate}
-              options={{
-                dateFormat: 'd.m.Y',
-                disableMobile: 'true',
+            {/* slash between transactions type */}
+            <p>/</p>
+            <Button
+              type="button"
+              onClick={() => {
+                formik.setFieldValue('type', false);
               }}
-              type="date"
-              name="transactionDate"
-              id="date"
-              selected={transactionDate}
-              onChange={val => {
-                formik.setFieldValue('transactionDate', val[0]);
-              }}
+              text="Expense"
             />
           </div>
 
-          <input
-            onChange={formik.handleChange}
-            type="text"
-            name="comment"
-            placeholder="Comment"
-            value={formik.values.comment}
-          />
+          <form className={css.form} onSubmit={formik.handleSubmit}>
+            {!type && (
+              <Select
+                defaultValue={options.find(e => e.value === categoryId)}
+                styles={customStyles}
+                options={options}
+                isDisabled={true}
+                onChange={({ value }) => {
+                  formik.setFieldValue('categoryId', value);
+                }}
+              />
+            )}
+            <div className={css.formBlock}>
+              <input
+                onChange={formik.handleChange}
+                className={css.inputLine}
+                type="text"
+                name="amount"
+                placeholder="Transaction amount"
+                value={formik.values.amount}
+              />
 
-          <Button type="submit" text="SAVE" />
-        </form>
-        <Button onClick={closeBtn} type="button" text="CANCEL" />
-      </Modal>
-      {/* </Backdrop>*/}
-    </>
+              <Flatpickr
+                defaultValue={transactionDate}
+                options={{
+                  dateFormat: 'd.m.Y',
+                  disableMobile: 'true',
+                }}
+                type="date"
+                name="transactionDate"
+                id="date"
+                selected={transactionDate}
+                onChange={val => {
+                  formik.setFieldValue('transactionDate', val[0]);
+                }}
+              />
+            </div>
+
+            <input
+              onChange={formik.handleChange}
+              type="text"
+              name="comment"
+              placeholder="Comment"
+              value={formik.values.comment}
+            />
+
+            <Button type="submit" text="SAVE" />
+          </form>
+          <Button onClick={closeBtn} type="button" text="CANCEL" />
+        </Modal>
+        {/* </Backdrop>*/}
+      </>
+    ) : null
   );
 };
 export default EditTransactions;
