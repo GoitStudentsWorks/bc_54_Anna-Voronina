@@ -1,9 +1,9 @@
-import { ButtonStyled } from 'components/Button/Button.styled';
 import { Field, Form } from 'formik';
 import styled from 'styled-components';
 
 export const WrapperForm = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 533px;
@@ -53,11 +53,4 @@ export const WrapperButton = styled.div`
   align-items: center;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(5)};
-`;
-
-export const ButtonWhiteStyled = styled(ButtonStyled)`
-  border: ${({ theme }) => theme.borders.normal};
-  border-color: ${({ theme }) => theme.colors.blue};
-  color: ${({ theme }) => theme.colors.btnVioletText};
-  background: ${({ theme }) => theme.colors.btnWhiteBg};
 `;
