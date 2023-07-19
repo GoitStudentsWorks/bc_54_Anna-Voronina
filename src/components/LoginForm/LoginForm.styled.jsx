@@ -15,7 +15,6 @@ export const WrapperForm = styled.div`
 `;
 
 export const FormStyled = styled(Form)`
-  padding: ${({ theme }) => theme.spacing(3)};
   display: flex;
   justify-content: center;
   align-items: center;
