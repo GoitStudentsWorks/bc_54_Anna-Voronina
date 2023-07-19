@@ -1,7 +1,9 @@
-import Transactions from 'components/Transactions/Transactions';
+
+import { Header } from 'components/Header/Header';
 
 const DashboardPage = () => {
-  return <Transactions />;
+  return <Header />;
+
 };
 
 export default DashboardPage;
