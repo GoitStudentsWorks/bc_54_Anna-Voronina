@@ -12,6 +12,7 @@ import {
 } from './LoginForm.styled';
 import { Logo } from 'components/Logo/Logo';
 import { WrapperLogo } from 'components/Logo/Logo.styled';
+import { Link } from 'react-router-dom';
 
 export const LoginForm = () => {
   //const dispatch = useDispatch();
@@ -57,7 +58,9 @@ export const LoginForm = () => {
             </WrapperField>
             <WrapperButton>
               <Button type="submit" text="log in" />
-              <Button type="submit" text="register" variant="secondary" />
+              <Link to="/register">
+                <Button text="register" variant="secondary" />
+              </Link>
             </WrapperButton>
           </FormStyled>
         </Formik>
