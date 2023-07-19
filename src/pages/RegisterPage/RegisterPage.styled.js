@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import bgImage from 'assets/images/GradientRegister.png';
 
 export const BgImage = styled.div`
+  padding: 54px 0;
   max-width: 100vw;
   height: 100vh;
   display: flex;
@@ -41,6 +42,5 @@ export const BgImage = styled.div`
 
   /* Для планшетов (ширина от 768px до 1279px) */
   @media screen and (min-width: 768px) and (max-width: 1279px) {
-    height: 768px;
   }
 `;
