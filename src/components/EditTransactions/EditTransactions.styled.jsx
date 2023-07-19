@@ -224,7 +224,7 @@ export const FormBlockEditModal = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
-  @media screen and(min - width: 768px) {
+  @media screen and(min-width: 768px) {
     flex-direction: row;
     gap: 32px;
   }
