@@ -12,6 +12,7 @@ import {
   WrapperField,
   WrapperForm,
 } from 'components/LoginForm/LoginForm.styled';
+import { Link } from 'react-router-dom';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -77,7 +78,9 @@ export const RegisterForm = () => {
             </WrapperField>
             <WrapperButton>
               <Button type="submit" text="register" />
-              <Button type="submit" text="log in" variant="secondary" />
+              <Link to="/login">
+                <Button type="submit" text="log in" variant="secondary" />
+              </Link>
             </WrapperButton>
           </FormStyled>
         </Formik>
