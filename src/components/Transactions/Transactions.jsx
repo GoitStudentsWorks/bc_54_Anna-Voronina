@@ -177,7 +177,9 @@ const Transactions = () => {
       </MediaQuery>
     </>
   ) : (
-    <h1>No transactions yet! Add them by pressing "+" button</h1>
+    <NoTransactions>
+      No transactions yet! Add them by pressing "+" button
+    </NoTransactions>
   );
 };
 
