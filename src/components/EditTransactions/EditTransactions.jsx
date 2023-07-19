@@ -3,16 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Select from 'react-select';
-import { updateThunk } from 'redux/transactions/operation';
-import { selectCategories } from 'redux/transactions/selectors';
-import { selectTransaction } from 'redux/global/selectors';
-import { closeEditModal } from 'redux/global/slice';
-import 'flatpickr/dist/themes/material_green.css';
-import Flatpickr from 'react-flatpickr';
-import 'flatpickr/dist/flatpickr.min.css';
-import { customStyles } from 'utils/selectStyle';
-import { Backdrop } from 'components/Backdrop/Backdrop';
+import { updateThunk } from 'redux/transaction/transactionOperations';
+import {
+  selectTransaction,
+  selectCategories,
+} from 'redux/transaction/transactionSelectors';
+// import { closeEditModal } from 'redux/global/slice';
+// import 'flatpickr/dist/themes/material_green.css';
+// import Flatpickr from 'react-flatpickr';
+// import 'flatpickr/dist/flatpickr.min.css';
+// import { customStyles } from 'utils/selectStyle';
+// import { Backdrop } from 'components/Backdrop/Backdrop';
 import moment from 'moment';
+import { Button } from 'components/Button/Button';
 
 const validationSchema = Yup.object({
   amount: Yup.number('must be a number').required(
@@ -33,11 +36,11 @@ export const EditTransactions = () => {
           type: false,
           amount: 0 - transaction.amount,
         };
-  const categori = useSelector(selectCategories);
-  const income = categori.find(el => el.type === 'INCOME');
+  const categories = useSelector(selectCategories);
+  const income = categories.find(el => el.type === 'INCOME');
 
-  const filteredCategori = categori.filter(el => el.type !== 'INCOME');
-  const options = filteredCategori.map(el => ({
+  const filteredCategories = categories.filter(el => el.type !== 'INCOME');
+  const options = filteredCategories.map(el => ({
     value: el.id,
     label: el.name,
   }));
@@ -81,45 +84,42 @@ export const EditTransactions = () => {
     </svg>
   );
 
-  const closeBeckdrop = e => {
-    if (e.target === e.currentTarget) {
-      dispatch(closeEditModal());
-    }
-  };
+  // const closeBeckdrop = e => {
+  //   if (e.target === e.currentTarget) {
+  //     dispatch(closeEditModal());
+  //   }
+  // };
   const closeBtn = () => {
     dispatch(closeEditModal());
-  };
+  }; //add to Button component
 
   const { type, transactionDate, categoryId } = formik.values;
 
   return (
-    <Backdrop onClick={closeBeckdrop}>
-      <div className={css.modal}>
-        <button onClick={closeBtn} className={css.closeBtn} type="button">
-          {svgClose}
-        </button>
+    // <Backdrop onClick={closeBeckdrop}>
+    <>
+      <div>
+        <Button onClick={closeBtn} text={svgClose} type="button" />
 
-        <h1 className={css.title}>Edit transactions</h1>
-        <div className={css.toggleContainer}>
-          <button
+        <h1>Edit transactions</h1>
+        <div>
+          <Button
             type="button"
-            className={`${css.toggle} ${type ? css.orangeToggle : ''}`}
             onClick={() => {
               formik.setFieldValue('type', true);
             }}
-          >
-            Income
-          </button>
-          <p className={css.slash}>/</p>
-          <button
+            text="Income"
+          />
+
+          {/* slash between transactions type */}
+          <p>/</p>
+          <Button
             type="button"
-            className={`${css.toggle} ${!type ? css.pinkToggle : ''}`}
             onClick={() => {
               formik.setFieldValue('type', false);
             }}
-          >
-            Expense
-          </button>
+            text="Expense"
+          />
         </div>
 
         <form className={css.form} onSubmit={formik.handleSubmit}>
@@ -169,15 +169,17 @@ export const EditTransactions = () => {
             value={formik.values.comment}
           />
 
-          <button className={css.btnSave} type="submit">
-            SAVE
-          </button>
+          <Button className={css.btnSave} type="submit" text="SAVE" />
         </form>
-        <button onClick={closeBtn} className={css.btnCancel} type="button">
-          CANCEL
-        </button>
+        <Button
+          onClick={closeBtn}
+          className={css.btnCancel}
+          type="button"
+          text="CANCEL"
+        />
       </div>
-    </Backdrop>
+      {/* </Backdrop>*/}
+    </>
   );
 };
 export default EditTransactions;
