@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit/dist';
 import {
-  addTransaction,
-  getTransactionsCategories,
-  getAllTransactions,
-  delTransaction,
-  getSummary,
-  editTransaction,
+  addTransactionThunk,
+  getTransactionsCategoriesThunk,
+  getAllTransactionsThunk,
+  delTransactionThunk,
+  getSummaryThunk,
+  editTransactionThunk,
 } from './transactionOperations';
 
 const initialState = {
@@ -62,24 +62,24 @@ const transactionSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(getAllTransactions.pending, handlePending)
-      .addCase(getAllTransactions.fulfilled, handleAllTransactions)
-      .addCase(getAllTransactions.rejected, handleRejected)
-      .addCase(editTransaction.pending, handlePending)
-      .addCase(editTransaction.fulfilled, handleEdit)
-      .addCase(editTransaction.rejected, handleRejected)
-      .addCase(addTransaction.pending, handlePending)
-      .addCase(addTransaction.fulfilled, handleAdd)
-      .addCase(addTransaction.rejected, handleRejected)
-      .addCase(delTransaction.pending, handlePending)
-      .addCase(delTransaction.fulfilled, handleDelete)
-      .addCase(delTransaction.rejected, handleRejected)
-      .addCase(getTransactionsCategories.pending, handlePending)
-      .addCase(getTransactionsCategories.fulfilled, handleCategories)
-      .addCase(getTransactionsCategories.rejected, handleRejected)
-      .addCase(getSummary.pending, handlePending)
-      .addCase(getSummary.fulfilled, handleSummary)
-      .addCase(getSummary.rejected, handleRejected);
+      .addCase(getAllTransactionsThunk.pending, handlePending)
+      .addCase(getAllTransactionsThunk.fulfilled, handleAllTransactions)
+      .addCase(getAllTransactionsThunk.rejected, handleRejected)
+      .addCase(editTransactionThunk.pending, handlePending)
+      .addCase(editTransactionThunk.fulfilled, handleEdit)
+      .addCase(editTransactionThunk.rejected, handleRejected)
+      .addCase(addTransactionThunk.pending, handlePending)
+      .addCase(addTransactionThunk.fulfilled, handleAdd)
+      .addCase(addTransactionThunk.rejected, handleRejected)
+      .addCase(delTransactionThunk.pending, handlePending)
+      .addCase(delTransactionThunk.fulfilled, handleDelete)
+      .addCase(delTransactionThunk.rejected, handleRejected)
+      .addCase(getTransactionsCategoriesThunk.pending, handlePending)
+      .addCase(getTransactionsCategoriesThunk.fulfilled, handleCategories)
+      .addCase(getTransactionsCategoriesThunk.rejected, handleRejected)
+      .addCase(getSummaryThunk.pending, handlePending)
+      .addCase(getSummaryThunk.fulfilled, handleSummary)
+      .addCase(getSummaryThunk.rejected, handleRejected);
   },
 });
 
