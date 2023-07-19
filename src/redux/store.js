@@ -11,8 +11,8 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
-import { globalReducer } from './global/globalSlice';
 import { transactionsReducer } from './transaction/transactionSlice';
+import { globalReducer } from './global/globalSlice';
 
 const persistConfig = {
   key: 'token',
