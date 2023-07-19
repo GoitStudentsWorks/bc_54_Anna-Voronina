@@ -3,6 +3,7 @@ import {
   addNewTransaction,
   deleteTransaction,
   fetchCategories,
+  fetchTransactionsSummary,
   getTransaction,
   updateTransaction,
 } from 'services/api/api';
