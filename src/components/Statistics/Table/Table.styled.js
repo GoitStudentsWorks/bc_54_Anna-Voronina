@@ -7,6 +7,12 @@ export const WrapperTable = styled.table`
   flex-direction: column;
 
   margin-top: 20px;
+  @media only screen and (min-width: 768px) {
+    width: 336px;
+  }
+  @media only screen and (min-width: 768px) {
+    width: 395px;
+  }
 `;
 
 export const StyledThead = styled.thead`
@@ -26,6 +32,13 @@ export const StyledThead = styled.thead`
   backdrop-filter: blur(50px);
 
   border-radius: 8px;
+
+  @media only screen and (min-width: 768px) {
+    width: 336px;
+  }
+  @media only screen and (min-width: 768px) {
+    width: 395px;
+  }
 `;
 
 export const StyledTbody = styled.tbody`
@@ -36,7 +49,7 @@ export const StyledTbody = styled.tbody`
   gap: 14px;
 
   tr {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
     display: flex;
     justify-content: space-between;
     padding-bottom: 16px;
@@ -46,5 +59,5 @@ export const StyledTbody = styled.tbody`
 export const StyledSpan = styled.td`
   width: 24px;
   border-radius: 2px;
-  background-color: ${getRandomHexColor()};
+  /* background-color: ${getRandomHexColor()}; */
 `;

@@ -10,7 +10,7 @@ import {
   selectIncomeSummary,
 } from 'redux/transaction/transactionSelectors';
 
-export const Table = ({ data }) => {
+export const Table = ({ data, randomColors }) => {
   const incomeSummary = useSelector(selectIncomeSummary);
   const expenseSummary = useSelector(selectExpenseSummary);
 
@@ -32,7 +32,7 @@ export const Table = ({ data }) => {
             </tr>;
           })}
           <tr>
-            <StyledSpan></StyledSpan>
+            <StyledSpan style={{ backgroundColor: randomColors }}></StyledSpan>
             <td>Car</td>
             <td>3500</td>
           </tr>

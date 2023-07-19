@@ -1,5 +1,7 @@
+import { DiagramTab } from 'components/Statistics/DiagramTab';
+
 const DashboardPage = () => {
-  return <div>DashboardPage</div>;
+  return <DiagramTab />;
 };
 
 export default DashboardPage;

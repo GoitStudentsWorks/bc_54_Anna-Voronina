@@ -1,10 +1,8 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { ChartWrapper, StyledSpan } from './Chart.styled';
-import { getRandomHexColor } from 'services/randomColor/randomColor';
 
-export const Chart = () => {
-  // const randomColor = getRandomHexColor();
+export const Chart = ({ randomColors }) => {
   ChartJS.register(ArcElement, Tooltip, Legend);
 
   const data = {
@@ -13,7 +11,7 @@ export const Chart = () => {
       {
         label: '# of Votes',
         data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: getRandomHexColor(),
+        backgroundColor: randomColors,
 
         // borderColor: [
         //   'rgba(255, 99, 132, 1)',

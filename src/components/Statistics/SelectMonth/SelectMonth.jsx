@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyledSelect } from './SelectMonth.styled';
+import { Options, StyledSelect } from './SelectMonth.styled';
 
 const months = [
   'January',
@@ -22,7 +22,7 @@ export const SelectMonth = () => {
   return (
     <StyledSelect value={month} onChange={e => setMonth(e.target.value)}>
       {months.map((el, idx) => (
-        <option key={idx}>{el}</option>
+        <Options key={idx}>{el}</Options>
       ))}
     </StyledSelect>
   );
