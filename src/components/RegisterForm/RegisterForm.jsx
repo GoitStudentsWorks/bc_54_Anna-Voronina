@@ -1,5 +1,10 @@
+import { useDispatch } from 'react-redux';
+import { Formik } from 'formik';
+import { signUpThunk } from 'redux/auth/authOperations';
 import { Button } from 'components/Button/Button';
 import { FormError } from 'components/FormError/FormError';
+import { Logo } from 'components/Logo/Logo';
+import { registerSchema } from 'services/validation/validationRegisterSchema';
 import {
   FieldStyled,
   FormStyled,
@@ -7,25 +12,24 @@ import {
   WrapperField,
   WrapperForm,
 } from 'components/LoginForm/LoginForm.styled';
-import { Logo } from 'components/Logo/Logo';
-import { Formik } from 'formik';
-
-import { registerSchema } from 'services/validation/ValidationRegisteSchema';
 
 export const RegisterForm = () => {
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
   const initialValues = {
-    name: '',
+    username: '',
     email: '',
     password: '',
     confirmPassword: '',
   };
 
-  const hendleSubmit = (value, { resetForm }) => {
-    //dispatch(logIn(value));
+  const handleSubmit = (value, { resetForm }) => {
+    const { username, email, password } = value;
+    dispatch(signUpThunk({ username, email, password }));
     console.log(value);
     resetForm();
   };
+
   return (
     <div>
       <WrapperForm>
@@ -33,18 +37,18 @@ export const RegisterForm = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={registerSchema}
-          onSubmit={hendleSubmit}
+          onSubmit={handleSubmit}
         >
           <FormStyled autoComplete="off">
             <WrapperField>
               <FieldStyled
                 type="text"
-                name="name"
+                name="username"
                 title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                 placeholder="First name"
                 required
               />
-              <FormError name="name" />
+              <FormError name="username" />
               <FieldStyled
                 type="email"
                 name="email"

@@ -1,6 +1,6 @@
 import axios from 'axios';
 const instance = axios.create({
-  baseURL: 'https://wallet.goit.ua/docs/api',
+  baseURL: 'https://wallet.goit.ua/api',
 });
 
 // Set token

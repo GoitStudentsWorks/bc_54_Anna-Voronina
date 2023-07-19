@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 export const registerSchema = yup.object().shape({
-  name: yup
+  username: yup
     .string()
     .test('trim', 'The field must not start or end with spaces', value => {
       if (value) {
