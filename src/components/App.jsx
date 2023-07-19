@@ -1,11 +1,24 @@
-import LoginPage from 'pages/LoginPage/LoginPage';
+import { Route, Routes } from 'react-router-dom';
 import { GlobalStyle } from 'services/styles/GlobalStyle';
+import { SharedLayout } from './SharedLayout/SharedLayout';
+import DashboardPage from 'pages/DashboardPage/DashboardPage';
+import SummaryPage from 'pages/SummaryPage/SummaryPage';
+import HomePage from 'pages/HomePAge/HomePage';
+import LoginPage from 'pages/LoginPage/LoginPage';
+import RegisterPage from 'pages/RegisterPage/RegisterPage';
 
 export const App = () => {
   return (
     <>
-      <div>React homework template</div>
-      <LoginPage />
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<DashboardPage />} />
+          <Route path="home" element={<HomePage />} />
+          <Route path="statistic" element={<SummaryPage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
+        </Route>
+      </Routes>
       <GlobalStyle />
     </>
   );
