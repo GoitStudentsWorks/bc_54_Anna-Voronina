@@ -5,6 +5,7 @@ const initialState = {
   isModalLogoutOpen: false,
   isLoading: false,
   isModalEditTransactionOpen: false,
+  editTransaction: null,
 };
 
 const globalSlice = createSlice({
@@ -35,6 +36,10 @@ const globalSlice = createSlice({
     closeModalEditTransaction(state) {
       state.isModalAddTransactionOpen = false;
     },
+    setUpdatedTransaction: (state, { payload }) => {
+      state.editTransaction = payload;
+    },
+    editTransaction: null,
   },
 });
 
@@ -48,4 +53,5 @@ export const {
   unsetIsLoading,
   openModalEditTransaction,
   closeModalEditTransaction,
+  setUpdatedTransaction,
 } = globalSlice.actions;

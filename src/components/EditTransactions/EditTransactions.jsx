@@ -15,7 +15,7 @@ import {
 import 'flatpickr/dist/themes/material_green.css';
 import Flatpickr from 'react-flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
-// import { customStyles } from 'utils/selectStyle';
+import { customStyles } from './selectStyled';
 // import { Backdrop } from 'components/Backdrop/Backdrop'; // create backdrop in styled
 import moment from 'moment';
 import { Button } from 'components/Button/Button';
@@ -137,7 +137,7 @@ export const EditTransactions = () => {
             {!type && (
               <Select
                 defaultValue={options.find(e => e.value === categoryId)}
-                // styles={customStyles}
+                styles={customStyles}
                 options={options}
                 isDisabled={true}
                 onChange={({ value }) => {

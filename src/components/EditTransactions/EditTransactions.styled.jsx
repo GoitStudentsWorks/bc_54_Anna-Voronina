@@ -232,7 +232,10 @@ export const FormBlockEditModal = styled.div`
     gap: 32px;
   }
 `;
-
+export const Backdrop = styled.div`
+  width: 100vh;
+  height: 100vh;
+`;
 /* inputLine.react-datetime-picker {
   background-image: url('https://fonts.gstatic.com/s/i/materialicons/date_range/v11/24px.svg');
   background-repeat: no-repeat;
