@@ -1,13 +1,14 @@
 import { Logo } from 'components/Logo/Logo';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ExitContainer, HeaderContainer } from './Header.styled';
+import { ExitBtn, ExitContainer, HeaderContainer } from './Header.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsModalLogoutOpen } from 'redux/global/globalSelectors';
 
 import { ModalLogOut } from 'components/ModalLogOut/ModalLogOut';
 import { openModalLogout } from 'redux/global/globalSlice';
 // import { IoExitOutline } from 'react-icons/io';
+// <IoExitOutline />;
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -24,9 +25,12 @@ export const Header = () => {
           <span>Name</span>
           <div>
             <span>
-              <button type="button" onClick={() => dispatch(openModalLogout())}>
+              <ExitBtn
+                type="button"
+                onClick={() => dispatch(openModalLogout())}
+              >
                 Exit
-              </button>
+              </ExitBtn>
               {isModalOpen && <ModalLogOut />}
             </span>
           </div>

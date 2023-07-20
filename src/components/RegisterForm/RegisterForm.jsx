@@ -10,8 +10,8 @@ import {
   FormStyled,
   WrapperButton,
   WrapperField,
-  WrapperForm,
 } from 'components/LoginForm/LoginForm.styled';
+import { WrapperFormReg } from './RegisterForm.styled';
 import { LinkStyled } from './RegisterForm.styled';
 
 export const RegisterForm = () => {
@@ -32,7 +32,7 @@ export const RegisterForm = () => {
   };
 
   return (
-    <WrapperForm>
+    <WrapperFormReg>
       <Logo />
       <Formik
         initialValues={initialValues}
@@ -77,6 +77,6 @@ export const RegisterForm = () => {
           </WrapperButton>
         </FormStyled>
       </Formik>
-    </WrapperForm>
+    </WrapperFormReg>
   );
 };

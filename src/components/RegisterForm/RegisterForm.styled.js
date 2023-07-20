@@ -1,5 +1,10 @@
 import { Link } from 'react-router-dom';
+import { WrapperForm } from 'components/LoginForm/LoginForm.styled';
 import styled from 'styled-components';
+
+export const WrapperFormReg = styled(WrapperForm)`
+  padding: 60px 62px;
+`;
 
 export const LinkStyled = styled(Link)`
   display: flex;

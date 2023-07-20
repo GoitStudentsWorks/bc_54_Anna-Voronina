@@ -4,7 +4,14 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { logOutThunk } from 'redux/auth/authOperations';
 import { closeModalLogout } from 'redux/global/globalSlice';
-import { ModalContainer, ModalWraper } from './ModalLogOut.styled';
+import {
+  ButtonWrapper,
+  CloseBtn,
+  ModalContainer,
+  ModalWraper,
+  Title,
+} from './ModalLogOut.styled';
+import { GrClose } from 'react-icons/gr';
 
 export const ModalLogOut = () => {
   const dispatch = useDispatch();
@@ -26,9 +33,19 @@ export const ModalLogOut = () => {
     <Modal>
       <ModalWraper onClick={onCloseModal}>
         <ModalContainer>
-          <p>name, are you sure you want to log out?</p>
-          <button onClick={() => dispatch(closeModalLogout())}>Cancel</button>
-          <Button type="button" onClick={handleLogOut} text="Exit" />
+          <CloseBtn onClick={() => dispatch(closeModalLogout())}>
+            <GrClose />
+          </CloseBtn>
+          <Title>name, are you sure you want to log out?</Title>
+          <ButtonWrapper>
+            <Button
+              type="button"
+              onClick={() => dispatch(closeModalLogout())}
+              text="Cancel"
+              variant={'secondary'}
+            />
+            <Button type="button" onClick={handleLogOut} text="Yeah, Exit" />
+          </ButtonWrapper>
         </ModalContainer>
       </ModalWraper>
     </Modal>
