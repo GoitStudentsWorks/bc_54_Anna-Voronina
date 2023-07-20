@@ -1,28 +1,11 @@
 import styled from 'styled-components';
 
 export const ModalWraper = styled.div`
-  position: fixed;
-  left: 0;
-  width: 100vw;
-  height: 88vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
-
-  @media screen and (min-width: 768px) {
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.25);
-  }
+  flex-wrap: wrap;
 `;
 
+<<<<<<< Updated upstream
 export const ModalContainer = styled.div`
   position: relative;
 
@@ -41,12 +24,15 @@ export const ModalContainer = styled.div`
     flex-direction: column;
   }
 `;
+=======
+export const ModalContainer = styled.div``;
+>>>>>>> Stashed changes
 
 export const Title = styled.p`
   text-align: center;
-  font-size: ${({ theme }) => theme.fontSizes.xl};
-  margin-bottom: 42px;
-  @media screen and (min-width: 768px) {
+  font-size: 50px;
+  margin-top: 70px;
+  @media screen and (max-width: 425px) {
     font-size: 24px;
   }
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -58,25 +44,17 @@ export const Title = styled.p`
 
 export const ButtonWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 20px;
   align-items: center;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 90px;
 
-  @media screen and (min-width: 320px) {
+  /* @media screen and (min-width: 320px) {
     flex-direction: row;
     gap: 40px;
     justify-content: flex-end;
-  }
+  } */
 `;
 
-export const CloseBtn = styled.button`
-  position: absolute;
-  top: 20px;
-  right: 16px;
-  border: none;
-  color: white;
-  background-color: transparent;
-  cursor: pointer;
-`;
+export const CloseBtn = styled.button``;
