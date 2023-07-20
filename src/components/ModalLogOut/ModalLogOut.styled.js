@@ -1,4 +1,3 @@
-import { theme } from 'services/styles/theme';
 import styled from 'styled-components';
 
 export const ModalWraper = styled.div`
