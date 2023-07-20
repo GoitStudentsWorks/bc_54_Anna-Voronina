@@ -1,7 +1,9 @@
 import { Button } from 'components/Button/Button';
-import { Field, Formik } from 'formik';
-import { useEffect } from 'react';
+import { CustomSelect } from 'components/CustomSelect/CustomSelect';
+import { Formik } from 'formik';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { closeModalAddTransaction } from 'redux/global/globalSlice';
 import {
   addTransactionThunk,
   getTransactionsCategoriesThunk,
@@ -17,13 +19,15 @@ import {
 
 export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
+  const [selectedOption, setSelectedOption] = useState('Car');
+  const [selectedType, setSelectedType] = useState('INCOME');
   useEffect(() => {
     dispatch(getTransactionsCategoriesThunk());
   }, [dispatch]);
 
   const allCategories = useSelector(selectCategories);
   const expenseCategories = allCategories.filter(
-    category => category.type === 'EXPENCE'
+    category => category.type === 'EXPENSE'
   );
   const incomeCategories = allCategories.filter(
     category => category.type === 'INCOME'
@@ -31,21 +35,37 @@ export const ModalAddTransaction = () => {
 
   const initialValues = {
     transactionDate: '',
-    type: 'INCOME',
-    categoryId: '063f1132-ba5d-42b4-951d-44011ca46262',
+    type: selectedType,
+    categoryId: '',
     comment: '',
-    amount: 0,
+    amount: '',
   };
   const handleSubmit = (value, { resetForm }) => {
-    console.log(value);
+    // console.log(value);
     const newData = {
       ...value,
-      amount: Number(value.amount),
+      amount: `${
+        value.type === 'EXPENSE'
+          ? Number(value.amount) * -1
+          : Number(value.amount)
+      }`,
       type: value.type,
+      categoryId: `${
+        value.type === 'EXPENSE' ? selectedOption.id : incomeCategories[0].id
+      }`,
     };
-    // dispatch(addTransactionThunk(newData));
-    // resetForm();
+    dispatch(addTransactionThunk(newData));
+    resetForm();
   };
+
+  const handleChangeSelect = item => {
+    setSelectedOption(item);
+  };
+  const selectOptionsData = expenseCategories.map(item => ({
+    id: item.id,
+    value: item.name,
+    label: item.name,
+  }));
   return (
     <ModalAddWrapper>
       <h3>Add transaction</h3>
@@ -55,11 +75,33 @@ export const ModalAddTransaction = () => {
           <div>
             <span>Income</span>
             <span>
-              <Field type="radio" name="type" id="INCOME" value="INCOME" />
-              <Field type="radio" name="type" id="EXPENSE" value="EXPENSE" />
+              <input
+                type="radio"
+                name="type"
+                id="INCOME"
+                value="INCOME"
+                defaultChecked
+                onChange={e => setSelectedType(e.target.value)}
+              />
+              <input
+                type="radio"
+                name="type"
+                id="EXPENSE"
+                value="EXPENSE"
+                onChange={e => setSelectedType(e.target.value)}
+              />
             </span>
             <span>Expense</span>
           </div>
+          {/* CustomSelect = ({(options, onChange)}) */}
+          {selectedType === 'EXPENSE' && (
+            <CustomSelect
+              options={selectOptionsData}
+              nameOfSelect="category"
+              onChange={handleChangeSelect}
+            />
+          )}
+
           <InputWrapper>
             <StyledField
               type="number"
@@ -72,7 +114,11 @@ export const ModalAddTransaction = () => {
           <StyledField type="text" name="comment" placeholder="Comment" />
           <ButtonWrapper>
             <Button text="ADD" type="submit" />
-            <Button text="CANCEL" variant="secondary" />
+            <Button
+              text="CANCEL"
+              variant="secondary"
+              onClick={() => dispatch(closeModalAddTransaction())}
+            />
           </ButtonWrapper>
         </StyledForm>
       </Formik>
