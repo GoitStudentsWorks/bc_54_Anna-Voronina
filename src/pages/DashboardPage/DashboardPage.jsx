@@ -1,8 +1,9 @@
+import { useSelector } from 'react-redux';
+import { CustomSelect } from 'components/CustomSelect/CustomSelect';
 import { Header } from 'components/Header/Header';
 import { Modal } from 'components/Modal/Modal';
 import { ModalAddTransaction } from 'components/ModalAddTransaction/ModalAddTransaction';
 import { RoundButton } from 'components/RoundButton/RoundButton';
-import { useSelector } from 'react-redux';
 import { selectIsModalAddTransactionOpen } from 'redux/global/globalSelectors';
 
 const DashboardPage = () => {
@@ -16,6 +17,7 @@ const DashboardPage = () => {
         </Modal>
       )}
       <RoundButton />
+      <CustomSelect />
     </>
   );
 };
