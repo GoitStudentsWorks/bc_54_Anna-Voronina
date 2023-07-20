@@ -1,7 +1,7 @@
 import { Button } from 'components/Button/Button';
 import { Modal } from 'components/Modal/Modal';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logOutThunk } from 'redux/auth/authOperations';
 import { closeModalLogout } from 'redux/global/globalSlice';
 import {
@@ -12,8 +12,10 @@ import {
   Title,
 } from './ModalLogOut.styled';
 import { GrClose } from 'react-icons/gr';
+import { selectUser } from 'redux/auth/authSelectors';
 
 export const ModalLogOut = () => {
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
   const handleLogOut = () => {
@@ -36,7 +38,7 @@ export const ModalLogOut = () => {
           <CloseBtn onClick={() => dispatch(closeModalLogout())}>
             <GrClose />
           </CloseBtn>
-          <Title>name, are you sure you want to log out?</Title>
+          <Title>{user.username}, are you sure you want to log out?</Title>
           <ButtonWrapper>
             <Button
               type="button"

@@ -61,12 +61,12 @@ export const ButtonWrapper = styled.div`
   gap: 8px;
   align-items: center;
   justify-content: center;
-  margin-top: 40px; /* Зміщуємо текст вгору на 40px */
+  margin-top: 40px;
 
   @media screen and (min-width: 320px) {
     flex-direction: row;
     gap: 40px;
-    justify-content: flex-end; /* Зміщуємо кнопки вниз на 40px */
+    justify-content: flex-end;
   }
 `;
 
