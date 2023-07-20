@@ -40,12 +40,12 @@ const Transactions = () => {
   const dispatch = useDispatch();
   const transactions = useSelector(selectTransactions);
   // const categories = useSelector(selectCategories);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
-    // console.log(transactions);
-    // dispatch(getAllTransactionsThunk());
-    // dispatch(getTransactionsCategoriesThunk());
+    console.log(transactions);
+    dispatch(getAllTransactionsThunk());
+    dispatch(getTransactionsCategoriesThunk());
   }, []);
 
   const sortedTransactions = [
@@ -58,10 +58,13 @@ const Transactions = () => {
 
   const handleEditClick = object => {
     dispatch(openModalEditTransaction(object));
-  };
+    console.log(10);
+  }; // wait till adding real data will be able to addd and if there are bugs, fix them
+
   const handleDeleteTransaction = id => {
     dispatch(delTransactionThunk(id));
-  };
+    console.log(1);
+  }; // wait till adding real data will be able to addd and if there are bugs, fix them
 
   return sortedTransactions.length ? (
     <>
@@ -101,19 +104,21 @@ const Transactions = () => {
                     </TransactionDetailsItemTitle>
                     <SumText color="#fff">{transaction.sum}</SumText>
                   </TransactionDetailsItem>
-                  <ButtonContainer>
-                    <ButtonEditTransaction
-                      type="button"
-                      onClick={handleEditClick(transaction)}
-                    >
-                      {((<StyledBiPencil />), 'Edit')}
-                    </ButtonEditTransaction>
-                    <ButtonDelTransaction
-                      type="button"
-                      onClick={() => handleDeleteTransaction(transaction.id)}
-                      text="Delete"
-                    />
-                  </ButtonContainer>
+                  <TransactionDetailsItem>
+                    <ButtonContainer>
+                      <ButtonEditTransaction
+                        type="button"
+                        onClick={transaction => handleEditClick(transaction)}
+                      >
+                        {((<StyledBiPencil />), 'Edit')}
+                      </ButtonEditTransaction>
+                      <ButtonDelTransaction
+                        type="button"
+                        onClick={() => handleDeleteTransaction(transaction.id)}
+                        text="Delete"
+                      />
+                    </ButtonContainer>
+                  </TransactionDetailsItem>
                 </TransactionDetails>
               </li>
             );
@@ -129,7 +134,9 @@ const Transactions = () => {
             <TableHeader>Category</TableHeader>
             <TableHeader>Comment</TableHeader>
             <TableHeader>Sum</TableHeader>
+            <TableHeader />
           </TableHead>
+
           <TableBody>
             {sortedTransactions.map(transaction => {
               return (
@@ -139,8 +146,12 @@ const Transactions = () => {
                   <TableDash>{transaction.category}</TableDash>
                   <TableDash>{transaction.comment}</TableDash>
                   <Sum>{transaction.sum}</Sum>
+                  {/* <TableDash> */}
                   <ButtonContainer>
-                    <BtnEditTransaction type="button" onClick={handleEditClick}>
+                    <BtnEditTransaction
+                      type="button"
+                      onClick={transaction => handleEditClick(transaction)}
+                    >
                       <StyledBiPencil />
                     </BtnEditTransaction>
                     <ButtonDelTransaction
@@ -149,6 +160,7 @@ const Transactions = () => {
                       text="Delete"
                     />
                   </ButtonContainer>
+                  {/* </TableDash> */}
                 </TableRow>
               );
             })}
