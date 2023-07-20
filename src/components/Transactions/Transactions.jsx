@@ -123,13 +123,13 @@ const Transactions = () => {
 
       <MediaQuery minWidth={768}>
         <Table>
-          <TableHeader>
-            <TableHead>Date</TableHead>
-            <TableHead>Type</TableHead>
-            <TableHead>Category</TableHead>
-            <TableHead>Comment</TableHead>
-            <TableHead>Sum</TableHead>
-          </TableHeader>
+          <TableHead>
+            <TableHeader>Date</TableHeader>
+            <TableHeader>Type</TableHeader>
+            <TableHeader>Category</TableHeader>
+            <TableHeader>Comment</TableHeader>
+            <TableHeader>Sum</TableHeader>
+          </TableHead>
           <TableBody>
             {sortedTransactions.map(transaction => {
               return (
