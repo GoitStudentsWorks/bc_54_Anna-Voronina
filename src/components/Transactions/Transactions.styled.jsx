@@ -118,7 +118,9 @@ export const Sum = styled.td`
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   color: ${props => props.color};
 `;
-
+export const TableDash = styled.td`
+  font-weight: inherit;
+`;
 export const ButtonContainer = styled.td`
   border-top: none;
   text-align: right;

@@ -20,6 +20,7 @@ import {
   ButtonDelTransaction,
   StyledBiPencil,
   NoTransactions,
+  TableDash,
 } from './Transactions.styled';
 // import { formatMoney } from 'utils/formatMoney';
 // import { MediaQuery } from 'components/MediaQuery/MediaQuery';
@@ -43,8 +44,8 @@ const Transactions = () => {
 
   useEffect(() => {
     // console.log(transactions);
-    dispatch(() => getAllTransactionsThunk());
-    dispatch(() => getTransactionsCategoriesThunk());
+    // dispatch(getAllTransactionsThunk());
+    // dispatch(getTransactionsCategoriesThunk());
   }, []);
 
   const sortedTransactions = [
@@ -74,25 +75,25 @@ const Transactions = () => {
                     <TransactionDetailsItemTitle>
                       Date
                     </TransactionDetailsItemTitle>
-                    <p>{transaction.date}</p>
+                    <td>{transaction.date}</td>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
                     <TransactionDetailsItemTitle>
                       Type
                     </TransactionDetailsItemTitle>
-                    <p>{transaction.type ?? '-'}</p>
+                    <td>{transaction.type ?? '-'}</td>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
                     <TransactionDetailsItemTitle>
                       Category
                     </TransactionDetailsItemTitle>
-                    <p>{transaction.category}</p>
+                    <td>{transaction.category}</td>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
                     <TransactionDetailsItemTitle>
                       Comment
                     </TransactionDetailsItemTitle>
-                    <p>{transaction.comment}</p>
+                    <td>{transaction.comment}</td>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
                     <TransactionDetailsItemTitle>
@@ -122,52 +123,29 @@ const Transactions = () => {
 
       <MediaQuery minWidth={768}>
         <Table>
-          <TableHead>
-            <TableHeader>Date</TableHeader>
-            <TableHeader>Type</TableHeader>
-            <TableHeader>Category</TableHeader>
-            <TableHeader>Comment</TableHeader>
-            <TableHeader>Sum</TableHeader>
-          </TableHead>
+          <TableHeader>
+            <TableHead>Date</TableHead>
+            <TableHead>Type</TableHead>
+            <TableHead>Category</TableHead>
+            <TableHead>Comment</TableHead>
+            <TableHead>Sum</TableHead>
+          </TableHeader>
           <TableBody>
             {sortedTransactions.map(transaction => {
               return (
                 <TableRow key={transaction.id}>
-                  <TableRow>
-                    <TransactionDetailsItemTitle>
-                      Date
-                    </TransactionDetailsItemTitle>
-                    <p>{transaction.date}</p>
-                  </TableRow>
-                  <TableRow>
-                    <TransactionDetailsItemTitle>
-                      Type
-                    </TransactionDetailsItemTitle>
-                    <p>{transaction.type ?? '-'}</p>
-                  </TableRow>
-                  <TableRow>
-                    <h4>Category</h4>
-                    <p>{transaction.category}</p>
-                  </TableRow>
-                  <TableRow>
-                    <TransactionDetailsItemTitle>
-                      Comment
-                    </TransactionDetailsItemTitle>
-                    <p>{transaction.comment}</p>
-                  </TableRow>
-                  <TableRow>
-                    <TransactionDetailsItemTitle>
-                      Sum
-                    </TransactionDetailsItemTitle>
-                    <Sum>{transaction.sum}</Sum>
-                  </TableRow>
+                  <TableDash>{transaction.date}</TableDash>
+                  <TableDash>{transaction.type ?? '-'}</TableDash>
+                  <TableDash>{transaction.category}</TableDash>
+                  <TableDash>{transaction.comment}</TableDash>
+                  <Sum>{transaction.sum}</Sum>
                   <ButtonContainer>
                     <BtnEditTransaction type="button" onClick={handleEditClick}>
                       <StyledBiPencil />
                     </BtnEditTransaction>
                     <ButtonDelTransaction
                       type="button"
-                      onClick={handleDeleteTransaction(transaction.id)}
+                      onClick={() => handleDeleteTransaction(transaction.id)}
                       text="Delete"
                     />
                   </ButtonContainer>
