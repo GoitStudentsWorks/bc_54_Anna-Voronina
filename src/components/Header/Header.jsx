@@ -32,7 +32,7 @@ export const Header = () => {
         <ExitContainer>
           <NameWrap>Name</NameWrap>
           <SvgStick xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 0V30" stroke="white" stroke-opacity="0.6" />
+            <path d="M1 0V30" stroke="white" strokeOpacity="0.6" />
           </SvgStick>
           <ExitWrap>
             <ExitBtn type="button" onClick={() => dispatch(openModalLogout())}>
