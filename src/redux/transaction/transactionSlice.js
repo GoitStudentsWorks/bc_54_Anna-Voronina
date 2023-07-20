@@ -15,8 +15,6 @@ const initialState = {
   incomeSummary: 0,
   expenseSummary: 0,
   periodTotal: 0,
-  year: 0,
-  month: 0,
   isLoading: false,
 };
 const handleRejected = (state, { payload }) => {
@@ -52,8 +50,6 @@ const handleSummary = (state, { payload }) => {
   state.expenseSummary = payload.expenseSummary;
   state.incomeSummary = payload.incomeSummary;
   state.periodTotal = payload.periodTotal;
-  state.year = payload.year;
-  state.month = payload.month;
   state.isLoading = false;
 };
 

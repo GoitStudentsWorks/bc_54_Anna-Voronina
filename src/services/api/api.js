@@ -68,11 +68,13 @@ export const signOut = id => {
 };
 
 // Get transactions summary for period
-export const fetchTransactionsSummary = async ({ month, year }) => {
+
+export const fetchTransactionsSummary = async ({ year, month }) => {
+
   const { data } = await instance.get('/transactions-summary', {
     params: {
-      month,
       year,
+      month,
     },
   });
   return data;
