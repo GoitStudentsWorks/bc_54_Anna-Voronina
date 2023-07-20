@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
-import { closeModalAddTransaction } from 'redux/global/globalSlice';
 import {
   Backdrop,
   ExitModalBtn,
