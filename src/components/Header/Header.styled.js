@@ -16,12 +16,12 @@ export const HeaderContainer = styled.section`
 
 export const ExitContainer = styled.div`
   display: flex;
-  align-items: center; /* Align items vertically in the center */
+  align-items: center;
   color: rgba(255, 255, 255, 0.6);
 `;
 
 export const ExitBtn = styled.button`
-  display: flex; /* Додаємо flex для дочірніх елементів */
+  display: flex;
   align-items: center;
   background: transparent;
   border: none;
