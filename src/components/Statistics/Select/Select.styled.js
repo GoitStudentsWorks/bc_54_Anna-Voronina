@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Select from 'react-select';
 
 export const StyledSelect = styled.select`
   width: 280px;
@@ -52,32 +53,30 @@ export const StyledSelect = styled.select`
 `;
 
 export const Options = styled.option`
-  option {
-    width: 280px;
-    height: 157px;
-    //sctp
-    color: ${({ theme }) => theme.colors.primaryFont};
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+  width: 280px;
+  height: 157px;
+  color: ${({ theme }) => theme.colors.primaryFont};
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 
-    border-radius: 8px;
+  border-radius: 8px;
 
-    background-color: red;
+  background-color: red;
 
-    box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
-    /* backdrop-filter: blur(50px); */
+  box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+  /* backdrop-filter: blur(50px); */
 
-    /* background: linear-gradient(
+  /* background: linear-gradient(
       360deg,
       rgba(83, 61, 186, 0.7) 0%,
       rgba(80, 48, 154, 0.7) 35.94%,
       rgba(106, 70, 165, 0.52) 61.04%,
       rgba(133, 93, 175, 0.13) 100%
     ); */
-  }
 `;
+
 // export const GradientOption = styled.option`
 //   background: linear-gradient(
 //     360deg,

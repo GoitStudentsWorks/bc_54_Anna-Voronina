@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Chart } from './Chart/Chart';
-import { Select } from './Select/Select';
+import { Selects } from './Select/Select';
 import {
   StyledSelectWrapper,
   StyledWrapperLeft,
@@ -38,7 +38,7 @@ export const DiagramTab = () => {
       </StyledWrapperLeft>
       <StyledWrapperRight>
         <StyledSelectWrapper>
-          <Select onChange={getSelectData} />
+          <Selects onChange={getSelectData} />
         </StyledSelectWrapper>
         <Table data={categorySummary} randomColors={randomColor} />
       </StyledWrapperRight>
