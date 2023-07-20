@@ -2,13 +2,12 @@ import styled from 'styled-components';
 import bgImage from 'assets/images/bgLoginPage.png';
 
 export const BgImage = styled.div`
-  max-width: 1280px;
-  height: 720px;
+  max-width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
@@ -40,6 +39,5 @@ export const BgImage = styled.div`
 
   /* Для планшетов (ширина от 768px до 1279px) */
   @media screen and (min-width: 768px) and (max-width: 1279px) {
-    height: 768px;
   }
 `;

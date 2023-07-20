@@ -63,4 +63,8 @@ export const theme = {
     header:
       '0px 4px 40px 0px rgba(0, 0, 0, 0.25), 0px -3px 2px 0px rgba(0, 0, 0, 0.10) inset',
   },
+
+  transitions: {
+    regular: '250ms cubic-bezier(0.4, 0, 0.2, 1)',
+  },
 };
