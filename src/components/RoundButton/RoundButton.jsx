@@ -1,6 +1,5 @@
 import React from 'react';
-import { RoundedWrap } from './RondButton.styled';
-import plusIcon from '../../assets/images/sprite.svg#icon-plus';
+import { PlusBtn, RoundedWrap } from './RondButton.styled';
 import { openModalAddTransaction } from 'redux/global/globalSlice';
 import { useDispatch } from 'react-redux';
 
@@ -9,5 +8,9 @@ export const RoundButton = () => {
   const handleOpenModal = () => {
     dispatch(openModalAddTransaction());
   };
-  return <RoundedWrap onClick={handleOpenModal}>+</RoundedWrap>;
+  return (
+    <RoundedWrap onClick={handleOpenModal}>
+      <PlusBtn />
+    </RoundedWrap>
+  );
 };

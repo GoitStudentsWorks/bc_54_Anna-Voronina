@@ -1,3 +1,4 @@
+import { BsPlusLg } from 'react-icons/bs';
 import styled from 'styled-components';
 
 export const RoundedWrap = styled.div`
@@ -12,4 +13,9 @@ export const RoundedWrap = styled.div`
   position: absolute;
   bottom: ${({ theme }) => theme.spacing(10)};
   right: ${({ theme }) => theme.spacing(10)};
+`;
+
+export const PlusBtn = styled(BsPlusLg)`
+  width: ${({ theme }) => theme.spacing(6)};
+  height: ${({ theme }) => theme.spacing(6)};
 `;
