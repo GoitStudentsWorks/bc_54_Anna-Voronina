@@ -6,12 +6,12 @@ import { logOutThunk } from 'redux/auth/authOperations';
 import { closeModalLogout } from 'redux/global/globalSlice';
 import {
   ButtonWrapper,
-  CloseBtn,
+  // CloseBtn,
   ModalContainer,
   ModalWraper,
   Title,
 } from './ModalLogOut.styled';
-import { GrClose } from 'react-icons/gr';
+// import { GrClose } from 'react-icons/gr';
 import { selectUser } from 'redux/auth/authSelectors';
 
 export const ModalLogOut = () => {
@@ -35,9 +35,9 @@ export const ModalLogOut = () => {
     <Modal>
       <ModalWraper onClick={onCloseModal}>
         <ModalContainer>
-          <CloseBtn onClick={() => dispatch(closeModalLogout())}>
+          {/* <CloseBtn onClick={() => dispatch(closeModalLogout())}>
             <GrClose />
-          </CloseBtn>
+          </CloseBtn> */}
           <Title>{user.username}, are you sure you want to log out?</Title>
           <ButtonWrapper>
             <Button
