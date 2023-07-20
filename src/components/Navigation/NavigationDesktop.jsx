@@ -1,6 +1,6 @@
 import React from 'react';
 import { BiStats } from 'react-icons/bi';
-import { IoMdHome } from 'react-icons/io';
+import { homeIcon } from './Navigation.styled';
 import { NavLink } from 'react-router-dom';
 
 export const NavigationDesktop = () => {
@@ -9,7 +9,7 @@ export const NavigationDesktop = () => {
       <ul>
         <li>
           <NavLink to="/home">
-            <IoMdHome />
+            <homeIcon />
             <span>Home</span>
           </NavLink>
         </li>
