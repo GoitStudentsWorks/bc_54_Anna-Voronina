@@ -11,8 +11,8 @@ import {
   WrapperButton,
   WrapperField,
 } from 'components/LoginForm/LoginForm.styled';
-import { Link } from 'react-router-dom';
 import { WrapperFormReg } from './RegisterForm.styled';
+import { LinkStyled } from './RegisterForm.styled';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -44,7 +44,6 @@ export const RegisterForm = () => {
             <FieldStyled
               type="text"
               name="username"
-              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               placeholder="First name"
               required
             />
@@ -52,8 +51,7 @@ export const RegisterForm = () => {
             <FieldStyled
               type="email"
               name="email"
-              title="Valid mail"
-              placeholder="E-mail"
+              placeholder="Email"
               required
             />
             <FormError name="email" />
@@ -61,7 +59,6 @@ export const RegisterForm = () => {
             <FieldStyled
               type="password"
               name="password"
-              title="enter the password more difficult, letter, digit, capital letter."
               placeholder="Password"
               required
             />
@@ -69,17 +66,14 @@ export const RegisterForm = () => {
             <FieldStyled
               type="password"
               name="confirmPassword"
-              title="enter the password more difficult, letter, digit, capital letter."
-              placeholder="ConfirmPassword"
+              placeholder="Confirm Password"
               required
             />
             <FormError name="confirmPassword" />
           </WrapperField>
           <WrapperButton>
             <Button type="submit" text="register" />
-            <Link to="/login">
-              <Button type="submit" text="log in" variant="secondary" />
-            </Link>
+            <LinkStyled to="/login">Log in</LinkStyled>
           </WrapperButton>
         </FormStyled>
       </Formik>
