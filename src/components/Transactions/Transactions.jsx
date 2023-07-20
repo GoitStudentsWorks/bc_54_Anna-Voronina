@@ -43,9 +43,8 @@ const Transactions = () => {
 
   useEffect(() => {
     // console.log(transactions);
-    dispatch(getAllTransactionsThunk());
-    dispatch(getTransactionsCategoriesThunk());
-    console.log(transactions);
+    dispatch(() => getAllTransactionsThunk());
+    dispatch(() => getTransactionsCategoriesThunk());
   }, []);
 
   const sortedTransactions = [
