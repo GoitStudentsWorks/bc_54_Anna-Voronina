@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Button } from 'components/Button/Button';
-import { BiPencil } from 'react-icons/bi';
+import { LiaPenSolid } from 'react-icons/lia';
 
 export const TransactionDetails = styled.ul`
   margin-top: 8px;
@@ -39,11 +39,16 @@ export const TransactionDetailsItemTitle = styled.p`
 export const SumText = styled.span`
   color: ${props => props.color};
 `;
+export const TableWrapper = styled.div`
+  padding-top: 34px;
+  padding-left: 37px;
+  padding-right: 16px;
+`;
 
 export const Table = styled.table`
   /* margin-top: 34px;
-  margin-left: 37px; */
-
+  margin-left: 37px;
+  margin-right: 16px; */
   display: block;
   width: 100%;
   height: 422px;
@@ -122,30 +127,35 @@ export const TableDash = styled.td`
   font-weight: inherit;
 `;
 export const ButtonContainer = styled.td`
+  width: 100%;
+  display: flex;
+  padding-right: auto;
   border-top: none;
   text-align: right;
   justify-content: center;
   align-items: center;
   padding-top: 12px;
   padding-bottom: 12px;
+  gap: auto;
 `;
 
-export const ButtonDelTransaction = styled(Button)`
+export const ButtonDelTransaction = styled.button`
   text-align: center;
+  width: 69px;
+  height: 29px;
   background: linear-gradient(
     167deg,
     #ffc727 0%,
     #9e40ba 61.46%,
     #7000ff 90.54%
   );
-  font-size: 14px;
-  font-weight: 400;
-  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 300;
+  /* padding: 4px 12px; */
   border-radius: 18px;
   border: none;
-  width: 69px;
-  height: 29px;
-  color: ${({ theme }) => theme.colors.white60};
+  letter-spacing: 0.05em;
+  color: #fff;
   box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: 0.2s;
@@ -195,10 +205,11 @@ export const BtnEditTransaction = styled.button`
   }
 `;
 
-export const StyledBiPencil = styled(BiPencil)`
+export const StyledBiPencil = styled(LiaPenSolid)`
   width: 14px;
   height: 14px;
-  fill: rgba(255, 255, 255, 0.6);
+  /* fill: rgba(255, 255, 255, 0.6); */
+  stroke: rgba(255, 255, 255, 0.6);
 `;
 // const TransactionsDetailsList
 export const NoTransactions = styled.div`

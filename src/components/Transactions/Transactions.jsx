@@ -21,9 +21,10 @@ import {
   StyledBiPencil,
   NoTransactions,
   TableDash,
+  TableWrapper,
 } from './Transactions.styled';
 // import { formatMoney } from 'utils/formatMoney';
-// import { MediaQuery } from 'components/MediaQuery/MediaQuery';
+
 import { useEffect } from 'react';
 import {
   getTransactionsCategoriesThunk,
@@ -35,6 +36,7 @@ import MediaQuery from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
 import { selectIsModalLogoutOpen } from 'redux/global/globalSelectors';
 import { openModalEditTransaction } from 'redux/global/globalSlice';
+import { LiaPenAltSolid } from 'react-icons/lia';
 
 const Transactions = () => {
   const dispatch = useDispatch();
@@ -56,9 +58,10 @@ const Transactions = () => {
     return new Date(b.transactionDate) - new Date(a.transactionDate);
   });
 
-  const handleEditClick = object => {
-    dispatch(openModalEditTransaction(object));
+  const handleEditClick = () => {
+    // dispatch(openModalEditTransaction(object));
     console.log(10);
+    dispatch(openModalEditTransaction());
   }; // wait till adding real data will be able to addd and if there are bugs, fix them
 
   const handleDeleteTransaction = id => {
@@ -108,15 +111,16 @@ const Transactions = () => {
                     <ButtonContainer>
                       <ButtonEditTransaction
                         type="button"
-                        onClick={transaction => handleEditClick(transaction)}
+                        onClick={() => handleEditClick()}
                       >
                         {((<StyledBiPencil />), 'Edit')}
                       </ButtonEditTransaction>
                       <ButtonDelTransaction
                         type="button"
                         onClick={() => handleDeleteTransaction(transaction.id)}
-                        text="Delete"
-                      />
+                      >
+                        Delete
+                      </ButtonDelTransaction>
                     </ButtonContainer>
                   </TransactionDetailsItem>
                 </TransactionDetails>
@@ -127,45 +131,51 @@ const Transactions = () => {
       </MediaQuery>
 
       <MediaQuery minWidth={768}>
-        <Table>
-          <TableHead>
-            <TableHeader>Date</TableHeader>
-            <TableHeader>Type</TableHeader>
-            <TableHeader>Category</TableHeader>
-            <TableHeader>Comment</TableHeader>
-            <TableHeader>Sum</TableHeader>
-            <TableHeader />
-          </TableHead>
+        <TableWrapper>
+          <Table>
+            <thead>
+              <TableHead>
+                <TableHeader>Date</TableHeader>
+                <TableHeader>Type</TableHeader>
+                <TableHeader>Category</TableHeader>
+                <TableHeader>Comment</TableHeader>
+                <TableHeader>Sum</TableHeader>
+                {/* <TableHeader /> */}
+              </TableHead>
+            </thead>
 
-          <TableBody>
-            {sortedTransactions.map(transaction => {
-              return (
-                <TableRow key={transaction.id}>
-                  <TableDash>{transaction.date}</TableDash>
-                  <TableDash>{transaction.type ?? '-'}</TableDash>
-                  <TableDash>{transaction.category}</TableDash>
-                  <TableDash>{transaction.comment}</TableDash>
-                  <Sum>{transaction.sum}</Sum>
-                  {/* <TableDash> */}
-                  <ButtonContainer>
-                    <BtnEditTransaction
-                      type="button"
-                      onClick={transaction => handleEditClick(transaction)}
-                    >
-                      <StyledBiPencil />
-                    </BtnEditTransaction>
-                    <ButtonDelTransaction
-                      type="button"
-                      onClick={() => handleDeleteTransaction(transaction.id)}
-                      text="Delete"
-                    />
-                  </ButtonContainer>
-                  {/* </TableDash> */}
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
+            <tbody>
+              {sortedTransactions.map(transaction => {
+                return (
+                  <TableRow key={transaction.id}>
+                    <TableDash>{transaction.date}</TableDash>
+                    <TableDash>{transaction.type ?? '-'}</TableDash>
+                    <TableDash>{transaction.category}</TableDash>
+                    <TableDash>{transaction.comment}</TableDash>
+                    <Sum>{transaction.sum}</Sum>
+                    {/* <TableDash> */}
+                    <ButtonContainer>
+                      <BtnEditTransaction
+                        type="button"
+                        onClick={() => handleEditClick()}
+                      >
+                        {/* <StyledBiPencil /> */}
+                      </BtnEditTransaction>
+                      <ButtonDelTransaction
+                        type="button"
+                        onClick={() => handleDeleteTransaction(transaction.id)}
+                      >
+                        Delete
+                      </ButtonDelTransaction>
+                    </ButtonContainer>
+                    {/* </TableDash> */}
+                    <LiaPenAltSolid />
+                  </TableRow>
+                );
+              })}
+            </tbody>
+          </Table>
+        </TableWrapper>
       </MediaQuery>
     </>
   ) : (

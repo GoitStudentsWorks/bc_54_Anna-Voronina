@@ -1,6 +1,9 @@
 // Mariia Voloshanovska, [7/19/2023 10:24 PM]
 
-export const ModalEdit = styled.div`
+import { Modal } from 'components/Modal/Modal';
+import styled from 'styled-components';
+
+export const ModalEdit = styled(Modal)`
   z-index: 10;
   position: absolute;
   border-radius: 8px;

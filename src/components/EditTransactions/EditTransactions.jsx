@@ -3,24 +3,32 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Select from 'react-select';
-import { updateThunk } from 'redux/transaction/transactionOperations';
+import {
+  editTransactionThunk,
+  updateThunk,
+} from 'redux/transaction/transactionOperations';
 import {
   selectTransaction,
   selectCategories,
 } from 'redux/transaction/transactionSelectors';
 // import { closeEditModal } from 'redux/global/slice';
-// import 'flatpickr/dist/themes/material_green.css';
-// import Flatpickr from 'react-flatpickr';
-// import 'flatpickr/dist/flatpickr.min.css';
+import 'flatpickr/dist/themes/material_green.css';
+import Flatpickr from 'react-flatpickr';
+import 'flatpickr/dist/flatpickr.min.css';
 // import { customStyles } from 'utils/selectStyle';
 // import { Backdrop } from 'components/Backdrop/Backdrop'; // create backdrop in styled
 import moment from 'moment';
 import { Button } from 'components/Button/Button';
-import { Modal } from 'components/Modal/Modal';
+// import { Modal } from 'components/Modal/Modal';
 import { selectIsModalEditTransactionOpen } from 'redux/global/globalSelectors';
 import { closeModalEditTransaction } from 'redux/global/globalSlice';
 import { GrClose } from 'react-icons/gr';
-const isOpen = useSelector(selectIsModalEditTransactionOpen);
+import {
+  EditModalForm,
+  FormBlockEditModal,
+  InputLineEditModal,
+  ModalEdit,
+} from './EditTransactions.styled';
 const validationSchema = Yup.object({
   amount: Yup.number('must be a number').required(
     'Please enter amount of transaction'
@@ -28,6 +36,8 @@ const validationSchema = Yup.object({
 });
 
 export const EditTransactions = () => {
+  const isOpen = useSelector(selectIsModalEditTransactionOpen);
+
   const transaction = useSelector(selectTransaction);
   const initialValues =
     transaction.type === 'INCOME'
@@ -66,7 +76,7 @@ export const EditTransactions = () => {
         id: initialValues.id,
         transactionDate,
       };
-      dispatch(updateThunk(updatedValues));
+      dispatch(editTransactionThunk(updatedValues));
     },
   });
 
@@ -97,7 +107,7 @@ export const EditTransactions = () => {
     // <Backdrop onClick={closeBeckdrop}>
     isOpen ? (
       <>
-        <Modal>
+        <ModalEdit>
           <button onClick={closeBtn} type="button">
             <GrClose />
           </button>
@@ -123,11 +133,11 @@ export const EditTransactions = () => {
             />
           </div>
 
-          <form className={css.form} onSubmit={formik.handleSubmit}>
+          <EditModalForm onSubmit={formik.handleSubmit}>
             {!type && (
               <Select
                 defaultValue={options.find(e => e.value === categoryId)}
-                styles={customStyles}
+                // styles={customStyles}
                 options={options}
                 isDisabled={true}
                 onChange={({ value }) => {
@@ -135,10 +145,9 @@ export const EditTransactions = () => {
                 }}
               />
             )}
-            <div className={css.formBlock}>
-              <input
+            <FormBlockEditModal>
+              <InputLineEditModal
                 onChange={formik.handleChange}
-                className={css.inputLine}
                 type="text"
                 name="amount"
                 placeholder="Transaction amount"
@@ -159,7 +168,7 @@ export const EditTransactions = () => {
                   formik.setFieldValue('transactionDate', val[0]);
                 }}
               />
-            </div>
+            </FormBlockEditModal>
 
             <input
               onChange={formik.handleChange}
@@ -170,9 +179,9 @@ export const EditTransactions = () => {
             />
 
             <Button type="submit" text="SAVE" />
-          </form>
+          </EditModalForm>
           <Button onClick={closeBtn} type="button" text="CANCEL" />
-        </Modal>
+        </ModalEdit>
         {/* </Backdrop>*/}
       </>
     ) : null
