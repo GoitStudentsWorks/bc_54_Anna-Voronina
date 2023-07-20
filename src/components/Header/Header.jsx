@@ -14,9 +14,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectIsModalLogoutOpen } from 'redux/global/globalSelectors';
 
 import { ModalLogOut } from 'components/ModalLogOut/ModalLogOut';
-import { openModalLogout } from 'redux/global/globalSlice';
+import { closeModalLogout, openModalLogout } from 'redux/global/globalSlice';
 import { HeaderLogo } from 'components/HeaderLogo/HeaderLogo';
 import { selectUser } from 'redux/auth/authSelectors';
+import { Modal } from 'components/Modal/Modal';
 
 export const Header = () => {
   const user = useSelector(selectUser);
@@ -40,7 +41,11 @@ export const Header = () => {
               <ExitIcon />
               <ExitText>Exit</ExitText>
             </ExitBtn>
-            {isModalOpen && <ModalLogOut />}
+            {isModalOpen && (
+              <Modal closeReducer={closeModalLogout}>
+                <ModalLogOut />
+              </Modal>
+            )}
           </ExitWrap>
         </ExitContainer>
       </HeaderContainer>
