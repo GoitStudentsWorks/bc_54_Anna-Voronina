@@ -28,15 +28,16 @@ export const ModalContainer = styled.div`
 
   width: 400px;
   height: 220px;
+  border-radius: 8px;
   background-color: violet;
   box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.25),
     0px -3px 2px 0px rgba(0, 0, 0, 0.1) inset;
   padding: 10px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 500px) {
     width: 400px;
     padding: 40px;
-    border-radius: 8px;
+
     flex-direction: column;
   }
 `;
