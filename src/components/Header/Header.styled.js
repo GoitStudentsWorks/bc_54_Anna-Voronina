@@ -12,3 +12,12 @@ export const HeaderContainer = styled.section`
 export const ExitContainer = styled.div`
   display: flex;
 `;
+
+export const ExitBtn = styled.button`
+  background: transparent;
+  border: none;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  color: white;
+
+  cursor: pointer;
+`;

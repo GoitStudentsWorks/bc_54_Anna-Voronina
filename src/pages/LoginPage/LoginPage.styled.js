@@ -8,7 +8,6 @@ export const BgImage = styled.div`
   justify-content: center;
   align-items: center;
 
-  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
@@ -40,6 +39,5 @@ export const BgImage = styled.div`
 
   /* Для планшетов (ширина от 768px до 1279px) */
   @media screen and (min-width: 768px) and (max-width: 1279px) {
-    height: 768px;
   }
 `;
