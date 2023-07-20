@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const ModalWraper = styled.div`
+export const ModalWraper = styled.div``;
+
+export const ModalContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
-
-export const ModalContainer = styled.div``;
 
 export const Title = styled.p`
   text-align: center;
