@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import { Button } from 'components/Button/Button';
 import { BiPencil } from 'react-icons/bi';
 
@@ -8,7 +8,7 @@ export const TransactionDetails = styled.ul`
   width: 100%;
   overflow: hidden;
   margin-bottom: 8px;
-  border-left: 5px solid ${props => props.color};
+  border-left: 5px solid ${({ theme }) => theme.colors.violet};
 `;
 
 export const TransactionDetailsItem = styled.li`
@@ -49,12 +49,12 @@ export const Table = styled.table`
   height: 422px;
   overflow-y: auto;
 
-  ${({ theme }) => theme.media.desktop} {
+  @media screen and (min-width: 1280) {
     margin-top: 46px;
     width: 715px;
   }
 
-  ${({ theme }) => theme.media.tablet} {
+  @media screen and (max-width: 1279 && min-width: 677) {
     margin-top: 20px;
   }
 `;
@@ -79,14 +79,14 @@ export const TableHead = styled.tr`
 `;
 
 export const TableHeader = styled.th`
-  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  font-weight: 700;
   font-size: 16px;
   color: #fbfbfb;
   text-align: left;
 `;
 
 export const TableRow = styled.tr`
-  font: ${({ theme }) => theme.fonts.secondary};
+  font-family: ${({ theme }) => theme.fonts.regular};
   font-weight: ${({ theme }) => theme.fontWeights.normal};
   border-top: none;
   font-size: 14px;
@@ -154,7 +154,7 @@ export const ButtonDelTransaction = styled(Button)`
     box-shadow: 1px 5px 8px 0px rgba(0, 0, 0, 0.5);
   }
 `;
-export const ButtonEditTransaction = styled(Button)`
+export const ButtonEditTransaction = styled.button`
   display: flex;
   align-items: center;
   gap: 4px;

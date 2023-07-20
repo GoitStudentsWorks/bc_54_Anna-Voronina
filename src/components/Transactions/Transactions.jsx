@@ -34,7 +34,6 @@ import MediaQuery from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
 import { selectIsModalLogoutOpen } from 'redux/global/globalSelectors';
 import { openModalEditTransaction } from 'redux/global/globalSlice';
-// import { setUpdatedTransaction } from 'redux/global/slice';
 
 const Transactions = () => {
   const dispatch = useDispatch();
@@ -49,7 +48,11 @@ const Transactions = () => {
     console.log(transactions);
   }, []);
 
-  const sortedTransactions = [...transactions].sort((a, b) => {
+  const sortedTransactions = [
+    ...transactions,
+    { id: 1, date: 1, type: 1, category: 1, comment: 1, sum: 1 },
+    { id: 2, date: 2, type: 2, category: 2, comment: 2, sum: 2 },
+  ].sort((a, b) => {
     return new Date(b.transactionDate) - new Date(a.transactionDate);
   });
 
@@ -60,7 +63,7 @@ const Transactions = () => {
     dispatch(delTransactionThunk(id));
   };
 
-  return transactions.length ? (
+  return sortedTransactions.length ? (
     <>
       <MediaQuery maxWidth={767}>
         <ul>
@@ -96,7 +99,7 @@ const Transactions = () => {
                     <TransactionDetailsItemTitle>
                       Sum
                     </TransactionDetailsItemTitle>
-                    <SumText>{transaction.sum}</SumText>
+                    <SumText color="#fff">{transaction.sum}</SumText>
                   </TransactionDetailsItem>
                   <ButtonContainer>
                     <ButtonEditTransaction
@@ -107,7 +110,7 @@ const Transactions = () => {
                     </ButtonEditTransaction>
                     <ButtonDelTransaction
                       type="button"
-                      onClick={handleDeleteTransaction(transaction.id)}
+                      onClick={() => handleDeleteTransaction(transaction.id)}
                       text="Delete"
                     />
                   </ButtonContainer>
