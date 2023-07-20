@@ -8,7 +8,6 @@ import {
   ExitWrap,
   HeaderContainer,
   NameWrap,
-  StickWrap,
   SvgStick,
 } from './Header.styled';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,8 +16,10 @@ import { selectIsModalLogoutOpen } from 'redux/global/globalSelectors';
 import { ModalLogOut } from 'components/ModalLogOut/ModalLogOut';
 import { openModalLogout } from 'redux/global/globalSlice';
 import { HeaderLogo } from 'components/HeaderLogo/HeaderLogo';
+import { selectUser } from 'redux/auth/authSelectors';
 
 export const Header = () => {
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const isModalOpen = useSelector(selectIsModalLogoutOpen);
 
@@ -30,9 +31,9 @@ export const Header = () => {
         </Link>
 
         <ExitContainer>
-          <NameWrap>Name</NameWrap>
+          <NameWrap>{user.username}</NameWrap>
           <SvgStick xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 0V30" stroke="white" stroke-opacity="0.6" />
+            <path d="M1 0V30" stroke="white" strokeOpacity="0.6" />
           </SvgStick>
           <ExitWrap>
             <ExitBtn type="button" onClick={() => dispatch(openModalLogout())}>
