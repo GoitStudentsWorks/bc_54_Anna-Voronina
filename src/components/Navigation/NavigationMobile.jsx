@@ -1,29 +1,37 @@
 import React from 'react';
-import { BiStats } from 'react-icons/bi';
-import { FaDollarSign } from 'react-icons/fa';
-import { IoMdHome } from 'react-icons/io';
-import { NavLink } from 'react-router-dom';
+import {
+  ContainerStyled,
+  ContainerStyledMobile,
+  CurrencyIcon,
+  HomeIcon,
+  MenuStyledMobile,
+  NavLinkStyled,
+  StatisticsIcon,
+  menuStyled,
+} from './Navigation.styled';
 
 export const NavigationMobile = () => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to="/home">
-            <IoMdHome />
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/statistic">
-            <BiStats />
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/currency">
-            <FaDollarSign />
-          </NavLink>
-        </li>
-      </ul>
-    </nav>
+    <ContainerStyledMobile>
+      <nav>
+        <MenuStyledMobile>
+          <li>
+            <NavLinkStyled to="/home">
+              <HomeIcon />
+            </NavLinkStyled>
+          </li>
+          <li>
+            <NavLinkStyled to="/statistic">
+              <StatisticsIcon />
+            </NavLinkStyled>
+          </li>
+          <li>
+            <NavLinkStyled to="/currency">
+              <CurrencyIcon />
+            </NavLinkStyled>
+          </li>
+        </MenuStyledMobile>
+      </nav>
+    </ContainerStyledMobile>
   );
 };
