@@ -34,6 +34,13 @@ export const StyledSelect = styled.select`
 
     border-radius: 8px;
 
+    background: linear-gradient(
+      360deg,
+      rgba(83, 61, 186, 0.7) 0%,
+      rgba(80, 48, 154, 0.7) 35.94%,
+      rgba(106, 70, 165, 0.52) 61.04%,
+      rgba(133, 93, 175, 0.13) 100%
+    );
     /* background-color: rgb(83, 61, 186, 0.7), rgb(80, 48, 154, 0.7),
       rgb(106, 70, 165, 0.52), rgb(133, 93, 175, 0.13); */
 
@@ -60,15 +67,15 @@ export const Options = styled.option`
     background-color: red;
 
     box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(50px);
+    /* backdrop-filter: blur(50px); */
 
-    background: linear-gradient(
+    /* background: linear-gradient(
       360deg,
       rgba(83, 61, 186, 0.7) 0%,
       rgba(80, 48, 154, 0.7) 35.94%,
       rgba(106, 70, 165, 0.52) 61.04%,
       rgba(133, 93, 175, 0.13) 100%
-    );
+    ); */
   }
 `;
 // export const GradientOption = styled.option`

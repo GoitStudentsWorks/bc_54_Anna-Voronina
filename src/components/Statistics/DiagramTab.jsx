@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Chart } from './Chart/Chart';
-import { SelectMonth } from './SelectMonth/SelectMonth';
-import { SelectYear } from './SelectYear/SelectYear';
+import { Select } from './Select/Select';
 import {
   StyledSelectWrapper,
   StyledWrapperLeft,
@@ -11,28 +10,23 @@ import {
 import { Table } from './Table/Table';
 import { getSummaryThunk } from 'redux/transaction/transactionOperations';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectCategoriesSummary,
-  selectMonth,
-  selectYear,
-} from 'redux/transaction/transactionSelectors';
+import { selectCategoriesSummary } from 'redux/transaction/transactionSelectors';
 import { getRandomHexColor } from 'services/randomColor/randomColor';
 
 export const DiagramTab = () => {
-  const getYear = useSelector(selectYear);
-  const getMonth = useSelector(selectMonth);
   const categorySummary = useSelector(selectCategoriesSummary);
-
+  const [date, setDate] = useState({});
   const dispatch = useDispatch();
   const randomColor = getRandomHexColor();
-  useEffect(() => {
-    dispatch(
-      getSummaryThunk({
-        month: getYear,
-        year: getMonth,
-      })
-    );
-  }, [dispatch, getYear, getMonth]);
+
+  const getSelectData = value => {
+    // setDate(value);
+    console.log(value);
+  };
+
+  // useEffect(() => {
+  //   dispatch(getSummaryThunk(date));
+  // }, [dispatch, date]);
 
   //Stepka@Stepka.com
   //Stepka123
@@ -40,12 +34,11 @@ export const DiagramTab = () => {
     <Wrapper>
       <StyledWrapperLeft>
         <h1>Statistics</h1>
-        <Chart data={categorySummary} randomColors={randomColor} />
+        <Chart resp={categorySummary} randomColors={randomColor} />
       </StyledWrapperLeft>
       <StyledWrapperRight>
         <StyledSelectWrapper>
-          <SelectMonth />
-          <SelectYear />
+          <Select onChange={getSelectData} />
         </StyledSelectWrapper>
         <Table data={categorySummary} randomColors={randomColor} />
       </StyledWrapperRight>

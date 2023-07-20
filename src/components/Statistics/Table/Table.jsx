@@ -7,12 +7,14 @@ import {
 } from './Table.styled';
 import {
   selectExpenseSummary,
+  selectFilter,
   selectIncomeSummary,
 } from 'redux/transaction/transactionSelectors';
 
 export const Table = ({ data, randomColors }) => {
   const incomeSummary = useSelector(selectIncomeSummary);
   const expenseSummary = useSelector(selectExpenseSummary);
+  // const setFilter = useSelector(selectFilter);
 
   return (
     <>
@@ -26,16 +28,18 @@ export const Table = ({ data, randomColors }) => {
         <StyledTbody>
           {data.map(el => {
             <tr key={el.id}>
-              <StyledSpan></StyledSpan>
+              <StyledSpan
+                style={{ backgroundColor: randomColors }}
+              ></StyledSpan>
               <td>{el.name}</td>
               <td>{el.total}</td>
             </tr>;
           })}
-          <tr>
+          {/* <tr>
             <StyledSpan style={{ backgroundColor: randomColors }}></StyledSpan>
             <td>Car</td>
             <td>3500</td>
-          </tr>
+          </tr> */}
 
           {/* <tr>
             <StyledSpan></StyledSpan>
