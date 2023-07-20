@@ -31,15 +31,14 @@ const globalSlice = createSlice({
       state.isLoading = false;
     },
     openModalEditTransaction(state) {
-      state.isModalAddTransactionOpen = true;
+      state.isModalEditTransactionOpen = true;
     },
     closeModalEditTransaction(state) {
-      state.isModalAddTransactionOpen = false;
+      state.isModalEditTransactionOpen = false;
     },
     setUpdatedTransaction: (state, { payload }) => {
       state.editTransaction = payload;
     },
-    editTransaction: null,
   },
 });
 

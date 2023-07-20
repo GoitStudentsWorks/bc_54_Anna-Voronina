@@ -8,7 +8,7 @@ import {
   updateThunk,
 } from 'redux/transaction/transactionOperations';
 import {
-  selectTransaction,
+  selectTransactions,
   selectCategories,
 } from 'redux/transaction/transactionSelectors';
 // import { closeEditModal } from 'redux/global/slice';
@@ -20,7 +20,10 @@ import { customStyles } from './selectStyled';
 import moment from 'moment';
 import { Button } from 'components/Button/Button';
 // import { Modal } from 'components/Modal/Modal';
-import { selectIsModalEditTransactionOpen } from 'redux/global/globalSelectors';
+import {
+  selectIsModalEditTransactionOpen,
+  selectTransaction,
+} from 'redux/global/globalSelectors';
 import { closeModalEditTransaction } from 'redux/global/globalSlice';
 import { GrClose } from 'react-icons/gr';
 import {
@@ -29,6 +32,7 @@ import {
   InputLineEditModal,
   ModalEdit,
 } from './EditTransactions.styled';
+import { Modal } from 'components/Modal/Modal';
 const validationSchema = Yup.object({
   amount: Yup.number('must be a number').required(
     'Please enter amount of transaction'
@@ -107,11 +111,7 @@ export const EditTransactions = () => {
     // <Backdrop onClick={closeBeckdrop}>
     isOpen ? (
       <>
-        <ModalEdit>
-          <button onClick={closeBtn} type="button">
-            <GrClose />
-          </button>
-
+        <Modal>
           <h1>Edit transactions</h1>
           <div>
             <Button
@@ -121,8 +121,7 @@ export const EditTransactions = () => {
               }}
               text="Income"
             />
-
-            {/* slash between transactions type */}
+            // slash between transactions type
             <p>/</p>
             <Button
               type="button"
@@ -145,6 +144,7 @@ export const EditTransactions = () => {
                 }}
               />
             )}
+
             <FormBlockEditModal>
               <InputLineEditModal
                 onChange={formik.handleChange}
@@ -180,8 +180,9 @@ export const EditTransactions = () => {
 
             <Button type="submit" text="SAVE" />
           </EditModalForm>
-          <Button onClick={closeBtn} type="button" text="CANCEL" />
-        </ModalEdit>
+          {/* 
+          <Button onClick={closeBtn} type="button" text="CANCEL" /> */}
+        </Modal>
         {/* </Backdrop>*/}
       </>
     ) : null

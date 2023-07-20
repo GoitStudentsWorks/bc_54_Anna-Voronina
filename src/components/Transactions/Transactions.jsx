@@ -35,13 +35,17 @@ import { Button } from 'components/Button/Button';
 import MediaQuery from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
 import { selectIsModalLogoutOpen } from 'redux/global/globalSelectors';
-import { openModalEditTransaction } from 'redux/global/globalSlice';
+import {
+  openModalEditTransaction,
+  setUpdatedTransaction,
+} from 'redux/global/globalSlice';
 import { LiaPenAltSolid } from 'react-icons/lia';
+// import { formatMoney } from 'format-money-js';
 
 const Transactions = () => {
   const dispatch = useDispatch();
   const transactions = useSelector(selectTransactions);
-  // const categories = useSelector(selectCategories);
+  const categories = useSelector(selectCategories);
   // const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,15 +56,17 @@ const Transactions = () => {
 
   const sortedTransactions = [
     ...transactions,
-    { id: 1, date: 1, type: 1, category: 1, comment: 1, sum: 1 },
+    { id: 1, date: 1, type: 'INCOME', category: 1, comment: 1, sum: 1 },
     { id: 2, date: 2, type: 2, category: 2, comment: 2, sum: 2 },
   ].sort((a, b) => {
     return new Date(b.transactionDate) - new Date(a.transactionDate);
   });
 
-  const handleEditClick = () => {
+  const handleEditClick = obj => {
     // dispatch(openModalEditTransaction(object));
     console.log(10);
+    dispatch(setUpdatedTransaction(obj));
+
     dispatch(openModalEditTransaction());
   }; // wait till adding real data will be able to addd and if there are bugs, fix them
 
@@ -93,7 +99,13 @@ const Transactions = () => {
                     <TransactionDetailsItemTitle>
                       Category
                     </TransactionDetailsItemTitle>
-                    <td>{transaction.category}</td>
+                    <td>
+                      {
+                        // categories.find(e => e.id === transaction.categoryId)
+                        //   .name
+                        transaction.category
+                      }
+                    </td>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
                     <TransactionDetailsItemTitle>
@@ -108,20 +120,19 @@ const Transactions = () => {
                     <SumText color="#fff">{transaction.sum}</SumText>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
-                    <ButtonContainer>
-                      <ButtonEditTransaction
-                        type="button"
-                        onClick={() => handleEditClick()}
-                      >
-                        {((<StyledBiPencil />), 'Edit')}
-                      </ButtonEditTransaction>
-                      <ButtonDelTransaction
-                        type="button"
-                        onClick={() => handleDeleteTransaction(transaction.id)}
-                      >
-                        Delete
-                      </ButtonDelTransaction>
-                    </ButtonContainer>
+                    <ButtonEditTransaction
+                      type="button"
+                      onClick={() => handleEditClick()}
+                    >
+                      {<LiaPenAltSolid />} Edit
+                    </ButtonEditTransaction>
+
+                    <ButtonDelTransaction
+                      type="button"
+                      onClick={() => handleDeleteTransaction(transaction.id)}
+                    >
+                      Delete
+                    </ButtonDelTransaction>
                   </TransactionDetailsItem>
                 </TransactionDetails>
               </li>
@@ -150,17 +161,26 @@ const Transactions = () => {
                   <TableRow key={transaction.id}>
                     <TableDash>{transaction.date}</TableDash>
                     <TableDash>{transaction.type ?? '-'}</TableDash>
-                    <TableDash>{transaction.category}</TableDash>
+                    <TableDash>
+                      {
+                        // categories.find(
+                        //   cat => cat.id === transaction.categoryId
+                        // ).name
+                        transaction.category
+                      }
+                    </TableDash>
                     <TableDash>{transaction.comment}</TableDash>
                     <Sum>{transaction.sum}</Sum>
                     {/* <TableDash> */}
                     <ButtonContainer>
                       <BtnEditTransaction
                         type="button"
-                        onClick={() => handleEditClick()}
+                        onClick={() => handleEditClick(transaction)}
                       >
-                        {/* <StyledBiPencil /> */}
+                        <StyledBiPencil />
                       </BtnEditTransaction>
+                    </ButtonContainer>
+                    <ButtonContainer>
                       <ButtonDelTransaction
                         type="button"
                         onClick={() => handleDeleteTransaction(transaction.id)}

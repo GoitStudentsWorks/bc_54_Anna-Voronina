@@ -197,7 +197,9 @@ export const BtnEditTransaction = styled.button`
   height: 36px;
   cursor: pointer;
   transition: 0.2s;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &:active,
   &:focus,
   &:hover {
