@@ -5,6 +5,7 @@ import { Modal } from 'components/Modal/Modal';
 import { ModalAddTransaction } from 'components/ModalAddTransaction/ModalAddTransaction';
 import { RoundButton } from 'components/RoundButton/RoundButton';
 import { selectIsModalAddTransactionOpen } from 'redux/global/globalSelectors';
+import { closeModalAddTransaction } from 'redux/global/globalSlice';
 
 const DashboardPage = () => {
   const isModalAddOpen = useSelector(selectIsModalAddTransactionOpen);
@@ -12,7 +13,7 @@ const DashboardPage = () => {
     <>
       <Header />
       {isModalAddOpen && (
-        <Modal>
+        <Modal closeReducer={closeModalAddTransaction}>
           <ModalAddTransaction />
         </Modal>
       )}

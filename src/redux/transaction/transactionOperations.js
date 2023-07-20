@@ -35,10 +35,9 @@ export const getAllTransactionsThunk = createAsyncThunk(
 
 export const addTransactionThunk = createAsyncThunk(
   'transactions/addTransaction',
-  async (_, { rejectedWithValue }) => {
+  async (transaction, { rejectedWithValue }) => {
     try {
-      const data = await addNewTransaction();
-      console.log(data);
+      const data = await addNewTransaction(transaction);
       return data;
     } catch (error) {
       return rejectedWithValue(error.message);
