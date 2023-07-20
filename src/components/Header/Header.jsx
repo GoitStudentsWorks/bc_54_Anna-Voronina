@@ -8,7 +8,6 @@ import {
   ExitWrap,
   HeaderContainer,
   NameWrap,
-  StickWrap,
   SvgStick,
 } from './Header.styled';
 import { useDispatch, useSelector } from 'react-redux';
