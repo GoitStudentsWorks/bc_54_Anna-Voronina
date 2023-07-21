@@ -1,8 +1,16 @@
 import { useSelector } from 'react-redux';
 import {
+  StyledIcon,
+  StyledP,
   StyledSpan,
+  StyledSpanExpenses,
+  StyledSpanIncome,
+  StyledSpanTotal,
+  StyledSum,
   StyledTbody,
+  StyledText,
   StyledThead,
+  StyledTotalWrapper,
   WrapperTable,
 } from './Table.styled';
 import {
@@ -10,12 +18,29 @@ import {
   selectFilter,
   selectIncomeSummary,
 } from 'redux/transaction/transactionSelectors';
+import { useCategoriesType } from 'hook/categoriesFilter';
 
-export const Table = ({ data, randomColors }) => {
+// const data = [
+//   {
+//     name: 'Car',
+//     total: 1500,
+//   },
+//   {
+//     name: 'Product',
+//     total: 3700,
+//   },
+//   {
+//     name: 'Dog',
+//     total: 700,
+//   },
+// ];
+
+export const Table = ({ colorStyle, user, data }) => {
   const incomeSummary = useSelector(selectIncomeSummary);
   const expenseSummary = useSelector(selectExpenseSummary);
   // const setFilter = useSelector(selectFilter);
 
+  const [expenseCategories] = useCategoriesType(data);
   return (
     <>
       <WrapperTable>
@@ -26,37 +51,25 @@ export const Table = ({ data, randomColors }) => {
           </tr>
         </StyledThead>
         <StyledTbody>
-          {data.map(el => {
-            <tr key={el.id}>
-              <StyledSpan
-                style={{ backgroundColor: randomColors }}
-              ></StyledSpan>
-              <td>{el.name}</td>
-              <td>{el.total}</td>
-            </tr>;
-          })}
-          {/* <tr>
-            <StyledSpan style={{ backgroundColor: randomColors }}></StyledSpan>
-            <td>Car</td>
-            <td>3500</td>
-          </tr> */}
-
-          {/* <tr>
-            <StyledSpan></StyledSpan>
-            <td>Car</td>
-            <td>3500</td>
-          </tr>
-          <tr>
-            <StyledSpan></StyledSpan>
-            <td>Car</td>
-            <td>3500</td>
-          </tr> */}
+          {expenseCategories.map((el, idx) => (
+            <tr key={el.name}>
+              <StyledIcon
+                style={{ backgroundColor: colorStyle[idx] }}
+              ></StyledIcon>
+              <StyledText>{el.name}</StyledText>
+              <StyledSum>{el.total}</StyledSum>
+            </tr>
+          ))}
         </StyledTbody>
       </WrapperTable>
-      <div>
-        <p>Expenses: {expenseSummary}</p>
-        <p>Income: {incomeSummary}</p>
-      </div>
+      <StyledTotalWrapper>
+        <StyledP>
+          Expenses:<StyledSpanExpenses>{expenseSummary}</StyledSpanExpenses>
+        </StyledP>
+        <StyledP>
+          Income:<StyledSpanIncome>{incomeSummary}</StyledSpanIncome>
+        </StyledP>
+      </StyledTotalWrapper>
     </>
   );
 };
