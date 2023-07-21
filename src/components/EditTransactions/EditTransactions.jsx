@@ -12,10 +12,9 @@ import {
   StyledForm,
 } from 'components/ModalAddTransaction/ModalAddTransaction.styled';
 import { Formik } from 'formik';
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { closeModalEditTransaction } from 'redux/global/globalSlice';
 import { selectEditTransaction } from 'redux/global/globalSelectors';
-import { CustomSelect } from 'components/CustomSelect/CustomSelect';
 import { useCategoriesType } from 'hook/categoriesFilter';
 import { selectCategories } from 'redux/transaction/transactionSelectors';
 import {
@@ -32,6 +31,7 @@ export const EditTransactions = () => {
   const transactionData = useSelector(selectEditTransaction);
   const { amount, categoryId, comment, id, transactionDate, type } =
     transactionData;
+
   const initialValues = {
     transactionDate,
     type,
@@ -40,29 +40,13 @@ export const EditTransactions = () => {
     amount: `${type === 'EXPENSE' ? amount * -1 : amount}`,
   };
 
-  // amount: 3333;
-  // balanceAfter: 5433;
-  // categoryId: '063f1132-ba5d-42b4-951d-44011ca46262';
-  // comment: 'asdasd';
-  // id: 'a0668f51-12c2-4169-94a4-9e82eaa8377e';
-  // transactionDate: '2023-07-05';
-  // type: 'INCOME';
-  // userId: 'f61de431-acd8-422b-8cf8-90b2ebab81b0';
-  const selectOptionsData = expenseCategories.map(item => ({
-    id: item.id,
-    value: item.name,
-    label: item.name,
-  }));
-  const selectCategoryValue = selectOptionsData.find(
+  const selectedCategory = expenseCategories.find(
     item => item.id === categoryId
   );
-
-  const [selectedOption, setSelectedOption] = useState(selectCategoryValue);
   const [changedType, setChangedType] = useState(type);
+  const [changeCategoryData, setChangeCategoryData] =
+    useState(selectedCategory);
 
-  useEffect(() => {
-    console.log(selectedOption);
-  }, [selectedOption]);
   const handleSubmit = (value, { resetForm }) => {
     const normalNumber =
       changedType === 'EXPENSE'
@@ -73,23 +57,28 @@ export const EditTransactions = () => {
       ...value,
       type: changedType,
       amount: normalNumber,
-      categoryId: '76cc875a-3b43-4eae-8fdb-f76633821a34',
-      //   `${
-      //   changedType === 'INCOME' ? incomeCategories[0].id : selectedOption?.id
-      // }`,
+      categoryId: `${
+        changedType === 'INCOME'
+          ? incomeCategories[0].id
+          : value.id ?? changeCategoryData.id
+      }`,
     };
+
     dispatch(
       editTransactionThunk({ transactionId: id, transaction: newData })
     ).then(() => dispatch(getAllTransactionsThunk()));
     resetForm();
   };
 
-  const handleChangeSelect = item => {
-    setSelectedOption(item);
-  };
-
   const handleChangeType = value => {
     setChangedType(value);
+    if (value === 'EXPENSE') {
+      setChangeCategoryData({
+        id: '719626f1-9d23-4e99-84f5-289024e437a8',
+        name: 'Other expenses',
+        type: 'EXPENSE',
+      });
+    }
   };
   return (
     <ModalAddWrapper>
@@ -115,12 +104,7 @@ export const EditTransactions = () => {
 
           {/* ========================= SELECT ========================= */}
           {changedType === 'EXPENSE' && (
-            <CustomSelect
-              options={selectOptionsData}
-              defValue={selectedOption}
-              nameOfSelect="category"
-              onChange={handleChangeSelect}
-            />
+            <p>{changeCategoryData.name}</p> //TODO
           )}
 
           {/* ========================= INPUTS ========================= */}
@@ -149,214 +133,3 @@ export const EditTransactions = () => {
     </ModalAddWrapper>
   );
 };
-
-// import React, { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { useFormik } from 'formik';
-// import * as Yup from 'yup';
-// import Select from 'react-select';
-// import {
-//   editTransactionThunk,
-//   updateThunk,
-// } from 'redux/transaction/transactionOperations';
-// import {
-//   selectTransactions,
-//   selectCategories,
-// } from 'redux/transaction/transactionSelectors';
-// // import { closeEditModal } from 'redux/global/slice';
-// import 'flatpickr/dist/themes/material_green.css';
-// import Flatpickr from 'react-flatpickr';
-// import 'flatpickr/dist/flatpickr.min.css';
-// import 'flatpickr/dist/themes/material_green.css';
-// import { customStyles } from './selectStyled';
-
-// import moment from 'moment';
-// import { Button } from 'components/Button/Button';
-
-// import {
-//   selectIsModalEditTransactionOpen,
-//   selectTransaction,
-// } from 'redux/global/globalSelectors';
-// import { closeModalEditTransaction } from 'redux/global/globalSlice';
-
-// import {
-//   DiscardEditButton,
-//   EditModalForm,
-//   EditModalTitle,
-//   EditModalToggle,
-//   EditTransactionToggleWrapper,
-//   FormBlockEditModal,
-//   InputCommentEditModal,
-//   InputLineEditModal,
-//   ModalEdit,
-// } from './EditTransactions.styled';
-// import { Modal } from 'components/Modal/Modal';
-
-// // const validationSchema = Yup.object({
-// //   amount: Yup.number('must be a number').required(
-// //     'Please enter amount of transaction'
-// //   ),
-// // });
-
-// // export const EditTransactions = () => {
-// //   const isOpen = useSelector(selectIsModalEditTransactionOpen);
-
-// //   const transaction = useSelector(selectTransaction);
-// //   const initialValues =
-// //     transaction.type === 'INCOME'
-// //       ? {
-// //           ...transaction,
-// //           type: true,
-// //         }
-// //       : {
-// //           ...transaction,
-// //           type: false,
-// //           amount: 0 - transaction.amount,
-// //         };
-// //   const categories = useSelector(selectCategories);
-// //   const income = categories.find(el => el.type === 'INCOME');
-
-// //   const filteredCategories = categories.filter(el => el.type !== 'INCOME');
-// //   const options = filteredCategories.map(el => ({
-// //     value: el.id,
-// //     label: el.name,
-// //   }));
-
-// //   const dispatch = useDispatch();
-
-// //   const formik = useFormik({
-// //     initialValues,
-// //     validationSchema,
-// //     onSubmit: values => {
-// //       const transactionDate = moment(values.transactionDate).format(
-// //         'YYYY-MM-DD'
-// //       );
-// //       const updatedValues = {
-// //         ...values,
-// //         categoryId: values.type ? income.id : values.categoryId,
-// //         amount: values.type ? Number(values.amount) : 0 - values.amount,
-// //         type: values.type ? 'INCOME' : 'EXPENSE',
-// //         // id: initialValues.id,
-// //         transactionDate,
-// //       };
-// //       dispatch(
-// //         editTransactionThunk({
-// //           transactionId: initialValues.id,
-// //           transaction: updatedValues,
-// //         })
-// //       );
-// //     },
-// //   });
-
-// //   useEffect(() => {
-// //     const onClose = event => {
-// //       if (event.code === 'Escape') {
-// //         dispatch(closeModalEditTransaction());
-// //       }
-// //     };
-// //     window.addEventListener('keydown', onClose);
-// //     return () => {
-// //       window.removeEventListener('keydown', onClose);
-// //     };
-// //   }, [dispatch]); // from react icons
-
-// //   // const closeBeckdrop = e => {
-// //   //   if (e.target === e.currentTarget) {
-// //   //     dispatch(closeEditModal());
-// //   //   }
-// //   // }; //add backdrop
-// //   const closeBtn = () => {
-// //     dispatch(closeModalEditTransaction());
-// //   }; //add to Button component
-
-// //   const { type, transactionDate, categoryId } = formik.values;
-
-// //   return (
-// //     // <Backdrop onClick={closeBeckdrop}>
-// //     isOpen ? (
-// //       <>
-// //         <Modal closeReducer={closeModalEditTransaction}>
-// //           {/* add close on close btn */}
-// //           <EditModalTitle>Edit transactions</EditModalTitle>
-// //           <EditTransactionToggleWrapper>
-// //             {/* add colors for toggle */}
-// //             <EditModalToggle
-// //               type="button"
-// //               onClick={() => {
-// //                 formik.setFieldValue('type', true);
-// //               }}
-// //             >
-// //               Income
-// //             </EditModalToggle>
-
-// //             <p>/</p>
-// //             <EditModalToggle
-// //               type="button"
-// //               onClick={() => {
-// //                 formik.setFieldValue('type', false);
-// //               }}
-// //             >
-// //               Expense
-// //             </EditModalToggle>
-// //           </EditTransactionToggleWrapper>
-// //           <EditModalForm onSubmit={formik.handleSubmit}>
-// //             {!type && (
-// //               <Select
-// //                 defaultValue={options.find(e => e.value === categoryId)}
-// //                 styles={customStyles}
-// //                 options={options}
-// //                 isDisabled={true}
-// //                 onChange={({ value }) => {
-// //                   formik.setFieldValue('categoryId', value);
-// //                 }}
-// //               />
-// //             )}
-
-// //             <FormBlockEditModal>
-// //               <InputLineEditModal
-// //                 onChange={formik.handleChange}
-// //                 type="text"
-// //                 name="amount"
-// //                 placeholder="Transaction amount"
-// //                 value={formik.values.amount}
-// //               />
-
-// //               <Flatpickr
-// //                 defaultValue={transactionDate}
-// //                 options={{
-// //                   dateFormat: 'd.m.Y',
-// //                   disableMobile: 'true',
-// //                 }}
-// //                 type="date"
-// //                 name="transactionDate"
-// //                 id="date"
-// //                 selected={transactionDate}
-// //                 onChange={val => {
-// //                   formik.setFieldValue('transactionDate', val[0]);
-// //                 }}
-// //               />
-// //               {/* make flatpickr styled ang add svg to input. add wrapper with flex for transactionamount and flatpickr */}
-// //             </FormBlockEditModal>
-
-// //             <InputCommentEditModal
-// //               onChange={formik.handleChange}
-// //               type="text"
-// //               name="comment"
-// //               placeholder="Comment"
-// //               value={formik.values.comment}
-// //             />
-
-// //             <Button type="submit" text="SAVE" />
-// //           </EditModalForm>
-
-// //           <DiscardEditButton onClick={closeBtn} type="button">
-// //             CANCEL
-// //           </DiscardEditButton>
-// //           {/* fix width for discard btn */}
-// //         </Modal>
-// //         {/* </Backdrop>*/}
-// //       </>
-// //     ) : null
-// //   );
-// // };
-// // export default EditTransactions;
