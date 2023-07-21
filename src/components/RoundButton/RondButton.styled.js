@@ -13,6 +13,9 @@ export const RoundedWrap = styled.div`
   position: absolute;
   bottom: ${({ theme }) => theme.spacing(10)};
   right: ${({ theme }) => theme.spacing(10)};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const PlusBtn = styled(BsPlusLg)`

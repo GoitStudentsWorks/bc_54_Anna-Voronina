@@ -26,7 +26,6 @@ import {
   StyledForm,
   StyledInp,
   StyledLabelWrapper,
-  StyledLabelWrapperIncome,
 } from './ModalAddTransaction.styled';
 import { useCategoriesType } from 'hook/categoriesFilter';
 
@@ -42,15 +41,6 @@ export const ModalAddTransaction = () => {
   const allCategories = useSelector(selectCategories);
   const [expenseCategories, incomeCategories] =
     useCategoriesType(allCategories);
-  console.log(expenseCategories, incomeCategories);
-
-  // const allCategories = useSelector(selectCategories);
-  // const expenseCategories = allCategories.filter(
-  //   category => category.type === 'EXPENSE'
-  // );
-  // const incomeCategories = allCategories.filter(
-  //   category => category.type === 'INCOME'
-  // );
 
   const initialValues = {
     transactionDate: new Date().toISOString().slice(0, 10),
@@ -73,7 +63,6 @@ export const ModalAddTransaction = () => {
         selectedType === 'EXPENSE' ? selectedOption.id : incomeCategories[0].id
       }`,
     };
-    console.log(newData);
     dispatch(addTransactionThunk(newData));
     resetForm();
   };
