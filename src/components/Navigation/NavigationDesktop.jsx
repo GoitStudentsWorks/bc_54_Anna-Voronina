@@ -9,7 +9,6 @@ import {
   SpanStyled,
   StatisticsIcon,
 } from './Navigation.styled';
-import { NavLink } from 'react-router-dom';
 
 export const NavigationDesktop = () => {
   return (
