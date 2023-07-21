@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit/dist';
+import { createSlice, current } from '@reduxjs/toolkit/dist';
 import {
   addTransactionThunk,
   getTransactionsCategoriesThunk,
@@ -39,6 +39,7 @@ const handleEdit = (state, { payload }) => {
 };
 const handleDelete = (state, { payload }) => {
   state.isLoading = false;
+  // console.log(current(payload));
   state.transactions = state.transactions.filter(e => e.id !== payload);
 };
 const handleCategories = (state, { payload }) => {
@@ -56,7 +57,7 @@ const handleSummary = (state, { payload }) => {
 const transactionSlice = createSlice({
   name: 'transaction',
   initialState,
-  
+
   extraReducers: builder => {
     builder
       .addCase(getAllTransactionsThunk.pending, handlePending)

@@ -55,12 +55,8 @@ const Transactions = () => {
     dispatch(getTransactionsCategoriesThunk());
   }, []);
 
-  const sortedTransactions = [
-    ...transactions,
-    { id: 1, date: 1, type: 'INCOME', category: 1, comment: 1, sum: 1 },
-    { id: 2, date: 2, type: 2, category: 2, comment: 2, sum: 2 },
-  ].sort((a, b) => {
-    return new Date(b.transactionDate) - new Date(a.transactionDate);
+  const sortedTransactions = [...transactions].sort((a, b) => {
+    return b.transactionDate - a.transactionDate;
   });
 
   const handleEditClick = obj => {
@@ -72,8 +68,9 @@ const Transactions = () => {
   }; // wait till adding real data will be able to addd and if there are bugs, fix them
 
   const handleDeleteTransaction = id => {
-    dispatch(delTransactionThunk(id));
-    console.log(1);
+    dispatch(delTransactionThunk(id)).then(dispatch(getAllTransactionsThunk()));
+    console.log(id);
+    // dispatch(getAllTransactionsThunk());
   }; // wait till adding real data will be able to addd and if there are bugs, fix them
 
   return sortedTransactions.length ? (
@@ -134,7 +131,7 @@ const Transactions = () => {
                     </ButtonDelTransaction>
                     <ButtonEditTransaction
                       type="button"
-                      onClick={() => handleEditClick()}
+                      onClick={() => handleEditClick(transaction)}
                     >
                       {<LiaPenAltSolid />} Edit
                     </ButtonEditTransaction>

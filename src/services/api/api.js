@@ -36,8 +36,9 @@ export const updateTransaction = async transactionId => {
 };
 
 // Delete Transaction
-export const deleteTransaction = transactionId => {
-  instance.delete(`/transactions/${transactionId}`);
+export const deleteTransaction = async transactionId => {
+  const { data } = await instance.delete(`/transactions/${transactionId}`);
+  return data;
 };
 
 // Transaction Categories
@@ -70,7 +71,6 @@ export const signOut = id => {
 // Get transactions summary for period
 
 export const fetchTransactionsSummary = async ({ year, month }) => {
-
   const { data } = await instance.get('/transactions-summary', {
     params: {
       year,

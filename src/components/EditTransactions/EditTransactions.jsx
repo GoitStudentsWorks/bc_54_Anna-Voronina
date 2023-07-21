@@ -117,7 +117,7 @@ export const EditTransactions = () => {
     // <Backdrop onClick={closeBeckdrop}>
     isOpen ? (
       <>
-        <ModalEdit>
+        <Modal closeReducer={closeModalEditTransaction}>
           {/* add close on close btn */}
           <EditModalTitle>Edit transactions</EditModalTitle>
           <EditTransactionToggleWrapper>
@@ -141,7 +141,7 @@ export const EditTransactions = () => {
               Expense
             </EditModalToggle>
           </EditTransactionToggleWrapper>
-      <EditModalForm onSubmit={formik.handleSubmit}>
+          <EditModalForm onSubmit={formik.handleSubmit}>
             {!type && (
               <Select
                 defaultValue={options.find(e => e.value === categoryId)}
@@ -195,7 +195,7 @@ export const EditTransactions = () => {
             CANCEL
           </DiscardEditButton>
           {/* fix width for discard btn */}
-        </ModalEdit>
+        </Modal>
         {/* </Backdrop>*/}
       </>
     ) : null
