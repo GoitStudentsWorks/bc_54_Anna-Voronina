@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const ButtonStyled = styled.button`
-  width: ${({ theme }) => theme.spacing(60)};
+  width: ${({ theme }) => theme.spacing(75)};
   height: ${({ theme }) => theme.spacing(12.5)};
   background: ${({ theme }) => theme.colors.btnGradient};
   border-radius: ${({ theme }) => theme.radii.button};

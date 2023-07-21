@@ -12,6 +12,7 @@ import {
   WrapperField,
   WrapperForm,
 } from 'components/LoginForm/LoginForm.styled';
+
 import { LinkStyled } from './RegisterForm.styled';
 
 export const RegisterForm = () => {

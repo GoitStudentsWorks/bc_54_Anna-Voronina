@@ -7,6 +7,9 @@ import { selectIsRefreshing } from 'redux/auth/authSelectors';
 import { fetchCurrentUserThunk } from 'redux/auth/authOperations';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { GlobalStyle } from 'services/styles/GlobalStyle';
+
+import Transactions from './Transactions/Transactions';
+
 import NotFound from 'pages/NotFound/NotFound';
 
 const DashboardPage = lazy(() => import('pages/DashboardPage/DashboardPage'));
@@ -42,13 +45,13 @@ export const App = () => {
               }
             />
             <Route
-              path="/home"
+              path="home"
               element={
                 <ProtectedRoute component={<HomePage />} redirectTo="/login" />
               }
             />
             <Route
-              path="/statistic"
+              path="statistic"
               element={
                 <ProtectedRoute
                   component={<SummaryPage />}
@@ -57,7 +60,7 @@ export const App = () => {
               }
             />
             <Route
-              path="/login"
+              path="login"
               element={
                 <PublicRoute
                   component={<LoginPage />}
@@ -67,7 +70,7 @@ export const App = () => {
               }
             />
             <Route
-              path="/register"
+              path="register"
               element={
                 <PublicRoute
                   component={<RegisterPage />}
@@ -76,8 +79,8 @@ export const App = () => {
                 />
               }
             />
+            <Route path="*" element={<NotFound />} />
           </Route>
-          <Route path="*" element={<NotFound />} />
         </Routes>
       )}
       <GlobalStyle />

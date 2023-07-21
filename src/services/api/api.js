@@ -24,8 +24,8 @@ export const addNewTransaction = async transaction => {
 };
 
 // Get all transactions for logged in user
-export const getTransaction = async user => {
-  const { data } = await instance.get('/transactions', user);
+export const getTransaction = async () => {
+  const { data } = await instance.get('/transactions');
   return data;
 };
 
@@ -36,8 +36,9 @@ export const updateTransaction = async transactionId => {
 };
 
 // Delete Transaction
-export const deleteTransaction = transactionId => {
-  instance.delete(`/transactions/${transactionId}`);
+export const deleteTransaction = async transactionId => {
+  const { data } = await instance.delete(`/transactions/${transactionId}`);
+  return data;
 };
 
 // Transaction Categories
@@ -68,11 +69,12 @@ export const signOut = id => {
 };
 
 // Get transactions summary for period
-export const fetchTransactionsSummary = async ({ month, year }) => {
-  const { data } = await instance.get('/api/transactions-summary', {
+
+export const fetchTransactionsSummary = async ({ year, month }) => {
+  const { data } = await instance.get('/transactions-summary', {
     params: {
-      month,
       year,
+      month,
     },
   });
   return data;

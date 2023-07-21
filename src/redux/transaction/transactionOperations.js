@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
 import {
   addNewTransaction,
   deleteTransaction,
@@ -7,12 +8,13 @@ import {
   getTransaction,
   updateTransaction,
 } from 'services/api/api';
+// const dispatch = useDispatch();
 
 export const getTransactionsCategoriesThunk = createAsyncThunk(
   'transactions/fetchCategories',
   async (_, { rejectedWithValue }) => {
     try {
-      const { data } = await fetchCategories();
+      const data = await fetchCategories();
       return data;
     } catch (error) {
       return rejectedWithValue(error.message);
@@ -24,7 +26,7 @@ export const getAllTransactionsThunk = createAsyncThunk(
   'transactions/fetchAll',
   async (_, { rejectedWithValue }) => {
     try {
-      const { data } = await getTransaction();
+      const data = await getTransaction();
       console.log(data);
       return data;
     } catch (error) {
@@ -35,10 +37,9 @@ export const getAllTransactionsThunk = createAsyncThunk(
 
 export const addTransactionThunk = createAsyncThunk(
   'transactions/addTransaction',
-  async (_, { rejectedWithValue }) => {
+  async (transaction, { rejectedWithValue }) => {
     try {
-      const { data } = await addNewTransaction();
-      console.log(data);
+      const data = await addNewTransaction(transaction);
       return data;
     } catch (error) {
       return rejectedWithValue(error.message);
@@ -50,7 +51,7 @@ export const editTransactionThunk = createAsyncThunk(
   'transactions/editTransaction',
   async (id, { rejectedWithValue }) => {
     try {
-      const { data } = await updateTransaction(id);
+      const data = await updateTransaction(id);
       return data;
     } catch (error) {
       return rejectedWithValue(error.message);
@@ -62,19 +63,28 @@ export const delTransactionThunk = createAsyncThunk(
   'transactions/delTransaction',
   async (id, { rejectedWithValue }) => {
     try {
-      const { data } = await deleteTransaction(id);
-      return data;
+      console.log(id);
+      await deleteTransaction(id);
     } catch (error) {
       return rejectedWithValue(error.message);
     }
   }
 );
+// export const deleteContactThunk = createAsyncThunk(
+//   'contacts/deleteContact',
+//   async (contactId, { rejectWithValue, dispatch }) => {
+//     try {
+//       await deleteContact(contactId);
+//       dispatch(fetchContactsThunk());
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
 
 export const getSummaryThunk = createAsyncThunk(
   'transactions/getSummary',
   async ({ month, year }, { rejectedWithValue }) => {
     try {
-      const { data } = await fetchTransactionsSummary({ month, year });
+      const data = await fetchTransactionsSummary({ month, year });
       return data;
     } catch (error) {
       return rejectedWithValue(error.message);
