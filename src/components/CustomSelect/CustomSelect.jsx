@@ -1,5 +1,9 @@
 import Select, { components } from 'react-select';
-import { SelectIcon, selectStyles } from './CustomSelect.styled';
+import {
+  SelectIcon,
+  selectStyles,
+  selectStylesCategory,
+} from './CustomSelect.styled';
 
 // const months = [
 //   { value: 'January', label: 'January' },
@@ -27,14 +31,30 @@ const DropdownIndicator = props => {
 };
 
 export const CustomSelect = ({ options, onChange, nameOfSelect }) => {
+  console.log(nameOfSelect);
   return (
-    <Select
-      components={{ DropdownIndicator }}
-      defaultValue={options ? options[0] : null}
-      options={options}
-      styles={selectStyles}
-      onChange={onChange}
-      name={nameOfSelect}
-    />
+    <>
+      {nameOfSelect === 'category' ? (
+        <Select
+          components={{ DropdownIndicator }}
+          defaultValue={options ? options[0] : null}
+          options={options}
+          styles={selectStylesCategory}
+          onChange={onChange}
+          name={nameOfSelect}
+        />
+      ) : (
+        <Select
+          components={{ DropdownIndicator }}
+          defaultValue={options ? options[0] : null}
+          options={options}
+          styles={selectStyles}
+          onChange={onChange}
+          name={nameOfSelect}
+        />
+      )}
+    </>
+
+    //selectStylesCategory
   );
 };
