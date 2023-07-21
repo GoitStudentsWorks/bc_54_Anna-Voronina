@@ -9,7 +9,7 @@ import {
 } from 'redux/global/globalSelectors';
 import { closeModalAddTransaction } from 'redux/global/globalSlice';
 import { Container } from 'components/SharedLayout/SharedLayout.styled';
-import Transactions from 'components/Transactions/Transactions';
+import { AsideBar } from 'components/AsideBar/AsideBar';
 import EditTransactions from 'components/EditTransactions/EditTransactions';
 
 const DashboardPage = () => {
@@ -19,9 +19,9 @@ const DashboardPage = () => {
   return (
     <>
       <Header />
-      <main>
-        <Container>
-          <Transactions />
+      <Container>
+        <AsideBar />
+        <main>
           {isModalAddOpen && (
             <Modal closeReducer={closeModalAddTransaction}>
               <ModalAddTransaction />
@@ -29,8 +29,8 @@ const DashboardPage = () => {
           )}
           {isModalEditOpen && <EditTransactions />}
           <RoundButton />
-        </Container>
-      </main>
+        </main>
+      </Container>
     </>
   );
 };

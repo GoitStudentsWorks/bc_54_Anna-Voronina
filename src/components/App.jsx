@@ -58,7 +58,7 @@ export const App = () => {
               }
             />
             <Route
-              path="login"
+              path="/login"
               element={
                 <PublicRoute
                   component={<LoginPage />}
@@ -68,7 +68,7 @@ export const App = () => {
               }
             />
             <Route
-              path="register"
+              path="/register"
               element={
                 <PublicRoute
                   component={<RegisterPage />}
