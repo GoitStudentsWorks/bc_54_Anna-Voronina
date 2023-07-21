@@ -15,13 +15,13 @@ const DropdownIndicator = props => {
   );
 };
 
-export const CustomSelect = ({ options, onChange, nameOfSelect }) => {
+export const CustomSelect = ({ options, onChange, nameOfSelect, defValue }) => {
   return (
     <>
       {nameOfSelect === 'category' ? (
         <Select
           components={{ DropdownIndicator }}
-          defaultValue={options ? options[0] : null}
+          defaultValue={defValue ? defValue : options[0]}
           options={options}
           styles={selectStylesCategory}
           onChange={onChange}

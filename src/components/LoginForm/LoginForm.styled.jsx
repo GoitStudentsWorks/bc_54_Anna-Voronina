@@ -11,12 +11,12 @@ export const WrapperForm = styled.div`
 
   width: 100%;
 
+  @media (min-width: 320px) and (max-width: 767px) {
+    height: 100%;
+  }
   @media (min-width: 768px) {
     width: 533px;
     padding: 80px 62px;
-  }
-  @media (min-width: 320px) and (max-width: 767px) {
-    height: 100%;
   }
   border-radius: ${({ theme }) => theme.radii.normal};
   box-shadow: ${({ theme }) => theme.shadows.primary};
