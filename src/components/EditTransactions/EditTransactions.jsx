@@ -83,10 +83,15 @@ export const EditTransactions = () => {
         categoryId: values.type ? income.id : values.categoryId,
         amount: values.type ? Number(values.amount) : 0 - values.amount,
         type: values.type ? 'INCOME' : 'EXPENSE',
-        id: initialValues.id,
+        // id: initialValues.id,
         transactionDate,
       };
-      dispatch(editTransactionThunk(updatedValues));
+      dispatch(
+        editTransactionThunk({
+          transactionId: initialValues.id,
+          transaction: updatedValues,
+        })
+      );
     },
   });
 

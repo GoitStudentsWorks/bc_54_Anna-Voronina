@@ -50,10 +50,9 @@ const Transactions = () => {
   // const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(transactions);
     dispatch(getAllTransactionsThunk());
     dispatch(getTransactionsCategoriesThunk());
-  }, []);
+  }, [dispatch]);
 
   const sortedTransactions = [...transactions].sort((a, b) => {
     return b.transactionDate - a.transactionDate;
@@ -61,9 +60,7 @@ const Transactions = () => {
 
   const handleEditClick = obj => {
     // dispatch(openModalEditTransaction(object));
-    console.log(10);
     dispatch(setUpdatedTransaction(obj));
-
     dispatch(openModalEditTransaction());
   }; // wait till adding real data will be able to addd and if there are bugs, fix them
 

@@ -1,7 +1,7 @@
 import { IoExitOutline } from 'react-icons/io5';
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.section`
+export const HeaderContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;

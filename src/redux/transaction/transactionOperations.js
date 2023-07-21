@@ -49,9 +49,9 @@ export const addTransactionThunk = createAsyncThunk(
 
 export const editTransactionThunk = createAsyncThunk(
   'transactions/editTransaction',
-  async (id, { rejectedWithValue }) => {
+  async ({ transactionId, transaction }, { rejectedWithValue }) => {
     try {
-      const data = await updateTransaction(id);
+      const data = await updateTransaction({ transactionId, transaction });
       return data;
     } catch (error) {
       return rejectedWithValue(error.message);
