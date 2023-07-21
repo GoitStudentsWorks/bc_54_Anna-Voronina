@@ -1,7 +1,9 @@
 import { Button } from 'components/Button/Button';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   ButtonWrapper,
+  ExpenseSpan,
+  IncomeSpan,
   InputWrapper,
   ModalAddWrapper,
   ModalTransactionTitle,
@@ -10,79 +12,125 @@ import {
   StyledForm,
 } from 'components/ModalAddTransaction/ModalAddTransaction.styled';
 import { Formik } from 'formik';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { closeModalEditTransaction } from 'redux/global/globalSlice';
+import { selectEditTransaction } from 'redux/global/globalSelectors';
+import { CustomSelect } from 'components/CustomSelect/CustomSelect';
+import { useCategoriesType } from 'hook/categoriesFilter';
+import { selectCategories } from 'redux/transaction/transactionSelectors';
+import {
+  editTransactionThunk,
+  getAllTransactionsThunk,
+} from 'redux/transaction/transactionOperations';
 
 export const EditTransactions = () => {
   const dispatch = useDispatch();
+  const allCategories = useSelector(selectCategories);
+  const [expenseCategories, incomeCategories] =
+    useCategoriesType(allCategories);
+
+  const transactionData = useSelector(selectEditTransaction);
+  const { amount, categoryId, comment, id, transactionDate, type } =
+    transactionData;
   const initialValues = {
-    transactionDate: '',
-    type: '',
-    categoryId: '',
-    comment: '',
-    amount: '',
+    transactionDate,
+    type,
+    categoryId,
+    comment,
+    amount: `${type === 'EXPENSE' ? amount * -1 : amount}`,
   };
 
-  const handleSubmit = (value, { resetForm }) => {
-    console.log(value);
+  // amount: 3333;
+  // balanceAfter: 5433;
+  // categoryId: '063f1132-ba5d-42b4-951d-44011ca46262';
+  // comment: 'asdasd';
+  // id: 'a0668f51-12c2-4169-94a4-9e82eaa8377e';
+  // transactionDate: '2023-07-05';
+  // type: 'INCOME';
+  // userId: 'f61de431-acd8-422b-8cf8-90b2ebab81b0';
+  const selectOptionsData = expenseCategories.map(item => ({
+    id: item.id,
+    value: item.name,
+    label: item.name,
+  }));
+  const selectCategoryValue = selectOptionsData.find(
+    item => item.id === categoryId
+  );
 
+  const [selectedOption, setSelectedOption] = useState(selectCategoryValue);
+  const [changedType, setChangedType] = useState(type);
+
+  useEffect(() => {
+    console.log(selectedOption);
+  }, [selectedOption]);
+  const handleSubmit = (value, { resetForm }) => {
+    const normalNumber =
+      changedType === 'EXPENSE'
+        ? Number(value.amount * -1)
+        : Number(value.amount);
+
+    const newData = {
+      ...value,
+      type: changedType,
+      amount: normalNumber,
+      categoryId: '76cc875a-3b43-4eae-8fdb-f76633821a34',
+      //   `${
+      //   changedType === 'INCOME' ? incomeCategories[0].id : selectedOption?.id
+      // }`,
+    };
+    dispatch(
+      editTransactionThunk({ transactionId: id, transaction: newData })
+    ).then(() => dispatch(getAllTransactionsThunk()));
     resetForm();
   };
 
+  const handleChangeSelect = item => {
+    setSelectedOption(item);
+  };
+
+  const handleChangeType = value => {
+    setChangedType(value);
+  };
   return (
     <ModalAddWrapper>
-      <ModalTransactionTitle>Add transaction</ModalTransactionTitle>
+      <ModalTransactionTitle>Edit transaction</ModalTransactionTitle>
       <Formik onSubmit={handleSubmit} initialValues={initialValues}>
         <StyledForm>
           {/* ========================= Radio Buttons ========================= */}
-          {/* <RadioWrapperChoose>
-            <IncomeSpan isSelected={selectedType === 'INCOME'}>Income</IncomeSpan>
-            <RadioWrapper>
-              <StyledInp
-                type="radio"
-                name="type"
-                id="INCOME"
-                value="INCOME"
-                defaultChecked
-                onChange={e => setSelectedType(e.target.value)}
-              />
-              <StyledLabelWrapper htmlFor="INCOME">
-                {selectedType === 'INCOME' && (
-                  <IncomeBtn>
-                    <PlusButton />
-                  </IncomeBtn>
-                )}
-              </StyledLabelWrapper>
-              <StyledInp
-                type="radio"
-                name="type"
-                id="EXPENSE"
-                value="EXPENSE"
-                onChange={e => setSelectedType(e.target.value)}
-              />
-              <StyledLabelWrapper htmlFor="EXPENSE">
-                {selectedType === 'EXPENSE' && (
-                  <ExpenseBtn>
-                    <MinusButton />
-                  </ExpenseBtn>
-                )}
-              </StyledLabelWrapper>
-            </RadioWrapper>
-            <ExpenseSpan isSelected={selectedType === 'EXPENSE'}>Expense</ExpenseSpan>
-          </RadioWrapperChoose> */}
+          <RadioWrapperChoose>
+            <IncomeSpan
+              onClick={() => handleChangeType('INCOME')}
+              isSelected={changedType === 'INCOME'}
+            >
+              Income
+            </IncomeSpan>
+            <span>/</span>
+            <ExpenseSpan
+              onClick={() => handleChangeType('EXPENSE')}
+              isSelected={changedType === 'EXPENSE'}
+            >
+              Expense
+            </ExpenseSpan>
+          </RadioWrapperChoose>
 
           {/* ========================= SELECT ========================= */}
-          {/* {selectedType === 'EXPENSE' && (
+          {changedType === 'EXPENSE' && (
             <CustomSelect
               options={selectOptionsData}
+              defValue={selectedOption}
               nameOfSelect="category"
               onChange={handleChangeSelect}
             />
-          )} */}
+          )}
 
           {/* ========================= INPUTS ========================= */}
           <InputWrapper>
-            <StyledField type="number" name="amount" placeholder="0.00" weight="600" />
+            <StyledField
+              type="number"
+              name="amount"
+              placeholder="0.00"
+              weight="600"
+            />
             <StyledField type="date" name="transactionDate" />
           </InputWrapper>
           <StyledField type="text" name="comment" placeholder="Comment" />

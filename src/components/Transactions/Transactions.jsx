@@ -193,7 +193,7 @@ const Transactions = () => {
                       </ButtonDelTransaction>
                     </ButtonContainer>
                     {/* </TableDash> */}
-                    <LiaPenAltSolid />
+                    {/* <LiaPenAltSolid /> */}
                   </TableRow>
                 );
               })}
