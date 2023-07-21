@@ -8,10 +8,6 @@ import {
   selectIsModalAddTransactionOpen,
   selectIsModalEditTransactionOpen,
 } from 'redux/global/globalSelectors';
-import { closeModalAddTransaction } from 'redux/global/globalSlice';
-import { Container } from 'components/SharedLayout/SharedLayout.styled';
-import Transactions from 'components/Transactions/Transactions';
-import EditTransactions from 'components/EditTransactions/EditTransactions';
 
 const DashboardPage = () => {
   const isModalAddOpen = useSelector(selectIsModalAddTransactionOpen);
