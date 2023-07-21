@@ -9,9 +9,10 @@ body {
   font-weight: 400;
   line-height: 1.2;
   color: #FBFBFB;
+  
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-background-color: tomato
+/* background-color: tomato; */
 }
 
 code {

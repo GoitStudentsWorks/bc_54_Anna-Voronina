@@ -1,17 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
+import { NavigationMobile } from './NavigationMobile';
+import { NavigationDesktop } from './NavigationDesktop';
 
 export const Navigation = () => {
-  return (
-    <>
-      <ul>
-        <li>
-          <NavLink to="/home">Home</NavLink>
-        </li>
-        <li>
-          <NavLink to="/statistic">statistic</NavLink>
-        </li>
-      </ul>
-    </>
-  );
+  const isMobile = useMediaQuery({ query: '(min-width: 768px)' });
+
+  return <>{isMobile ? <NavigationDesktop /> : <NavigationMobile />}</>;
 };
