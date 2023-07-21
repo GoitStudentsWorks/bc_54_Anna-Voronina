@@ -5,5 +5,6 @@ export const selectCategoriesSummary = state =>
 export const selectIncomeSummary = state => state.transaction.incomeSummary;
 export const selectExpenseSummary = state => state.transaction.expenseSummary;
 export const selectPeriodTotal = state => state.transaction.periodTotal;
-export const selectIsLoading = state => state.transaction.isLoading;
-export const selectFilterMonth = state => state.filter;
+export const selectYear = state => state.transaction.year;
+export const selectMonth = state => state.transaction.month;
+export const selectIsLoading = state => state.transaction.isLoading; //reauiered??

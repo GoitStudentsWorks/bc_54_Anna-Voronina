@@ -1,9 +1,17 @@
 import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 
-export const ProtectedRoute = ({ component: Component, redirectTo = '/' }) => {
+export const ProtectedRoute = ({
+  component: Component,
+  redirectTo = '/login',
+}) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const location = useLocation();
 
-  return isLoggedIn ? Component : <Navigate to={redirectTo} />;
+  return isLoggedIn ? (
+    Component
+  ) : (
+    <Navigate to={redirectTo} state={{ from: location }} />
+  );
 };

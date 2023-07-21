@@ -10,7 +10,7 @@ export const LinkStyled = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: ${({ theme }) => theme.spacing(60)};
+  min-width: ${({ theme }) => theme.spacing(75)};
   min-height: ${({ theme }) => theme.spacing(12.5)};
 
   text-align: center;
