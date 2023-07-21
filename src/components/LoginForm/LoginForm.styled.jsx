@@ -3,18 +3,25 @@ import { IoMdMail, IoMdLock } from 'react-icons/io';
 import styled from 'styled-components';
 
 export const WrapperForm = styled.div`
-  padding: 80px 62px;
+  padding: 96px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 533px;
 
-  margin: 0 auto;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 533px;
+    padding: 80px 62px;
+  }
+  @media (min-width: 320px) and (max-width: 767px) {
+    height: 100%;
+  }
   border-radius: ${({ theme }) => theme.radii.normal};
   box-shadow: ${({ theme }) => theme.shadows.primary};
-
-  background-color: rgba(47, 21, 176, 0.73);
+  backdrop-filter: blur(60px);
+  background: rgba(0, 0, 0, 0.3);
 `;
 
 export const FormStyled = styled(Form)`
@@ -35,13 +42,16 @@ export const WrapperField = styled.div`
 export const FieldStyled = styled(Field)`
   margin-top: 40px;
   padding-left: 40px;
-  width: ${({ theme }) => theme.spacing(102)};
+  width: 280px;
   height: ${({ theme }) => theme.spacing(9)};
   outline: none;
   border: none;
   border-bottom: 2px solid grey;
   background-color: rgba(255, 255, 255, 0);
   color: grey;
+  @media (min-width: 768px) {
+    width: ${({ theme }) => theme.spacing(102)};
+  }
   position: relative;
   &:focus {
     outline: none;
