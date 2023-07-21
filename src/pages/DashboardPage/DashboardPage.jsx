@@ -1,18 +1,12 @@
-// import EditTransactions from 'components/EditTransactions/EditTransactions';
-import EditTransactions from 'components/EditTransactions/EditTransactions';
-import { ModalEdit } from 'components/EditTransactions/EditTransactions.styled';
+import { useSelector } from 'react-redux';
+import { CustomSelect } from 'components/CustomSelect/CustomSelect';
 import { Header } from 'components/Header/Header';
 
 import { Modal } from 'components/Modal/Modal';
 import { ModalAddTransaction } from 'components/ModalAddTransaction/ModalAddTransaction';
 import { RoundButton } from 'components/RoundButton/RoundButton';
-import Transactions from 'components/Transactions/Transactions';
-import { BtnEditTransaction } from 'components/Transactions/Transactions.styled';
-import { useSelector } from 'react-redux';
-import {
-  selectIsModalAddTransactionOpen,
-  selectIsModalEditTransactionOpen,
-} from 'redux/global/globalSelectors';
+import { selectIsModalAddTransactionOpen } from 'redux/global/globalSelectors';
+import { closeModalAddTransaction } from 'redux/global/globalSlice';
 
 const DashboardPage = () => {
   const isModalAddOpen = useSelector(selectIsModalAddTransactionOpen);
@@ -23,7 +17,7 @@ const DashboardPage = () => {
       <Header />
       <Transactions />
       {isModalAddOpen && (
-        <Modal>
+        <Modal closeReducer={closeModalAddTransaction}>
           <ModalAddTransaction />
         </Modal>
       )}
@@ -33,6 +27,7 @@ const DashboardPage = () => {
         /* </Modal> */
       )}
       <RoundButton />
+      <CustomSelect />
     </>
   );
 };

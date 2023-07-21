@@ -19,7 +19,7 @@ const months = [
 
 const years = [2023, 2022, 2021];
 
-export const Select = ({ onChange }) => {
+export const Selects = ({ onChange }) => {
   const dispatch = useDispatch();
 
   const [month, setMonth] = useState(1);
@@ -45,7 +45,6 @@ export const Select = ({ onChange }) => {
       year: normYear,
     });
   };
-
 
   return (
     <>
