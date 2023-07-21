@@ -4,16 +4,6 @@ import { IoMdHome } from 'react-icons/io';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const SpanStyled = styled.span`
-  margin-left: 20px;
-  transition: transform 1500ms ease-in-out;
-
-  &:hover {
-    font-weight: ${({ theme }) => theme.fontWeights.bold};
-    transform: scale(1.03);
-  }
-`;
-
 export const ContainerStyledMobile = styled.div`
   width: 100%;
   display: flex;
@@ -23,17 +13,48 @@ export const ContainerStyledMobile = styled.div`
 
 export const ContainerStyledDesktop = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
   padding: 16px 40px 0 28px;
 `;
 
-export const NavLinkStyled = styled(NavLink)`
-  transition: transform 250ms ease-in-out;
+export const ContainerStyledIconDesktop = styled.div`
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.6);
+  transition: ${({ theme }) => theme.transitions.color};
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.blue};
+    filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+    transform: scale(1.03);
+  }
+`;
+
+export const NavLinkStyledMobile = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+
+  transition: ${({ theme }) => theme.transitions.color};
+
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.blue};
+    filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+    transform: scale(1.03);
+  }
+`;
+
+export const NavLinkStyledDesktop = styled(NavLink)`
+  /* transition: transform 250ms ease-in-out;
   &:hover {
     transform: scale(1.05);
-  }
+  } */
 `;
 
 export const MenuStyledMobile = styled.ul`
@@ -51,21 +72,28 @@ export const MenuStyledDesktop = styled.ul`
   column-gap: 12px;
 `;
 
-export const HomeIcon = styled(IoMdHome)`
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
-  margin-left: 32px;
-  transition: ${({ theme }) => theme.transitions.color};
+export const SpanStyled = styled.span`
+  margin-left: 20px;
+  transition: transform 500ms ease-in-out;
+
   &:hover {
+    font-weight: ${({ theme }) => theme.fontWeights.bold};
     transform: scale(1.03);
-    color: ${({ theme }) => theme.colors.blue};
-    filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+  }
+`;
+
+export const HomeIcon = styled(IoMdHome)`
+  fill: rgba(255, 255, 255, 0.3);
+  width: 32px;
+  height: 32px;
+
+  &:focus {
+    fill: rgba(255, 255, 255, 1);
   }
 
   @media screen and (min-width: 768px) {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
     margin-left: 62px;
   }
   @media screen and (min-width: 1280px) {
@@ -74,18 +102,15 @@ export const HomeIcon = styled(IoMdHome)`
 `;
 
 export const StatisticsIcon = styled(BiStats)`
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
-
-  transition: transform 2000 ms ease-in-out, color 2000 ms;
+  fill: rgba(255, 255, 255, 0.3);
+  width: 32px;
+  height: 32px;
 
   @media screen and (min-width: 768px) {
     width: 24px;
     height: 24px;
 
     &:hover {
-      transform: scale(1.03);
       color: ${({ theme }) => theme.colors.blue};
       filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
     }
@@ -93,10 +118,9 @@ export const StatisticsIcon = styled(BiStats)`
 `;
 
 export const CurrencyIcon = styled(FaDollarSign)`
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
-  margin-right: 32px;
+  fill: rgba(255, 255, 255, 0.3);
+  width: 28px;
+  height: 28px;
   transition: ${({ theme }) => theme.transitions.color};
 
   @media screen and (min-width: 768px) {
@@ -104,7 +128,6 @@ export const CurrencyIcon = styled(FaDollarSign)`
     height: 24px;
 
     &:hover {
-      transform: scale(1.03);
       color: ${({ theme }) => theme.colors.blue};
       filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
     }

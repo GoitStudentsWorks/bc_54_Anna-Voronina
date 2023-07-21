@@ -1,15 +1,13 @@
 import React from 'react';
-import { BiStats } from 'react-icons/bi';
 import {
   ContainerStyledDesktop,
+  ContainerStyledIconDesktop,
   HomeIcon,
   MenuStyledDesktop,
-  NavLinkStyled,
+  NavLinkStyledDesktop,
   SpanStyled,
   StatisticsIcon,
-  homeIcon,
 } from './Navigation.styled';
-import { NavLink } from 'react-router-dom';
 
 export const NavigationDesktop = () => {
   return (
@@ -17,16 +15,20 @@ export const NavigationDesktop = () => {
       <nav>
         <MenuStyledDesktop>
           <li>
-            <NavLinkStyled to="/home">
-              <HomeIcon />
+            <NavLinkStyledDesktop to="/home">
+              <ContainerStyledIconDesktop>
+                <HomeIcon />
+              </ContainerStyledIconDesktop>
               <SpanStyled>Home</SpanStyled>
-            </NavLinkStyled>
+            </NavLinkStyledDesktop>
           </li>
           <li>
-            <NavLinkStyled to="/statistic">
-              <StatisticsIcon />
+            <NavLinkStyledDesktop to="/statistic">
+              <ContainerStyledIconDesktop>
+                <StatisticsIcon />
+              </ContainerStyledIconDesktop>
               <SpanStyled>Statistic</SpanStyled>
-            </NavLinkStyled>
+            </NavLinkStyledDesktop>
           </li>
         </MenuStyledDesktop>
       </nav>

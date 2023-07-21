@@ -1,13 +1,11 @@
 import React from 'react';
 import {
-  ContainerStyled,
   ContainerStyledMobile,
   CurrencyIcon,
   HomeIcon,
   MenuStyledMobile,
-  NavLinkStyled,
+  NavLinkStyledMobile,
   StatisticsIcon,
-  menuStyled,
 } from './Navigation.styled';
 
 export const NavigationMobile = () => {
@@ -16,19 +14,19 @@ export const NavigationMobile = () => {
       <nav>
         <MenuStyledMobile>
           <li>
-            <NavLinkStyled to="/home">
+            <NavLinkStyledMobile to="/home">
               <HomeIcon />
-            </NavLinkStyled>
+            </NavLinkStyledMobile>
           </li>
           <li>
-            <NavLinkStyled to="/statistic">
+            <NavLinkStyledMobile to="/statistic">
               <StatisticsIcon />
-            </NavLinkStyled>
+            </NavLinkStyledMobile>
           </li>
           <li>
-            <NavLinkStyled to="/currency">
+            <NavLinkStyledMobile to="/currency">
               <CurrencyIcon />
-            </NavLinkStyled>
+            </NavLinkStyledMobile>
           </li>
         </MenuStyledMobile>
       </nav>
