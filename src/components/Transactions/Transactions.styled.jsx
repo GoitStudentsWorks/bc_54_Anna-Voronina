@@ -2,6 +2,11 @@ import styled from 'styled-components';
 import { Button } from 'components/Button/Button';
 import { LiaPenSolid } from 'react-icons/lia';
 
+export const AllTransactionsDetails = styled.ul`
+  list-style: none;
+  padding: 20px;
+`;
+
 export const TransactionDetails = styled.ul`
   margin-top: 8px;
   border-radius: 10px;
@@ -138,7 +143,7 @@ export const ButtonContainer = styled.td`
   padding-bottom: 12px;
   gap: auto;
 `;
-
+// export const
 export const ButtonDelTransaction = styled.button`
   text-align: center;
   width: 69px;
@@ -159,7 +164,6 @@ export const ButtonDelTransaction = styled.button`
   box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: 0.2s;
-
   &:active,
   &:focus,
   &:hover {
@@ -178,7 +182,7 @@ export const ButtonEditTransaction = styled.button`
   border: none;
   width: 69px;
   height: 29px;
-  color: ${({ theme }) => theme.colors.white60};
+  color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
   transition: 0.2s;
 

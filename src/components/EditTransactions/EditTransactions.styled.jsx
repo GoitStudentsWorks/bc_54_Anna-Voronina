@@ -1,5 +1,3 @@
-// Mariia Voloshanovska, [7/19/2023 10:24 PM]
-
 import { Modal } from 'components/Modal/Modal';
 import styled from 'styled-components';
 
@@ -30,6 +28,8 @@ export const EditModalForm = styled.form`
   flex-direction: column;
   gap: 40px;
   margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const EditModalTitle = styled.h3`
@@ -82,10 +82,11 @@ export const PinkToggle = styled.button`
   }
 `;
 
-export const EditTransactionToggleContainer = styled.div`
+export const EditTransactionToggleWrapper = styled.div`
   margin-bottom: 60px;
   display: flex;
   align-items: center;
+  gap: 12px;
   margin-bottom: 10px;
   justify-content: center;
 `;
@@ -165,7 +166,6 @@ export const SaveChangedTransactionsBtn = styled.button`
     box-shadow: 1px 5px 8px 0px rgba(0, 0, 0, 0.5);
   }
 `;
-
 export const DiscardEditButton = styled.button`
   cursor: pointer;
   border-radius: 20px;
@@ -174,6 +174,8 @@ export const DiscardEditButton = styled.button`
   width: 280px;
   height: 50px;
   padding: 13px 115px 13px 115px;
+  margin-left: auto;
+  margin-right: auto;
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
   line-height: calc(27 / 18);

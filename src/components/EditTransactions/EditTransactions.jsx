@@ -15,20 +15,26 @@ import {
 import 'flatpickr/dist/themes/material_green.css';
 import Flatpickr from 'react-flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
+import 'flatpickr/dist/themes/material_green.css';
 import { customStyles } from './selectStyled';
-// import { Backdrop } from 'components/Backdrop/Backdrop'; // create backdrop in styled
+
 import moment from 'moment';
 import { Button } from 'components/Button/Button';
-// import { Modal } from 'components/Modal/Modal';
+
 import {
   selectIsModalEditTransactionOpen,
   selectTransaction,
 } from 'redux/global/globalSelectors';
 import { closeModalEditTransaction } from 'redux/global/globalSlice';
-import { GrClose } from 'react-icons/gr';
+
 import {
+  DiscardEditButton,
   EditModalForm,
+  EditModalTitle,
+  EditModalToggle,
+  EditTransactionToggleWrapper,
   FormBlockEditModal,
+  InputCommentEditModal,
   InputLineEditModal,
   ModalEdit,
 } from './EditTransactions.styled';
@@ -111,28 +117,31 @@ export const EditTransactions = () => {
     // <Backdrop onClick={closeBeckdrop}>
     isOpen ? (
       <>
-        <Modal>
-          <h1>Edit transactions</h1>
-          <div>
-            <Button
+        <ModalEdit>
+          {/* add close on close btn */}
+          <EditModalTitle>Edit transactions</EditModalTitle>
+          <EditTransactionToggleWrapper>
+            {/* add colors for toggle */}
+            <EditModalToggle
               type="button"
               onClick={() => {
                 formik.setFieldValue('type', true);
               }}
-              text="Income"
-            />
-            // slash between transactions type
+            >
+              Income
+            </EditModalToggle>
+
             <p>/</p>
-            <Button
+            <EditModalToggle
               type="button"
               onClick={() => {
                 formik.setFieldValue('type', false);
               }}
-              text="Expense"
-            />
-          </div>
-
-          <EditModalForm onSubmit={formik.handleSubmit}>
+            >
+              Expense
+            </EditModalToggle>
+          </EditTransactionToggleWrapper>
+      <EditModalForm onSubmit={formik.handleSubmit}>
             {!type && (
               <Select
                 defaultValue={options.find(e => e.value === categoryId)}
@@ -168,9 +177,10 @@ export const EditTransactions = () => {
                   formik.setFieldValue('transactionDate', val[0]);
                 }}
               />
+              {/* make flatpickr styled ang add svg to input. add wrapper with flex for transactionamount and flatpickr */}
             </FormBlockEditModal>
 
-            <input
+            <InputCommentEditModal
               onChange={formik.handleChange}
               type="text"
               name="comment"
@@ -180,9 +190,12 @@ export const EditTransactions = () => {
 
             <Button type="submit" text="SAVE" />
           </EditModalForm>
-          {/* 
-          <Button onClick={closeBtn} type="button" text="CANCEL" /> */}
-        </Modal>
+
+          <DiscardEditButton onClick={closeBtn} type="button">
+            CANCEL
+          </DiscardEditButton>
+          {/* fix width for discard btn */}
+        </ModalEdit>
         {/* </Backdrop>*/}
       </>
     ) : null

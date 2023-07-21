@@ -22,6 +22,7 @@ import {
   NoTransactions,
   TableDash,
   TableWrapper,
+  AllTransactionsDetails,
 } from './Transactions.styled';
 // import { formatMoney } from 'utils/formatMoney';
 
@@ -78,7 +79,7 @@ const Transactions = () => {
   return sortedTransactions.length ? (
     <>
       <MediaQuery maxWidth={767}>
-        <ul>
+        <AllTransactionsDetails>
           {sortedTransactions.map(transaction => {
             return (
               <li key={transaction.id}>
@@ -117,9 +118,20 @@ const Transactions = () => {
                     <TransactionDetailsItemTitle>
                       Sum
                     </TransactionDetailsItemTitle>
-                    <SumText color="#fff">{transaction.sum}</SumText>
+                    <Sum
+                      color={transaction.type === 'INCOME' ? '#000' : '#FFF'}
+                      // make this check work and add normal styles
+                    >
+                      {transaction.sum}
+                    </Sum>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
+                    <ButtonDelTransaction
+                      type="button"
+                      onClick={() => handleDeleteTransaction(transaction.id)}
+                    >
+                      Delete
+                    </ButtonDelTransaction>
                     <ButtonEditTransaction
                       type="button"
                       onClick={() => handleEditClick()}
@@ -127,18 +139,13 @@ const Transactions = () => {
                       {<LiaPenAltSolid />} Edit
                     </ButtonEditTransaction>
 
-                    <ButtonDelTransaction
-                      type="button"
-                      onClick={() => handleDeleteTransaction(transaction.id)}
-                    >
-                      Delete
-                    </ButtonDelTransaction>
+                    {/* fix color of edit btn */}
                   </TransactionDetailsItem>
                 </TransactionDetails>
               </li>
             );
           })}
-        </ul>
+        </AllTransactionsDetails>
       </MediaQuery>
 
       <MediaQuery minWidth={768}>
@@ -151,7 +158,6 @@ const Transactions = () => {
                 <TableHeader>Category</TableHeader>
                 <TableHeader>Comment</TableHeader>
                 <TableHeader>Sum</TableHeader>
-                {/* <TableHeader /> */}
               </TableHead>
             </thead>
 
@@ -170,7 +176,11 @@ const Transactions = () => {
                       }
                     </TableDash>
                     <TableDash>{transaction.comment}</TableDash>
-                    <Sum>{transaction.sum}</Sum>
+                    <Sum
+                      color={transaction.type === 'INCOME' ? '#000' : '#FFF'}
+                    >
+                      {transaction.sum}
+                    </Sum>
                     {/* <TableDash> */}
                     <ButtonContainer>
                       <BtnEditTransaction

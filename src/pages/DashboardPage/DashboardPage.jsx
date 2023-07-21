@@ -28,9 +28,9 @@ const DashboardPage = () => {
         </Modal>
       )}
       {isModalEditOpen && (
-        <Modal>
-          <EditTransactions />
-        </Modal>
+        // <Modal>
+        <EditTransactions />
+        /* </Modal> */
       )}
       <RoundButton />
     </>
