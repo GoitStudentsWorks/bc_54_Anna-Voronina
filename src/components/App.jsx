@@ -7,6 +7,9 @@ import { selectIsRefreshing } from 'redux/auth/authSelectors';
 import { fetchCurrentUserThunk } from 'redux/auth/authOperations';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { GlobalStyle } from 'services/styles/GlobalStyle';
+
+import Transactions from './Transactions/Transactions';
+
 import NotFound from 'pages/NotFound/NotFound';
 
 const DashboardPage = lazy(() => import('pages/DashboardPage/DashboardPage'));
@@ -25,59 +28,57 @@ export const App = () => {
 
   return (
     <>
-      {isRefreshing ? (
+      {/* {isRefreshing ? (
         <h1>Loading...</h1>
-      ) : (
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route
-              index
-              element={
-                <ProtectedRoute
-                  component={<DashboardPage />}
-                  redirectTo="/login"
-                />
-              }
-            />
-            <Route
-              path="/home"
-              element={
-                <ProtectedRoute component={<HomePage />} redirectTo="/login" />
-              }
-            />
-            <Route
-              path="/statistic"
-              element={
-                <ProtectedRoute
-                  component={<SummaryPage />}
-                  redirectTo="/login"
-                />
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <PublicRoute
-                  component={<LoginPage />}
-                  restricted
-                  redirectTo="/"
-                />
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <PublicRoute
-                  component={<RegisterPage />}
-                  restricted
-                  redirectTo="/"
-                />
-              }
-            />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      )}
+      ) : */}
+      (
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route
+            index
+            element={
+              <ProtectedRoute
+                component={<DashboardPage />}
+                redirectTo="/login"
+              />
+            }
+          />
+          <Route
+            path="/home"
+            element={
+              <ProtectedRoute component={<HomePage />} redirectTo="/login" />
+            }
+          />
+          <Route
+            path="/statistic"
+            element={
+              <ProtectedRoute component={<SummaryPage />} redirectTo="/login" />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute
+                component={<LoginPage />}
+                restricted
+                redirectTo="/"
+              />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute
+                component={<RegisterPage />}
+                restricted
+                redirectTo="/"
+              />
+            }
+          />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      ){/* } */}
       <GlobalStyle />
     </>
   );
