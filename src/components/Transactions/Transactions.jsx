@@ -82,7 +82,7 @@ const Transactions = () => {
                     <TransactionDetailsItemTitle>
                       Date
                     </TransactionDetailsItemTitle>
-                    <td>{transaction.date}</td>
+                    <td>{transaction.transactionDate}</td>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
                     <TransactionDetailsItemTitle>
@@ -96,9 +96,9 @@ const Transactions = () => {
                     </TransactionDetailsItemTitle>
                     <td>
                       {
-                        // categories.find(e => e.id === transaction.categoryId)
-                        //   .name
-                        transaction.category
+                        categories.find(
+                          cat => cat.id === transaction.categoryId
+                        )?.name
                       }
                     </td>
                   </TransactionDetailsItem>
@@ -113,10 +113,12 @@ const Transactions = () => {
                       Sum
                     </TransactionDetailsItemTitle>
                     <Sum
-                      color={transaction.type === 'INCOME' ? '#000' : '#FFF'}
+                      color={
+                        transaction.type === 'INCOME' ? '#FFB627' : '#FF868D'
+                      }
                       // make this check work and add normal styles
                     >
-                      {transaction.sum}
+                      {transaction.amount}
                     </Sum>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
@@ -159,21 +161,28 @@ const Transactions = () => {
               {sortedTransactions.map(transaction => {
                 return (
                   <TableRow key={transaction.id}>
-                    <TableDash>{transaction.date}</TableDash>
+                    <TableDash>{transaction.transactionDate}</TableDash>
                     <TableDash>{transaction.type ?? '-'}</TableDash>
                     <TableDash>
                       {
-                        // categories.find(
-                        //   cat => cat.id === transaction.categoryId
-                        // ).name
-                        transaction.category
+                        categories.find(
+                          cat => cat.id === transaction.categoryId
+                        )?.name
+
+                        // transaction.category
+                        //   ? transaction.category?.name
+                        //   : 'Income'
                       }
                     </TableDash>
+                    {console.log(transaction)}
+
                     <TableDash>{transaction.comment}</TableDash>
                     <Sum
-                      color={transaction.type === 'INCOME' ? '#000' : '#FFF'}
+                      color={
+                        transaction.type === 'INCOME' ? '#FFB627' : '#FF868D'
+                      }
                     >
-                      {transaction.sum}
+                      {transaction.amount}
                     </Sum>
                     {/* <TableDash> */}
                     <ButtonContainer>
@@ -181,7 +190,7 @@ const Transactions = () => {
                         type="button"
                         onClick={() => handleEditClick(transaction)}
                       >
-                        <StyledBiPencil />
+                        <LiaPenAltSolid fill="#fff" />
                       </BtnEditTransaction>
                     </ButtonContainer>
                     <ButtonContainer>
