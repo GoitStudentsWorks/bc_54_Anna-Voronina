@@ -1,3 +1,10 @@
+import { Navigation } from 'components/Navigation/Navigation';
+import { StyledAside } from './AsideBar.styled';
+
 export const AsideBar = () => {
-  return <aside>AsideBar</aside>;
+  return (
+    <StyledAside>
+      <Navigation />
+    </StyledAside>
+  );
 };

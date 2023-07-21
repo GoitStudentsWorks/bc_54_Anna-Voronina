@@ -30,8 +30,11 @@ export const getTransaction = async () => {
 };
 
 // Update transaction
-export const updateTransaction = async transactionId => {
-  const { data } = await instance.post(`/transactions/${transactionId}`);
+export const updateTransaction = async ({ transactionId, transaction }) => {
+  const { data } = await instance.patch(
+    `/transactions/${transactionId}`,
+    transaction
+  );
   return data;
 };
 

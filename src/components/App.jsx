@@ -34,30 +34,6 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route
-              index
-              element={
-                <ProtectedRoute
-                  component={<DashboardPage />}
-                  redirectTo="/login"
-                />
-              }
-            />
-            <Route
-              path="home"
-              element={
-                <ProtectedRoute component={<HomePage />} redirectTo="/login" />
-              }
-            />
-            <Route
-              path="statistic"
-              element={
-                <ProtectedRoute
-                  component={<SummaryPage />}
-                  redirectTo="/login"
-                />
-              }
-            />
-            <Route
               path="/login"
               element={
                 <PublicRoute
@@ -77,8 +53,35 @@ export const App = () => {
                 />
               }
             />
-            <Route path="*" element={<NotFound />} />
+            <Route
+              element={
+                <ProtectedRoute
+                  component={<DashboardPage />}
+                  redirectTo="/login"
+                />
+              }
+            >
+              <Route
+                index
+                element={
+                  <ProtectedRoute
+                    component={<HomePage />}
+                    redirectTo="/login"
+                  />
+                }
+              />
+              <Route
+                path="statistic"
+                element={
+                  <ProtectedRoute
+                    component={<SummaryPage />}
+                    redirectTo="/login"
+                  />
+                }
+              />
+            </Route>
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       )}
       <GlobalStyle />
