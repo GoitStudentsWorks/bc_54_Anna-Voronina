@@ -15,10 +15,8 @@ import NotFound from 'pages/NotFound/NotFound';
 const DashboardPage = lazy(() => import('pages/DashboardPage/DashboardPage'));
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const SummaryPage = lazy(() => import('pages/SummaryPage/SummaryPage'));
-const CurrencyPage = lazy(()=> import('pages/CurrencyPage/CurrencyPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
-
 
 export const App = () => {
   const dispatch = useDispatch();

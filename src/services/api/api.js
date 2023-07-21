@@ -80,14 +80,27 @@ export const fetchTransactionsSummary = async ({ year, month }) => {
   return data;
 };
 
-export const getCurrencyData = async () => {
-  const start_date = '2023-01-01';
-  const end_date = '2023-07-19';
+export const fetchCurrencyRates = async () => {
+  const lastRequestTime = localStorage.getItem('lastRequestTime');
+  const currentTime = Date.now();
 
-  const { data } = await axios.get(
-    `https://api.monobank.ua/bank/currency?date=${Math.floor(
-      new Date(start_date).getTime() / 1000
-    )}&end_date=${Math.floor(new Date(end_date).getTime() / 1000)}`
-  );
-  return data;
+  if (lastRequestTime && currentTime - lastRequestTime < 3600000) {
+    const dataFromStorage = localStorage.getItem('currencyData');
+    if (dataFromStorage) {
+      return JSON.parse(dataFromStorage);
+    }
+  }
+
+  try {
+    const response = await axios.get('https://api.monobank.ua/bank/currency');
+    const data = response.data;
+
+    localStorage.setItem('currencyData', JSON.stringify(data));
+    localStorage.setItem('lastRequestTime', currentTime);
+
+    return data;
+  } catch (error) {
+    console.error('Ошибка при получении данных:', error);
+    return null;
+  }
 };
