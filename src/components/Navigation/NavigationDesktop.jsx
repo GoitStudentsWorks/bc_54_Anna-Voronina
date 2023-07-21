@@ -3,33 +3,35 @@ import {
   ContainerStyledDesktop,
   ContainerStyledIconDesktop,
   HomeIcon,
+  ItemStyledDesktop,
   MenuStyledDesktop,
   NavLinkStyledDesktop,
   SpanStyled,
   StatisticsIcon,
 } from './Navigation.styled';
+import { NavLink } from 'react-router-dom';
 
 export const NavigationDesktop = () => {
   return (
     <ContainerStyledDesktop>
       <nav>
         <MenuStyledDesktop>
-          <li>
+          <ItemStyledDesktop>
             <NavLinkStyledDesktop to="/home">
               <ContainerStyledIconDesktop>
                 <HomeIcon />
               </ContainerStyledIconDesktop>
-              <SpanStyled>Home</SpanStyled>
+              <span>Home</span>
             </NavLinkStyledDesktop>
-          </li>
-          <li>
+          </ItemStyledDesktop>
+          <ItemStyledDesktop>
             <NavLinkStyledDesktop to="/statistic">
               <ContainerStyledIconDesktop>
                 <StatisticsIcon />
               </ContainerStyledIconDesktop>
-              <SpanStyled>Statistic</SpanStyled>
+              <span>Statistic</span>
             </NavLinkStyledDesktop>
-          </li>
+          </ItemStyledDesktop>
         </MenuStyledDesktop>
       </nav>
     </ContainerStyledDesktop>

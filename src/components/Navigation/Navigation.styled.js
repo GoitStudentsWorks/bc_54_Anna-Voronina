@@ -12,8 +12,13 @@ export const ContainerStyledMobile = styled.div`
 `;
 
 export const ContainerStyledDesktop = styled.div`
+  /* display: flex; */
   width: 100%;
-  padding: 16px 40px 0 28px;
+  margin-left: 32px;
+  margin-top: 40px;
+  @media screen and (min-width: 1156px) {
+    margin-left: 16px;
+  }
 `;
 
 export const ContainerStyledIconDesktop = styled.div`
@@ -51,10 +56,17 @@ export const NavLinkStyledMobile = styled(NavLink)`
 `;
 
 export const NavLinkStyledDesktop = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  justify-content: left;
   /* transition: transform 250ms ease-in-out;
   &:hover {
     transform: scale(1.05);
   } */
+`;
+
+export const ItemStyledDesktop = styled.li`
+  /* display: flex; */
 `;
 
 export const MenuStyledMobile = styled.ul`
@@ -66,11 +78,7 @@ export const MenuStyledMobile = styled.ul`
   gap: 32px;
 `;
 
-export const MenuStyledDesktop = styled.ul`
-  display: flex;
-  flex-direction: column;
-  column-gap: 12px;
-`;
+export const MenuStyledDesktop = styled.ul``;
 
 export const SpanStyled = styled.span`
   margin-left: 20px;
