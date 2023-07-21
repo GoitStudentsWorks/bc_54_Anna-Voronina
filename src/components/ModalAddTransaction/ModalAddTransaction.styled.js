@@ -42,8 +42,6 @@ export const StyledLabelWrapper = styled.label`
   width: 50%;
   height: 100%;
 
-  position: absolute;
-  display: 'flex';
   /* left: -100%; */
   &:hover {
     cursor: pointer;
