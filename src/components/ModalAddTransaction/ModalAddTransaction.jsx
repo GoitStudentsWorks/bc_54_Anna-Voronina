@@ -11,16 +11,29 @@ import {
 import { selectCategories } from 'redux/transaction/transactionSelectors';
 import {
   ButtonWrapper,
+  ExpenseBtn,
+  ExpenseSpan,
+  IncomeBtn,
+  IncomeSpan,
   InputWrapper,
+  MinusButton,
   ModalAddWrapper,
+  ModalTransactionTitle,
+  PlusButton,
+  RadioWrapper,
+  RadioWrapperChoose,
   StyledField,
   StyledForm,
+  StyledInp,
+  StyledLabelWrapper,
+  StyledLabelWrapperIncome,
 } from './ModalAddTransaction.styled';
 
 export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
   const [selectedOption, setSelectedOption] = useState('Car');
   const [selectedType, setSelectedType] = useState('INCOME');
+
   useEffect(() => {
     dispatch(getTransactionsCategoriesThunk());
   }, [dispatch]);
@@ -34,26 +47,27 @@ export const ModalAddTransaction = () => {
   );
 
   const initialValues = {
-    transactionDate: '',
+    transactionDate: new Date().toISOString().slice(0, 10),
     type: selectedType,
     categoryId: '',
     comment: '',
     amount: '',
   };
+
   const handleSubmit = (value, { resetForm }) => {
-    // console.log(value);
     const newData = {
       ...value,
+      type: selectedType,
       amount: `${
-        value.type === 'EXPENSE'
+        selectedType === 'EXPENSE'
           ? Number(value.amount) * -1
           : Number(value.amount)
       }`,
-      type: value.type,
       categoryId: `${
-        value.type === 'EXPENSE' ? selectedOption.id : incomeCategories[0].id
+        selectedType === 'EXPENSE' ? selectedOption.id : incomeCategories[0].id
       }`,
     };
+    console.log(newData);
     dispatch(addTransactionThunk(newData));
     resetForm();
   };
@@ -68,14 +82,16 @@ export const ModalAddTransaction = () => {
   }));
   return (
     <ModalAddWrapper>
-      <h3>Add transaction</h3>
-
+      <ModalTransactionTitle>Add transaction</ModalTransactionTitle>
       <Formik onSubmit={handleSubmit} initialValues={initialValues}>
         <StyledForm>
-          <div>
-            <span>Income</span>
-            <span>
-              <input
+          {/* ========================= Radio Buttons ========================= */}
+          <RadioWrapperChoose>
+            <IncomeSpan isSelected={selectedType === 'INCOME'}>
+              Income
+            </IncomeSpan>
+            <RadioWrapper>
+              <StyledInp
                 type="radio"
                 name="type"
                 id="INCOME"
@@ -83,17 +99,34 @@ export const ModalAddTransaction = () => {
                 defaultChecked
                 onChange={e => setSelectedType(e.target.value)}
               />
-              <input
+              <StyledLabelWrapper htmlFor="INCOME">
+                {selectedType === 'INCOME' && (
+                  <IncomeBtn>
+                    <PlusButton />
+                  </IncomeBtn>
+                )}
+              </StyledLabelWrapper>
+              <StyledInp
                 type="radio"
                 name="type"
                 id="EXPENSE"
                 value="EXPENSE"
                 onChange={e => setSelectedType(e.target.value)}
               />
-            </span>
-            <span>Expense</span>
-          </div>
-          {/* CustomSelect = ({(options, onChange)}) */}
+              <StyledLabelWrapper htmlFor="EXPENSE">
+                {selectedType === 'EXPENSE' && (
+                  <ExpenseBtn>
+                    <MinusButton />
+                  </ExpenseBtn>
+                )}
+              </StyledLabelWrapper>
+            </RadioWrapper>
+            <ExpenseSpan isSelected={selectedType === 'EXPENSE'}>
+              Expense
+            </ExpenseSpan>
+          </RadioWrapperChoose>
+
+          {/* ========================= SELECT ========================= */}
           {selectedType === 'EXPENSE' && (
             <CustomSelect
               options={selectOptionsData}
@@ -102,6 +135,7 @@ export const ModalAddTransaction = () => {
             />
           )}
 
+          {/* ========================= INPUTS ========================= */}
           <InputWrapper>
             <StyledField
               type="number"
@@ -112,6 +146,8 @@ export const ModalAddTransaction = () => {
             <StyledField type="date" name="transactionDate" />
           </InputWrapper>
           <StyledField type="text" name="comment" placeholder="Comment" />
+
+          {/* ========================= BUTTONS ========================= */}
           <ButtonWrapper>
             <Button text="ADD" type="submit" />
             <Button
