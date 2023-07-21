@@ -103,7 +103,6 @@ export const fetchCurrencyRates = async () => {
 
     return data;
   } catch (error) {
-    console.error('Ошибка при получении данных:', error);
     return null;
   }
 };

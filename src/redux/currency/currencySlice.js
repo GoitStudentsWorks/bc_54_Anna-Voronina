@@ -1,7 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { fetchCurrencyRatesAsync } from "./currencyOperations";
-// import { fetchCurrencyRatesAsync } from "./currencyOperations";
-// import { fetchCurrencyRates } from "services/api/api";
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchCurrencyRatesAsync } from './currencyOperations';
 
 const initialState = {
   rates: [],
@@ -9,21 +7,13 @@ const initialState = {
   error: null,
 };
 
-// export const fetchCurrencyRatesAsync = createAsyncThunk(
-//   'currency/fetchCurrencyRates',
-//   async () => {
-//     const response = await fetchCurrencyRates();
-//     return response;
-//   }
-// );
-
 const currencySlice = createSlice({
   name: 'currency',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(fetchCurrencyRatesAsync.pending, (state) => {
+      .addCase(fetchCurrencyRatesAsync.pending, state => {
         state.loading = true;
         state.error = null;
       })
