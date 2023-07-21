@@ -94,6 +94,62 @@ export const selectStyles = {
   }),
 };
 
+export const selectStylesCategory = {
+  ...selectStyles,
+  control: styles => ({
+    ...styles,
+    width: '394px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    textAlign: 'left',
+    height: '35px',
+    padding: '8px',
+    fontSize: '18px',
+    color: '#FBFBFB',
+    border: 0,
+    borderBottom: '1px solid rgba(255, 255, 255, 0.60)',
+    backgroundColor: 'transparent',
+    boxShadow: 'none',
+
+    cursor: 'pointer',
+  }),
+  menu: styles => ({
+    ...styles,
+    top: '90%',
+    width: '394px',
+    height: '300px',
+    borderRadius: '8px',
+    background: `linear-gradient(
+      360deg,
+      rgba(83, 61, 186, 0.7) 0%,
+      rgba(80, 48, 154, 0.7) 35.94%,
+      rgba(106, 70, 165, 0.52) 61.04%,
+      rgba(133, 93, 175, 0.13) 100%
+    )`,
+    backdropFilter: `blur(50px)`,
+    overflow: 'auto',
+  }),
+  menuList: styles => ({
+    ...styles,
+    width: '394px',
+    height: '300px',
+    '::-webkit-scrollbar': {
+      width: '7px',
+      height: '0px',
+      borderRadius: '8px',
+    },
+    '::-webkit-scrollbar-track': {
+      backgroundColor: 'rgba(255, 255, 255, 0.10)',
+    },
+    '::-webkit-scrollbar-thumb': {
+      backgroundColor: '#734AEF',
+    },
+    '::-webkit-scrollbar-thumb:hover': {
+      backgroundColor: '#623F8B',
+    },
+  }),
+};
+
 export const SelectIcon = styled(SlArrowDown)`
   color: ${({ theme }) => theme.colors.primaryFont};
   width: 30px;
