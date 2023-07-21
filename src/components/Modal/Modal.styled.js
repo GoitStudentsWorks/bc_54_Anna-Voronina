@@ -37,6 +37,9 @@ export const IconCloseModal = styled.div`
   position: absolute;
   top: ${({ theme }) => theme.spacing(5)};
   right: ${({ theme }) => theme.spacing(5)};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const ExitModalBtn = styled(VscClose)`

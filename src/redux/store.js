@@ -33,7 +33,6 @@ export const store = configureStore({
     transactions: transactionsReducer,
     currency: currencyReducer,
     transaction: transactionsReducer,
-    filter: filterReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

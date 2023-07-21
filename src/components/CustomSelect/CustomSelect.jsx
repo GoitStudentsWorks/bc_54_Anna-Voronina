@@ -30,7 +30,7 @@ export const CustomSelect = ({ options, onChange, nameOfSelect, defValue }) => {
       ) : (
         <Select
           components={{ DropdownIndicator }}
-          defaultValue={options ? options[0] : null}
+          defaultValue={defValue ? defValue : options[0]}
           options={options}
           styles={selectStyles}
           onChange={onChange}
