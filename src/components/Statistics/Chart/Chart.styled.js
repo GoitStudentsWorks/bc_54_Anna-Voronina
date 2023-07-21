@@ -18,6 +18,7 @@ export const ChartWrapper = styled.div`
 
 export const StyledSpan = styled.span`
   position: absolute;
+  display: flex;
   top: 50%;
   left: 50%;
 

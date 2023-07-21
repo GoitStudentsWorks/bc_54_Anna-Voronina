@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+
 import { CustomSelect } from 'components/CustomSelect/CustomSelect';
 import { StyledSelectWrapper } from './Selects.styled';
-
+import { getMonthAndYear } from 'services/getDateNow';
 
 const months = [
   { value: 'January', label: 'January' },
@@ -20,55 +20,75 @@ const months = [
 ];
 
 const years = [
-  {
-    value: '2023',
-    label: '2023',
-  },
-  {
-    value: '2022',
-    label: '2022',
-  },
-  {
-    value: '2021',
-    label: '2021',
-  },
-  {
-    value: '2020',
-    label: '2020',
-  },
+  // {
+  //   value: '2023',
+  //   label: '2023',
+  // },
+  // {
+  //   value: '2022',
+  //   label: '2022',
+  // },
+  // {
+  //   value: '2021',
+  //   label: '2021',
+  // },
+  // {
+  //   value: '2020',
+  //   label: '2020',
+  // },
 ];
 
 export const Selects = ({ onChange }) => {
-  const dispatch = useDispatch();
+  const [years, setYears] = useState([]);
+  const [data, setDate] = useState(getMonthAndYear());
+  const { month, year } = data;
 
-  const [month, setMonth] = useState(1);
-  const [year, setYear] = useState(2023);
-  const selectData = { year: setYear, month: setMonth };
+  const monthObject = months[+month - 1];
+  const yearObject = {
+    value: year,
+    label: year,
+  };
 
-  // console.log(normMonth);
+  useEffect(() => {
+    for (let i = year; i > 2021; i -= 1) {
+      setYears(prev => [
+        ...prev,
+        {
+          value: i,
+          label: i,
+        },
+      ]);
+    }
+  }, []);
+  console.log(years);
 
-  const handleChangeMonth = ({ target }) => {
-    const normMonth = new Date(`${target.value} 1, ${year}`).getMonth() + 1;
-    setMonth(target.value);
+  const handleChangeMonth = month => {
+    const dataMonth = new Date(`${month.value} 1`).getMonth() + 1;
     onChange({
-      month: normMonth,
-      year,
+      month: dataMonth,
     });
   };
-  const handleChangeYear = ({ target }) => {
-    const normMonth = new Date(`${month} 1, ${year}`).getMonth() + 1;
-    const normYear = Number(target.value);
-    setYear(normYear);
+  const handleChangeYear = year => {
+    const dataYear = Number(year.value);
     onChange({
-      month: normMonth,
-      year: normYear,
+      year: dataYear,
     });
   };
 
   return (
     <StyledSelectWrapper>
-      <CustomSelect options={months} nameOfSelect={'month'} onChange={null} />
-      <CustomSelect options={years} nameOfSelect={'year'} onChange={null} />
+      <CustomSelect
+        defValue={monthObject}
+        options={months}
+        nameOfSelect={'month'}
+        onChange={handleChangeMonth}
+      />
+      <CustomSelect
+        defValue={yearObject}
+        options={years}
+        nameOfSelect={'year'}
+        onChange={handleChangeYear}
+      />
     </StyledSelectWrapper>
   );
 };
