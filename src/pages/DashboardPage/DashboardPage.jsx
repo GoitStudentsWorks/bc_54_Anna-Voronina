@@ -8,10 +8,10 @@ import {
   selectIsModalAddTransactionOpen,
   selectIsModalEditTransactionOpen,
 } from 'redux/global/globalSelectors';
-import { closeModalAddTransaction } from 'redux/global/globalSlice';
+import { closeModalAddTransaction, closeModalEditTransaction } from 'redux/global/globalSlice';
 import { Container } from 'components/SharedLayout/SharedLayout.styled';
 import { AsideBar } from 'components/AsideBar/AsideBar';
-import EditTransactions from 'components/EditTransactions/EditTransactions';
+import { EditTransactions } from 'components/EditTransactions/EditTransactions';
 import { Outlet } from 'react-router-dom';
 import { StyledMain } from './DashboardPage.styled';
 
@@ -31,7 +31,12 @@ const DashboardPage = () => {
               <ModalAddTransaction />
             </Modal>
           )}
-          {isModalEditOpen && <EditTransactions />}
+          {isModalEditOpen && (
+            <Modal closeReducer={closeModalEditTransaction}>
+              <EditTransactions />
+            </Modal>
+          )}
+
           <RoundButton />
         </StyledMain>
       </Container>
