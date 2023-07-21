@@ -15,8 +15,6 @@ import { transactionsReducer } from './transaction/transactionSlice';
 import { globalReducer } from './global/globalSlice';
 import { currencyReducer } from './currency/currencySlice';
 
-import { filterReducer } from './filter/filterSlice';
-
 const persistConfig = {
   key: 'token',
   version: 1,
@@ -30,7 +28,6 @@ export const store = configureStore({
   reducer: {
     global: globalReducer,
     auth: persistedReducer,
-    transactions: transactionsReducer,
     currency: currencyReducer,
     transaction: transactionsReducer,
   },

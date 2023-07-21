@@ -174,8 +174,6 @@ const Transactions = () => {
                         //   : 'Income'
                       }
                     </TableDash>
-                    {console.log(transaction)}
-
                     <TableDash>{transaction.comment}</TableDash>
                     <Sum
                       color={
