@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
 import {
   addNewTransaction,
   deleteTransaction,
@@ -7,6 +8,7 @@ import {
   getTransaction,
   updateTransaction,
 } from 'services/api/api';
+// const dispatch = useDispatch();
 
 export const getTransactionsCategoriesThunk = createAsyncThunk(
   'transactions/fetchCategories',
@@ -61,13 +63,22 @@ export const delTransactionThunk = createAsyncThunk(
   'transactions/delTransaction',
   async (id, { rejectedWithValue }) => {
     try {
-      const data = await deleteTransaction(id);
-      return data;
+      console.log(id);
+      await deleteTransaction(id);
     } catch (error) {
       return rejectedWithValue(error.message);
     }
   }
 );
+// export const deleteContactThunk = createAsyncThunk(
+//   'contacts/deleteContact',
+//   async (contactId, { rejectWithValue, dispatch }) => {
+//     try {
+//       await deleteContact(contactId);
+//       dispatch(fetchContactsThunk());
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
 
 export const getSummaryThunk = createAsyncThunk(
   'transactions/getSummary',

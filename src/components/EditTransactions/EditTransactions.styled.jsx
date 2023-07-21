@@ -2,7 +2,7 @@ import { Modal } from 'components/Modal/Modal';
 import styled from 'styled-components';
 
 export const ModalEdit = styled(Modal)`
-  z-index: 10;
+  /* z-index: 10;
   position: absolute;
   border-radius: 8px;
   padding: 32px 20px 32px 20px;
@@ -13,14 +13,17 @@ export const ModalEdit = styled(Modal)`
   background: radial-gradient(rgba(60, 40, 160, 1), rgba(68, 53, 110, 1));
   @media screen and (max-width: 320px) {
     min-width: 100%;
-  }
+  } */
 
-  @media screen and (min-width: 768px) {
+  /* @media screen and (min-width: 768px) {
     background-repeat: no-repeat;
     justify-content: center;
     min-width: 540px;
     padding: 40px 73px;
-  }
+  } */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const EditModalForm = styled.form`
