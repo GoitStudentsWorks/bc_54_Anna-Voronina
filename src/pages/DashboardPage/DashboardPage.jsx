@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { Header } from 'components/Header/Header';
 import { Modal } from 'components/Modal/Modal';
 import { ModalAddTransaction } from 'components/ModalAddTransaction/ModalAddTransaction';
+import { Navigation } from 'components/Navigation/Navigation';
 import { RoundButton } from 'components/RoundButton/RoundButton';
 import {
   selectIsModalAddTransactionOpen,

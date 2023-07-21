@@ -1,3 +1,4 @@
+import { LiaHryvniaSolid } from 'react-icons/lia';
 import styled from 'styled-components';
 
 export const ChartWrapper = styled.div`
@@ -21,4 +22,9 @@ export const StyledSpan = styled.span`
   left: 50%;
 
   transform: translate(-50%, -50%);
+`;
+
+export const HrvnIcon = styled(LiaHryvniaSolid)`
+  width: 20px;
+  height: 20px;
 `;

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { getRandomHexColor } from 'services/randomColor/randomColor';
 
 export const WrapperTable = styled.table`
   width: 280px;
@@ -10,7 +9,7 @@ export const WrapperTable = styled.table`
   @media only screen and (min-width: 768px) {
     width: 336px;
   }
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 1280px) {
     width: 395px;
   }
 `;
@@ -36,7 +35,7 @@ export const StyledThead = styled.thead`
   @media only screen and (min-width: 768px) {
     width: 336px;
   }
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 1280px) {
     width: 395px;
   }
 `;
@@ -56,8 +55,41 @@ export const StyledTbody = styled.tbody`
   }
 `;
 
-export const StyledSpan = styled.td`
+export const StyledIcon = styled.td`
   width: 24px;
   border-radius: 2px;
-  /* background-color: ${getRandomHexColor()}; */
+  margin-left: 16px;
+`;
+export const StyledText = styled.td`
+  margin-left: 16px;
+  margin-right: auto;
+  font-size: 14px;
+`;
+export const StyledSum = styled.td`
+  margin-right: 16px;
+  font-size: 14px;
+`;
+
+export const StyledTotalWrapper = styled.div`
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  margin-bottom: 40px;
+`;
+
+export const StyledP = styled.p`
+  font-size: 14px;
+  font-weight: 600px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 16px;
+`;
+
+export const StyledSpanExpenses = styled.span`
+  color: #ff868d;
+  margin-right: 16px;
+`;
+export const StyledSpanIncome = styled.span`
+  color: #ffb627;
+  margin-right: 16px;
 `;
