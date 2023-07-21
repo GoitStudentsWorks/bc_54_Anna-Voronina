@@ -2,10 +2,8 @@ import { useSelector } from 'react-redux';
 import {
   StyledIcon,
   StyledP,
-  StyledSpan,
   StyledSpanExpenses,
   StyledSpanIncome,
-  StyledSpanTotal,
   StyledSum,
   StyledTbody,
   StyledText,
@@ -15,32 +13,15 @@ import {
 } from './Table.styled';
 import {
   selectExpenseSummary,
-  selectFilter,
   selectIncomeSummary,
 } from 'redux/transaction/transactionSelectors';
 import { useCategoriesType } from 'hook/categoriesFilter';
 
-// const data = [
-//   {
-//     name: 'Car',
-//     total: 1500,
-//   },
-//   {
-//     name: 'Product',
-//     total: 3700,
-//   },
-//   {
-//     name: 'Dog',
-//     total: 700,
-//   },
-// ];
-
-export const Table = ({ colorStyle, user, data }) => {
+export const Table = ({ colorStyle, data }) => {
+  const [expenseCategories] = useCategoriesType(data);
   const incomeSummary = useSelector(selectIncomeSummary);
   const expenseSummary = useSelector(selectExpenseSummary);
-  // const setFilter = useSelector(selectFilter);
 
-  const [expenseCategories] = useCategoriesType(data);
   return (
     <>
       <WrapperTable>
@@ -57,19 +38,27 @@ export const Table = ({ colorStyle, user, data }) => {
                 style={{ backgroundColor: colorStyle[idx] }}
               ></StyledIcon>
               <StyledText>{el.name}</StyledText>
-              <StyledSum>{el.total}</StyledSum>
+              <StyledSum>{Number(el.total).toFixed(2) * -1}</StyledSum>
             </tr>
           ))}
         </StyledTbody>
       </WrapperTable>
       <StyledTotalWrapper>
         <StyledP>
-          Expenses:<StyledSpanExpenses>{expenseSummary}</StyledSpanExpenses>
+          Expenses:
+          <StyledSpanExpenses>
+            {Number(expenseSummary).toFixed(2) * -1}
+          </StyledSpanExpenses>
         </StyledP>
         <StyledP>
-          Income:<StyledSpanIncome>{incomeSummary}</StyledSpanIncome>
+          Income:
+          <StyledSpanIncome>
+            {Number(incomeSummary).toFixed(2)}
+          </StyledSpanIncome>
         </StyledP>
       </StyledTotalWrapper>
     </>
   );
 };
+
+// number.toFixed(2);
