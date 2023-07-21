@@ -17,11 +17,11 @@ export const NavigationDesktop = () => {
       <nav>
         <MenuStyledDesktop>
           <ItemStyledDesktop>
-            <NavLinkStyledDesktop to="/home">
+            <NavLinkStyledDesktop to="/">
               <ContainerStyledIconDesktop>
                 <HomeIcon />
               </ContainerStyledIconDesktop>
-              <span>Home</span>
+              <SpanStyled>Home</SpanStyled>
             </NavLinkStyledDesktop>
           </ItemStyledDesktop>
           <ItemStyledDesktop>
@@ -29,7 +29,7 @@ export const NavigationDesktop = () => {
               <ContainerStyledIconDesktop>
                 <StatisticsIcon />
               </ContainerStyledIconDesktop>
-              <span>Statistic</span>
+              <SpanStyled>Statistics</SpanStyled>
             </NavLinkStyledDesktop>
           </ItemStyledDesktop>
         </MenuStyledDesktop>

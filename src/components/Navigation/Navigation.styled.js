@@ -12,13 +12,8 @@ export const ContainerStyledMobile = styled.div`
 `;
 
 export const ContainerStyledDesktop = styled.div`
-  /* display: flex; */
   width: 100%;
-  margin-left: 32px;
   margin-top: 40px;
-  @media screen and (min-width: 1156px) {
-    margin-left: 16px;
-  }
 `;
 
 export const ContainerStyledIconDesktop = styled.div`
@@ -28,13 +23,8 @@ export const ContainerStyledIconDesktop = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.6);
-  transition: ${({ theme }) => theme.transitions.color};
-  &:focus {
-    background-color: ${({ theme }) => theme.colors.blue};
-    filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
-    transform: scale(1.03);
-  }
+  margin-right: 20px;
+  background-color: rgba(255, 255, 255, 0.3);
 `;
 
 export const NavLinkStyledMobile = styled(NavLink)`
@@ -48,10 +38,18 @@ export const NavLinkStyledMobile = styled(NavLink)`
 
   transition: ${({ theme }) => theme.transitions.color};
 
-  &:focus {
+  :active,
+  :focus,
+  :hover {
+    fill: ${({ theme }) => theme.colors.primaryFont};
     background-color: ${({ theme }) => theme.colors.blue};
     filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
     transform: scale(1.03);
+  }
+  :active svg,
+  :focus svg,
+  :hover svg {
+    fill: ${({ theme }) => theme.colors.primaryFont};
   }
 `;
 
@@ -59,14 +57,35 @@ export const NavLinkStyledDesktop = styled(NavLink)`
   display: flex;
   align-items: center;
   justify-content: left;
-  /* transition: transform 250ms ease-in-out;
-  &:hover {
-    transform: scale(1.05);
-  } */
+
+  transition: ${({ theme }) => theme.transitions.color};
+
+  :active,
+  :focus,
+  :hover {
+    transform: scale(1.03);
+  }
+  :active svg,
+  :focus svg,
+  :hover svg {
+    fill: ${({ theme }) => theme.colors.primaryFont};
+  }
+  :active div,
+  :focus div,
+  :hover div {
+    background-color: ${({ theme }) => theme.colors.blue};
+    filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+  }
+
+  :active span,
+  :focus span,
+  :hover span {
+    font-weight: ${({ theme }) => theme.fontWeights.bold};
+  }
 `;
 
 export const ItemStyledDesktop = styled.li`
-  /* display: flex; */
+  margin-bottom: 12px;
 `;
 
 export const MenuStyledMobile = styled.ul`
@@ -78,34 +97,20 @@ export const MenuStyledMobile = styled.ul`
   gap: 32px;
 `;
 
-export const MenuStyledDesktop = styled.ul``;
-
-export const SpanStyled = styled.span`
-  margin-left: 20px;
-  transition: transform 500ms ease-in-out;
-
-  &:hover {
-    font-weight: ${({ theme }) => theme.fontWeights.bold};
-    transform: scale(1.03);
-  }
+export const MenuStyledDesktop = styled.ul`
+  max-width: 200px;
 `;
+
+export const SpanStyled = styled.span``;
 
 export const HomeIcon = styled(IoMdHome)`
   fill: rgba(255, 255, 255, 0.3);
   width: 32px;
   height: 32px;
 
-  &:focus {
-    fill: rgba(255, 255, 255, 1);
-  }
-
   @media screen and (min-width: 768px) {
-    width: 18px;
-    height: 18px;
-    margin-left: 62px;
-  }
-  @media screen and (min-width: 1280px) {
-    margin-left: 16px;
+    width: 20px;
+    height: 20px;
   }
 `;
 
@@ -117,11 +122,6 @@ export const StatisticsIcon = styled(BiStats)`
   @media screen and (min-width: 768px) {
     width: 24px;
     height: 24px;
-
-    &:hover {
-      color: ${({ theme }) => theme.colors.blue};
-      filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
-    }
   }
 `;
 
@@ -129,15 +129,4 @@ export const CurrencyIcon = styled(FaDollarSign)`
   fill: rgba(255, 255, 255, 0.3);
   width: 28px;
   height: 28px;
-  transition: ${({ theme }) => theme.transitions.color};
-
-  @media screen and (min-width: 768px) {
-    width: 24px;
-    height: 24px;
-
-    &:hover {
-      color: ${({ theme }) => theme.colors.blue};
-      filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
-    }
-  }
 `;

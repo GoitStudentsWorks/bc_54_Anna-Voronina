@@ -14,7 +14,7 @@ export const NavigationMobile = () => {
       <nav>
         <MenuStyledMobile>
           <li>
-            <NavLinkStyledMobile to="/home">
+            <NavLinkStyledMobile to="/">
               <HomeIcon />
             </NavLinkStyledMobile>
           </li>

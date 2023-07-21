@@ -12,7 +12,7 @@ body {
   
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-background-color: tomato;
+/* background-color: tomato; */
 }
 
 code {
