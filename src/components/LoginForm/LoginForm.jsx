@@ -35,7 +35,7 @@ export const LoginForm = () => {
     password: '',
   };
 
-  const hendleSubmit = (value, { resetForm }) => {
+  const handleSubmit = (value, { resetForm }) => {
     dispatch(logInThunk(value))
       .unwrap()
       .then(data => {
@@ -56,7 +56,7 @@ export const LoginForm = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={loginSchema}
-        onSubmit={hendleSubmit}
+        onSubmit={handleSubmit}
       >
         <FormStyled autoComplete="off">
           <WrapperField>
