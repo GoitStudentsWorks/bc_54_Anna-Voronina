@@ -23,7 +23,8 @@ import { Link } from 'react-router-dom';
 import { logInThunk } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 
-import { usePasswordToggle } from 'hooks/usePasswordToggle';
+import { usePasswordToggle } from 'hook/usePasswordToggle';
+import { toast } from 'react-toastify';
 
 export const LoginForm = () => {
   const { showPassword1, togglePasswordVisibility1 } = usePasswordToggle();
@@ -35,8 +36,17 @@ export const LoginForm = () => {
   };
 
   const hendleSubmit = (value, { resetForm }) => {
-    dispatch(logInThunk(value));
-    console.log(value);
+    dispatch(logInThunk(value))
+      .unwrap()
+      .then(data => {
+        toast.success(
+          `You entered now owe us 1.000.000$ ${data.user.username}`
+        );
+      })
+      .catch(error => {
+        toast.error(error.message);
+      });
+
     resetForm();
   };
 
