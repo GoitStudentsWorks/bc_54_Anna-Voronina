@@ -25,6 +25,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { usePasswordToggle } from 'hook/usePasswordToggle';
 
 import { IndicatorPasswordStrenghtatyled } from 'components/IndicatorPasswordStrenght/IndicatorPasswordStrenght';
+import { ConfirmPasswordIndicator } from 'components/ConfirmPasswordIndicator/ConfirmPasswordIndicator';
 
 export const RegisterForm = () => {
   const { showPassword1, showPassword2, togglePasswordVisibility1, togglePasswordVisibility2 } =
@@ -112,6 +113,12 @@ export const RegisterForm = () => {
                   )}
                 </PasswordlIconLook>
               </WrapperIcon3>
+              <ConfirmPasswordIndicator
+                values={values}
+                passwordsMatch={
+                  values.password === values.confirmPassword && values.confirmPassword !== ''
+                }
+              />
               <FormError name="confirmPassword" />
             </WrapperField>
             <WrapperButton>
