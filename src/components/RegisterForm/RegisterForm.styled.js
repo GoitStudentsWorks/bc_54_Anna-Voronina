@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { WrapperForm } from 'components/LoginForm/LoginForm.styled';
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { BiSolidUserRectangle } from 'react-icons/bi';
 
 export const WrapperFormReg = styled(WrapperForm)`
