@@ -10,7 +10,7 @@ export const RoundedWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   bottom: ${({ theme }) => theme.spacing(5)};
   right: ${({ theme }) => theme.spacing(5)};
   &:hover {

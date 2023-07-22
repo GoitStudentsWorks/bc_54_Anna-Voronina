@@ -23,7 +23,7 @@ import { Link } from 'react-router-dom';
 import { logInThunk } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 
-import { usePasswordToggle } from 'hook/usePasswordToggle';
+import { usePasswordToggle } from 'hooks/usePasswordToggle';
 import { toast } from 'react-toastify';
 
 export const LoginForm = () => {
