@@ -19,8 +19,12 @@ export const Chart = ({ colorStyle, resp }) => {
           : expenseCategories.map(item => item.total),
         backgroundColor: colorStyle,
         borderColor: colorStyle,
-        boxShadow: ['0px 4px 60px 0px rgba(0, 0, 0, 0.25)'],
         borderWidth: 1,
+        borderJoinStyle: 'round',
+        // borderRadius: 8,
+        // spacing: 4,
+        // borderDash: ['600'],
+        borderAlign: 'inner',
       },
     ],
   };

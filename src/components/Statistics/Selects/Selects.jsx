@@ -23,6 +23,8 @@ export const Selects = ({ onChange }) => {
   const [years, setYears] = useState([]);
   const [data] = useState(getMonthAndYear());
   const { month, year } = data;
+  const [selectMonth, setSelectMonth] = useState(month);
+  const [selectYear, setSelectYear] = useState(year);
 
   const monthObject = months[+month - 1];
   const yearObject = {
@@ -31,7 +33,7 @@ export const Selects = ({ onChange }) => {
   };
 
   useEffect(() => {
-    for (let i = year; i > 2021; i -= 1) {
+    for (let i = year; i > 2019; i -= 1) {
       setYears(prev => [
         ...prev,
         {
@@ -44,13 +46,17 @@ export const Selects = ({ onChange }) => {
 
   const handleChangeMonth = month => {
     const dataMonth = new Date(`${month.value} 1`).getMonth() + 1;
+    setSelectMonth(dataMonth);
     onChange({
       month: dataMonth,
+      year: selectYear,
     });
   };
   const handleChangeYear = year => {
     const dataYear = Number(year.value);
+    setSelectYear(dataYear);
     onChange({
+      month: selectMonth,
       year: dataYear,
     });
   };

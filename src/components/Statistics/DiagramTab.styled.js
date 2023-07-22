@@ -12,6 +12,10 @@ export const Wrapper = styled.div`
     align-items: flex-start;
     gap: 32px;
   }
+
+  @media screen and (min-width: 1280) {
+    margin-left: 69px;
+  }
 `;
 
 export const StyledWrapperLeft = styled.div`
@@ -25,11 +29,14 @@ export const StyledWrapperLeft = styled.div`
 export const StyledWrapperRight = styled.div`
   @media only screen and (min-width: 1280px) {
     width: 395px;
+    margin-top: 97px;
   }
 `;
 export const StyledTitle = styled.h1`
   font-size: 30px;
   font-weight: 400;
   @media only screen and (min-width: 1280px) {
+    margin-top: 32px;
+    margin-bottom: 20px;
   }
 `;

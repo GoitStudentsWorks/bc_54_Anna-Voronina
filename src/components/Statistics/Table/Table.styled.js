@@ -48,6 +48,9 @@ export const StyledTbody = styled.tbody`
   gap: 14px;
 
   tr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.6);
     display: flex;
     justify-content: space-between;
@@ -57,6 +60,7 @@ export const StyledTbody = styled.tbody`
 
 export const StyledIcon = styled.td`
   width: 24px;
+  height: 24px;
   border-radius: 2px;
   margin-left: 16px;
 `;
