@@ -19,23 +19,18 @@ import {
   WrapperIcon3,
 } from 'components/LoginForm/LoginForm.styled';
 
-import {
-  LinkStyled,
-  NameRegisterIcon,
-  PasswordStrengthIndicator,
-  PasswordStrengthText,
-} from './RegisterForm.styled';
+import { LinkStyled, NameRegisterIcon } from './RegisterForm.styled';
 
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { usePasswordToggle } from 'hook/usePasswordToggle';
-import { usePasswordStrength } from 'hook/usePasswordStrength';
+
 import { IndicatorPasswordStrenghtatyled } from 'components/IndicatorPasswordStrenght/IndicatorPasswordStrenght';
+import { ConfirmPasswordIndicator } from 'components/ConfirmPasswordIndicator/ConfirmPasswordIndicator';
 
 export const RegisterForm = () => {
   const { showPassword1, showPassword2, togglePasswordVisibility1, togglePasswordVisibility2 } =
     usePasswordToggle();
-  const { getPasswordStrengthWidth, getPasswordStrengthColor, getPasswordStrengthText } =
-    usePasswordStrength();
+
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -118,6 +113,12 @@ export const RegisterForm = () => {
                   )}
                 </PasswordlIconLook>
               </WrapperIcon3>
+              <ConfirmPasswordIndicator
+                values={values}
+                passwordsMatch={
+                  values.password === values.confirmPassword && values.confirmPassword !== ''
+                }
+              />
               <FormError name="confirmPassword" />
             </WrapperField>
             <WrapperButton>

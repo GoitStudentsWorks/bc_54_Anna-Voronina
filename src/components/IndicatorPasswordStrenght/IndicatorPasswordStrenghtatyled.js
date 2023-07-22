@@ -6,7 +6,7 @@ const passwordStrengthAnimation = keyframes`
     background-color: transparent;
   }
   to {
-    width:${props => props.width};
+    width:100%;
     background-color: ${props => props.color};
   }
 `;
