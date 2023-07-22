@@ -7,10 +7,8 @@ import {
   TransactionDetails,
   TransactionDetailsItem,
   TransactionDetailsItemTitle,
-  SumText,
   TableHead,
   TableHeader,
-  TableBody,
   Table,
   TableRow,
   Sum,
@@ -18,11 +16,11 @@ import {
   ButtonEditTransaction,
   BtnEditTransaction,
   ButtonDelTransaction,
-  StyledBiPencil,
   NoTransactions,
   TableDash,
   TableWrapper,
   AllTransactionsDetails,
+  SumEl,
 } from './Transactions.styled';
 // import { formatMoney } from 'utils/formatMoney';
 
@@ -32,22 +30,17 @@ import {
   getAllTransactionsThunk,
   delTransactionThunk,
 } from 'redux/transaction/transactionOperations';
-import { Button } from 'components/Button/Button';
 import MediaQuery from 'react-responsive';
-import { useNavigate } from 'react-router-dom';
-import { selectIsModalLogoutOpen } from 'redux/global/globalSelectors';
 import {
   openModalEditTransaction,
   setUpdatedTransaction,
 } from 'redux/global/globalSlice';
-import { LiaPenAltSolid } from 'react-icons/lia';
-// import { formatMoney } from 'format-money-js';
+import { LiaPenSolid } from 'react-icons/lia';
 
 const Transactions = () => {
   const dispatch = useDispatch();
   const transactions = useSelector(selectTransactions);
   const categories = useSelector(selectCategories);
-  // const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getAllTransactionsThunk());
@@ -66,9 +59,16 @@ const Transactions = () => {
 
   const handleDeleteTransaction = id => {
     dispatch(delTransactionThunk(id)).then(dispatch(getAllTransactionsThunk()));
-    console.log(id);
     // dispatch(getAllTransactionsThunk());
   }; // wait till adding real data will be able to addd and if there are bugs, fix them
+  const formatDate = date => {
+    const transactionDate = new Date(date);
+    const day = String(transactionDate.getDate()).padStart(2, '0');
+    const month = String(transactionDate.getMonth() + 1).padStart(2, '0');
+    const year = String(transactionDate.getFullYear()).slice(-2);
+
+    return `${day}.${month}.${year}`;
+  };
 
   return sortedTransactions.length ? (
     <>
@@ -77,49 +77,53 @@ const Transactions = () => {
           {sortedTransactions.map(transaction => {
             return (
               <li key={transaction.id}>
-                <TransactionDetails>
+                <TransactionDetails
+                  color={transaction.type === 'INCOME' ? '#FFB627' : '#FF868D'}
+                >
                   <TransactionDetailsItem>
                     <TransactionDetailsItemTitle>
                       Date
                     </TransactionDetailsItemTitle>
-                    <td>{transaction.transactionDate}</td>
+                    <span>{formatDate(Date(transaction.transactionDate))}</span>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
                     <TransactionDetailsItemTitle>
                       Type
                     </TransactionDetailsItemTitle>
-                    <td>{transaction.type ?? '-'}</td>
+                    <span>{transaction.type ?? '-'}</span>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
                     <TransactionDetailsItemTitle>
                       Category
                     </TransactionDetailsItemTitle>
-                    <td>
+                    <span>
                       {
                         categories.find(
                           cat => cat.id === transaction.categoryId
                         )?.name
                       }
-                    </td>
+                    </span>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
                     <TransactionDetailsItemTitle>
                       Comment
                     </TransactionDetailsItemTitle>
-                    <td>{transaction.comment}</td>
+                    <span>{transaction.comment}</span>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
                     <TransactionDetailsItemTitle>
                       Sum
                     </TransactionDetailsItemTitle>
-                    <Sum
+                    <SumEl
                       color={
                         transaction.type === 'INCOME' ? '#FFB627' : '#FF868D'
                       }
                       // make this check work and add normal styles
                     >
-                      {transaction.amount}
-                    </Sum>
+                      {transaction.amount > 0
+                        ? transaction.amount
+                        : transaction.amount * -1}
+                    </SumEl>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
                     <ButtonDelTransaction
@@ -132,7 +136,7 @@ const Transactions = () => {
                       type="button"
                       onClick={() => handleEditClick(transaction)}
                     >
-                      {<LiaPenAltSolid />} Edit
+                      {<LiaPenSolid />} Edit
                     </ButtonEditTransaction>
 
                     {/* fix color of edit btn */}
@@ -161,8 +165,12 @@ const Transactions = () => {
               {sortedTransactions.map(transaction => {
                 return (
                   <TableRow key={transaction.id}>
-                    <TableDash>{transaction.transactionDate}</TableDash>
-                    <TableDash>{transaction.type ?? '-'}</TableDash>
+                    <TableDash>
+                      {formatDate(Date(transaction.transactionDate))}
+                    </TableDash>
+                    <TableDash>
+                      {transaction.type === 'INCOME' ? '+' : '-'}
+                    </TableDash>
                     <TableDash>
                       {
                         categories.find(
@@ -180,7 +188,9 @@ const Transactions = () => {
                         transaction.type === 'INCOME' ? '#FFB627' : '#FF868D'
                       }
                     >
-                      {transaction.amount}
+                      {transaction.amount > 0
+                        ? transaction.amount
+                        : transaction.amount * -1}
                     </Sum>
                     {/* <TableDash> */}
                     <ButtonContainer>
@@ -188,7 +198,7 @@ const Transactions = () => {
                         type="button"
                         onClick={() => handleEditClick(transaction)}
                       >
-                        <LiaPenAltSolid fill="#fff" />
+                        <LiaPenSolid fill="#fff" />
                       </BtnEditTransaction>
                     </ButtonContainer>
                     <ButtonContainer>
@@ -199,8 +209,6 @@ const Transactions = () => {
                         Delete
                       </ButtonDelTransaction>
                     </ButtonContainer>
-                    {/* </TableDash> */}
-                    {/* <LiaPenAltSolid /> */}
                   </TableRow>
                 );
               })}

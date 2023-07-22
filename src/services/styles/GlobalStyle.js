@@ -12,7 +12,18 @@ body {
   
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-/* background-color: tomato; */
+
+  background: rgb(86,43,134);
+  background: linear-gradient(338deg, rgba(86,43,134,1) 12%, rgba(37,21,86,1) 54%, rgba(86,42,139,1) 90%);
+  background-repeat: no-repeat;
+
+  @media only screen and (min-width: 768px) and (max-width: 1280px) {
+    height: 100vh;
+  }
+
+  @media only screen and (min-width: 768px) {
+   overflow: hidden;
+  }
 }
 
 code {

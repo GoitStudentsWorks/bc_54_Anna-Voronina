@@ -15,6 +15,7 @@ export const StyledSelectWrapper = styled.div`
   @media only screen and (min-width: 1280px) {
     width: 395px;
     flex-direction: row;
+    margin-top: 0;
   }
   /* @media only screen and (min-width: 768px) {
     width: 395px;

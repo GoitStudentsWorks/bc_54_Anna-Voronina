@@ -11,17 +11,24 @@ export const TitleLogo = styled.h2`
   color: ${({ theme }) => theme.colors.primaryFont};
   text-align: center;
   font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: 17px;
-  font-style: normal;
+  font-size: 13px;
   font-weight: 400;
-
-  letter-spacing: 1.8px;
-
+  letter-spacing: 1.2px;
   cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    font-size: 17px;
+  }
 `;
 
 export const LogoHeader = styled.img`
-  width: 24px;
-  height: 24px;
-  margin-bottom: 5px;
+  width: 18px;
+  height: 18px;
+  margin-bottom: 3px;
+
+  @media screen and (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 5px;
+  }
 `;

@@ -6,7 +6,6 @@ export const Backdrop = styled.div`
   backdrop-filter: blur(3.5px);
   width: 100vw;
   height: 100vh;
-
   position: absolute;
   top: 0;
   left: 0;
@@ -19,15 +18,19 @@ export const ModalStyled = styled.div`
     rgba(64, 46, 155, 1) 5%,
     rgba(76, 50, 113, 1) 100%
   );
-  width: ${({ theme }) => theme.spacing(135)};
-  min-height: ${({ theme }) => theme.spacing(145)};
+  width: 100vw;
+  min-height: 110vh;
   border-radius: ${({ theme }) => theme.spacing(2)};
   padding: 40px 72px;
 
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  @media screen and (min-width: 768px) {
+    width: ${({ theme }) => theme.spacing(135)};
+    min-height: ${({ theme }) => theme.spacing(145)};
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 `;
 
 export const IconCloseModal = styled.div`

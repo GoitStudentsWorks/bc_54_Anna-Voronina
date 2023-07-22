@@ -1,7 +1,7 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { ChartWrapper, HrvnIcon, StyledSpan } from './Chart.styled';
-import { useCategoriesType } from 'hook/categoriesFilter';
+import { useCategoriesType } from 'hooks/categoriesFilter';
 import { useSelector } from 'react-redux';
 import { selectPeriodTotal } from 'redux/transaction/transactionSelectors';
 
@@ -19,8 +19,12 @@ export const Chart = ({ colorStyle, resp }) => {
           : expenseCategories.map(item => item.total),
         backgroundColor: colorStyle,
         borderColor: colorStyle,
-        boxShadow: ['0px 4px 60px 0px rgba(0, 0, 0, 0.25)'],
         borderWidth: 1,
+        borderJoinStyle: 'round',
+        // borderRadius: 8,
+        // spacing: 4,
+        // borderDash: ['600'],
+        borderAlign: 'inner',
       },
     ],
   };

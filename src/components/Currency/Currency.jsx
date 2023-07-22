@@ -1,9 +1,10 @@
 import CurrencyTable from 'components/CurrencyTable/CurrencyTable';
+import { CurrencyWrapper } from './Currency.styled';
 
 export const Currency = () => {
   return (
-    <div>
+    <CurrencyWrapper>
       <CurrencyTable />
-    </div>
+    </CurrencyWrapper>
   );
 };

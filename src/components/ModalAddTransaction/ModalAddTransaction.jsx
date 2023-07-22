@@ -27,7 +27,7 @@ import {
   StyledInp,
   StyledLabelWrapper,
 } from './ModalAddTransaction.styled';
-import { useCategoriesType } from 'hook/categoriesFilter';
+import { useCategoriesType } from 'hooks/categoriesFilter';
 
 export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ export const ModalAddTransaction = () => {
       categoryId: `${selectedType === 'EXPENSE' ? selectedOption.id : incomeCategories[0].id}`,
     };
     dispatch(addTransactionThunk(newData));
-    resetForm();
+    dispatch(closeModalAddTransaction());
   };
 
   const handleChangeSelect = item => {
