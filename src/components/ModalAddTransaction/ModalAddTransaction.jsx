@@ -22,6 +22,7 @@ import {
   PlusButton,
   RadioWrapper,
   RadioWrapperChoose,
+  RoundedButton,
   StyledField,
   StyledForm,
   StyledLabelWrapper,
@@ -89,19 +90,22 @@ export const ModalAddTransaction = () => {
             <IncomeSpan isSelected={selectedType}>Income</IncomeSpan>
             <RadioWrapper onClick={changeTypeOfTransaction}>
               <StyledLabelWrapper>
-                {selectedType && (
+                <RoundedButton type={selectedType}>
+                  {selectedType ? <PlusButton /> : <MinusButton />}
+                </RoundedButton>
+                {/* {selectedType && (
                   <IncomeBtn>
                     <PlusButton />
                   </IncomeBtn>
-                )}
+                )} */}
               </StyledLabelWrapper>
-              <StyledLabelWrapper>
+              {/* <StyledLabelWrapper>
                 {!selectedType && (
                   <ExpenseBtn>
                     <MinusButton />
                   </ExpenseBtn>
                 )}
-              </StyledLabelWrapper>
+              </StyledLabelWrapper> */}
             </RadioWrapper>
             <ExpenseSpan isSelected={!selectedType}>Expense</ExpenseSpan>
           </RadioWrapperChoose>
