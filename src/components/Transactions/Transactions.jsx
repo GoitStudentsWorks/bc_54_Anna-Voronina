@@ -40,7 +40,7 @@ import {
   openModalEditTransaction,
   setUpdatedTransaction,
 } from 'redux/global/globalSlice';
-import { LiaPenAltSolid } from 'react-icons/lia';
+import { LiaPenAltSolid, LiaPenSolid } from 'react-icons/lia';
 // import { formatMoney } from 'format-money-js';
 
 const Transactions = () => {
@@ -69,6 +69,14 @@ const Transactions = () => {
     console.log(id);
     // dispatch(getAllTransactionsThunk());
   }; // wait till adding real data will be able to addd and if there are bugs, fix them
+  const formatDate = date => {
+    const transactionDate = new Date(date);
+    const day = String(transactionDate.getDate()).padStart(2, '0');
+    const month = String(transactionDate.getMonth() + 1).padStart(2, '0');
+    const year = String(transactionDate.getFullYear()).slice(-2);
+
+    return `${day}.${month}.${year}`;
+  };
 
   return sortedTransactions.length ? (
     <>
@@ -82,7 +90,7 @@ const Transactions = () => {
                     <TransactionDetailsItemTitle>
                       Date
                     </TransactionDetailsItemTitle>
-                    <td>{transaction.transactionDate}</td>
+                    <td>{formatDate(Date(transaction.transactionDate))}</td>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
                     <TransactionDetailsItemTitle>
@@ -134,7 +142,7 @@ const Transactions = () => {
                       type="button"
                       onClick={() => handleEditClick(transaction)}
                     >
-                      {<LiaPenAltSolid />} Edit
+                      {<LiaPenSolid />} Edit
                     </ButtonEditTransaction>
 
                     {/* fix color of edit btn */}
@@ -163,8 +171,12 @@ const Transactions = () => {
               {sortedTransactions.map(transaction => {
                 return (
                   <TableRow key={transaction.id}>
-                    <TableDash>{transaction.transactionDate}</TableDash>
-                    <TableDash>{transaction.type ?? '-'}</TableDash>
+                    <TableDash>
+                      {formatDate(Date(transaction.transactionDate))}
+                    </TableDash>
+                    <TableDash>
+                      {transaction.type === 'INCOME' ? '+' : '-'}
+                    </TableDash>
                     <TableDash>
                       {
                         categories.find(
@@ -192,7 +204,7 @@ const Transactions = () => {
                         type="button"
                         onClick={() => handleEditClick(transaction)}
                       >
-                        <LiaPenAltSolid fill="#fff" />
+                        <LiaPenSolid fill="#fff" />
                       </BtnEditTransaction>
                     </ButtonContainer>
                     <ButtonContainer>
