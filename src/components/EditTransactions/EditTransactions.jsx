@@ -2,8 +2,6 @@ import { Button } from 'components/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   ButtonWrapper,
-  ExpenseSpan,
-  IncomeSpan,
   InputWrapper,
   ModalAddWrapper,
   ModalTransactionTitle,
@@ -21,6 +19,11 @@ import {
   editTransactionThunk,
   getAllTransactionsThunk,
 } from 'redux/transaction/transactionOperations';
+import {
+  ExpenseSpanEditTransaction,
+  IncomeSpanEditTransaction,
+  StyledCategoryName,
+} from './EditTransactions.styled';
 
 export const EditTransactions = () => {
   const dispatch = useDispatch();
@@ -67,7 +70,7 @@ export const EditTransactions = () => {
     dispatch(
       editTransactionThunk({ transactionId: id, transaction: newData })
     ).then(() => dispatch(getAllTransactionsThunk()));
-    resetForm();
+    dispatch(closeModalEditTransaction());
   };
 
   const handleChangeType = value => {
@@ -87,24 +90,24 @@ export const EditTransactions = () => {
         <StyledForm>
           {/* ========================= Radio Buttons ========================= */}
           <RadioWrapperChoose>
-            <IncomeSpan
+            <IncomeSpanEditTransaction
               onClick={() => handleChangeType('INCOME')}
               isSelected={changedType === 'INCOME'}
             >
               Income
-            </IncomeSpan>
+            </IncomeSpanEditTransaction>
             <span>/</span>
-            <ExpenseSpan
+            <ExpenseSpanEditTransaction
               onClick={() => handleChangeType('EXPENSE')}
               isSelected={changedType === 'EXPENSE'}
             >
               Expense
-            </ExpenseSpan>
+            </ExpenseSpanEditTransaction>
           </RadioWrapperChoose>
 
           {/* ========================= SELECT ========================= */}
           {changedType === 'EXPENSE' && (
-            <p>{changeCategoryData.name}</p> //TODO
+            <StyledCategoryName>{changeCategoryData.name}</StyledCategoryName> //TODO
           )}
 
           {/* ========================= INPUTS ========================= */}

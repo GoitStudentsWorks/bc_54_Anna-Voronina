@@ -65,7 +65,7 @@ export const ModalAddTransaction = () => {
       }`,
     };
     dispatch(addTransactionThunk(newData));
-    resetForm();
+    dispatch(closeModalAddTransaction());
   };
 
   const handleChangeSelect = item => {
