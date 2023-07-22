@@ -11,9 +11,7 @@ import {
 import { selectCategories } from 'redux/transaction/transactionSelectors';
 import {
   ButtonWrapper,
-  ExpenseBtn,
   ExpenseSpan,
-  IncomeBtn,
   IncomeSpan,
   InputWrapper,
   MinusButton,
@@ -44,12 +42,11 @@ export const ModalAddTransaction = () => {
 
   const initialValues = {
     transactionDate: new Date().toISOString().slice(0, 10),
-    type: selectedType && 'INCOME',
+    type: selectedType ? 'INCOME' : 'EXPENSE',
     categoryId: '',
     comment: '',
     amount: '',
   };
-
   const handleSubmit = (value, { resetForm }) => {
     const defCategoryId = 'c9d9e447-1b83-4238-8712-edc77b18b739';
     const newData = {
@@ -80,6 +77,7 @@ export const ModalAddTransaction = () => {
   const changeTypeOfTransaction = () => {
     setSelectedType(prev => !prev);
   };
+  console.log(selectedType);
   return (
     <ModalAddWrapper>
       <ModalTransactionTitle>Add transaction</ModalTransactionTitle>
@@ -90,22 +88,10 @@ export const ModalAddTransaction = () => {
             <IncomeSpan isSelected={selectedType}>Income</IncomeSpan>
             <RadioWrapper onClick={changeTypeOfTransaction}>
               <StyledLabelWrapper>
-                <RoundedButton type={selectedType}>
+                <RoundedButton type={selectedType.toString()}>
                   {selectedType ? <PlusButton /> : <MinusButton />}
                 </RoundedButton>
-                {/* {selectedType && (
-                  <IncomeBtn>
-                    <PlusButton />
-                  </IncomeBtn>
-                )} */}
               </StyledLabelWrapper>
-              {/* <StyledLabelWrapper>
-                {!selectedType && (
-                  <ExpenseBtn>
-                    <MinusButton />
-                  </ExpenseBtn>
-                )}
-              </StyledLabelWrapper> */}
             </RadioWrapper>
             <ExpenseSpan isSelected={!selectedType}>Expense</ExpenseSpan>
           </RadioWrapperChoose>
