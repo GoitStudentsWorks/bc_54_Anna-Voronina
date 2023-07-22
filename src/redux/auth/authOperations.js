@@ -1,11 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {
-  fetchCurrentUser,
-  setAuthHeader,
-  signIn,
-  signOut,
-  signUp,
-} from 'services/api/api';
+import { fetchCurrentUser, setAuthHeader, signIn, signOut, signUp } from 'services/api/api';
 
 export const signUpThunk = createAsyncThunk(
   'auth/signUp',
@@ -26,21 +20,18 @@ export const logInThunk = createAsyncThunk(
       const data = await signIn(credentials);
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data);
     }
   }
 );
 
-export const logOutThunk = createAsyncThunk(
-  'auth/logOut',
-  async (_, { rejectWithValue }) => {
-    try {
-      await signOut();
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
+export const logOutThunk = createAsyncThunk('auth/logOut', async (_, { rejectWithValue }) => {
+  try {
+    await signOut();
+  } catch (error) {
+    return rejectWithValue(error.message);
   }
-);
+});
 
 export const fetchCurrentUserThunk = createAsyncThunk(
   'auth/refresh',
