@@ -1,9 +1,13 @@
-import { Button } from 'components/Button/Button';
-import { FormError } from 'components/FormError/FormError';
 import { Formik } from 'formik';
+import { Link } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import { loginSchema } from 'services/validation/validationLoginSchema';
+import { usePasswordToggle } from 'hooks/usePasswordToggle';
+import { logInThunk } from 'redux/auth/authOperations';
+
 import {
   EmailIcon,
   FieldStyled,
@@ -18,13 +22,9 @@ import {
   WrapperIcon3,
 } from './LoginForm.styled';
 import { Logo } from 'components/Logo/Logo';
+import { FormError } from 'components/FormError/FormError';
 
-import { Link } from 'react-router-dom';
-import { logInThunk } from 'redux/auth/authOperations';
-import { useDispatch } from 'react-redux';
-
-import { usePasswordToggle } from 'hook/usePasswordToggle';
-import { toast } from 'react-toastify';
+import { Button } from 'components/Button/Button';
 
 export const LoginForm = () => {
   const { showPassword1, togglePasswordVisibility1 } = usePasswordToggle();
@@ -39,9 +39,7 @@ export const LoginForm = () => {
     dispatch(logInThunk(value))
       .unwrap()
       .then(data => {
-        toast.success(
-          `You entered now owe us 1.000.000$ ${data.user.username}`
-        );
+        toast.success(`You entered now owe us 1.000.000$ ${data.user.username}`);
       })
       .catch(error => {
         toast.error(error.message);
@@ -53,11 +51,7 @@ export const LoginForm = () => {
   return (
     <WrapperForm>
       <Logo />
-      <Formik
-        initialValues={initialValues}
-        validationSchema={loginSchema}
-        onSubmit={hendleSubmit}
-      >
+      <Formik initialValues={initialValues} validationSchema={loginSchema} onSubmit={hendleSubmit}>
         <FormStyled autoComplete="off">
           <WrapperField>
             <WrapperIcon>
