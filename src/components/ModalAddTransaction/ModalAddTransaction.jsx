@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { closeModalAddTransaction } from 'redux/global/globalSlice';
 import {
   addTransactionThunk,
+  getSummaryThunk,
   getTransactionsCategoriesThunk,
 } from 'redux/transaction/transactionOperations';
 import { selectCategories } from 'redux/transaction/transactionSelectors';
