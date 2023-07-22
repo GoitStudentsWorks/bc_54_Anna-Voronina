@@ -25,12 +25,10 @@ import {
 export const EditTransactions = () => {
   const dispatch = useDispatch();
   const allCategories = useSelector(selectCategories);
-  const [expenseCategories, incomeCategories] =
-    useCategoriesType(allCategories);
+  const [expenseCategories, incomeCategories] = useCategoriesType(allCategories);
 
   const transactionData = useSelector(selectEditTransaction);
-  const { amount, categoryId, comment, id, transactionDate, type } =
-    transactionData;
+  const { amount, categoryId, comment, id, transactionDate, type } = transactionData;
 
   const initialValues = {
     transactionDate,
@@ -40,33 +38,26 @@ export const EditTransactions = () => {
     amount: `${type === 'EXPENSE' ? amount * -1 : amount}`,
   };
 
-  const selectedCategory = expenseCategories.find(
-    item => item.id === categoryId
-  );
+  const selectedCategory = expenseCategories.find(item => item.id === categoryId);
   const [changedType, setChangedType] = useState(type);
-  const [changeCategoryData, setChangeCategoryData] =
-    useState(selectedCategory);
+  const [changeCategoryData, setChangeCategoryData] = useState(selectedCategory);
 
   const handleSubmit = (value, { resetForm }) => {
     const normalNumber =
-      changedType === 'EXPENSE'
-        ? Number(value.amount * -1)
-        : Number(value.amount);
+      changedType === 'EXPENSE' ? Number(value.amount * -1) : Number(value.amount);
 
     const newData = {
       ...value,
       type: changedType,
       amount: normalNumber,
       categoryId: `${
-        changedType === 'INCOME'
-          ? incomeCategories[0].id
-          : value.id ?? changeCategoryData.id
+        changedType === 'INCOME' ? incomeCategories[0].id : value.id ?? changeCategoryData.id
       }`,
     };
 
-    dispatch(
-      editTransactionThunk({ transactionId: id, transaction: newData })
-    ).then(() => dispatch(getAllTransactionsThunk()));
+    dispatch(editTransactionThunk({ transactionId: id, transaction: newData })).then(() =>
+      dispatch(getAllTransactionsThunk())
+    );
     resetForm();
   };
 
@@ -109,12 +100,7 @@ export const EditTransactions = () => {
 
           {/* ========================= INPUTS ========================= */}
           <InputWrapper>
-            <StyledField
-              type="number"
-              name="amount"
-              placeholder="0.00"
-              weight="600"
-            />
+            <StyledField type="number" name="amount" placeholder="0.00" weight="600" required />
             <StyledField type="date" name="transactionDate" />
           </InputWrapper>
           <StyledField type="text" name="comment" placeholder="Comment" />
