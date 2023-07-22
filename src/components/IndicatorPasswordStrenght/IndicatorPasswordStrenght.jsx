@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types';
 import { usePasswordStrength } from 'hook/usePasswordStrength';
 import { PasswordStrengthIndicator, PasswordStrengthText } from './IndicatorPasswordStrenghtatyled';
 
 export const IndicatorPasswordStrenghtatyled = ({ values }) => {
   const { getPasswordStrengthWidth, getPasswordStrengthColor, getPasswordStrengthText } =
     usePasswordStrength();
-  console.log(values);
+
   return (
     <>
       <PasswordStrengthIndicator
@@ -16,4 +17,10 @@ export const IndicatorPasswordStrenghtatyled = ({ values }) => {
       </PasswordStrengthText>
     </>
   );
+};
+
+IndicatorPasswordStrenghtatyled.propTypes = {
+  values: PropTypes.shape({
+    password: PropTypes.string,
+  }).isRequired,
 };
