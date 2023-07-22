@@ -22,10 +22,11 @@ import { Logo } from 'components/Logo/Logo';
 import { Link } from 'react-router-dom';
 import { logInThunk } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+
+import { usePasswordToggle } from 'hook/usePasswordToggle';
 
 export const LoginForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  const { showPassword1, togglePasswordVisibility1 } = usePasswordToggle();
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -38,9 +39,7 @@ export const LoginForm = () => {
     console.log(value);
     resetForm();
   };
-  const togglePasswordVisibility = () => {
-    setShowPassword(prevShowPassword => !prevShowPassword);
-  };
+
   return (
     <WrapperForm>
       <Logo />
@@ -61,7 +60,7 @@ export const LoginForm = () => {
             <WrapperIcon3>
               <WrapperIcon2>
                 <FieldStyled
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword1 ? 'text' : 'password'}
                   name="password"
                   title="Enter the password more difficult, letter, digit, capital letter."
                   placeholder="Password"
@@ -70,10 +69,10 @@ export const LoginForm = () => {
                 <PasswordlIcon />
               </WrapperIcon2>
               <PasswordlIconLook>
-                {showPassword ? (
-                  <FaEyeSlash onClick={togglePasswordVisibility} />
+                {showPassword1 ? (
+                  <FaEye onClick={togglePasswordVisibility1} />
                 ) : (
-                  <FaEye onClick={togglePasswordVisibility} />
+                  <FaEyeSlash onClick={togglePasswordVisibility1} />
                 )}
               </PasswordlIconLook>
             </WrapperIcon3>
