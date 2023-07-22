@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    justify-content: space-between;
     gap: 32px;
     padding-bottom: 15px;
   }
@@ -31,6 +32,11 @@ export const StyledWrapperRight = styled.div`
 export const StyledTitle = styled.h1`
   font-size: 30px;
   font-weight: 400;
+  margin-top: 28px;
+  @media only screen and (min-width: 768) {
+    margin-top: 0px;
+    margin-bottom: 20px;
+  }
   @media only screen and (min-width: 1280px) {
     margin-top: 0;
     margin-bottom: 20px;
