@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-export const CurrencyChartWrapper = styled.div``;
-
 export const CurrencyTableStyled = styled.table`
   color: ${({ theme }) => theme.colors.primaryFont};
   font-size: ${({ theme }) => theme.fontSizes.m};

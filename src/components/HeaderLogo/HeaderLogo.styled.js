@@ -27,6 +27,8 @@ export const LogoHeader = styled.img`
   margin-bottom: 3px;
 
   @media screen and (min-width: 768px) {
+    width: 24px;
+    height: 24px;
     margin-bottom: 5px;
   }
 `;

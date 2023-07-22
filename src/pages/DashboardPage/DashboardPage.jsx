@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import { useMediaQuery } from 'react-responsive';
 import { Outlet } from 'react-router-dom';
 import { Header } from 'components/Header/Header';
 import { Modal } from 'components/Modal/Modal';
@@ -20,7 +19,6 @@ import { StyledMain } from './DashboardPage.styled';
 const DashboardPage = () => {
   const isModalAddOpen = useSelector(selectIsModalAddTransactionOpen);
   const isModalEditOpen = useSelector(selectIsModalEditTransactionOpen);
-  const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
 
   return (
     <>

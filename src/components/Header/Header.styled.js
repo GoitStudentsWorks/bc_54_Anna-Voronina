@@ -11,7 +11,8 @@ export const HeaderContainer = styled.div`
   background: linear-gradient(276deg, #2e1746 3.19%, #2e225f 100%);
 
   @media screen and (min-width: 768px) {
-    padding: 12px 20px;
+    margin-bottom: 0;
+    padding: 16px 32px;
   }
 `;
 

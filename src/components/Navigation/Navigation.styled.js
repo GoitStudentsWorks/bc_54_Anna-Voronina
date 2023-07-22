@@ -12,11 +12,16 @@ export const ContainerStyledMobile = styled.div`
 `;
 
 export const ContainerStyledDesktop = styled.div`
-  width: 100%;
+  /* width: 100%;
   margin-top: 40px;
-  margin-left: 32px;
+  margin-left: 32px; */
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 28px;
+  }
+
   @media screen and (min-width: 1280px) {
-    margin-left: 16px;
+    padding-left: 16px;
   }
 `;
 
@@ -89,7 +94,9 @@ export const NavLinkStyledDesktop = styled(NavLink)`
 `;
 
 export const ItemStyledDesktop = styled.li`
-  margin-bottom: 12px;
+  &:not(:last-child) {
+    margin-bottom: 12px;
+  }
 `;
 
 export const MenuStyledMobile = styled.ul`

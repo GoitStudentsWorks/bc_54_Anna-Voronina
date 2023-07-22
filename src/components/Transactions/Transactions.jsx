@@ -7,10 +7,8 @@ import {
   TransactionDetails,
   TransactionDetailsItem,
   TransactionDetailsItemTitle,
-  SumText,
   TableHead,
   TableHeader,
-  TableBody,
   Table,
   TableRow,
   Sum,
@@ -18,7 +16,6 @@ import {
   ButtonEditTransaction,
   BtnEditTransaction,
   ButtonDelTransaction,
-  StyledBiPencil,
   NoTransactions,
   TableDash,
   TableWrapper,
@@ -32,22 +29,17 @@ import {
   getAllTransactionsThunk,
   delTransactionThunk,
 } from 'redux/transaction/transactionOperations';
-import { Button } from 'components/Button/Button';
 import MediaQuery from 'react-responsive';
-import { useNavigate } from 'react-router-dom';
-import { selectIsModalLogoutOpen } from 'redux/global/globalSelectors';
 import {
   openModalEditTransaction,
   setUpdatedTransaction,
 } from 'redux/global/globalSlice';
-import { LiaPenAltSolid, LiaPenSolid } from 'react-icons/lia';
-// import { formatMoney } from 'format-money-js';
+import { LiaPenSolid } from 'react-icons/lia';
 
 const Transactions = () => {
   const dispatch = useDispatch();
   const transactions = useSelector(selectTransactions);
   const categories = useSelector(selectCategories);
-  // const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getAllTransactionsThunk());
@@ -66,7 +58,6 @@ const Transactions = () => {
 
   const handleDeleteTransaction = id => {
     dispatch(delTransactionThunk(id)).then(dispatch(getAllTransactionsThunk()));
-    console.log(id);
     // dispatch(getAllTransactionsThunk());
   }; // wait till adding real data will be able to addd and if there are bugs, fix them
   const formatDate = date => {
@@ -217,8 +208,6 @@ const Transactions = () => {
                         Delete
                       </ButtonDelTransaction>
                     </ButtonContainer>
-                    {/* </TableDash> */}
-                    {/* <LiaPenAltSolid /> */}
                   </TableRow>
                 );
               })}
