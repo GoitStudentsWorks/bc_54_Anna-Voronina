@@ -56,12 +56,12 @@ export const Table = styled.table`
   height: 422px;
   overflow-y: auto;
 
-  @media screen and (min-width: 1280) {
+  @media screen and (min-width: 1280px) {
     margin-top: 46px;
     width: 715px;
   }
 
-  @media screen and (max-width: 1279 && min-width: 677) {
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
     margin-top: 20px;
   }
 `;
