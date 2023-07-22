@@ -7,7 +7,7 @@ export const ContainerStyled = styled.div`
   justify-content: center;
   gap: 12px;
   max-width: 280px;
-  padding: 8px 32px 11.2px 32px;
+  padding: 8px 32px 12px 32px;
   margin-bottom: 32px;
 
   background: rgba(82, 59, 126, 0.6);
@@ -16,17 +16,15 @@ export const ContainerStyled = styled.div`
   backdrop-filter: blur(50px);
 
   @media screen and (min-width: 768px) {
-    margin: 28px 32px 20px 32px;
-    padding: 8px 121px 11.2px 40px;
-    max-width: 336px;
+    padding: 8px 40px 12px 40px;
+    max-width: 100%;
     height: 80px;
-    flex-shrink: 0;
-    border-radius: 8px;
+    margin-bottom: 0;
   }
 
   @media screen and (min-width: 1280px) {
-    min-width: 480px;
-    margin: 28px 0 32px 0;
+    min-width: 100%;
+    border-radius: 0;
   }
 `;
 

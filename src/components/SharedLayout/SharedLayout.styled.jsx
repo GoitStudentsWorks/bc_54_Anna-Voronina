@@ -16,10 +16,7 @@ export const Container = styled.div`
   @media only screen and (min-width: 1280px) {
     display: flex;
     max-width: 100vw;
-    /* gap: 70px; */
-
-    /* max-width: 1280px; */
-    /* padding-left: 16px;
-    padding-right: 16px; */
+    margin: 0;
+    padding: 0;
   }
 `;

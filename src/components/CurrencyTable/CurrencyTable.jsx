@@ -2,11 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCurrencyRatesAsync } from 'redux/currency/currencyOperations';
 import { selectCurrencyData } from 'redux/currency/currencySelectors';
-import {
-  CurrencyChartWrapper,
-  CurrencyTableBody,
-  CurrencyTableStyled,
-} from './CurrencyTable.styled';
+import { CurrencyTableBody, CurrencyTableStyled } from './CurrencyTable.styled';
 import { nanoid } from '@reduxjs/toolkit';
 
 const CurrencyTable = () => {
@@ -37,28 +33,24 @@ const CurrencyTable = () => {
   });
 
   return (
-    <>
-      <CurrencyChartWrapper>
-        <CurrencyTableStyled>
-          <thead>
-            <tr>
-              <th>Currency</th>
-              <th>Purchase</th>
-              <th>Sale</th>
-            </tr>
-          </thead>
-          <CurrencyTableBody>
-            {filteredRates.map(rate => (
-              <tr key={nanoid()}>
-                <td>{rate.currencyCodeA === 840 ? 'USD' : 'EUR'}</td>
-                <td>{rate.rateBuy.toFixed(2)}</td>
-                <td>{rate.rateSell.toFixed(2)}</td>
-              </tr>
-            ))}
-          </CurrencyTableBody>
-        </CurrencyTableStyled>
-      </CurrencyChartWrapper>
-    </>
+    <CurrencyTableStyled>
+      <thead>
+        <tr>
+          <th>Currency</th>
+          <th>Purchase</th>
+          <th>Sale</th>
+        </tr>
+      </thead>
+      <CurrencyTableBody>
+        {filteredRates.map(rate => (
+          <tr key={nanoid()}>
+            <td>{rate.currencyCodeA === 840 ? 'USD' : 'EUR'}</td>
+            <td>{rate.rateBuy.toFixed(2)}</td>
+            <td>{rate.rateSell.toFixed(2)}</td>
+          </tr>
+        ))}
+      </CurrencyTableBody>
+    </CurrencyTableStyled>
   );
 };
 
