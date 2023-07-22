@@ -11,32 +11,28 @@ export const Wrapper = styled.div`
     flex-direction: row;
     align-items: flex-start;
     gap: 32px;
+    padding-bottom: 15px;
   }
 
-  @media screen and (min-width: 1280) {
-    margin-left: 69px;
+  @media screen and (min-width: 1280px) {
+    justify-content: flex-start;
+    padding-top: 32px;
+    padding-left: 70px;
+    padding-right: 28px;
   }
 `;
 
-export const StyledWrapperLeft = styled.div`
-  @media only screen and (min-width: 768px) {
-    margin-top: 32px;
-  }
-  @media only screen and (min-width: 1280px) {
-    margin-top: 0px;
-  }
-`;
+export const StyledWrapperLeft = styled.div``;
 export const StyledWrapperRight = styled.div`
   @media only screen and (min-width: 1280px) {
     width: 395px;
-    margin-top: 97px;
   }
 `;
 export const StyledTitle = styled.h1`
   font-size: 30px;
   font-weight: 400;
   @media only screen and (min-width: 1280px) {
-    margin-top: 32px;
+    margin-top: 0;
     margin-bottom: 20px;
   }
 `;
