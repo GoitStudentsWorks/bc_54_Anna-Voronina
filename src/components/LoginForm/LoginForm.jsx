@@ -22,10 +22,11 @@ import { Logo } from 'components/Logo/Logo';
 import { Link } from 'react-router-dom';
 import { logInThunk } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+
+import { usePasswordToggle } from 'hook/usePasswordToggle';
 
 export const LoginForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  const { showPassword, togglePasswordVisibility } = usePasswordToggle();
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -38,9 +39,7 @@ export const LoginForm = () => {
     console.log(value);
     resetForm();
   };
-  const togglePasswordVisibility = () => {
-    setShowPassword(prevShowPassword => !prevShowPassword);
-  };
+
   return (
     <WrapperForm>
       <Logo />
