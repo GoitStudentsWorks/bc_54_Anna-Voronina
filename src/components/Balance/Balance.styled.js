@@ -8,8 +8,10 @@ export const ContainerStyled = styled.div`
   gap: 12px;
   max-width: 280px;
   padding: 8px 32px 11.2px 32px;
+  margin-bottom: 32px;
 
   background: rgba(82, 59, 126, 0.6);
+  border-radius: 8px;
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(50px);
 

@@ -5,11 +5,12 @@ export const HeaderContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 16px;
+  padding: 12px 20px;
+  margin-bottom: 12px;
   align-items: center;
   background: linear-gradient(276deg, #2e1746 3.19%, #2e225f 100%);
 
-  @media screen and (max-width: 500px) {
+  @media screen and (min-width: 768px) {
     padding: 12px 20px;
   }
 `;

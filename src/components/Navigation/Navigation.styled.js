@@ -8,7 +8,7 @@ export const ContainerStyledMobile = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 12px;
+  margin-bottom: 12px;
 `;
 
 export const ContainerStyledDesktop = styled.div`
@@ -93,7 +93,6 @@ export const ItemStyledDesktop = styled.li`
 `;
 
 export const MenuStyledMobile = styled.ul`
-  padding-top: 12px;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;

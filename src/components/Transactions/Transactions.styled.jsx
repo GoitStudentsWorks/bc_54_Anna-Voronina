@@ -4,7 +4,6 @@ import { LiaPenSolid } from 'react-icons/lia';
 
 export const AllTransactionsDetails = styled.ul`
   list-style: none;
-  padding: 20px;
 `;
 
 export const TransactionDetails = styled.ul`
