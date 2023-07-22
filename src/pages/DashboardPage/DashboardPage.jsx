@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 import { Header } from 'components/Header/Header';
 import { Modal } from 'components/Modal/Modal';
 import { ModalAddTransaction } from 'components/ModalAddTransaction/ModalAddTransaction';
@@ -17,16 +18,15 @@ import { AsideBar } from 'components/AsideBar/AsideBar';
 import { EditTransactions } from 'components/EditTransactions/EditTransactions';
 import { StyledMain } from './DashboardPage.styled';
 import { BigLoader } from 'components/Loaders/BigLoader';
+import {
+  desktopLoaderStyles,
+  loaderStyles,
+} from 'components/Loaders/loaderStyles';
 
 const DashboardPage = () => {
   const isModalAddOpen = useSelector(selectIsModalAddTransactionOpen);
   const isModalEditOpen = useSelector(selectIsModalEditTransactionOpen);
-  const loaderStyles = {
-    position: 'absolute',
-    top: '50%',
-    left: '70%',
-    transform: 'translate(-50%, -70%)',
-  };
+  const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
 
   return (
     <>
@@ -34,7 +34,13 @@ const DashboardPage = () => {
       <Container>
         <AsideBar />
         <StyledMain>
-          <Suspense fallback={<BigLoader styles={loaderStyles} />}>
+          <Suspense
+            fallback={
+              <BigLoader
+                styles={isDesktop ? desktopLoaderStyles : loaderStyles}
+              />
+            }
+          >
             <Outlet />
           </Suspense>
           {isModalAddOpen && (

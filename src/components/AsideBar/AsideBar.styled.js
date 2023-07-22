@@ -12,6 +12,7 @@ export const StyledAside = styled.aside`
     flex-direction: column;
     width: 480px;
     height: 100vh;
+    margin-bottom: 0;
     padding-top: 40px;
     padding-bottom: 15px;
 

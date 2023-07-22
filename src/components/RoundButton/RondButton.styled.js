@@ -11,10 +11,15 @@ export const RoundedWrap = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  bottom: ${({ theme }) => theme.spacing(10)};
-  right: ${({ theme }) => theme.spacing(10)};
+  bottom: ${({ theme }) => theme.spacing(5)};
+  right: ${({ theme }) => theme.spacing(5)};
   &:hover {
     cursor: pointer;
+  }
+
+  @media only screen and (min-width: 768px) {
+    bottom: ${({ theme }) => theme.spacing(10)};
+    right: ${({ theme }) => theme.spacing(10)};
   }
 `;
 
