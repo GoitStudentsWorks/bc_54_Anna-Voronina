@@ -26,7 +26,7 @@ import { useDispatch } from 'react-redux';
 import { usePasswordToggle } from 'hook/usePasswordToggle';
 
 export const LoginForm = () => {
-  const { showPassword, togglePasswordVisibility } = usePasswordToggle();
+  const { showPassword1, togglePasswordVisibility1 } = usePasswordToggle();
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -60,7 +60,7 @@ export const LoginForm = () => {
             <WrapperIcon3>
               <WrapperIcon2>
                 <FieldStyled
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword1 ? 'text' : 'password'}
                   name="password"
                   title="Enter the password more difficult, letter, digit, capital letter."
                   placeholder="Password"
@@ -69,10 +69,10 @@ export const LoginForm = () => {
                 <PasswordlIcon />
               </WrapperIcon2>
               <PasswordlIconLook>
-                {showPassword ? (
-                  <FaEyeSlash onClick={togglePasswordVisibility} />
+                {showPassword1 ? (
+                  <FaEye onClick={togglePasswordVisibility1} />
                 ) : (
-                  <FaEye onClick={togglePasswordVisibility} />
+                  <FaEyeSlash onClick={togglePasswordVisibility1} />
                 )}
               </PasswordlIconLook>
             </WrapperIcon3>

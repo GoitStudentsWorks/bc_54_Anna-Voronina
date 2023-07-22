@@ -25,7 +25,8 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { usePasswordToggle } from 'hook/usePasswordToggle';
 
 export const RegisterForm = () => {
-  const { showPassword, togglePasswordVisibility } = usePasswordToggle();
+  const { showPassword1, showPassword2, togglePasswordVisibility1, togglePasswordVisibility2 } =
+    usePasswordToggle();
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -66,7 +67,7 @@ export const RegisterForm = () => {
             <WrapperIcon3>
               <WrapperIcon2>
                 <FieldStyled
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword1 ? 'text' : 'password'}
                   name="password"
                   title="Enter the password more difficult, letter, digit, capital letter."
                   placeholder="Password"
@@ -75,10 +76,10 @@ export const RegisterForm = () => {
                 <PasswordlIcon />
               </WrapperIcon2>
               <PasswordlIconLook>
-                {showPassword ? (
-                  <FaEyeSlash onClick={togglePasswordVisibility} />
+                {showPassword1 ? (
+                  <FaEye onClick={togglePasswordVisibility1} />
                 ) : (
-                  <FaEye onClick={togglePasswordVisibility} />
+                  <FaEyeSlash onClick={togglePasswordVisibility1} />
                 )}
               </PasswordlIconLook>
             </WrapperIcon3>
@@ -87,7 +88,7 @@ export const RegisterForm = () => {
             <WrapperIcon3>
               <WrapperIcon2>
                 <FieldStyled
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword2 ? 'text' : 'password'}
                   name="confirmPassword"
                   title="Enter the password more difficult, letter, digit, capital letter."
                   placeholder="confirmPassword Password"
@@ -96,10 +97,10 @@ export const RegisterForm = () => {
                 <PasswordlIcon />
               </WrapperIcon2>
               <PasswordlIconLook>
-                {showPassword ? (
-                  <FaEyeSlash onClick={togglePasswordVisibility} />
+                {showPassword2 ? (
+                  <FaEye onClick={togglePasswordVisibility2} />
                 ) : (
-                  <FaEye onClick={togglePasswordVisibility} />
+                  <FaEyeSlash onClick={togglePasswordVisibility2} />
                 )}
               </PasswordlIconLook>
             </WrapperIcon3>
