@@ -45,8 +45,7 @@ export const SpanStyled = styled.span`
   font-size: 30px;
   font-weight: 700;
   line-height: normal;
-  color: ${({ total }) =>
-    total < 0 ? 'rgb(255, 0, 0, 0.7)' : 'rgb(0, 255, 21, 0.7)'};
+  color: ${({ total }) => (total < 0 ? '#FF868D' : '#98FB98')};
 `;
 
 export const BalanceIcon = styled(LiaHryvniaSolid)`
