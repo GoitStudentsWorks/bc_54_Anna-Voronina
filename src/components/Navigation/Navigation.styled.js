@@ -14,6 +14,10 @@ export const ContainerStyledMobile = styled.div`
 export const ContainerStyledDesktop = styled.div`
   width: 100%;
   margin-top: 40px;
+  margin-left: 32px;
+  @media screen and (min-width: 1280px) {
+    margin-left: 16px;
+  }
 `;
 
 export const ContainerStyledIconDesktop = styled.div`
