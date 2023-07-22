@@ -47,17 +47,18 @@ export const NavLinkStyledMobile = styled(NavLink)`
 
   transition: ${({ theme }) => theme.transitions.color};
 
-  :active,
-  :focus,
-  :hover {
+  &.active,
+  &:focus,
+  &:hover {
     fill: ${({ theme }) => theme.colors.primaryFont};
     background-color: ${({ theme }) => theme.colors.blue};
     filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
     transform: scale(1.03);
   }
-  :active svg,
-  :focus svg,
-  :hover svg {
+
+  &.active svg,
+  &:focus svg,
+  &:hover svg {
     fill: ${({ theme }) => theme.colors.primaryFont};
   }
 `;
@@ -69,26 +70,28 @@ export const NavLinkStyledDesktop = styled(NavLink)`
 
   transition: ${({ theme }) => theme.transitions.color};
 
-  :active,
-  :focus,
-  :hover {
+  &.active,
+  &:focus,
+  &:hover {
     transform: scale(1.03);
   }
-  :active svg,
-  :focus svg,
-  :hover svg {
+
+  &.active svg,
+  &:focus svg,
+  &:hover svg {
     fill: ${({ theme }) => theme.colors.primaryFont};
   }
-  :active div,
-  :focus div,
-  :hover div {
+
+  &.active div,
+  &:focus div,
+  &:hover div {
     background-color: ${({ theme }) => theme.colors.blue};
     filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
   }
 
-  :active span,
-  :focus span,
-  :hover span {
+  &.active span,
+  &:focus span,
+  &:hover span {
     font-weight: ${({ theme }) => theme.fontWeights.bold};
   }
 `;

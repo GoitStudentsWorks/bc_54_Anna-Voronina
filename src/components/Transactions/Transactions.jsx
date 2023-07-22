@@ -20,6 +20,7 @@ import {
   TableDash,
   TableWrapper,
   AllTransactionsDetails,
+  SumEl,
 } from './Transactions.styled';
 // import { formatMoney } from 'utils/formatMoney';
 
@@ -83,37 +84,37 @@ const Transactions = () => {
                     <TransactionDetailsItemTitle>
                       Date
                     </TransactionDetailsItemTitle>
-                    <td>{formatDate(Date(transaction.transactionDate))}</td>
+                    <span>{formatDate(Date(transaction.transactionDate))}</span>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
                     <TransactionDetailsItemTitle>
                       Type
                     </TransactionDetailsItemTitle>
-                    <td>{transaction.type ?? '-'}</td>
+                    <span>{transaction.type ?? '-'}</span>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
                     <TransactionDetailsItemTitle>
                       Category
                     </TransactionDetailsItemTitle>
-                    <td>
+                    <span>
                       {
                         categories.find(
                           cat => cat.id === transaction.categoryId
                         )?.name
                       }
-                    </td>
+                    </span>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
                     <TransactionDetailsItemTitle>
                       Comment
                     </TransactionDetailsItemTitle>
-                    <td>{transaction.comment}</td>
+                    <span>{transaction.comment}</span>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
                     <TransactionDetailsItemTitle>
                       Sum
                     </TransactionDetailsItemTitle>
-                    <Sum
+                    <SumEl
                       color={
                         transaction.type === 'INCOME' ? '#FFB627' : '#FF868D'
                       }
@@ -122,7 +123,7 @@ const Transactions = () => {
                       {transaction.amount > 0
                         ? transaction.amount
                         : transaction.amount * -1}
-                    </Sum>
+                    </SumEl>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
                     <ButtonDelTransaction
