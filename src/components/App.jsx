@@ -1,6 +1,6 @@
 import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { ProtectedRoute } from 'routes/ProtectedRoute';
 import { PublicRoute } from 'routes/PublicRoute';
@@ -80,17 +80,18 @@ export const App = () => {
                   />
                 }
               />
-              {isMobile && (
-                <Route
-                  path="currency"
-                  element={
-                    <ProtectedRoute
-                      component={<CurrencyPage />}
-                      redirectTo="/login"
-                    />
-                  }
-                />
-              )}
+
+              <Route
+                path="currency"
+                element={
+                  <ProtectedRoute
+                    component={
+                      isMobile ? <CurrencyPage /> : <Navigate to="/" />
+                    }
+                    redirectTo="/login"
+                  />
+                }
+              />
             </Route>
           </Route>
           <Route path="*" element={<NotFound />} />
