@@ -6,11 +6,13 @@ import Transactions from 'components/Transactions/Transactions';
 const HomePage = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   return (
-    <div>
-      {isMobile && <Balance />}
-      <Transactions />
-      <RoundButton />
-    </div>
+    <>
+      <div style={{ overflow: 'auto', height: '100vh' }}>
+        {isMobile && <Balance />}
+        <Transactions />
+        <RoundButton />
+      </div>
+    </>
   );
 };
 

@@ -62,11 +62,19 @@ export const delTransactionThunk = createAsyncThunk(
   'transactions/delTransaction',
   async (id, { rejectedWithValue }) => {
     try {
-      console.log(id);
       await deleteTransaction(id);
     } catch (error) {
       return rejectedWithValue(error.message);
     }
+  },
+  {
+    condition: (_, { getState }) => {
+      // console.log(getState().transaction.isLoading);
+      const loading = getState().transaction.isLoading;
+      if (loading) {
+        return false;
+      }
+    },
   }
 );
 

@@ -96,9 +96,13 @@ export const selectStyles = {
 
 export const selectStylesCategory = {
   ...selectStyles,
+  container: styles => ({
+    ...styles,
+    width: '100%',
+  }),
   control: styles => ({
     ...styles,
-    width: '394px',
+    width: '100%',
     display: 'flex',
     justifyContent: 'space-between',
     textAlign: 'left',
@@ -116,7 +120,7 @@ export const selectStylesCategory = {
   menu: styles => ({
     ...styles,
     top: '90%',
-    width: '394px',
+    width: '100%',
     height: '300px',
     borderRadius: '8px',
     background: `linear-gradient(
@@ -131,7 +135,7 @@ export const selectStylesCategory = {
   }),
   menuList: styles => ({
     ...styles,
-    width: '394px',
+    width: '100%',
     height: '300px',
     '::-webkit-scrollbar': {
       width: '7px',

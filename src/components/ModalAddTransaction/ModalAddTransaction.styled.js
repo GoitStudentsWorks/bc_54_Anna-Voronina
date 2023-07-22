@@ -100,7 +100,13 @@ export const MinusButton = styled(HiOutlineMinus)`
 
 export const InputWrapper = styled.div`
   display: flex;
-  gap: 32px;
+  gap: 40px;
+  flex-direction: column;
+  width: 100%;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 32px;
+  }
 `;
 
 export const StyledField = styled(Field)`
@@ -119,7 +125,6 @@ export const StyledField = styled(Field)`
     filter: invert(0.6);
   }
 `;
-
 export const ButtonWrapper = styled.div`
   display: flex;
   gap: 20px;
