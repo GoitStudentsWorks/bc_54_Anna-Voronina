@@ -12,7 +12,9 @@ body {
   
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-/* background-color: tomato; */
+
+  background: rgb(86,43,134);
+  background: linear-gradient(338deg, rgba(86,43,134,1) 12%, rgba(37,21,86,1) 54%, rgba(86,42,139,1) 90%);
 }
 
 code {

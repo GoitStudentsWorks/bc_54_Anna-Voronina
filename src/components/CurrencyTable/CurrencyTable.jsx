@@ -5,10 +5,7 @@ import { selectCurrencyData } from 'redux/currency/currencySelectors';
 import {
   CurrencyChartWrapper,
   CurrencyTableBody,
-  CurrencyTableHead,
   CurrencyTableStyled,
-  CurrencyTh,
-  CurrencyTr,
 } from './CurrencyTable.styled';
 import { nanoid } from '@reduxjs/toolkit';
 

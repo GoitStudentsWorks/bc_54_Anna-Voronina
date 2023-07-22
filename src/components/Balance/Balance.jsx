@@ -1,5 +1,4 @@
-import { HrvnIcon } from 'components/Statistics/Chart/Chart.styled';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSummaryThunk } from 'redux/transaction/transactionOperations';
 import {
@@ -8,8 +7,8 @@ import {
 } from 'redux/transaction/transactionSelectors';
 import { getMonthAndYear } from 'services/getDateNow';
 import {
+  BalanceIcon,
   ContainerStyled,
-  SpanStyle,
   SpanStyled,
   TextStyled,
   TitleStyled,
@@ -19,7 +18,7 @@ export const Balance = () => {
   const total = useSelector(selectPeriodTotal);
   const transactions = useSelector(selectTransactions);
   const dispatch = useDispatch();
-  const date = getMonthAndYear();
+  const date = useRef(getMonthAndYear());
   useEffect(() => {
     dispatch(getSummaryThunk(date));
   }, [dispatch, transactions]);
@@ -28,7 +27,7 @@ export const Balance = () => {
     <ContainerStyled>
       <TitleStyled>Your balance</TitleStyled>
       <TextStyled>
-        <HrvnIcon />
+        <BalanceIcon />
         <SpanStyled total={total}>{Number(total).toFixed(2)}</SpanStyled>
       </TextStyled>
     </ContainerStyled>

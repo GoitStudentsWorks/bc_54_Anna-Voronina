@@ -19,28 +19,9 @@ const months = [
   { value: 'December', label: 'December' },
 ];
 
-const years = [
-  // {
-  //   value: '2023',
-  //   label: '2023',
-  // },
-  // {
-  //   value: '2022',
-  //   label: '2022',
-  // },
-  // {
-  //   value: '2021',
-  //   label: '2021',
-  // },
-  // {
-  //   value: '2020',
-  //   label: '2020',
-  // },
-];
-
 export const Selects = ({ onChange }) => {
   const [years, setYears] = useState([]);
-  const [data, setDate] = useState(getMonthAndYear());
+  const [data] = useState(getMonthAndYear());
   const { month, year } = data;
 
   const monthObject = months[+month - 1];
@@ -59,8 +40,7 @@ export const Selects = ({ onChange }) => {
         },
       ]);
     }
-  }, []);
-  console.log(years);
+  }, [year]);
 
   const handleChangeMonth = month => {
     const dataMonth = new Date(`${month.value} 1`).getMonth() + 1;

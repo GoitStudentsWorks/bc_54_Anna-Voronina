@@ -4,7 +4,7 @@ import { NavigationMobile } from './NavigationMobile';
 import { NavigationDesktop } from './NavigationDesktop';
 
 export const Navigation = () => {
-  const isMobile = useMediaQuery({ query: '(min-width: 768px)' });
+  const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
 
-  return <>{isMobile ? <NavigationDesktop /> : <NavigationMobile />}</>;
+  return <>{isTablet ? <NavigationDesktop /> : <NavigationMobile />}</>;
 };

@@ -7,10 +7,6 @@ import { selectIsRefreshing } from 'redux/auth/authSelectors';
 import { fetchCurrentUserThunk } from 'redux/auth/authOperations';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { GlobalStyle } from 'services/styles/GlobalStyle';
-
-import Transactions from './Transactions/Transactions';
-
-import NotFound from 'pages/NotFound/NotFound';
 import LoadingPage from 'pages/LoadingPage/LoadingPage';
 
 const DashboardPage = lazy(() => import('pages/DashboardPage/DashboardPage'));
@@ -18,6 +14,7 @@ const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const SummaryPage = lazy(() => import('pages/SummaryPage/SummaryPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
+const NotFound = lazy(() => import('pages/NotFound/NotFound'));
 
 export const App = () => {
   const dispatch = useDispatch();
