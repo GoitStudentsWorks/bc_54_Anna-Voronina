@@ -118,7 +118,9 @@ const Transactions = () => {
                       }
                       // make this check work and add normal styles
                     >
-                      {transaction.amount}
+                      {transaction.amount > 0
+                        ? transaction.amount
+                        : transaction.amount * -1}
                     </Sum>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
@@ -180,7 +182,9 @@ const Transactions = () => {
                         transaction.type === 'INCOME' ? '#FFB627' : '#FF868D'
                       }
                     >
-                      {transaction.amount}
+                      {transaction.amount > 0
+                        ? transaction.amount
+                        : transaction.amount * -1}
                     </Sum>
                     {/* <TableDash> */}
                     <ButtonContainer>
