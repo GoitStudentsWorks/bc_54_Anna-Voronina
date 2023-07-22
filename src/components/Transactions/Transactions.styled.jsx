@@ -13,7 +13,7 @@ export const TransactionDetails = styled.ul`
   width: 100%;
   overflow: hidden;
   margin-bottom: 8px;
-  border-left: 5px solid ${({ theme }) => theme.colors.violet};
+  border-left: 5px solid ${props => props.color};
 `;
 
 export const TransactionDetailsItem = styled.li`

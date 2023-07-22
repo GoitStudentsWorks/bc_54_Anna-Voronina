@@ -85,7 +85,9 @@ const Transactions = () => {
           {sortedTransactions.map(transaction => {
             return (
               <li key={transaction.id}>
-                <TransactionDetails>
+                <TransactionDetails
+                  color={transaction.type === 'INCOME' ? '#FFB627' : '#FF868D'}
+                >
                   <TransactionDetailsItem>
                     <TransactionDetailsItemTitle>
                       Date
