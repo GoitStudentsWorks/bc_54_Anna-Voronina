@@ -11,6 +11,7 @@ import { GlobalStyle } from 'services/styles/GlobalStyle';
 import Transactions from './Transactions/Transactions';
 
 import NotFound from 'pages/NotFound/NotFound';
+import LoadingPage from 'pages/LoadingPage/LoadingPage';
 
 const DashboardPage = lazy(() => import('pages/DashboardPage/DashboardPage'));
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
@@ -29,7 +30,7 @@ export const App = () => {
   return (
     <>
       {isRefreshing ? (
-        <h1>Loading...</h1>
+        <LoadingPage />
       ) : (
         <Routes>
           <Route path="/" element={<SharedLayout />}>
