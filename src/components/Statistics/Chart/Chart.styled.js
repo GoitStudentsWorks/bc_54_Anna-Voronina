@@ -1,5 +1,5 @@
-import { LiaHryvniaSolid } from 'react-icons/lia';
 import styled from 'styled-components';
+import { LiaHryvniaSolid } from 'react-icons/lia';
 
 export const ChartWrapper = styled.div`
   position: relative;

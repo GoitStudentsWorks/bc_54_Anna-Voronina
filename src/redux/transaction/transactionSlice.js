@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit/dist';
+import { createSlice } from '@reduxjs/toolkit/dist';
 import {
   addTransactionThunk,
   getTransactionsCategoriesThunk,

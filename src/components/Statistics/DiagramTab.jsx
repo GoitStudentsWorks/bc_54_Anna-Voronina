@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Chart } from './Chart/Chart';
 import { Selects } from './Selects/Selects';
 import {
@@ -27,7 +27,7 @@ export const DiagramTab = () => {
 
   useEffect(() => {
     dispatch(getSummaryThunk(date));
-  }, []);
+  }, [dispatch]);
 
   //Stepka@Stepka.com
   //Stepka123
