@@ -6,16 +6,26 @@ import { FormError } from 'components/FormError/FormError';
 import { Logo } from 'components/Logo/Logo';
 import { registerSchema } from 'services/validation/validationRegisterSchema';
 import {
+  EmailIcon,
   FieldStyled,
   FormStyled,
+  PasswordlIcon,
+  PasswordlIconLook,
   WrapperButton,
   WrapperField,
   WrapperForm,
+  WrapperIcon,
+  WrapperIcon2,
+  WrapperIcon3,
 } from 'components/LoginForm/LoginForm.styled';
 
-import { LinkStyled } from './RegisterForm.styled';
+import { LinkStyled, NameRegisterIcon } from './RegisterForm.styled';
+
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { usePasswordToggle } from 'hook/usePasswordToggle';
 
 export const RegisterForm = () => {
+  const { showPassword, togglePasswordVisibility } = usePasswordToggle();
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -42,34 +52,57 @@ export const RegisterForm = () => {
       >
         <FormStyled autoComplete="off">
           <WrapperField>
-            <FieldStyled
-              type="text"
-              name="username"
-              placeholder="First name"
-              required
-            />
+            <WrapperIcon>
+              <FieldStyled type="text" name="username" placeholder="First name" required />
+              <NameRegisterIcon />
+            </WrapperIcon>
             <FormError name="username" />
-            <FieldStyled
-              type="email"
-              name="email"
-              placeholder="Email"
-              required
-            />
+            <WrapperIcon>
+              <FieldStyled type="email" name="email" placeholder="Email" required />
+              <EmailIcon />
+            </WrapperIcon>
             <FormError name="email" />
 
-            <FieldStyled
-              type="password"
-              name="password"
-              placeholder="Password"
-              required
-            />
+            <WrapperIcon3>
+              <WrapperIcon2>
+                <FieldStyled
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  title="Enter the password more difficult, letter, digit, capital letter."
+                  placeholder="Password"
+                  required
+                />
+                <PasswordlIcon />
+              </WrapperIcon2>
+              <PasswordlIconLook>
+                {showPassword ? (
+                  <FaEyeSlash onClick={togglePasswordVisibility} />
+                ) : (
+                  <FaEye onClick={togglePasswordVisibility} />
+                )}
+              </PasswordlIconLook>
+            </WrapperIcon3>
             <FormError name="password" />
-            <FieldStyled
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              required
-            />
+
+            <WrapperIcon3>
+              <WrapperIcon2>
+                <FieldStyled
+                  type={showPassword ? 'text' : 'password'}
+                  name="confirmPassword"
+                  title="Enter the password more difficult, letter, digit, capital letter."
+                  placeholder="confirmPassword Password"
+                  required
+                />
+                <PasswordlIcon />
+              </WrapperIcon2>
+              <PasswordlIconLook>
+                {showPassword ? (
+                  <FaEyeSlash onClick={togglePasswordVisibility} />
+                ) : (
+                  <FaEye onClick={togglePasswordVisibility} />
+                )}
+              </PasswordlIconLook>
+            </WrapperIcon3>
             <FormError name="confirmPassword" />
           </WrapperField>
           <WrapperButton>
