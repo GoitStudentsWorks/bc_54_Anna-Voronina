@@ -23,7 +23,7 @@ import { Link } from 'react-router-dom';
 import { logInThunk } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 
-import { usePasswordToggle } from 'hook/usePasswordToggle';
+import { usePasswordToggle } from 'hooks/usePasswordToggle';
 
 export const LoginForm = () => {
   const { showPassword1, togglePasswordVisibility1 } = usePasswordToggle();
@@ -43,7 +43,11 @@ export const LoginForm = () => {
   return (
     <WrapperForm>
       <Logo />
-      <Formik initialValues={initialValues} validationSchema={loginSchema} onSubmit={hendleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={loginSchema}
+        onSubmit={hendleSubmit}
+      >
         <FormStyled autoComplete="off">
           <WrapperField>
             <WrapperIcon>

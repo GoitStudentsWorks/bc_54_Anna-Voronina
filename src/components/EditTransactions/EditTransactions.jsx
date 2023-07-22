@@ -13,7 +13,7 @@ import { Formik } from 'formik';
 import { useState } from 'react';
 import { closeModalEditTransaction } from 'redux/global/globalSlice';
 import { selectEditTransaction } from 'redux/global/globalSelectors';
-import { useCategoriesType } from 'hook/categoriesFilter';
+import { useCategoriesType } from 'hooks/categoriesFilter';
 import { selectCategories } from 'redux/transaction/transactionSelectors';
 import {
   editTransactionThunk,

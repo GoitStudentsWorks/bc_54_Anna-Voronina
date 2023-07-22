@@ -15,7 +15,7 @@ import {
   selectExpenseSummary,
   selectIncomeSummary,
 } from 'redux/transaction/transactionSelectors';
-import { useCategoriesType } from 'hook/categoriesFilter';
+import { useCategoriesType } from 'hooks/categoriesFilter';
 
 export const Table = ({ colorStyle, data }) => {
   const [expenseCategories] = useCategoriesType(data);
