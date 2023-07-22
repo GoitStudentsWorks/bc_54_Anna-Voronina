@@ -19,14 +19,22 @@ import {
   WrapperIcon3,
 } from 'components/LoginForm/LoginForm.styled';
 
-import { LinkStyled, NameRegisterIcon } from './RegisterForm.styled';
+import {
+  LinkStyled,
+  NameRegisterIcon,
+  PasswordStrengthIndicator,
+  PasswordStrengthText,
+} from './RegisterForm.styled';
 
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { usePasswordToggle } from 'hook/usePasswordToggle';
+import { usePasswordStrength } from 'hook/usePasswordStrength';
 
 export const RegisterForm = () => {
   const { showPassword1, showPassword2, togglePasswordVisibility1, togglePasswordVisibility2 } =
     usePasswordToggle();
+  const { getPasswordStrengthWidth, getPasswordStrengthColor, getPasswordStrengthText } =
+    usePasswordStrength();
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -51,66 +59,78 @@ export const RegisterForm = () => {
         validationSchema={registerSchema}
         onSubmit={handleSubmit}
       >
-        <FormStyled autoComplete="off">
-          <WrapperField>
-            <WrapperIcon>
-              <FieldStyled type="text" name="username" placeholder="First name" required />
-              <NameRegisterIcon />
-            </WrapperIcon>
-            <FormError name="username" />
-            <WrapperIcon>
-              <FieldStyled type="email" name="email" placeholder="Email" required />
-              <EmailIcon />
-            </WrapperIcon>
-            <FormError name="email" />
+        {({ values, handleChange, handleBlur, touched, errors }) => (
+          <FormStyled autoComplete="off">
+            <WrapperField>
+              <WrapperIcon>
+                <FieldStyled type="text" name="username" placeholder="First name" required />
+                <NameRegisterIcon />
+              </WrapperIcon>
+              <FormError name="username" touched={touched} errors={errors} />
+              <WrapperIcon>
+                <FieldStyled type="email" name="email" placeholder="Email" required />
+                <EmailIcon />
+              </WrapperIcon>
+              <FormError name="email" touched={touched} errors={errors} />
 
-            <WrapperIcon3>
-              <WrapperIcon2>
-                <FieldStyled
-                  type={showPassword1 ? 'text' : 'password'}
-                  name="password"
-                  title="Enter the password more difficult, letter, digit, capital letter."
-                  placeholder="Password"
-                  required
-                />
-                <PasswordlIcon />
-              </WrapperIcon2>
-              <PasswordlIconLook>
-                {showPassword1 ? (
-                  <FaEye onClick={togglePasswordVisibility1} />
-                ) : (
-                  <FaEyeSlash onClick={togglePasswordVisibility1} />
-                )}
-              </PasswordlIconLook>
-            </WrapperIcon3>
-            <FormError name="password" />
+              <WrapperIcon3>
+                <WrapperIcon2>
+                  <FieldStyled
+                    type={showPassword1 ? 'text' : 'password'}
+                    name="password"
+                    title="Enter the password more difficult, letter, digit, capital letter."
+                    placeholder="Password"
+                    required
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <PasswordlIcon />
+                </WrapperIcon2>
+                <PasswordlIconLook>
+                  {showPassword1 ? (
+                    <FaEye onClick={togglePasswordVisibility1} />
+                  ) : (
+                    <FaEyeSlash onClick={togglePasswordVisibility1} />
+                  )}
+                </PasswordlIconLook>
+              </WrapperIcon3>
+              <PasswordStrengthIndicator
+                width={getPasswordStrengthWidth(values.password)}
+                color={getPasswordStrengthColor(values.password)}
+              />
+              <PasswordStrengthText color={getPasswordStrengthColor(values.password)}>
+                {getPasswordStrengthText(values.password)}
+              </PasswordStrengthText>
+              <FormError name="password" touched={touched} errors={errors} />
 
-            <WrapperIcon3>
-              <WrapperIcon2>
-                <FieldStyled
-                  type={showPassword2 ? 'text' : 'password'}
-                  name="confirmPassword"
-                  title="Enter the password more difficult, letter, digit, capital letter."
-                  placeholder="confirmPassword Password"
-                  required
-                />
-                <PasswordlIcon />
-              </WrapperIcon2>
-              <PasswordlIconLook>
-                {showPassword2 ? (
-                  <FaEye onClick={togglePasswordVisibility2} />
-                ) : (
-                  <FaEyeSlash onClick={togglePasswordVisibility2} />
-                )}
-              </PasswordlIconLook>
-            </WrapperIcon3>
-            <FormError name="confirmPassword" />
-          </WrapperField>
-          <WrapperButton>
-            <Button type="submit" text="register" />
-            <LinkStyled to="/login">Log in</LinkStyled>
-          </WrapperButton>
-        </FormStyled>
+              <WrapperIcon3>
+                <WrapperIcon2>
+                  <FieldStyled
+                    type={showPassword2 ? 'text' : 'password'}
+                    name="confirmPassword"
+                    title="Enter the password more difficult, letter, digit, capital letter."
+                    placeholder="confirmPassword Password"
+                    required
+                  />
+                  <PasswordlIcon />
+                </WrapperIcon2>
+                <PasswordlIconLook>
+                  {showPassword2 ? (
+                    <FaEye onClick={togglePasswordVisibility2} />
+                  ) : (
+                    <FaEyeSlash onClick={togglePasswordVisibility2} />
+                  )}
+                </PasswordlIconLook>
+              </WrapperIcon3>
+              <FormError name="confirmPassword" />
+            </WrapperField>
+            <WrapperButton>
+              <Button type="submit" text="register" />
+              <LinkStyled to="/login">Log in</LinkStyled>
+            </WrapperButton>
+          </FormStyled>
+        )}
       </Formik>
     </WrapperForm>
   );
