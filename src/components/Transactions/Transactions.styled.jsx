@@ -119,6 +119,13 @@ export const TableRow = styled.tr`
   }
 `;
 
+export const SumEl = styled.span`
+  border-top: none;
+  text-align: right;
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  color: ${props => props.color};
+`;
+
 export const Sum = styled.td`
   border-top: none;
   text-align: right;
