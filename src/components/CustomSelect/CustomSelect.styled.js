@@ -65,7 +65,7 @@ export const selectStyles = {
       width: '160px',
     },
     [breakpoints.desktop]: {
-      width: '160px',
+      width: '182px',
     },
     '::-webkit-scrollbar': {
       width: '7px',
