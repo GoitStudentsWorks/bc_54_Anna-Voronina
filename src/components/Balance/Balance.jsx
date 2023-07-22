@@ -29,7 +29,7 @@ export const Balance = () => {
       <TitleStyled>Your balance</TitleStyled>
       <TextStyled>
         <HrvnIcon />
-        <SpanStyled total={total}>{total}</SpanStyled>
+        <SpanStyled total={total}>{Number(total).toFixed(2)}</SpanStyled>
       </TextStyled>
     </ContainerStyled>
   );
