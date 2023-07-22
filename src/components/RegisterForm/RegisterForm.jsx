@@ -29,6 +29,7 @@ import {
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { usePasswordToggle } from 'hook/usePasswordToggle';
 import { usePasswordStrength } from 'hook/usePasswordStrength';
+import { IndicatorPasswordStrenghtatyled } from 'components/IndicatorPasswordStrenght/IndicatorPasswordStrenght';
 
 export const RegisterForm = () => {
   const { showPassword1, showPassword2, togglePasswordVisibility1, togglePasswordVisibility2 } =
@@ -95,13 +96,7 @@ export const RegisterForm = () => {
                   )}
                 </PasswordlIconLook>
               </WrapperIcon3>
-              <PasswordStrengthIndicator
-                width={getPasswordStrengthWidth(values.password)}
-                color={getPasswordStrengthColor(values.password)}
-              />
-              <PasswordStrengthText color={getPasswordStrengthColor(values.password)}>
-                {getPasswordStrengthText(values.password)}
-              </PasswordStrengthText>
+              <IndicatorPasswordStrenghtatyled values={values} />
               <FormError name="password" touched={touched} errors={errors} />
 
               <WrapperIcon3>
