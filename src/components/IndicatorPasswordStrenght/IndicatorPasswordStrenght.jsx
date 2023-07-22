@@ -1,10 +1,16 @@
 import PropTypes from 'prop-types';
-import { usePasswordStrength } from 'hook/usePasswordStrength';
-import { PasswordStrengthIndicator, PasswordStrengthText } from './IndicatorPasswordStrenghtatyled';
+import { usePasswordStrength } from 'hooks/usePasswordStrength';
+import {
+  PasswordStrengthIndicator,
+  PasswordStrengthText,
+} from './IndicatorPasswordStrenghtatyled';
 
 export const IndicatorPasswordStrenghtatyled = ({ values }) => {
-  const { getPasswordStrengthWidth, getPasswordStrengthColor, getPasswordStrengthText } =
-    usePasswordStrength();
+  const {
+    getPasswordStrengthWidth,
+    getPasswordStrengthColor,
+    getPasswordStrengthText,
+  } = usePasswordStrength();
 
   return (
     <>

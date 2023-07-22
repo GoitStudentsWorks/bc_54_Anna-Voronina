@@ -39,7 +39,9 @@ export const LoginForm = () => {
     dispatch(logInThunk(value))
       .unwrap()
       .then(data => {
-        toast.success(`You entered now owe us 1.000.000$ ${data.user.username}`);
+        toast.success(
+          `You entered now owe us 1.000.000$ ${data.user.username}`
+        );
       })
       .catch(error => {
         toast.error(error.message);
@@ -51,7 +53,11 @@ export const LoginForm = () => {
   return (
     <WrapperForm>
       <Logo />
-      <Formik initialValues={initialValues} validationSchema={loginSchema} onSubmit={hendleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={loginSchema}
+        onSubmit={hendleSubmit}
+      >
         <FormStyled autoComplete="off">
           <WrapperField>
             <WrapperIcon>

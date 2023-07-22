@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { Chart } from './Chart/Chart';
 import { Selects } from './Selects/Selects';
 import {
@@ -17,17 +17,17 @@ import { getMonthAndYear } from 'services/getDateNow';
 export const DiagramTab = () => {
   const categorySummary = useSelector(selectCategoriesSummary);
 
-  const date = getMonthAndYear();
+  const date = useRef(getMonthAndYear());
   const dispatch = useDispatch();
   const colors = color();
 
   const getSelectData = value => {
-    dispatch(getSummaryThunk({ ...date, ...value }));
+    dispatch(getSummaryThunk({ ...date.current, ...value }));
   };
 
   useEffect(() => {
     dispatch(getSummaryThunk(date));
-  }, []);
+  }, [dispatch]);
 
   //Stepka@Stepka.com
   //Stepka123

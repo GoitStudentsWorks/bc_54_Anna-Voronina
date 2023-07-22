@@ -1,5 +1,5 @@
-import { LiaHryvniaSolid } from 'react-icons/lia';
 import styled from 'styled-components';
+import { LiaHryvniaSolid } from 'react-icons/lia';
 
 export const ChartWrapper = styled.div`
   position: relative;
@@ -29,3 +29,11 @@ export const HrvnIcon = styled(LiaHryvniaSolid)`
   width: 20px;
   height: 20px;
 `;
+
+// export const StyledDonath = styled(Doughnut)`
+//   border-radius: 180px;
+
+//   background-color: red;
+//   box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.25),
+//     0px -3px 2px 0px rgba(0, 0, 0, 0.1);
+// `;

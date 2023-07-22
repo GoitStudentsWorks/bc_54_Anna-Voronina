@@ -1,10 +1,8 @@
 import styled from 'styled-components';
-import { Button } from 'components/Button/Button';
 import { LiaPenSolid } from 'react-icons/lia';
 
 export const AllTransactionsDetails = styled.ul`
   list-style: none;
-  padding: 20px;
 `;
 
 export const TransactionDetails = styled.ul`
@@ -13,7 +11,7 @@ export const TransactionDetails = styled.ul`
   width: 100%;
   overflow: hidden;
   margin-bottom: 8px;
-  border-left: 5px solid ${({ theme }) => theme.colors.violet};
+  border-left: 5px solid ${props => props.color};
 `;
 
 export const TransactionDetailsItem = styled.li`
@@ -45,15 +43,14 @@ export const SumText = styled.span`
   color: ${props => props.color};
 `;
 export const TableWrapper = styled.div`
-  padding-top: 34px;
-  padding-left: 37px;
-  padding-right: 16px;
+  @media screen and (min-width: 1280px) {
+    padding-top: 46px;
+    padding-left: 70px;
+    padding-right: 16px;
+  }
 `;
 
 export const Table = styled.table`
-  /* margin-top: 34px;
-  margin-left: 37px;
-  margin-right: 16px; */
   display: block;
   width: 100%;
   height: 422px;
@@ -122,6 +119,13 @@ export const TableRow = styled.tr`
   }
 `;
 
+export const SumEl = styled.span`
+  border-top: none;
+  text-align: right;
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  color: ${props => props.color};
+`;
+
 export const Sum = styled.td`
   border-top: none;
   text-align: right;
@@ -143,7 +147,7 @@ export const ButtonContainer = styled.td`
   padding-bottom: 12px;
   gap: auto;
 `;
-// export const
+
 export const ButtonDelTransaction = styled.button`
   text-align: center;
   width: 69px;
@@ -156,7 +160,6 @@ export const ButtonDelTransaction = styled.button`
   );
   font-size: 12px;
   font-weight: 300;
-  /* padding: 4px 12px; */
   border-radius: 18px;
   border: none;
   letter-spacing: 0.05em;
@@ -214,10 +217,9 @@ export const BtnEditTransaction = styled.button`
 export const StyledBiPencil = styled(LiaPenSolid)`
   width: 14px;
   height: 14px;
-  /* fill: rgba(255, 255, 255, 0.6); */
   stroke: rgba(255, 255, 255, 0.6);
 `;
-// const TransactionsDetailsList
+
 export const NoTransactions = styled.div`
   display: block;
   font-size: 16px;

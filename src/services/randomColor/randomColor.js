@@ -5,17 +5,19 @@
 // }
 const backgroundColor = [
   '#FED057',
-  '#FFD8D0',
-  '#FFB627',
-  '#FD9498',
+  '#00AD84',
+  '#81E1FF',
   '#C5BAFF',
   '#6E78E8',
-  '#4A56E2',
-  '#81E1FF',
+  '#FFB627',
   '#24CCA7',
-  '#00AD84',
+  '#FFD8D0',
   '#FFD8D0',
   '#6D1C77',
+
+  '#FD9498',
+
+  '#4A56E2',
 ];
 
 export const color = () => {

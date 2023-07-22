@@ -8,12 +8,21 @@ export const ContainerStyledMobile = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 12px;
+  margin-bottom: 12px;
 `;
 
 export const ContainerStyledDesktop = styled.div`
-  width: 100%;
+  /* width: 100%;
   margin-top: 40px;
+  margin-left: 32px; */
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 28px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding-left: 16px;
+  }
 `;
 
 export const ContainerStyledIconDesktop = styled.div`
@@ -38,17 +47,18 @@ export const NavLinkStyledMobile = styled(NavLink)`
 
   transition: ${({ theme }) => theme.transitions.color};
 
-  :active,
-  :focus,
-  :hover {
+  &.active,
+  &:focus,
+  &:hover {
     fill: ${({ theme }) => theme.colors.primaryFont};
     background-color: ${({ theme }) => theme.colors.blue};
     filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
     transform: scale(1.03);
   }
-  :active svg,
-  :focus svg,
-  :hover svg {
+
+  &.active svg,
+  &:focus svg,
+  &:hover svg {
     fill: ${({ theme }) => theme.colors.primaryFont};
   }
 `;
@@ -60,36 +70,39 @@ export const NavLinkStyledDesktop = styled(NavLink)`
 
   transition: ${({ theme }) => theme.transitions.color};
 
-  :active,
-  :focus,
-  :hover {
+  &.active,
+  &:focus,
+  &:hover {
     transform: scale(1.03);
   }
-  :active svg,
-  :focus svg,
-  :hover svg {
+
+  &.active svg,
+  &:focus svg,
+  &:hover svg {
     fill: ${({ theme }) => theme.colors.primaryFont};
   }
-  :active div,
-  :focus div,
-  :hover div {
+
+  &.active div,
+  &:focus div,
+  &:hover div {
     background-color: ${({ theme }) => theme.colors.blue};
     filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
   }
 
-  :active span,
-  :focus span,
-  :hover span {
+  &.active span,
+  &:focus span,
+  &:hover span {
     font-weight: ${({ theme }) => theme.fontWeights.bold};
   }
 `;
 
 export const ItemStyledDesktop = styled.li`
-  margin-bottom: 12px;
+  &:not(:last-child) {
+    margin-bottom: 12px;
+  }
 `;
 
 export const MenuStyledMobile = styled.ul`
-  padding-top: 12px;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;

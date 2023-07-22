@@ -27,7 +27,7 @@ import {
   StyledInp,
   StyledLabelWrapper,
 } from './ModalAddTransaction.styled';
-import { useCategoriesType } from 'hook/categoriesFilter';
+import { useCategoriesType } from 'hooks/categoriesFilter';
 
 export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
@@ -64,7 +64,7 @@ export const ModalAddTransaction = () => {
       }`,
     };
     dispatch(addTransactionThunk(newData));
-    resetForm();
+    dispatch(closeModalAddTransaction());
   };
 
   const handleChangeSelect = item => {
