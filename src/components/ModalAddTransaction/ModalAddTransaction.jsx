@@ -39,8 +39,7 @@ export const ModalAddTransaction = () => {
   }, [dispatch]);
 
   const allCategories = useSelector(selectCategories);
-  const [expenseCategories, incomeCategories] =
-    useCategoriesType(allCategories);
+  const [expenseCategories, incomeCategories] = useCategoriesType(allCategories);
 
   const initialValues = {
     transactionDate: new Date().toISOString().slice(0, 10),
@@ -54,14 +53,8 @@ export const ModalAddTransaction = () => {
     const newData = {
       ...value,
       type: selectedType,
-      amount: `${
-        selectedType === 'EXPENSE'
-          ? Number(value.amount) * -1
-          : Number(value.amount)
-      }`,
-      categoryId: `${
-        selectedType === 'EXPENSE' ? selectedOption.id : incomeCategories[0].id
-      }`,
+      amount: `${selectedType === 'EXPENSE' ? Number(value.amount) * -1 : Number(value.amount)}`,
+      categoryId: `${selectedType === 'EXPENSE' ? selectedOption.id : incomeCategories[0].id}`,
     };
     dispatch(addTransactionThunk(newData));
     dispatch(closeModalAddTransaction());
@@ -82,9 +75,7 @@ export const ModalAddTransaction = () => {
         <StyledForm>
           {/* ========================= Radio Buttons ========================= */}
           <RadioWrapperChoose>
-            <IncomeSpan isSelected={selectedType === 'INCOME'}>
-              Income
-            </IncomeSpan>
+            <IncomeSpan isSelected={selectedType === 'INCOME'}>Income</IncomeSpan>
             <RadioWrapper>
               <StyledInp
                 type="radio"
@@ -116,9 +107,7 @@ export const ModalAddTransaction = () => {
                 )}
               </StyledLabelWrapper>
             </RadioWrapper>
-            <ExpenseSpan isSelected={selectedType === 'EXPENSE'}>
-              Expense
-            </ExpenseSpan>
+            <ExpenseSpan isSelected={selectedType === 'EXPENSE'}>Expense</ExpenseSpan>
           </RadioWrapperChoose>
 
           {/* ========================= SELECT ========================= */}
@@ -132,12 +121,7 @@ export const ModalAddTransaction = () => {
 
           {/* ========================= INPUTS ========================= */}
           <InputWrapper>
-            <StyledField
-              type="number"
-              name="amount"
-              placeholder="0.00"
-              weight="600"
-            />
+            <StyledField type="number" name="amount" placeholder="0.00" weight="600" required />
             <StyledField type="date" name="transactionDate" />
           </InputWrapper>
           <StyledField type="text" name="comment" placeholder="Comment" />
