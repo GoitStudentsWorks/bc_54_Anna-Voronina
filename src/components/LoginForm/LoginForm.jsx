@@ -23,8 +23,8 @@ import { Link } from 'react-router-dom';
 import { logInThunk } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 
-import { usePasswordToggle } from 'hook/usePasswordToggle';
 import { toast } from 'react-toastify';
+import { usePasswordToggle } from 'hooks/usePasswordToggle';
 
 export const LoginForm = () => {
   const { showPassword1, togglePasswordVisibility1 } = usePasswordToggle();
@@ -35,7 +35,7 @@ export const LoginForm = () => {
     password: '',
   };
 
-  const hendleSubmit = (value, { resetForm }) => {
+  const handleSubmit = (value, { resetForm }) => {
     dispatch(logInThunk(value))
       .unwrap()
       .then(data => {
@@ -56,7 +56,7 @@ export const LoginForm = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={loginSchema}
-        onSubmit={hendleSubmit}
+        onSubmit={handleSubmit}
       >
         <FormStyled autoComplete="off">
           <WrapperField>

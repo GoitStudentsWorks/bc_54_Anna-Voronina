@@ -66,8 +66,8 @@ export const signIn = async user => {
 };
 
 // Sign out existing user
-export const signOut = id => {
-  instance.delete(`/auth/sign-out/${id}`);
+export const signOut = () => {
+  instance.delete('/auth/sign-out/');
   clearAuthHeader();
 };
 

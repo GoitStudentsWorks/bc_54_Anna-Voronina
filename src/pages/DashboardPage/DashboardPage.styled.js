@@ -3,6 +3,11 @@ import styled from 'styled-components';
 export const StyledMain = styled.main`
   flex-grow: 1;
 
+  @media only screen and (max-width: 767px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
   @media only screen and (min-width: 1280px) {
     background: rgb(73, 32, 101);
     background: linear-gradient(
