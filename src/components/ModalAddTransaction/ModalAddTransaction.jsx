@@ -24,7 +24,6 @@ import {
   RadioWrapperChoose,
   StyledField,
   StyledForm,
-  StyledInp,
   StyledLabelWrapper,
 } from './ModalAddTransaction.styled';
 import { useCategoriesType } from 'hooks/categoriesFilter';
@@ -32,7 +31,7 @@ import { useCategoriesType } from 'hooks/categoriesFilter';
 export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
   const [selectedOption, setSelectedOption] = useState('Car');
-  const [selectedType, setSelectedType] = useState('INCOME');
+  const [selectedType, setSelectedType] = useState(true);
 
   useEffect(() => {
     dispatch(getTransactionsCategoriesThunk());
@@ -44,7 +43,7 @@ export const ModalAddTransaction = () => {
 
   const initialValues = {
     transactionDate: new Date().toISOString().slice(0, 10),
-    type: selectedType,
+    type: selectedType && 'INCOME',
     categoryId: '',
     comment: '',
     amount: '',
@@ -54,14 +53,12 @@ export const ModalAddTransaction = () => {
     const defCategoryId = 'c9d9e447-1b83-4238-8712-edc77b18b739';
     const newData = {
       ...value,
-      type: selectedType,
+      type: selectedType ? 'INCOME' : 'EXPENSE',
       amount: `${
-        selectedType === 'EXPENSE'
-          ? Number(value.amount) * -1
-          : Number(value.amount)
+        !selectedType ? Number(value.amount) * -1 : Number(value.amount)
       }`,
       categoryId: `${
-        selectedType === 'EXPENSE'
+        !selectedType
           ? selectedOption?.id ?? defCategoryId
           : incomeCategories[0].id
       }`,
@@ -78,6 +75,10 @@ export const ModalAddTransaction = () => {
     value: item.name,
     label: item.name,
   }));
+
+  const changeTypeOfTransaction = () => {
+    setSelectedType(prev => !prev);
+  };
   return (
     <ModalAddWrapper>
       <ModalTransactionTitle>Add transaction</ModalTransactionTitle>
@@ -85,47 +86,28 @@ export const ModalAddTransaction = () => {
         <StyledForm>
           {/* ========================= Radio Buttons ========================= */}
           <RadioWrapperChoose>
-            <IncomeSpan isSelected={selectedType === 'INCOME'}>
-              Income
-            </IncomeSpan>
-            <RadioWrapper>
-              <StyledInp
-                type="radio"
-                name="type"
-                id="INCOME"
-                value="INCOME"
-                defaultChecked
-                onChange={e => setSelectedType(e.target.value)}
-              />
-              <StyledLabelWrapper htmlFor="INCOME">
-                {selectedType === 'INCOME' && (
+            <IncomeSpan isSelected={selectedType}>Income</IncomeSpan>
+            <RadioWrapper onClick={changeTypeOfTransaction}>
+              <StyledLabelWrapper>
+                {selectedType && (
                   <IncomeBtn>
                     <PlusButton />
                   </IncomeBtn>
                 )}
               </StyledLabelWrapper>
-              <StyledInp
-                type="radio"
-                name="type"
-                id="EXPENSE"
-                value="EXPENSE"
-                onChange={e => setSelectedType(e.target.value)}
-              />
-              <StyledLabelWrapper htmlFor="EXPENSE">
-                {selectedType === 'EXPENSE' && (
+              <StyledLabelWrapper>
+                {!selectedType && (
                   <ExpenseBtn>
                     <MinusButton />
                   </ExpenseBtn>
                 )}
               </StyledLabelWrapper>
             </RadioWrapper>
-            <ExpenseSpan isSelected={selectedType === 'EXPENSE'}>
-              Expense
-            </ExpenseSpan>
+            <ExpenseSpan isSelected={!selectedType}>Expense</ExpenseSpan>
           </RadioWrapperChoose>
 
           {/* ========================= SELECT ========================= */}
-          {selectedType === 'EXPENSE' && (
+          {!selectedType && (
             <CustomSelect
               options={selectOptionsData}
               nameOfSelect="category"
