@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { ChartWrapper, HrvnIcon, StyledSpan } from './Chart.styled';
@@ -14,9 +15,7 @@ export const Chart = ({ colorStyle, resp }) => {
     labels: [],
     datasets: [
       {
-        data: !expenseCategories.length
-          ? [1]
-          : expenseCategories.map(item => item.total),
+        data: !expenseCategories.length ? [1] : expenseCategories.map(item => item.total),
         backgroundColor: colorStyle,
         borderColor: colorStyle,
         borderWidth: 1,
@@ -41,4 +40,15 @@ export const Chart = ({ colorStyle, resp }) => {
       <Doughnut data={data} options={options} />
     </ChartWrapper>
   );
+};
+
+Chart.propTypes = {
+  colorStyle: PropTypes.arrayOf(PropTypes.string).isRequired,
+  resp: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      type: PropTypes.oneOf(['INCOME', 'EXPENSE']).isRequired,
+      total: PropTypes.number.isRequired,
+    })
+  ).isRequired,
 };
