@@ -1,9 +1,5 @@
 import Select, { components } from 'react-select';
-import {
-  SelectIcon,
-  selectStyles,
-  selectStylesCategory,
-} from './CustomSelect.styled';
+import { SelectIcon, selectStyles, selectStylesCategory } from './CustomSelect.styled';
 
 const DropdownIndicator = props => {
   return (

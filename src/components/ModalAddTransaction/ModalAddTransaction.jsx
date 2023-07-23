@@ -11,9 +11,7 @@ import {
 import { selectCategories } from 'redux/transaction/transactionSelectors';
 import {
   ButtonWrapper,
-  ExpenseBtn,
   ExpenseSpan,
-  IncomeBtn,
   IncomeSpan,
   InputWrapper,
   MinusButton,
@@ -22,9 +20,9 @@ import {
   PlusButton,
   RadioWrapper,
   RadioWrapperChoose,
+  RoundedButton,
   StyledField,
   StyledForm,
-  StyledInp,
   StyledLabelWrapper,
 } from './ModalAddTransaction.styled';
 import { useCategoriesType } from 'hooks/categoriesFilter';
@@ -32,29 +30,36 @@ import { useCategoriesType } from 'hooks/categoriesFilter';
 export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
   const [selectedOption, setSelectedOption] = useState('Car');
-  const [selectedType, setSelectedType] = useState('INCOME');
+  const [selectedType, setSelectedType] = useState(true);
 
   useEffect(() => {
     dispatch(getTransactionsCategoriesThunk());
   }, [dispatch]);
 
   const allCategories = useSelector(selectCategories);
-  const [expenseCategories, incomeCategories] = useCategoriesType(allCategories);
+  const [expenseCategories, incomeCategories] =
+    useCategoriesType(allCategories);
 
   const initialValues = {
     transactionDate: new Date().toISOString().slice(0, 10),
-    type: selectedType,
+    type: selectedType ? 'INCOME' : 'EXPENSE',
     categoryId: '',
     comment: '',
     amount: '',
   };
-
   const handleSubmit = (value, { resetForm }) => {
+    const defCategoryId = 'c9d9e447-1b83-4238-8712-edc77b18b739';
     const newData = {
       ...value,
-      type: selectedType,
-      amount: `${selectedType === 'EXPENSE' ? Number(value.amount) * -1 : Number(value.amount)}`,
-      categoryId: `${selectedType === 'EXPENSE' ? selectedOption.id : incomeCategories[0].id}`,
+      type: selectedType ? 'INCOME' : 'EXPENSE',
+      amount: `${
+        !selectedType ? Number(value.amount) * -1 : Number(value.amount)
+      }`,
+      categoryId: `${
+        !selectedType
+          ? selectedOption?.id ?? defCategoryId
+          : incomeCategories[0].id
+      }`,
     };
     dispatch(addTransactionThunk(newData));
     dispatch(closeModalAddTransaction());
@@ -68,6 +73,11 @@ export const ModalAddTransaction = () => {
     value: item.name,
     label: item.name,
   }));
+
+  const changeTypeOfTransaction = () => {
+    setSelectedType(prev => !prev);
+  };
+  console.log(selectedType);
   return (
     <ModalAddWrapper>
       <ModalTransactionTitle>Add transaction</ModalTransactionTitle>
@@ -75,43 +85,19 @@ export const ModalAddTransaction = () => {
         <StyledForm>
           {/* ========================= Radio Buttons ========================= */}
           <RadioWrapperChoose>
-            <IncomeSpan isSelected={selectedType === 'INCOME'}>Income</IncomeSpan>
-            <RadioWrapper>
-              <StyledInp
-                type="radio"
-                name="type"
-                id="INCOME"
-                value="INCOME"
-                defaultChecked
-                onChange={e => setSelectedType(e.target.value)}
-              />
-              <StyledLabelWrapper htmlFor="INCOME">
-                {selectedType === 'INCOME' && (
-                  <IncomeBtn>
-                    <PlusButton />
-                  </IncomeBtn>
-                )}
-              </StyledLabelWrapper>
-              <StyledInp
-                type="radio"
-                name="type"
-                id="EXPENSE"
-                value="EXPENSE"
-                onChange={e => setSelectedType(e.target.value)}
-              />
-              <StyledLabelWrapper htmlFor="EXPENSE">
-                {selectedType === 'EXPENSE' && (
-                  <ExpenseBtn>
-                    <MinusButton />
-                  </ExpenseBtn>
-                )}
+            <IncomeSpan isSelected={selectedType}>Income</IncomeSpan>
+            <RadioWrapper onClick={changeTypeOfTransaction}>
+              <StyledLabelWrapper>
+                <RoundedButton type={selectedType.toString()}>
+                  {selectedType ? <PlusButton /> : <MinusButton />}
+                </RoundedButton>
               </StyledLabelWrapper>
             </RadioWrapper>
-            <ExpenseSpan isSelected={selectedType === 'EXPENSE'}>Expense</ExpenseSpan>
+            <ExpenseSpan isSelected={!selectedType}>Expense</ExpenseSpan>
           </RadioWrapperChoose>
 
           {/* ========================= SELECT ========================= */}
-          {selectedType === 'EXPENSE' && (
+          {!selectedType && (
             <CustomSelect
               options={selectOptionsData}
               nameOfSelect="category"
@@ -121,7 +107,13 @@ export const ModalAddTransaction = () => {
 
           {/* ========================= INPUTS ========================= */}
           <InputWrapper>
-            <StyledField type="number" name="amount" placeholder="0.00" weight="600" required />
+            <StyledField
+              type="number"
+              name="amount"
+              placeholder="0.00"
+              weight="600"
+              required
+            />
             <StyledField type="date" name="transactionDate" />
           </InputWrapper>
           <StyledField type="text" name="comment" placeholder="Comment" />

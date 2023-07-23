@@ -57,7 +57,6 @@ const handleSummary = (state, { payload }) => {
 const transactionSlice = createSlice({
   name: 'transaction',
   initialState,
-
   extraReducers: builder => {
     builder
       .addCase(getAllTransactionsThunk.pending, handlePending)

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
 import { CustomSelect } from 'components/CustomSelect/CustomSelect';
@@ -77,4 +78,8 @@ export const Selects = ({ onChange }) => {
       />
     </StyledSelectWrapper>
   );
+};
+
+Selects.propTypes = {
+  onChange: PropTypes.func.isRequired,
 };

@@ -33,15 +33,18 @@ export const DiagramTab = () => {
   //Stepka123
 
   return (
-    <Wrapper>
-      <StyledWrapperLeft>
-        <StyledTitle>Statistics</StyledTitle>
-        <Chart resp={categorySummary} colorStyle={colors} />
-      </StyledWrapperLeft>
-      <StyledWrapperRight>
-        <Selects onChange={getSelectData} />
-        <Table data={categorySummary} colorStyle={colors} />
-      </StyledWrapperRight>
-    </Wrapper>
+    <>
+      <StyledTitle>Statistics</StyledTitle>
+
+      <Wrapper>
+        <StyledWrapperLeft>
+          <Chart resp={categorySummary} colorStyle={colors} />
+        </StyledWrapperLeft>
+        <StyledWrapperRight>
+          <Selects onChange={getSelectData} />
+          <Table data={categorySummary} colorStyle={colors} />
+        </StyledWrapperRight>
+      </Wrapper>
+    </>
   );
 };
