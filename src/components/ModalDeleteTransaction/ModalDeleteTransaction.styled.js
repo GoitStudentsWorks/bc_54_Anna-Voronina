@@ -14,12 +14,6 @@ export const Title = styled.p`
   @media screen and (max-width: 425px) {
     font-size: 24px;
   }
-  :hover {
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-      transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    transform: scale(1.01);
-    color: orange;
-  }
 `;
 
 export const ButtonWrapper = styled.div`
