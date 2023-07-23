@@ -60,7 +60,7 @@ export const EditTransactions = () => {
       categoryId: `${
         changedType === 'INCOME'
           ? incomeCategories[0].id
-          : value.id ?? changeCategoryData.id
+          : value.id ?? changeCategoryData?.id
       }`,
     };
 
@@ -101,7 +101,7 @@ export const EditTransactions = () => {
 
           {/* ========================= SELECT ========================= */}
           {changedType === 'EXPENSE' && (
-            <StyledCategoryName>{changeCategoryData.name}</StyledCategoryName> //TODO
+            <StyledCategoryName>{changeCategoryData?.name}</StyledCategoryName> //TODO
           )}
 
           {/* ========================= INPUTS ========================= */}

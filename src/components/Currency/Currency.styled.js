@@ -5,6 +5,10 @@ export const CurrencyWrapper = styled.div`
     flex-grow: 1;
   }
 
+  @media only screen and (max-width: 767px) {
+    height: 100vh;
+  }
+
   @media screen and (min-width: 1280px) {
     width: 100%;
   }
