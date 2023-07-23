@@ -4,3 +4,7 @@ export const getMonthAndYear = () => {
     year: new Date().getFullYear(),
   };
 };
+
+export const getDateForSort = isoDate => {
+  return Number(isoDate.split('-').join(''));
+};

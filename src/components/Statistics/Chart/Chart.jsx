@@ -5,6 +5,7 @@ import { ChartWrapper, HrvnIcon, StyledSpan } from './Chart.styled';
 import { useCategoriesType } from 'hooks/categoriesFilter';
 import { useSelector } from 'react-redux';
 import { selectPeriodTotal } from 'redux/transaction/transactionSelectors';
+import { FcDonate } from 'react-icons/fc';
 
 export const Chart = ({ colorStyle, resp }) => {
   const [expenseCategories] = useCategoriesType(resp);
@@ -33,11 +34,17 @@ export const Chart = ({ colorStyle, resp }) => {
 
   return (
     <ChartWrapper>
-      <StyledSpan>
-        <HrvnIcon />
-        {Number(periodTotal).toFixed(2)}
-      </StyledSpan>
-      <Doughnut data={data} options={options} />
+      {Number(periodTotal) === 0 ? (
+        <FcDonate style={{ width: '100%', height: '100%' }} />
+      ) : (
+        <>
+          <StyledSpan>
+            <HrvnIcon />
+            {Number(periodTotal).toFixed(2)}
+          </StyledSpan>
+          <Doughnut data={data} options={options} />
+        </>
+      )}
     </ChartWrapper>
   );
 };

@@ -36,6 +36,7 @@ import {
   setUpdatedTransaction,
 } from 'redux/global/globalSlice';
 import { LiaPenSolid } from 'react-icons/lia';
+import { getDateForSort } from 'services/getDateNow';
 
 const Transactions = () => {
   const dispatch = useDispatch();
@@ -48,7 +49,9 @@ const Transactions = () => {
   }, [dispatch]);
 
   const sortedTransactions = [...transactions].sort((a, b) => {
-    return b.transactionDate - a.transactionDate;
+    return (
+      getDateForSort(b.transactionDate) - getDateForSort(a.transactionDate)
+    );
   });
 
   const handleEditClick = obj => {
@@ -62,11 +65,8 @@ const Transactions = () => {
     // dispatch(getAllTransactionsThunk());
   }; // wait till adding real data will be able to addd and if there are bugs, fix them
   const formatDate = date => {
-    const transactionDate = new Date(date);
-    const day = String(transactionDate.getDate()).padStart(2, '0');
-    const month = String(transactionDate.getMonth() + 1).padStart(2, '0');
-    const year = String(transactionDate.getFullYear()).slice(-2);
-
+    const dateArr = date.split('-');
+    const [year, month, day] = dateArr;
     return `${day}.${month}.${year}`;
   };
 
@@ -84,7 +84,7 @@ const Transactions = () => {
                     <TransactionDetailsItemTitle>
                       Date
                     </TransactionDetailsItemTitle>
-                    <span>{formatDate(Date(transaction.transactionDate))}</span>
+                    <span>{formatDate(transaction.transactionDate)}</span>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
                     <TransactionDetailsItemTitle>
@@ -166,7 +166,7 @@ const Transactions = () => {
                 return (
                   <TableRow key={transaction.id}>
                     <TableDash>
-                      {formatDate(Date(transaction.transactionDate))}
+                      {formatDate(transaction.transactionDate)}
                     </TableDash>
                     <TableDash>
                       {transaction.type === 'INCOME' ? '+' : '-'}

@@ -70,12 +70,6 @@ export const NavLinkStyledDesktop = styled(NavLink)`
 
   transition: ${({ theme }) => theme.transitions.color};
 
-  &.active,
-  &:focus,
-  &:hover {
-    transform: scale(1.03);
-  }
-
   &.active svg,
   &:focus svg,
   &:hover svg {
