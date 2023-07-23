@@ -108,7 +108,7 @@ export const RegisterForm = () => {
                     type={showPasswords.password2 ? 'text' : 'password'}
                     name="confirmPassword"
                     title="Enter the password more difficult, letter, digit, capital letter."
-                    placeholder="confirmPassword"
+                    placeholder="Confirm Password"
                     autoComplete="off"
                     required
                   />
