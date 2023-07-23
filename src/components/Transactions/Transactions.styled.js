@@ -268,24 +268,13 @@ export const BtnEditTransaction = styled.button`
     outline: none;
   }
 `;
-// #FF868D' : '#98FB98
+
 export const StyledBiPencil = styled(LiaPenSolid)`
   width: 14px;
   height: 14px;
   fill: rgba(255, 255, 255, 0.3);
 `;
 
-export const NoTransactions = styled.div`
-  display: block;
-  font-size: 16px;
-  font-weight: 700;
-  color: #fbfbfb;
-  text-align: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  max-width: 200px;
-  margin: 0 auto;
-`;
 export const TableTop = styled.table`
   width: 708px;
 
