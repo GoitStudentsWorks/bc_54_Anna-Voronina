@@ -20,7 +20,7 @@ export const TransactionDetailsItem = styled.li`
   justify-content: space-between;
   color: white;
   font-weight: ${({ theme }) => theme.fontWeights.normal};
-  background: linear-gradient(220deg, #6d54eb 3.47%, #652392 90.06%);
+  background: rgba(255, 255, 255, 0.07);
   padding: 12px 20px;
   font-size: 16px;
 
@@ -31,7 +31,7 @@ export const TransactionDetailsItem = styled.li`
     content: '';
     width: 100%;
     height: 1px;
-    background-color: #dcdcdf;
+    background-color: rgba(255, 255, 255, 0.15);
   }
 `;
 
