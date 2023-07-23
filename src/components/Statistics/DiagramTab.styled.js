@@ -34,6 +34,7 @@ export const StyledWrapperRight = styled.div`
 export const StyledTitle = styled.h1`
   font-size: 30px;
   font-weight: 400;
+  margin-left: 20px;
   margin-top: 40px;
   margin-bottom: 8px;
 

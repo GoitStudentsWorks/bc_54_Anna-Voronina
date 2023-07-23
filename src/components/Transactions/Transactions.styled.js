@@ -3,6 +3,8 @@ import { LiaPenSolid } from 'react-icons/lia';
 
 export const AllTransactionsDetails = styled.ul`
   list-style: none;
+  height: 75vh;
+  overflow: auto;
 `;
 
 export const TransactionDetails = styled.ul`

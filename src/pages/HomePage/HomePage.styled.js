@@ -5,5 +5,6 @@ export const HomePageWrapper = styled.div`
     overflow: auto;
     padding-left: 20px;
     padding-right: 20px;
+    padding-bottom: 20px;
   }
 `;
