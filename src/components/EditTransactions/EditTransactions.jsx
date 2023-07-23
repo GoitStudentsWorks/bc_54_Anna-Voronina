@@ -15,15 +15,14 @@ import { closeModalEditTransaction } from 'redux/global/globalSlice';
 import { selectEditTransaction } from 'redux/global/globalSelectors';
 import { useCategoriesType } from 'hooks/categoriesFilter';
 import { selectCategories } from 'redux/transaction/transactionSelectors';
-import {
-  editTransactionThunk,
-  getAllTransactionsThunk,
-} from 'redux/transaction/transactionOperations';
+import { editTransactionThunk } from 'redux/transaction/transactionOperations';
 import {
   ExpenseSpanEditTransaction,
   IncomeSpanEditTransaction,
   StyledCategoryName,
 } from './EditTransactions.styled.js';
+import { transactionsSchema } from 'services/validation/validationTransactions.js';
+import { FormError } from 'components/FormError/FormError.jsx';
 
 export const EditTransactions = () => {
   const dispatch = useDispatch();
@@ -67,10 +66,7 @@ export const EditTransactions = () => {
       }`,
     };
 
-    dispatch(
-      editTransactionThunk({ transactionId: id, transaction: newData })
-    ).then(() => dispatch(getAllTransactionsThunk()));
-    dispatch(closeModalEditTransaction());
+    dispatch(editTransactionThunk({ transactionId: id, transaction: newData }));
   };
 
   const handleChangeType = value => {
@@ -86,7 +82,11 @@ export const EditTransactions = () => {
   return (
     <ModalAddWrapper>
       <ModalTransactionTitle>Edit transaction</ModalTransactionTitle>
-      <Formik onSubmit={handleSubmit} initialValues={initialValues}>
+      <Formik
+        validationSchema={transactionsSchema}
+        onSubmit={handleSubmit}
+        initialValues={initialValues}
+      >
         <StyledForm>
           {/* ========================= Radio Buttons ========================= */}
           <RadioWrapperChoose>
@@ -118,13 +118,25 @@ export const EditTransactions = () => {
               placeholder="0.00"
               weight="600"
               required
+              autoComplete="off"
+              autoFocus={true}
             />
-            <StyledField type="date" name="transactionDate" />
+            <StyledField
+              autoComplete="off"
+              type="date"
+              name="transactionDate"
+            />
           </InputWrapper>
-          <StyledField type="text" name="comment" placeholder="Comment" />
+          <StyledField
+            autoComplete="off"
+            type="text"
+            name="comment"
+            placeholder="Comment"
+          />
 
           {/* ========================= BUTTONS ========================= */}
           <ButtonWrapper>
+            <FormError name="amount" />
             <Button text="save" type="submit" />
             <Button
               text="cancel"

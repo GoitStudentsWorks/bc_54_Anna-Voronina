@@ -1,5 +1,10 @@
 import Select, { components } from 'react-select';
-import { SelectIcon, selectStyles, selectStylesCategory } from './CustomSelect.styled';
+import PropTypes from 'prop-types';
+import {
+  SelectIcon,
+  selectStyles,
+  selectStylesCategory,
+} from './CustomSelect.styled';
 
 const DropdownIndicator = props => {
   return (
@@ -35,4 +40,19 @@ export const CustomSelect = ({ options, onChange, nameOfSelect, defValue }) => {
       )}
     </>
   );
+};
+
+CustomSelect.propTypes = {
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    }).isRequired
+  ).isRequired,
+  onChange: PropTypes.func.isRequired,
+  nameOfSelect: PropTypes.string.isRequired,
+  defValue: PropTypes.shape({
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  }),
 };

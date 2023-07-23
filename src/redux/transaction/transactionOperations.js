@@ -1,5 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
+  closeModalAddTransaction,
+  closeModalEditTransaction,
+} from 'redux/global/globalSlice';
+import {
   addNewTransaction,
   deleteTransaction,
   fetchCategories,
@@ -34,9 +38,11 @@ export const getAllTransactionsThunk = createAsyncThunk(
 
 export const addTransactionThunk = createAsyncThunk(
   'transactions/addTransaction',
-  async (transaction, { rejectedWithValue }) => {
+  async (transaction, { rejectedWithValue, dispatch }) => {
     try {
       const data = await addNewTransaction(transaction);
+      dispatch(closeModalAddTransaction());
+      dispatch(getAllTransactionsThunk());
       return data;
     } catch (error) {
       return rejectedWithValue(error.message);
@@ -46,10 +52,11 @@ export const addTransactionThunk = createAsyncThunk(
 
 export const editTransactionThunk = createAsyncThunk(
   'transactions/editTransaction',
-  async ({ transactionId, transaction }, { rejectedWithValue }) => {
+  async ({ transactionId, transaction }, { rejectedWithValue, dispatch }) => {
     try {
-      console.log(transaction);
       const data = await updateTransaction({ transactionId, transaction });
+      dispatch(closeModalEditTransaction());
+      dispatch(getAllTransactionsThunk());
 
       return data;
     } catch (error) {
@@ -60,16 +67,16 @@ export const editTransactionThunk = createAsyncThunk(
 
 export const delTransactionThunk = createAsyncThunk(
   'transactions/delTransaction',
-  async (id, { rejectedWithValue }) => {
+  async (id, { rejectedWithValue, dispatch }) => {
     try {
       await deleteTransaction(id);
+      dispatch(getAllTransactionsThunk());
     } catch (error) {
       return rejectedWithValue(error.message);
     }
   },
   {
     condition: (_, { getState }) => {
-      // console.log(getState().transaction.isLoading);
       const loading = getState().transaction.isLoading;
       if (loading) {
         return false;

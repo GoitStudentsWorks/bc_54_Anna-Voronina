@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit/dist';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit/dist';
 import {
   addTransactionThunk,
   getTransactionsCategoriesThunk,
@@ -27,21 +27,7 @@ const handleAllTransactions = (state, { payload }) => {
 const handlePending = state => {
   state.isLoading = true;
 };
-const handleAdd = (state, { payload }) => {
-  state.transactions.push(payload);
-  state.isLoading = false;
-};
-const handleEdit = (state, { payload }) => {
-  state.transactions = state.transactions.map(e =>
-    e.id === payload.id ? payload : e
-  );
-  state.isLoading = false;
-};
-const handleDelete = (state, { payload }) => {
-  state.isLoading = false;
-  // console.log(current(payload));
-  state.transactions = state.transactions.filter(e => e.id !== payload);
-};
+
 const handleCategories = (state, { payload }) => {
   state.categories = payload;
   state.isLoading = false;
@@ -59,24 +45,32 @@ const transactionSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(getAllTransactionsThunk.pending, handlePending)
       .addCase(getAllTransactionsThunk.fulfilled, handleAllTransactions)
-      .addCase(getAllTransactionsThunk.rejected, handleRejected)
-      .addCase(editTransactionThunk.pending, handlePending)
-      .addCase(editTransactionThunk.fulfilled, handleEdit)
-      .addCase(editTransactionThunk.rejected, handleRejected)
-      .addCase(addTransactionThunk.pending, handlePending)
-      .addCase(addTransactionThunk.fulfilled, handleAdd)
-      .addCase(addTransactionThunk.rejected, handleRejected)
-      .addCase(delTransactionThunk.pending, handlePending)
-      .addCase(delTransactionThunk.fulfilled, handleDelete)
-      .addCase(delTransactionThunk.rejected, handleRejected)
-      .addCase(getTransactionsCategoriesThunk.pending, handlePending)
       .addCase(getTransactionsCategoriesThunk.fulfilled, handleCategories)
-      .addCase(getTransactionsCategoriesThunk.rejected, handleRejected)
-      .addCase(getSummaryThunk.pending, handlePending)
       .addCase(getSummaryThunk.fulfilled, handleSummary)
-      .addCase(getSummaryThunk.rejected, handleRejected);
+
+      .addMatcher(
+        isAnyOf(
+          getAllTransactionsThunk.rejected,
+          editTransactionThunk.rejected,
+          addTransactionThunk.rejected,
+          delTransactionThunk.rejected,
+          getTransactionsCategoriesThunk.rejected,
+          getSummaryThunk.rejected
+        ),
+        handleRejected
+      )
+      .addMatcher(
+        isAnyOf(
+          getAllTransactionsThunk.pending,
+          editTransactionThunk.pending,
+          addTransactionThunk.pending,
+          delTransactionThunk.pending,
+          getTransactionsCategoriesThunk.pending,
+          getSummaryThunk.pending
+        ),
+        handlePending
+      );
   },
 });
 

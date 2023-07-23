@@ -17,7 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <PersistGate loading={null} persistor={persistor}>
           <BrowserRouter basename="/DontTouchMyState">
             <App />
-            <ToastContainer autoClose={1000} />
+            <ToastContainer autoClose={1000} theme="dark" />
           </BrowserRouter>
         </PersistGate>
       </Provider>

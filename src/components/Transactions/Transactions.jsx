@@ -16,39 +16,48 @@ import {
   ButtonEditTransaction,
   BtnEditTransaction,
   ButtonDelTransaction,
-  NoTransactions,
   TableDash,
   TableWrapper,
   AllTransactionsDetails,
   SumEl,
-  Thead,
   TableTop,
 } from './Transactions.styled';
-// import { formatMoney } from 'utils/formatMoney';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   getTransactionsCategoriesThunk,
   getAllTransactionsThunk,
-  delTransactionThunk,
 } from 'redux/transaction/transactionOperations';
 import MediaQuery from 'react-responsive';
 import {
+  closeModalDeleteTransaction,
+  openModalDeleteTransaction,
   openModalEditTransaction,
   setUpdatedTransaction,
 } from 'redux/global/globalSlice';
 import { LiaPenSolid } from 'react-icons/lia';
 import { getDateForSort } from 'services/getDateNow';
+import { selectIsModalDeleteTransactionOpen } from 'redux/global/globalSelectors';
+import { Modal } from 'components/Modal/Modal';
+import ModalDeleteTransaction from 'components/ModalDeleteTransaction/ModalDeleteTransaction';
+import { Greeting } from 'components/Greeting/Greeting';
 
 const Transactions = () => {
+  const [transactionIdToDelete, setTransactionIdToDelete] = useState(null);
   const dispatch = useDispatch();
   const transactions = useSelector(selectTransactions);
   const categories = useSelector(selectCategories);
+  const isDeleteModalOpen = useSelector(selectIsModalDeleteTransactionOpen);
 
   useEffect(() => {
     dispatch(getAllTransactionsThunk());
     dispatch(getTransactionsCategoriesThunk());
   }, [dispatch]);
+
+  const handleDeleteButtonClick = transactionId => {
+    setTransactionIdToDelete(transactionId);
+    dispatch(openModalDeleteTransaction());
+  };
 
   const sortedTransactions = [...transactions].sort((a, b) => {
     return (
@@ -62,12 +71,6 @@ const Transactions = () => {
     dispatch(openModalEditTransaction());
   }; // wait till adding real data will be able to addd and if there are bugs, fix them
 
-  const handleDeleteTransaction = id => {
-    dispatch(delTransactionThunk(id))
-      .unwrap()
-      .then(() => dispatch(getAllTransactionsThunk()));
-    // dispatch(getAllTransactionsThunk());
-  }; // wait till adding real data will be able to addd and if there are bugs, fix them
   const formatDate = date => {
     const transactionDate = new Date(date);
     const day = String(transactionDate.getDate()).padStart(2, '0');
@@ -139,10 +142,17 @@ const Transactions = () => {
                   <TransactionDetailsItem>
                     <ButtonDelTransaction
                       type="button"
-                      onClick={() => handleDeleteTransaction(transaction.id)}
+                      onClick={() => handleDeleteButtonClick(transaction.id)}
                     >
                       Delete
                     </ButtonDelTransaction>
+                    {isDeleteModalOpen && (
+                      <Modal closeReducer={closeModalDeleteTransaction}>
+                        <ModalDeleteTransaction
+                          transactionId={transactionIdToDelete}
+                        />
+                      </Modal>
+                    )}
                     <ButtonEditTransaction
                       type="button"
                       onClick={() => handleEditClick(transaction)}
@@ -216,10 +226,17 @@ const Transactions = () => {
                     <ButtonContainer>
                       <ButtonDelTransaction
                         type="button"
-                        onClick={() => handleDeleteTransaction(transaction.id)}
+                        onClick={() => handleDeleteButtonClick(transaction.id)}
                       >
                         Delete
                       </ButtonDelTransaction>
+                      {isDeleteModalOpen && (
+                        <Modal closeReducer={closeModalDeleteTransaction}>
+                          <ModalDeleteTransaction
+                            transactionId={transactionIdToDelete}
+                          />
+                        </Modal>
+                      )}
                     </ButtonContainer>
                   </TableRow>
                 );
@@ -230,9 +247,7 @@ const Transactions = () => {
       </MediaQuery>
     </>
   ) : (
-    <NoTransactions>
-      No transactions yet! Add them by pressing "+" button
-    </NoTransactions>
+    <Greeting />
   );
 };
 

@@ -1,16 +1,19 @@
 import { useState } from 'react';
 
-export function usePasswordToggle(initialState = false) {
-  const [showPassword1, setShowPassword1] = useState(initialState);
-  const [showPassword2, setShowPassword2] = useState(initialState);
+export function usePasswordToggle(fields = []) {
+  const initialState = fields.reduce((acc, field) => {
+    acc[field] = false;
+    return acc;
+  }, {});
 
-  const togglePasswordVisibility1 = () => {
-    setShowPassword1(prevShowPassword => !prevShowPassword);
+  const [showPasswords, setShowPasswords] = useState(initialState);
+
+  const togglePasswordVisibility = field => {
+    setShowPasswords(prevState => ({
+      ...prevState,
+      [field]: !prevState[field],
+    }));
   };
 
-  const togglePasswordVisibility2 = () => {
-    setShowPassword2(prevShowPassword => !prevShowPassword);
-  };
-
-  return { showPassword1, showPassword2, togglePasswordVisibility1, togglePasswordVisibility2 };
+  return { showPasswords, togglePasswordVisibility };
 }

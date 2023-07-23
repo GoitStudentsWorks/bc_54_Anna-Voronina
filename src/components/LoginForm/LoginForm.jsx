@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
@@ -10,12 +10,9 @@ import { logInThunk } from 'redux/auth/authOperations';
 
 import {
   EmailIcon,
-  FaEyeSlashStyled,
-  FaEyeStyled,
   FieldStyled,
   FormStyled,
   PasswordlIcon,
-  PasswordlIconLook,
   WrapperButton,
   WrapperField,
   WrapperForm,
@@ -27,9 +24,10 @@ import { Logo } from 'components/Logo/Logo';
 import { FormError } from 'components/FormError/FormError';
 
 import { Button } from 'components/Button/Button';
+import { TogglePasswordIcon } from 'components/TogglePasswordVisibility/TogglePasswordVisibility';
 
 export const LoginForm = () => {
-  const { showPassword1, togglePasswordVisibility1 } = usePasswordToggle();
+  const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1', 'password2']);
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -41,20 +39,19 @@ export const LoginForm = () => {
     dispatch(logInThunk(value))
       .unwrap()
       .then(data => {
+        resetForm();
         toast.success(`You entered now owe us 1.000.000$ ${data.user.username}`);
       })
       .catch(error => {
         toast.error(error.message);
       });
-
-    resetForm();
   };
 
   return (
     <WrapperForm>
       <Logo />
       <Formik initialValues={initialValues} validationSchema={loginSchema} onSubmit={handleSubmit}>
-        <FormStyled autoComplete="off">
+        <FormStyled>
           <WrapperField>
             <WrapperIcon>
               <FieldStyled
@@ -62,6 +59,7 @@ export const LoginForm = () => {
                 name="email"
                 title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                 placeholder="E-mail"
+                autoComplete="off"
                 required
               />
               <EmailIcon />
@@ -70,21 +68,19 @@ export const LoginForm = () => {
             <WrapperIcon3>
               <WrapperIcon2>
                 <FieldStyled
-                  type={showPassword1 ? 'text' : 'password'}
+                  type={showPasswords.password1 ? 'text' : 'password'}
                   name="password"
                   title="Enter the password more difficult, letter, digit, capital letter."
                   placeholder="Password"
+                  autoComplete="off"
                   required
                 />
                 <PasswordlIcon />
               </WrapperIcon2>
-              <PasswordlIconLook>
-                {showPassword1 ? (
-                  <FaEyeStyled onClick={togglePasswordVisibility1} />
-                ) : (
-                  <FaEyeSlashStyled onClick={togglePasswordVisibility1} />
-                )}
-              </PasswordlIconLook>
+              <TogglePasswordIcon
+                showPassword={showPasswords.password1}
+                onToggle={() => togglePasswordVisibility('password1')}
+              />
             </WrapperIcon3>
             <FormError name="password" />
           </WrapperField>

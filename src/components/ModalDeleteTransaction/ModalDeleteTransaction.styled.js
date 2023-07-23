@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ModalWraper = styled.div``;
+export const ModalWrapper = styled.div``;
 
 export const ModalContainer = styled.div`
   display: flex;

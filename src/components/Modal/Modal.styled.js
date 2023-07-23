@@ -9,6 +9,7 @@ export const Backdrop = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  overscroll-behavior: contain;
 `;
 
 export const ModalStyled = styled.div`
@@ -48,4 +49,8 @@ export const IconCloseModal = styled.div`
 export const ExitModalBtn = styled(VscClose)`
   width: ${({ theme }) => theme.spacing(7.4)};
   height: ${({ theme }) => theme.spacing(7.4)};
+  &:hover {
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
 `;

@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 import { registerSchema } from 'services/validation/validationRegisterSchema';
 import { usePasswordToggle } from 'hooks/usePasswordToggle';
@@ -15,12 +14,9 @@ import { ConfirmPasswordIndicator } from 'components/ConfirmPasswordIndicator/Co
 import { LinkStyled, NameRegisterIcon } from './RegisterForm.styled';
 import {
   EmailIcon,
-  FaEyeSlashStyled,
-  FaEyeStyled,
   FieldStyled,
   FormStyled,
   PasswordlIcon,
-  PasswordlIconLook,
   WrapperButton,
   WrapperField,
   WrapperForm,
@@ -28,10 +24,10 @@ import {
   WrapperIcon2,
   WrapperIcon3,
 } from 'components/LoginForm/LoginForm.styled';
+import { TogglePasswordIcon } from 'components/TogglePasswordVisibility/TogglePasswordVisibility';
 
 export const RegisterForm = () => {
-  const { showPassword1, showPassword2, togglePasswordVisibility1, togglePasswordVisibility2 } =
-    usePasswordToggle();
+  const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1', 'password2']);
 
   const dispatch = useDispatch();
 
@@ -61,12 +57,24 @@ export const RegisterForm = () => {
           <FormStyled autoComplete="off">
             <WrapperField>
               <WrapperIcon>
-                <FieldStyled type="text" name="username" placeholder="First name" required />
+                <FieldStyled
+                  type="text"
+                  name="username"
+                  placeholder="First name"
+                  autoComplete="off"
+                  required
+                />
                 <NameRegisterIcon />
               </WrapperIcon>
               <FormError name="username" touched={touched} errors={errors} />
               <WrapperIcon>
-                <FieldStyled type="email" name="email" placeholder="Email" required />
+                <FieldStyled
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  autoComplete="off"
+                  required
+                />
                 <EmailIcon />
               </WrapperIcon>
               <FormError name="email" touched={touched} errors={errors} />
@@ -74,7 +82,7 @@ export const RegisterForm = () => {
               <WrapperIcon3>
                 <WrapperIcon2>
                   <FieldStyled
-                    type={showPassword1 ? 'text' : 'password'}
+                    type={showPasswords.password1 ? 'text' : 'password'}
                     name="password"
                     title="Enter the password more difficult, letter, digit, capital letter."
                     placeholder="Password"
@@ -82,16 +90,14 @@ export const RegisterForm = () => {
                     value={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    autoComplete="off"
                   />
                   <PasswordlIcon />
                 </WrapperIcon2>
-                <PasswordlIconLook>
-                  {showPassword1 ? (
-                    <FaEyeStyled onClick={togglePasswordVisibility1} />
-                  ) : (
-                    <FaEyeSlashStyled onClick={togglePasswordVisibility1} />
-                  )}
-                </PasswordlIconLook>
+                <TogglePasswordIcon
+                  showPassword={showPasswords.password1}
+                  onToggle={() => togglePasswordVisibility('password1')}
+                />
               </WrapperIcon3>
               <IndicatorPasswordStrenghtatyled values={values} />
               <FormError name="password" touched={touched} errors={errors} />
@@ -99,21 +105,19 @@ export const RegisterForm = () => {
               <WrapperIcon3>
                 <WrapperIcon2>
                   <FieldStyled
-                    type={showPassword2 ? 'text' : 'password'}
+                    type={showPasswords.password2 ? 'text' : 'password'}
                     name="confirmPassword"
                     title="Enter the password more difficult, letter, digit, capital letter."
                     placeholder="confirmPassword"
+                    autoComplete="off"
                     required
                   />
                   <PasswordlIcon />
                 </WrapperIcon2>
-                <PasswordlIconLook>
-                  {showPassword2 ? (
-                    <FaEyeStyled onClick={togglePasswordVisibility2} />
-                  ) : (
-                    <FaEyeSlashStyled onClick={togglePasswordVisibility2} />
-                  )}
-                </PasswordlIconLook>
+                <TogglePasswordIcon
+                  showPassword={showPasswords.password2}
+                  onToggle={() => togglePasswordVisibility('password2')}
+                />
               </WrapperIcon3>
               <ConfirmPasswordIndicator
                 values={values}
