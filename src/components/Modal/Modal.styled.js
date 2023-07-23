@@ -9,6 +9,7 @@ export const Backdrop = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  overscroll-behavior: contain;
 `;
 
 export const ModalStyled = styled.div`

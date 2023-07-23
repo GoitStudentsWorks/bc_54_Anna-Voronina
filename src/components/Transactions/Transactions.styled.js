@@ -3,6 +3,8 @@ import { LiaPenSolid } from 'react-icons/lia';
 
 export const AllTransactionsDetails = styled.ul`
   list-style: none;
+  height: 75vh;
+  overflow: auto;
 `;
 
 export const TransactionDetails = styled.ul`
@@ -53,7 +55,7 @@ export const TableWrapper = styled.div`
 export const Table = styled.table`
   display: block;
   width: 100%;
-  height: 36vh;
+  height: 356px;
   overflow-y: auto;
 
   @media screen and (min-width: 1280px) {
@@ -134,7 +136,7 @@ export const TableRow = styled.tr`
     content: '';
     width: 100%;
     height: 1px;
-    background-color: #b8bbc2;
+    background-color: ${({ theme }) => theme.colors.white};
   }
 `;
 
@@ -266,29 +268,17 @@ export const BtnEditTransaction = styled.button`
     outline: none;
   }
 `;
-// #FF868D' : '#98FB98
+
 export const StyledBiPencil = styled(LiaPenSolid)`
   width: 14px;
   height: 14px;
   fill: rgba(255, 255, 255, 0.3);
 `;
 
-export const NoTransactions = styled.div`
-  display: block;
-  font-size: 16px;
-  font-weight: 700;
-  color: #fbfbfb;
-  text-align: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  max-width: 200px;
-  margin: 0 auto;
-`;
 export const TableTop = styled.table`
-  width: 704px;
-  margin-bottom: 8px;
+  width: 708px;
 
   @media only screen and (min-width: 1280px) {
-    width: 715px;
+    width: 718px;
   }
 `;

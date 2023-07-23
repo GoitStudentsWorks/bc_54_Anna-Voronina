@@ -16,15 +16,12 @@ import {
   ButtonEditTransaction,
   BtnEditTransaction,
   ButtonDelTransaction,
-  NoTransactions,
   TableDash,
   TableWrapper,
   AllTransactionsDetails,
   SumEl,
-  Thead,
   TableTop,
 } from './Transactions.styled';
-// import { formatMoney } from 'utils/formatMoney';
 
 import { useEffect, useState } from 'react';
 import {
@@ -43,6 +40,7 @@ import { getDateForSort } from 'services/getDateNow';
 import { selectIsModalDeleteTransactionOpen } from 'redux/global/globalSelectors';
 import { Modal } from 'components/Modal/Modal';
 import ModalDeleteTransaction from 'components/ModalDeleteTransaction/ModalDeleteTransaction';
+import { Greeting } from 'components/Greeting/Greeting';
 
 const Transactions = () => {
   const [transactionIdToDelete, setTransactionIdToDelete] = useState(null);
@@ -249,9 +247,7 @@ const Transactions = () => {
       </MediaQuery>
     </>
   ) : (
-    <NoTransactions>
-      No transactions yet! Add them by pressing "+" button
-    </NoTransactions>
+    <Greeting />
   );
 };
 

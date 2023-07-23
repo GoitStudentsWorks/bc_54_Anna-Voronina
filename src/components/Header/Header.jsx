@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   ExitBtn,
@@ -24,6 +23,10 @@ export const Header = () => {
   const dispatch = useDispatch();
   const isModalOpen = useSelector(selectIsModalLogoutOpen);
 
+  const disableScroll = () => {
+    document.body.style.overflow = 'hidden';
+  };
+
   return (
     <header>
       <HeaderContainer>
@@ -42,7 +45,10 @@ export const Header = () => {
               <ExitText>Exit</ExitText>
             </ExitBtn>
             {isModalOpen && (
-              <Modal closeReducer={closeModalLogout}>
+              <Modal
+                closeReducer={closeModalLogout}
+                onAfterOpen={disableScroll}
+              >
                 <ModalLogOut />
               </Modal>
             )}
