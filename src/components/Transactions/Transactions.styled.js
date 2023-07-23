@@ -53,16 +53,33 @@ export const TableWrapper = styled.div`
 export const Table = styled.table`
   display: block;
   width: 100%;
-  height: 422px;
+  height: 36vh;
   overflow-y: auto;
 
   @media screen and (min-width: 1280px) {
-    margin-top: 46px;
     width: 715px;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    margin-top: 20px;
+  &::-webkit-scrollbar {
+    width: 6px;
+    opacity: 0.3;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #734aef;
+    border-radius: 20px;
+    opacity: 0.3;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ff868d;
+    border-radius: 20px;
+    opacity: 0.3;
+  }
+  & tbody {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
   }
 `;
 export const TableBody = styled.tbody`
@@ -76,13 +93,14 @@ export const TableHead = styled.tr`
   width: 100%;
   height: 56px;
   color: #fbfbfb;
-  background-color: rgba(82, 59, 126, 0.6);
+  background-color: rgba(82, 59, 126, 1);
   padding-left: 20px;
   padding-top: 16px;
   padding-bottom: 16px;
   border-radius: 8px;
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(50px);
+  backdrop-filter: blur(500px);
+  overflow-y: auto;
 `;
 
 export const TableHeader = styled.th`
@@ -101,6 +119,7 @@ export const TableRow = styled.tr`
   text-align: left;
   position: relative;
   padding-left: 20px;
+  padding-right: 5px;
   margin: 0;
   display: grid;
   grid-template-columns: 2fr 0.9fr 1.8fr 1.5fr 1.5fr 0.8fr 1fr;
@@ -230,4 +249,12 @@ export const NoTransactions = styled.div`
   padding-bottom: 40px;
   max-width: 200px;
   margin: 0 auto;
+`;
+export const TableTop = styled.table`
+  width: 704px;
+  margin-bottom: 8px;
+
+  @media only screen and (min-width: 1280px) {
+    width: 715px;
+  }
 `;
