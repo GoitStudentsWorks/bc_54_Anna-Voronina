@@ -83,6 +83,7 @@ export const getSummaryThunk = createAsyncThunk(
   async ({ month, year }, { rejectedWithValue }) => {
     try {
       const data = await fetchTransactionsSummary({ month, year });
+
       return data;
     } catch (error) {
       return rejectedWithValue(error.message);

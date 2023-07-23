@@ -1,10 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSummaryThunk } from 'redux/transaction/transactionOperations';
-import {
-  selectPeriodTotal,
-  selectTransactions,
-} from 'redux/transaction/transactionSelectors';
+import { selectTransactions } from 'redux/transaction/transactionSelectors';
 import { getMonthAndYear } from 'services/getDateNow';
 import {
   BalanceIcon,
@@ -15,21 +12,25 @@ import {
 } from './Balance.styled';
 
 export const Balance = () => {
-  const total = useSelector(selectPeriodTotal);
-  const transactions = useSelector(selectTransactions);
   const dispatch = useDispatch();
   const date = useRef(getMonthAndYear());
+  const transaction = useSelector(selectTransactions);
+  const [currentTotalBalance, setcurrentTotalBalance] = useState();
 
   useEffect(() => {
-    dispatch(getSummaryThunk(date));
-  }, [dispatch, transactions]);
+    dispatch(getSummaryThunk(date)).then(data =>
+      setcurrentTotalBalance(data.payload.periodTotal)
+    );
+  }, [dispatch, transaction]);
 
   return (
     <ContainerStyled>
       <TitleStyled>Your balance</TitleStyled>
       <TextStyled>
         <BalanceIcon />
-        <SpanStyled total={total}>{Number(total).toFixed(2)}</SpanStyled>
+        <SpanStyled total={currentTotalBalance}>
+          {Number(currentTotalBalance).toFixed(2)}
+        </SpanStyled>
       </TextStyled>
     </ContainerStyled>
   );

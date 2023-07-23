@@ -37,12 +37,10 @@ export const StyledInp = styled.input`
   display: none;
 `;
 
-export const StyledLabelWrapper = styled.label`
+export const StyledLabelWrapper = styled.span`
   display: inline-block;
   width: 50%;
   height: 100%;
-
-  /* left: -100%; */
   &:hover {
     cursor: pointer;
   }
@@ -52,20 +50,25 @@ export const IncomeSpan = styled.span`
     isSelected === true ? '#ffb627' : 'rgb(251, 251, 251)'};
 `;
 
-export const IncomeBtn = styled.div`
+export const RoundedButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: ${({ theme }) => theme.spacing(11)};
   height: ${({ theme }) => theme.spacing(11)};
   border-radius: 50%;
-  background-color: #ffb627;
+  background-color: ${({ type }) => (type === 'true' ? '#ffb627' : '#ff868d')};
   box-shadow: 0px 0px 7px 5px rgba(255, 182, 39, 0.33);
 
   position: absolute;
   left: -3%;
   top: 50%;
-  transform: translateY(-50%);
+
+  transform: ${({ type }) =>
+    type === 'true'
+      ? 'translateY(-50%) translateX(0)'
+      : 'translateY(-50%) translateX(100%)'};
+  transition: ${({ theme }) => theme.transitions.color};
 `;
 
 export const PlusButton = styled(BsPlusLg)`
@@ -75,22 +78,6 @@ export const PlusButton = styled(BsPlusLg)`
 export const ExpenseSpan = styled.span`
   color: ${({ isSelected }) =>
     isSelected === true ? '#ff868d' : 'rgb(251, 251, 251)'};
-`;
-
-export const ExpenseBtn = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: ${({ theme }) => theme.spacing(11)};
-  height: ${({ theme }) => theme.spacing(11)};
-  border-radius: 50%;
-  background-color: #ff868d;
-  box-shadow: 0px 0px 7px 5px rgba(255, 134, 141, 0.33);
-
-  position: absolute;
-  right: -3%;
-  top: 50%;
-  transform: translateY(-50%);
 `;
 
 export const MinusButton = styled(HiOutlineMinus)`
