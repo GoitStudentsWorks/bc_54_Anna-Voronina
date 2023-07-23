@@ -43,6 +43,7 @@ export const SumText = styled.span`
   color: ${props => props.color};
 `;
 export const TableWrapper = styled.div`
+  position: relative;
   @media screen and (min-width: 1280px) {
     padding-top: 46px;
     padding-left: 70px;
@@ -57,7 +58,6 @@ export const Table = styled.table`
   overflow-y: auto;
 
   @media screen and (min-width: 1280px) {
-    margin-top: 46px;
     width: 715px;
   }
 
@@ -66,7 +66,32 @@ export const Table = styled.table`
   }
   & thead {
     position: sticky;
+    top: 0;
+    backdrop-filter: blur(500px);
+    /* table-layout: fixed; */
   }
+  &::-webkit-scrollbar {
+    width: 6px;
+    opacity: 0.3;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #734aef;
+    border-radius: 20px;
+    opacity: 0.3;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ff868d;
+    border-radius: 20px;
+    opacity: 0.3;
+  }
+  & tbody {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+  }
+  /* table-layout: fixed; */
 `;
 export const TableBody = styled.tbody`
   display: block;
@@ -76,17 +101,24 @@ export const TableHead = styled.tr`
   border-top: none;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr 1.2fr 1.7fr 0.7fr 0.4fr 0.6fr;
-  width: 100%;
+  width: 102%;
   height: 56px;
   color: #fbfbfb;
-  background-color: rgba(82, 59, 126, 0.6);
+  background-color: rgba(82, 59, 126, 1);
   padding-left: 20px;
   padding-top: 16px;
   padding-bottom: 16px;
   border-radius: 8px;
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(50px);
-  position: sticky;
+
+  /* position: sticky; */
+  backdrop-filter: blur(500px);
+  overflow-y: auto;
+  /* height: 110px; */
+  & th {
+    /* position: sticky; */
+    top: 0;
+  }
 `;
 
 export const TableHeader = styled.th`
@@ -94,6 +126,7 @@ export const TableHeader = styled.th`
   font-size: 16px;
   color: #fbfbfb;
   text-align: left;
+  top: 0;
 `;
 
 export const TableRow = styled.tr`
@@ -235,8 +268,10 @@ export const NoTransactions = styled.div`
   max-width: 200px;
   margin: 0 auto;
 `;
-export const Thead = styled.thead`
-  position: sticky;
-  top: 0;
-  z-index: 1;
+export const TableTop = styled.table`
+  width: 704px;
+  margin-bottom: 8px;
+  @media screen and(min-width:1280px) {
+    width: 740px;
+  }
 `;

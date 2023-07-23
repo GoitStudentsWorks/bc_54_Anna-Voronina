@@ -22,6 +22,7 @@ import {
   AllTransactionsDetails,
   SumEl,
   Thead,
+  TableTop,
 } from './Transactions.styled';
 // import { formatMoney } from 'utils/formatMoney';
 
@@ -160,8 +161,8 @@ const Transactions = () => {
 
       <MediaQuery minWidth={768}>
         <TableWrapper>
-          <Table>
-            <Thead>
+          <TableTop>
+            <thead>
               <TableHead>
                 <TableHeader>Date</TableHeader>
                 <TableHeader>Type</TableHeader>
@@ -169,8 +170,9 @@ const Transactions = () => {
                 <TableHeader>Comment</TableHeader>
                 <TableHeader>Sum</TableHeader>
               </TableHead>
-            </Thead>
-
+            </thead>
+          </TableTop>
+          <Table>
             <tbody>
               {sortedTransactions.map(transaction => {
                 return (
