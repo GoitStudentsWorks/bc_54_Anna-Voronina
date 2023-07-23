@@ -10,6 +10,8 @@ import { logInThunk } from 'redux/auth/authOperations';
 
 import {
   EmailIcon,
+  FaEyeSlashStyled,
+  FaEyeStyled,
   FieldStyled,
   FormStyled,
   PasswordlIcon,
@@ -39,9 +41,7 @@ export const LoginForm = () => {
     dispatch(logInThunk(value))
       .unwrap()
       .then(data => {
-        toast.success(
-          `You entered now owe us 1.000.000$ ${data.user.username}`
-        );
+        toast.success(`You entered now owe us 1.000.000$ ${data.user.username}`);
       })
       .catch(error => {
         toast.error(error.message);
@@ -53,11 +53,7 @@ export const LoginForm = () => {
   return (
     <WrapperForm>
       <Logo />
-      <Formik
-        initialValues={initialValues}
-        validationSchema={loginSchema}
-        onSubmit={handleSubmit}
-      >
+      <Formik initialValues={initialValues} validationSchema={loginSchema} onSubmit={handleSubmit}>
         <FormStyled autoComplete="off">
           <WrapperField>
             <WrapperIcon>
@@ -84,9 +80,9 @@ export const LoginForm = () => {
               </WrapperIcon2>
               <PasswordlIconLook>
                 {showPassword1 ? (
-                  <FaEye onClick={togglePasswordVisibility1} />
+                  <FaEyeStyled onClick={togglePasswordVisibility1} />
                 ) : (
-                  <FaEyeSlash onClick={togglePasswordVisibility1} />
+                  <FaEyeSlashStyled onClick={togglePasswordVisibility1} />
                 )}
               </PasswordlIconLook>
             </WrapperIcon3>

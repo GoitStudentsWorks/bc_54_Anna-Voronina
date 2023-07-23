@@ -15,6 +15,8 @@ import { ConfirmPasswordIndicator } from 'components/ConfirmPasswordIndicator/Co
 import { LinkStyled, NameRegisterIcon } from './RegisterForm.styled';
 import {
   EmailIcon,
+  FaEyeSlashStyled,
+  FaEyeStyled,
   FieldStyled,
   FormStyled,
   PasswordlIcon,
@@ -85,9 +87,9 @@ export const RegisterForm = () => {
                 </WrapperIcon2>
                 <PasswordlIconLook>
                   {showPassword1 ? (
-                    <FaEye onClick={togglePasswordVisibility1} />
+                    <FaEyeStyled onClick={togglePasswordVisibility1} />
                   ) : (
-                    <FaEyeSlash onClick={togglePasswordVisibility1} />
+                    <FaEyeSlashStyled onClick={togglePasswordVisibility1} />
                   )}
                 </PasswordlIconLook>
               </WrapperIcon3>
@@ -100,16 +102,16 @@ export const RegisterForm = () => {
                     type={showPassword2 ? 'text' : 'password'}
                     name="confirmPassword"
                     title="Enter the password more difficult, letter, digit, capital letter."
-                    placeholder="confirmPassword Password"
+                    placeholder="confirmPassword"
                     required
                   />
                   <PasswordlIcon />
                 </WrapperIcon2>
                 <PasswordlIconLook>
                   {showPassword2 ? (
-                    <FaEye onClick={togglePasswordVisibility2} />
+                    <FaEyeStyled onClick={togglePasswordVisibility2} />
                   ) : (
-                    <FaEyeSlash onClick={togglePasswordVisibility2} />
+                    <FaEyeSlashStyled onClick={togglePasswordVisibility2} />
                   )}
                 </PasswordlIconLook>
               </WrapperIcon3>

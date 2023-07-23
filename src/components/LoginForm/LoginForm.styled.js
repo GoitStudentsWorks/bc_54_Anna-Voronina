@@ -1,6 +1,8 @@
 import { Field, Form } from 'formik';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { IoMdMail, IoMdLock } from 'react-icons/io';
 import styled from 'styled-components';
+import { currencyImgDesk } from 'assets/images/currency_desk.png';
 
 export const WrapperForm = styled.div`
   padding: 96px 20px;
@@ -108,4 +110,12 @@ export const PasswordlIconLook = styled.div`
   position: absolute;
   right: 0;
   top: 63%;
+`;
+
+export const FaEyeStyled = styled(FaEye)`
+  cursor: pointer;
+`;
+
+export const FaEyeSlashStyled = styled(FaEyeSlash)`
+  cursor: pointer;
 `;
