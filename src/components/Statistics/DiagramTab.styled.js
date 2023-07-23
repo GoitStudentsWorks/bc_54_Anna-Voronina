@@ -5,6 +5,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
 
   @media screen and (min-width: 768px) {
     display: flex;
@@ -33,6 +35,7 @@ export const StyledTitle = styled.h1`
   font-size: 30px;
   font-weight: 400;
   margin-top: 28px;
+  align-self: flex-start;
 
   @media only screen and (min-width: 768px) {
     margin-top: 32px;

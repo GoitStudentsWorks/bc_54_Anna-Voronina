@@ -35,7 +35,6 @@ export const DiagramTab = () => {
   return (
     <>
       <StyledTitle>Statistics</StyledTitle>
-
       <Wrapper>
         <StyledWrapperLeft>
           <Chart resp={categorySummary} colorStyle={colors} />
