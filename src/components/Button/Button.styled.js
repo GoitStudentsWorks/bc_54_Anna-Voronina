@@ -18,6 +18,16 @@ export const ButtonStyled = styled.button`
   text-transform: uppercase;
   border: none;
   cursor: pointer;
+  outline: none;
+  transition: transform ${({ theme }) => theme.transitions.regular};
+
+  &:focus,
+  &:hover {
+    border-radius: 18px;
+    border: 2px solid yellow;
+    transform: scale(1.01);
+    box-shadow: 1px 5px 8px 0px rgba(0, 0, 0, 0.5);
+  }
 
   /* Вариант "primary" */
   ${({ variant }) =>

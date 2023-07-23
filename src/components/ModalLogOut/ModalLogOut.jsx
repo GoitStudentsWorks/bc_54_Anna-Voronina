@@ -23,7 +23,7 @@ export const ModalLogOut = () => {
   return (
     <ModalWraper>
       <ModalContainer>
-        <Title>{user.username}, are you sure you want to log out?</Title>
+        <Title>{user.username}, are you sure that you want to logout? 🧐</Title>
         <ButtonWrapper>
           <Button
             type="button"

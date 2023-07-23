@@ -39,7 +39,8 @@ export const ModalAddTransaction = () => {
   }, [dispatch]);
 
   const allCategories = useSelector(selectCategories);
-  const [expenseCategories, incomeCategories] = useCategoriesType(allCategories);
+  const [expenseCategories, incomeCategories] =
+    useCategoriesType(allCategories);
 
   const initialValues = {
     transactionDate: new Date().toISOString().slice(0, 10),
@@ -53,11 +54,16 @@ export const ModalAddTransaction = () => {
     const newData = {
       ...value,
       type: selectedType ? 'INCOME' : 'EXPENSE',
-      amount: `${!selectedType ? Number(value.amount) * -1 : Number(value.amount)}`,
-      categoryId: `${!selectedType ? selectedOption?.id ?? defCategoryId : incomeCategories[0].id}`,
+      amount: `${
+        !selectedType ? Number(value.amount) * -1 : Number(value.amount)
+      }`,
+      categoryId: `${
+        !selectedType
+          ? selectedOption?.id ?? defCategoryId
+          : incomeCategories[0].id
+      }`,
     };
     dispatch(addTransactionThunk(newData));
-    dispatch(closeModalAddTransaction());
   };
 
   const handleChangeSelect = item => {
@@ -72,7 +78,6 @@ export const ModalAddTransaction = () => {
   const changeTypeOfTransaction = () => {
     setSelectedType(prev => !prev);
   };
-  console.log(selectedType);
   return (
     <ModalAddWrapper>
       <ModalTransactionTitle>Add transaction</ModalTransactionTitle>
@@ -106,17 +111,34 @@ export const ModalAddTransaction = () => {
 
           {/* ========================= INPUTS ========================= */}
           <InputWrapper>
-            <StyledField type="number" name="amount" placeholder="0.00" weight="600" required />
-
-            <StyledField type="date" name="transactionDate" />
+            <StyledField
+              type="number"
+              name="amount"
+              placeholder="0.00"
+              weight="600"
+              required
+              autoComplete="off"
+              autoFocus={true}
+            />
+            <StyledField
+              autoComplete="off"
+              type="date"
+              name="transactionDate"
+            />
           </InputWrapper>
-          <StyledField type="text" name="comment" placeholder="Comment" />
+          <StyledField
+            autoComplete="off"
+            type="text"
+            name="comment"
+            placeholder="Comment"
+          />
 
           {/* ========================= BUTTONS ========================= */}
           <ButtonWrapper>
             <FormError name="amount" />
             <Button text="ADD" type="submit" />
             <Button
+              name="cancel"
               text="CANCEL"
               variant="secondary"
               onClick={() => dispatch(closeModalAddTransaction())}
