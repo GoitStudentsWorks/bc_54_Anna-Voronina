@@ -10,12 +10,9 @@ import { logInThunk } from 'redux/auth/authOperations';
 
 import {
   EmailIcon,
-  FaEyeSlashStyled,
-  FaEyeStyled,
   FieldStyled,
   FormStyled,
   PasswordlIcon,
-  PasswordlIconLook,
   WrapperButton,
   WrapperField,
   WrapperForm,
@@ -27,9 +24,10 @@ import { Logo } from 'components/Logo/Logo';
 import { FormError } from 'components/FormError/FormError';
 
 import { Button } from 'components/Button/Button';
+import { TogglePasswordIcon } from 'components/TogglePasswordVisibility/TogglePasswordVisibility';
 
 export const LoginForm = () => {
-  const { showPassword1, togglePasswordVisibility1 } = usePasswordToggle();
+  const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1', 'password2']);
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -70,7 +68,7 @@ export const LoginForm = () => {
             <WrapperIcon3>
               <WrapperIcon2>
                 <FieldStyled
-                  type={showPassword1 ? 'text' : 'password'}
+                  type={showPasswords.password1 ? 'text' : 'password'}
                   name="password"
                   title="Enter the password more difficult, letter, digit, capital letter."
                   placeholder="Password"
@@ -79,13 +77,10 @@ export const LoginForm = () => {
                 />
                 <PasswordlIcon />
               </WrapperIcon2>
-              <PasswordlIconLook>
-                {showPassword1 ? (
-                  <FaEyeStyled onClick={togglePasswordVisibility1} />
-                ) : (
-                  <FaEyeSlashStyled onClick={togglePasswordVisibility1} />
-                )}
-              </PasswordlIconLook>
+              <TogglePasswordIcon
+                showPassword={showPasswords.password1}
+                onToggle={() => togglePasswordVisibility('password1')}
+              />
             </WrapperIcon3>
             <FormError name="password" />
           </WrapperField>

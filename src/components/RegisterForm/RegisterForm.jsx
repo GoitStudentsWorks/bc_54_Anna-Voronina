@@ -14,12 +14,9 @@ import { ConfirmPasswordIndicator } from 'components/ConfirmPasswordIndicator/Co
 import { LinkStyled, NameRegisterIcon } from './RegisterForm.styled';
 import {
   EmailIcon,
-  FaEyeSlashStyled,
-  FaEyeStyled,
   FieldStyled,
   FormStyled,
   PasswordlIcon,
-  PasswordlIconLook,
   WrapperButton,
   WrapperField,
   WrapperForm,
@@ -27,10 +24,10 @@ import {
   WrapperIcon2,
   WrapperIcon3,
 } from 'components/LoginForm/LoginForm.styled';
+import { TogglePasswordIcon } from 'components/TogglePasswordVisibility/TogglePasswordVisibility';
 
 export const RegisterForm = () => {
-  const { showPassword1, showPassword2, togglePasswordVisibility1, togglePasswordVisibility2 } =
-    usePasswordToggle();
+  const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1', 'password2']);
 
   const dispatch = useDispatch();
 
@@ -85,7 +82,7 @@ export const RegisterForm = () => {
               <WrapperIcon3>
                 <WrapperIcon2>
                   <FieldStyled
-                    type={showPassword1 ? 'text' : 'password'}
+                    type={showPasswords.password1 ? 'text' : 'password'}
                     name="password"
                     title="Enter the password more difficult, letter, digit, capital letter."
                     placeholder="Password"
@@ -97,13 +94,10 @@ export const RegisterForm = () => {
                   />
                   <PasswordlIcon />
                 </WrapperIcon2>
-                <PasswordlIconLook>
-                  {showPassword1 ? (
-                    <FaEyeStyled onClick={togglePasswordVisibility1} />
-                  ) : (
-                    <FaEyeSlashStyled onClick={togglePasswordVisibility1} />
-                  )}
-                </PasswordlIconLook>
+                <TogglePasswordIcon
+                  showPassword={showPasswords.password1}
+                  onToggle={() => togglePasswordVisibility('password1')}
+                />
               </WrapperIcon3>
               <IndicatorPasswordStrenghtatyled values={values} />
               <FormError name="password" touched={touched} errors={errors} />
@@ -111,7 +105,7 @@ export const RegisterForm = () => {
               <WrapperIcon3>
                 <WrapperIcon2>
                   <FieldStyled
-                    type={showPassword2 ? 'text' : 'password'}
+                    type={showPasswords.password2 ? 'text' : 'password'}
                     name="confirmPassword"
                     title="Enter the password more difficult, letter, digit, capital letter."
                     placeholder="confirmPassword"
@@ -120,13 +114,10 @@ export const RegisterForm = () => {
                   />
                   <PasswordlIcon />
                 </WrapperIcon2>
-                <PasswordlIconLook>
-                  {showPassword2 ? (
-                    <FaEyeStyled onClick={togglePasswordVisibility2} />
-                  ) : (
-                    <FaEyeSlashStyled onClick={togglePasswordVisibility2} />
-                  )}
-                </PasswordlIconLook>
+                <TogglePasswordIcon
+                  showPassword={showPasswords.password2}
+                  onToggle={() => togglePasswordVisibility('password2')}
+                />
               </WrapperIcon3>
               <ConfirmPasswordIndicator
                 values={values}
