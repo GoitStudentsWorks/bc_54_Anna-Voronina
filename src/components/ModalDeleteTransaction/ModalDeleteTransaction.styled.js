@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ModalWraper = styled.div``;
+export const ModalWrapper = styled.div``;
 
 export const ModalContainer = styled.div`
   display: flex;
@@ -29,12 +29,6 @@ export const ButtonWrapper = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 90px;
-
-  /* @media screen and (min-width: 320px) {
-    flex-direction: row;
-    gap: 40px;
-    justify-content: flex-end;
-  } */
 `;
 
 export const CloseBtn = styled.button``;
