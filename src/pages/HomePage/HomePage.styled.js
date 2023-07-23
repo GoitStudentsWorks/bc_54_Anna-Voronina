@@ -5,9 +5,5 @@ export const HomePageWrapper = styled.div`
     overflow: auto;
     padding-left: 20px;
     padding-right: 20px;
-    height: 100vh;
-  }
-  @media only screen and (min-width: 768px) and (max-width: 1279px) {
-    height: 57vh;
   }
 `;

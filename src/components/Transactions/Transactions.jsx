@@ -21,10 +21,8 @@ import {
   TableWrapper,
   AllTransactionsDetails,
   SumEl,
-  Thead,
   TableTop,
 } from './Transactions.styled';
-// import { formatMoney } from 'utils/formatMoney';
 
 import { useEffect } from 'react';
 import {

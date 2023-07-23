@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
     align-items: flex-start;
     justify-content: space-between;
     gap: 32px;
-    padding-bottom: 15px;
+    padding: 0 0 15px 0;
   }
 
   @media screen and (min-width: 1280px) {
@@ -34,12 +34,16 @@ export const StyledWrapperRight = styled.div`
 export const StyledTitle = styled.h1`
   font-size: 30px;
   font-weight: 400;
-  margin-top: 28px;
-  align-self: flex-start;
+  margin-top: 40px;
+  margin-bottom: 8px;
+
+  @media only screen and (min-width: 768px) {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
 
   @media only screen and (min-width: 768px) {
     margin-top: 32px;
-    margin-bottom: 20px;
-    margin-left: 84px;
+    margin-left: 85px;
   }
 `;

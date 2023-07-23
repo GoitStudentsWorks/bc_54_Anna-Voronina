@@ -3,6 +3,7 @@ import 'modern-normalize';
 
 export const GlobalStyle = createGlobalStyle`
 body {
+  min-height: 100vh;
   margin: 0;
   font-family: 'PoppinsRegular', sans-serif;
   font-size: 18px;
@@ -15,8 +16,7 @@ body {
 
   background: rgb(86,43,134);
   background: linear-gradient(338deg, rgba(86,43,134,1) 12%, rgba(37,21,86,1) 54%, rgba(86,42,139,1) 90%);
-  background-repeat: no-repeat; 
-  
+  background-repeat: no-repeat;  
 
   @media only screen and (min-width: 1280px) {
    overflow: hidden;

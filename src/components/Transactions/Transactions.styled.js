@@ -53,7 +53,7 @@ export const TableWrapper = styled.div`
 export const Table = styled.table`
   display: block;
   width: 100%;
-  height: 36vh;
+  height: 356px;
   overflow-y: auto;
 
   @media screen and (min-width: 1280px) {
@@ -134,7 +134,7 @@ export const TableRow = styled.tr`
     content: '';
     width: 100%;
     height: 1px;
-    background-color: #b8bbc2;
+    background-color: ${({ theme }) => theme.colors.white};
   }
 `;
 
@@ -251,10 +251,9 @@ export const NoTransactions = styled.div`
   margin: 0 auto;
 `;
 export const TableTop = styled.table`
-  width: 704px;
-  margin-bottom: 8px;
+  width: 708px;
 
   @media only screen and (min-width: 1280px) {
-    width: 715px;
+    width: 718px;
   }
 `;

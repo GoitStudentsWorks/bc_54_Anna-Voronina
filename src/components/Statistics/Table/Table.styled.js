@@ -78,7 +78,6 @@ export const StyledTotalWrapper = styled.div`
   display: flex;
   gap: 20px;
   flex-direction: column;
-  margin-bottom: 40px;
 `;
 
 export const StyledP = styled.p`
