@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
@@ -54,7 +54,7 @@ export const LoginForm = () => {
     <WrapperForm>
       <Logo />
       <Formik initialValues={initialValues} validationSchema={loginSchema} onSubmit={handleSubmit}>
-        <FormStyled autoComplete="off">
+        <FormStyled>
           <WrapperField>
             <WrapperIcon>
               <FieldStyled
@@ -62,6 +62,7 @@ export const LoginForm = () => {
                 name="email"
                 title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                 placeholder="E-mail"
+                autoComplete="off"
                 required
               />
               <EmailIcon />
@@ -74,6 +75,7 @@ export const LoginForm = () => {
                   name="password"
                   title="Enter the password more difficult, letter, digit, capital letter."
                   placeholder="Password"
+                  autoComplete="off"
                   required
                 />
                 <PasswordlIcon />

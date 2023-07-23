@@ -26,6 +26,8 @@ import {
   StyledLabelWrapper,
 } from './ModalAddTransaction.styled';
 import { useCategoriesType } from 'hooks/categoriesFilter';
+import { transactionsSchema } from 'services/validation/validationTransactions';
+import { FormError } from 'components/FormError/FormError';
 
 export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
@@ -79,7 +81,11 @@ export const ModalAddTransaction = () => {
   return (
     <ModalAddWrapper>
       <ModalTransactionTitle>Add transaction</ModalTransactionTitle>
-      <Formik onSubmit={handleSubmit} initialValues={initialValues}>
+      <Formik
+        validationSchema={transactionsSchema}
+        onSubmit={handleSubmit}
+        initialValues={initialValues}
+      >
         <StyledForm>
           {/* ========================= Radio Buttons ========================= */}
           <RadioWrapperChoose>
@@ -129,7 +135,8 @@ export const ModalAddTransaction = () => {
 
           {/* ========================= BUTTONS ========================= */}
           <ButtonWrapper>
-            <Button name="add" text="ADD" type="submit" />
+            <FormError name="amount" />
+            <Button text="ADD" type="submit" />
             <Button
               name="cancel"
               text="CANCEL"

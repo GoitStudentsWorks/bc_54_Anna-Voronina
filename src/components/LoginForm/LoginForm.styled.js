@@ -2,7 +2,6 @@ import { Field, Form } from 'formik';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { IoMdMail, IoMdLock } from 'react-icons/io';
 import styled from 'styled-components';
-import { currencyImgDesk } from 'assets/images/currency_desk.png';
 
 export const WrapperForm = styled.div`
   padding: 96px 20px;

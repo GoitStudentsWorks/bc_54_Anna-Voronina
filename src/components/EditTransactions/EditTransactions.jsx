@@ -21,6 +21,8 @@ import {
   IncomeSpanEditTransaction,
   StyledCategoryName,
 } from './EditTransactions.styled.js';
+import { transactionsSchema } from 'services/validation/validationTransactions.js';
+import { FormError } from 'components/FormError/FormError.jsx';
 
 export const EditTransactions = () => {
   const dispatch = useDispatch();
@@ -80,7 +82,11 @@ export const EditTransactions = () => {
   return (
     <ModalAddWrapper>
       <ModalTransactionTitle>Edit transaction</ModalTransactionTitle>
-      <Formik onSubmit={handleSubmit} initialValues={initialValues}>
+      <Formik
+        validationSchema={transactionsSchema}
+        onSubmit={handleSubmit}
+        initialValues={initialValues}
+      >
         <StyledForm>
           {/* ========================= Radio Buttons ========================= */}
           <RadioWrapperChoose>
@@ -130,6 +136,7 @@ export const EditTransactions = () => {
 
           {/* ========================= BUTTONS ========================= */}
           <ButtonWrapper>
+            <FormError name="amount" />
             <Button text="save" type="submit" />
             <Button
               text="cancel"
