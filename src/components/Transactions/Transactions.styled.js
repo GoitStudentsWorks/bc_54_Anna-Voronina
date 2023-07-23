@@ -43,7 +43,6 @@ export const SumText = styled.span`
   color: ${props => props.color};
 `;
 export const TableWrapper = styled.div`
-  position: relative;
   @media screen and (min-width: 1280px) {
     padding-top: 46px;
     padding-left: 70px;
@@ -54,22 +53,13 @@ export const TableWrapper = styled.div`
 export const Table = styled.table`
   display: block;
   width: 100%;
-  height: 422px;
+  height: 36vh;
   overflow-y: auto;
 
   @media screen and (min-width: 1280px) {
     width: 715px;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    margin-top: 20px;
-  }
-  & thead {
-    position: sticky;
-    top: 0;
-    backdrop-filter: blur(500px);
-    /* table-layout: fixed; */
-  }
   &::-webkit-scrollbar {
     width: 6px;
     opacity: 0.3;
@@ -91,7 +81,6 @@ export const Table = styled.table`
     height: 100%;
     overflow-y: auto;
   }
-  /* table-layout: fixed; */
 `;
 export const TableBody = styled.tbody`
   display: block;
@@ -101,7 +90,7 @@ export const TableHead = styled.tr`
   border-top: none;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr 1.2fr 1.7fr 0.7fr 0.4fr 0.6fr;
-  width: 102%;
+  width: 100%;
   height: 56px;
   color: #fbfbfb;
   background-color: rgba(82, 59, 126, 1);
@@ -110,15 +99,8 @@ export const TableHead = styled.tr`
   padding-bottom: 16px;
   border-radius: 8px;
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
-
-  /* position: sticky; */
   backdrop-filter: blur(500px);
   overflow-y: auto;
-  /* height: 110px; */
-  & th {
-    /* position: sticky; */
-    top: 0;
-  }
 `;
 
 export const TableHeader = styled.th`
@@ -126,7 +108,6 @@ export const TableHeader = styled.th`
   font-size: 16px;
   color: #fbfbfb;
   text-align: left;
-  top: 0;
 `;
 
 export const TableRow = styled.tr`
@@ -138,6 +119,7 @@ export const TableRow = styled.tr`
   text-align: left;
   position: relative;
   padding-left: 20px;
+  padding-right: 5px;
   margin: 0;
   display: grid;
   grid-template-columns: 2fr 0.9fr 1.8fr 1.5fr 1.5fr 0.8fr 1fr;
@@ -271,7 +253,8 @@ export const NoTransactions = styled.div`
 export const TableTop = styled.table`
   width: 704px;
   margin-bottom: 8px;
-  @media screen and(min-width:1280px) {
-    width: 740px;
+
+  @media only screen and (min-width: 1280px) {
+    width: 715px;
   }
 `;
