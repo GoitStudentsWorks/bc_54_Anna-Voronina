@@ -6,7 +6,7 @@ export const Backdrop = styled.div`
   backdrop-filter: blur(3.5px);
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   overscroll-behavior: contain;

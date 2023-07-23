@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { LiaHryvniaSolid } from 'react-icons/lia';
 
 export const ContainerStyled = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,7 +37,7 @@ export const TitleStyled = styled.h3`
   color: rgba(255, 255, 255, 0.4);
 `;
 
-export const TextStyled = styled.p`
+export const TextStyled = styled.div`
   display: flex;
   align-items: center;
 `;
