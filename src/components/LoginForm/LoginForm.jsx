@@ -40,7 +40,7 @@ export const LoginForm = () => {
       .unwrap()
       .then(data => {
         resetForm();
-        toast.success(`You entered now owe us 1.000.000$ ${data.user.username}`);
+        toast.success(`${data.user.username}, welcome back!`);
       })
       .catch(error => {
         toast.error(error.message);
@@ -50,7 +50,11 @@ export const LoginForm = () => {
   return (
     <WrapperForm>
       <Logo />
-      <Formik initialValues={initialValues} validationSchema={loginSchema} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={loginSchema}
+        onSubmit={handleSubmit}
+      >
         <FormStyled>
           <WrapperField>
             <WrapperIcon>
