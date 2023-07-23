@@ -129,8 +129,9 @@ export const ModalAddTransaction = () => {
 
           {/* ========================= BUTTONS ========================= */}
           <ButtonWrapper>
-            <Button text="ADD" type="submit" />
+            <Button name="add" text="ADD" type="submit" />
             <Button
+              name="cancel"
               text="CANCEL"
               variant="secondary"
               onClick={() => dispatch(closeModalAddTransaction())}

@@ -30,9 +30,20 @@ export const ExitBtn = styled.button`
   font-family: ${({ theme }) => theme.fonts.regular};
   color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    & svg {
+      color: #ffb627;
+    }
+    & span {
+      color: #ff868d;
+    }
+  }
 `;
 
 export const ExitText = styled.span`
+  transition: color ${({ theme }) => theme.transitions.regular};
   @media screen and (max-width: 500px) {
     display: none;
   }
@@ -40,6 +51,7 @@ export const ExitText = styled.span`
 
 export const NameWrap = styled.span`
   margin-right: 12px;
+
   @media screen and (max-width: 500px) {
     margin-right: 8px;
   }
@@ -59,6 +71,7 @@ export const ExitIcon = styled(IoExitOutline)`
   width: 30px;
   height: 30px;
   margin-right: 8px;
+  transition: color ${({ theme }) => theme.transitions.regular};
   @media screen and (max-width: 500px) {
     margin-right: 0;
   }

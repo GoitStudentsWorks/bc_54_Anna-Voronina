@@ -185,11 +185,17 @@ export const ButtonDelTransaction = styled.button`
   color: #fff;
   box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  transition: 0.2s;
+  transition: transform ${({ theme }) => theme.transitions.regular};
+
   &:active,
   &:focus,
   &:hover {
+    cursor: pointer;
+    border-radius: 18px;
+    border: 2px solid yellow;
     box-shadow: 1px 5px 8px 0px rgba(0, 0, 0, 0.5);
+    transform: scale(1.03);
+    outline: none;
   }
 `;
 export const ButtonEditTransaction = styled.button`
@@ -206,37 +212,65 @@ export const ButtonEditTransaction = styled.button`
   height: 29px;
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
-  transition: 0.2s;
+  transition: transform ${({ theme }) => theme.transitions.regular};
 
   &:active,
   &:focus,
   &:hover {
     box-shadow: 1px 5px 8px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 18px;
+    border: 2px solid yellow;
+    cursor: pointer;
+    transform: scale(1.05);
+    outline: none;
+    color: ${({ theme }) => theme.colors.primaryFont};
+  }
+  &:active svg,
+  &:focus svg,
+  &:hover svg {
+    cursor: pointer;
+    fill: #ff868d;
+    transform: scale(1.05);
+    outline: none;
   }
 `;
 
 export const BtnEditTransaction = styled.button`
   background: transparent;
-  border-radius: 50%;
   border: none;
   width: 36px;
   height: 36px;
   cursor: pointer;
-  transition: 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform ${({ theme }) => theme.transitions.regular};
+
   &:active,
   &:focus,
   &:hover {
+    cursor: pointer;
     box-shadow: 1px 5px 8px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    border: 1px solid #ffb627;
+    transform: scale(1.05);
+    outline: none;
+  }
+  &:active svg,
+  &:focus svg,
+  &:hover svg {
+    box-shadow: 1px 5px 8px 0px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    fill: #ff868d;
+    transform: scale(1.05);
+    outline: none;
   }
 `;
-
+// #FF868D' : '#98FB98
 export const StyledBiPencil = styled(LiaPenSolid)`
   width: 14px;
   height: 14px;
-  stroke: rgba(255, 255, 255, 0.6);
+  fill: rgba(255, 255, 255, 0.3);
 `;
 
 export const NoTransactions = styled.div`
