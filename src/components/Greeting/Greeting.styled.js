@@ -64,4 +64,8 @@ export const GreetingTitle = styled.h1`
 export const GreetingText = styled.p`
   font-size: 25px;
   text-align: center;
+
+  @media screen and (min-width: 768px) {
+    padding-bottom: 20px;
+  }
 `;

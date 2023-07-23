@@ -16,7 +16,6 @@ import {
   ButtonEditTransaction,
   BtnEditTransaction,
   ButtonDelTransaction,
-  NoTransactions,
   TableDash,
   TableWrapper,
   AllTransactionsDetails,
