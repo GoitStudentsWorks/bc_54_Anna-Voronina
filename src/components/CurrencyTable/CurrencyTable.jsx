@@ -5,13 +5,13 @@ import { selectCurrencyData } from 'redux/currency/currencySelectors';
 import { CurrencyTableBody, CurrencyTableStyled } from './CurrencyTable.styled';
 import { nanoid } from '@reduxjs/toolkit';
 
-const CurrencyTable = () => {
-  const dispatch = useDispatch();
-  const { rates, loading, error } = useSelector(selectCurrencyData);
+const CurrencyTable = ({ data }) => {
+  // const dispatch = useDispatch();
+  const { loading, error } = useSelector(selectCurrencyData);
 
-  useEffect(() => {
-    dispatch(fetchCurrencyRatesAsync());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchCurrencyRatesAsync());
+  // }, [dispatch]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -21,11 +21,11 @@ const CurrencyTable = () => {
     return <div>Error: {error}</div>;
   }
 
-  const getCurrencyRates = () => {
-    return rates;
-  };
+  // const getCurrencyRates = () => {
+  //   return rates;
+  // };
 
-  const filteredRates = getCurrencyRates().filter(rate => {
+  const filteredRates = data.filter(rate => {
     return (
       (rate.currencyCodeA === 840 && rate.currencyCodeB !== 978) ||
       (rate.currencyCodeA === 978 && rate.currencyCodeB !== 840)
