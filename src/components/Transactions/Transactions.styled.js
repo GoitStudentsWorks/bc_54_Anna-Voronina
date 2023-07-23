@@ -20,7 +20,7 @@ export const TransactionDetailsItem = styled.li`
   justify-content: space-between;
   color: white;
   font-weight: ${({ theme }) => theme.fontWeights.normal};
-  background: linear-gradient(220deg, #6d54eb 3.47%, #652392 90.06%);
+  background: rgba(255, 255, 255, 0.07);
   padding: 12px 20px;
   font-size: 16px;
 
@@ -31,7 +31,7 @@ export const TransactionDetailsItem = styled.li`
     content: '';
     width: 100%;
     height: 1px;
-    background-color: #dcdcdf;
+    background-color: rgba(255, 255, 255, 0.15);
   }
 `;
 
@@ -53,16 +53,33 @@ export const TableWrapper = styled.div`
 export const Table = styled.table`
   display: block;
   width: 100%;
-  height: 422px;
+  height: 36vh;
   overflow-y: auto;
 
   @media screen and (min-width: 1280px) {
-    margin-top: 46px;
     width: 715px;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    margin-top: 20px;
+  &::-webkit-scrollbar {
+    width: 6px;
+    opacity: 0.3;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #734aef;
+    border-radius: 20px;
+    opacity: 0.3;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ff868d;
+    border-radius: 20px;
+    opacity: 0.3;
+  }
+  & tbody {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
   }
 `;
 export const TableBody = styled.tbody`
@@ -76,13 +93,14 @@ export const TableHead = styled.tr`
   width: 100%;
   height: 56px;
   color: #fbfbfb;
-  background-color: rgba(82, 59, 126, 0.6);
+  background-color: rgba(82, 59, 126, 1);
   padding-left: 20px;
   padding-top: 16px;
   padding-bottom: 16px;
   border-radius: 8px;
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(50px);
+  backdrop-filter: blur(500px);
+  overflow-y: auto;
 `;
 
 export const TableHeader = styled.th`
@@ -101,6 +119,7 @@ export const TableRow = styled.tr`
   text-align: left;
   position: relative;
   padding-left: 20px;
+  padding-right: 5px;
   margin: 0;
   display: grid;
   grid-template-columns: 2fr 0.9fr 1.8fr 1.5fr 1.5fr 0.8fr 1fr;
@@ -166,11 +185,17 @@ export const ButtonDelTransaction = styled.button`
   color: #fff;
   box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  transition: 0.2s;
+  transition: transform ${({ theme }) => theme.transitions.regular};
+
   &:active,
   &:focus,
   &:hover {
+    cursor: pointer;
+    border-radius: 18px;
+    border: 2px solid yellow;
     box-shadow: 1px 5px 8px 0px rgba(0, 0, 0, 0.5);
+    transform: scale(1.03);
+    outline: none;
   }
 `;
 export const ButtonEditTransaction = styled.button`
@@ -187,37 +212,65 @@ export const ButtonEditTransaction = styled.button`
   height: 29px;
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
-  transition: 0.2s;
+  transition: transform ${({ theme }) => theme.transitions.regular};
 
   &:active,
   &:focus,
   &:hover {
     box-shadow: 1px 5px 8px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 18px;
+    border: 2px solid yellow;
+    cursor: pointer;
+    transform: scale(1.05);
+    outline: none;
+    color: ${({ theme }) => theme.colors.primaryFont};
+  }
+  &:active svg,
+  &:focus svg,
+  &:hover svg {
+    cursor: pointer;
+    fill: #ff868d;
+    transform: scale(1.05);
+    outline: none;
   }
 `;
 
 export const BtnEditTransaction = styled.button`
   background: transparent;
-  border-radius: 50%;
   border: none;
   width: 36px;
   height: 36px;
   cursor: pointer;
-  transition: 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform ${({ theme }) => theme.transitions.regular};
+
   &:active,
   &:focus,
   &:hover {
+    cursor: pointer;
     box-shadow: 1px 5px 8px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    border: 1px solid #ffb627;
+    transform: scale(1.05);
+    outline: none;
+  }
+  &:active svg,
+  &:focus svg,
+  &:hover svg {
+    box-shadow: 1px 5px 8px 0px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    fill: #ff868d;
+    transform: scale(1.05);
+    outline: none;
   }
 `;
-
+// #FF868D' : '#98FB98
 export const StyledBiPencil = styled(LiaPenSolid)`
   width: 14px;
   height: 14px;
-  stroke: rgba(255, 255, 255, 0.6);
+  fill: rgba(255, 255, 255, 0.3);
 `;
 
 export const NoTransactions = styled.div`
@@ -230,4 +283,12 @@ export const NoTransactions = styled.div`
   padding-bottom: 40px;
   max-width: 200px;
   margin: 0 auto;
+`;
+export const TableTop = styled.table`
+  width: 704px;
+  margin-bottom: 8px;
+
+  @media only screen and (min-width: 1280px) {
+    width: 715px;
+  }
 `;

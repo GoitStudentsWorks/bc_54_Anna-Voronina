@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 import { registerSchema } from 'services/validation/validationRegisterSchema';
 import { usePasswordToggle } from 'hooks/usePasswordToggle';
@@ -15,6 +14,8 @@ import { ConfirmPasswordIndicator } from 'components/ConfirmPasswordIndicator/Co
 import { LinkStyled, NameRegisterIcon } from './RegisterForm.styled';
 import {
   EmailIcon,
+  FaEyeSlashStyled,
+  FaEyeStyled,
   FieldStyled,
   FormStyled,
   PasswordlIcon,
@@ -59,12 +60,24 @@ export const RegisterForm = () => {
           <FormStyled autoComplete="off">
             <WrapperField>
               <WrapperIcon>
-                <FieldStyled type="text" name="username" placeholder="First name" required />
+                <FieldStyled
+                  type="text"
+                  name="username"
+                  placeholder="First name"
+                  autoComplete="off"
+                  required
+                />
                 <NameRegisterIcon />
               </WrapperIcon>
               <FormError name="username" touched={touched} errors={errors} />
               <WrapperIcon>
-                <FieldStyled type="email" name="email" placeholder="Email" required />
+                <FieldStyled
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  autoComplete="off"
+                  required
+                />
                 <EmailIcon />
               </WrapperIcon>
               <FormError name="email" touched={touched} errors={errors} />
@@ -80,14 +93,15 @@ export const RegisterForm = () => {
                     value={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    autoComplete="off"
                   />
                   <PasswordlIcon />
                 </WrapperIcon2>
                 <PasswordlIconLook>
                   {showPassword1 ? (
-                    <FaEye onClick={togglePasswordVisibility1} />
+                    <FaEyeStyled onClick={togglePasswordVisibility1} />
                   ) : (
-                    <FaEyeSlash onClick={togglePasswordVisibility1} />
+                    <FaEyeSlashStyled onClick={togglePasswordVisibility1} />
                   )}
                 </PasswordlIconLook>
               </WrapperIcon3>
@@ -100,16 +114,17 @@ export const RegisterForm = () => {
                     type={showPassword2 ? 'text' : 'password'}
                     name="confirmPassword"
                     title="Enter the password more difficult, letter, digit, capital letter."
-                    placeholder="confirmPassword Password"
+                    placeholder="confirmPassword"
+                    autoComplete="off"
                     required
                   />
                   <PasswordlIcon />
                 </WrapperIcon2>
                 <PasswordlIconLook>
                   {showPassword2 ? (
-                    <FaEye onClick={togglePasswordVisibility2} />
+                    <FaEyeStyled onClick={togglePasswordVisibility2} />
                   ) : (
-                    <FaEyeSlash onClick={togglePasswordVisibility2} />
+                    <FaEyeSlashStyled onClick={togglePasswordVisibility2} />
                   )}
                 </PasswordlIconLook>
               </WrapperIcon3>

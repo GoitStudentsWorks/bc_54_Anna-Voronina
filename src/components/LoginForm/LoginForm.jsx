@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
@@ -10,6 +10,8 @@ import { logInThunk } from 'redux/auth/authOperations';
 
 import {
   EmailIcon,
+  FaEyeSlashStyled,
+  FaEyeStyled,
   FieldStyled,
   FormStyled,
   PasswordlIcon,
@@ -39,26 +41,19 @@ export const LoginForm = () => {
     dispatch(logInThunk(value))
       .unwrap()
       .then(data => {
-        toast.success(
-          `You entered now owe us 1.000.000$ ${data.user.username}`
-        );
+        resetForm();
+        toast.success(`You entered now owe us 1.000.000$ ${data.user.username}`);
       })
       .catch(error => {
         toast.error(error.message);
       });
-
-    resetForm();
   };
 
   return (
     <WrapperForm>
       <Logo />
-      <Formik
-        initialValues={initialValues}
-        validationSchema={loginSchema}
-        onSubmit={handleSubmit}
-      >
-        <FormStyled autoComplete="off">
+      <Formik initialValues={initialValues} validationSchema={loginSchema} onSubmit={handleSubmit}>
+        <FormStyled>
           <WrapperField>
             <WrapperIcon>
               <FieldStyled
@@ -66,6 +61,7 @@ export const LoginForm = () => {
                 name="email"
                 title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                 placeholder="E-mail"
+                autoComplete="off"
                 required
               />
               <EmailIcon />
@@ -78,15 +74,16 @@ export const LoginForm = () => {
                   name="password"
                   title="Enter the password more difficult, letter, digit, capital letter."
                   placeholder="Password"
+                  autoComplete="off"
                   required
                 />
                 <PasswordlIcon />
               </WrapperIcon2>
               <PasswordlIconLook>
                 {showPassword1 ? (
-                  <FaEye onClick={togglePasswordVisibility1} />
+                  <FaEyeStyled onClick={togglePasswordVisibility1} />
                 ) : (
-                  <FaEyeSlash onClick={togglePasswordVisibility1} />
+                  <FaEyeSlashStyled onClick={togglePasswordVisibility1} />
                 )}
               </PasswordlIconLook>
             </WrapperIcon3>

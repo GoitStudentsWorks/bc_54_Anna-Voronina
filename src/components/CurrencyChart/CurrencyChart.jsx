@@ -1,4 +1,4 @@
-import currencyImgDesk from 'assets/images/currency_desk.png';
+import currencyImgDesk from 'assets/images/currency_desk.webp';
 import currencyImgRetinaDesk from 'assets/images/currency_desk@2x.png';
 import currencyImgTablet from 'assets/images/currency_tablet.png';
 import currencyImgRetinaTablet from 'assets/images/currency_tablet@2x.png';
