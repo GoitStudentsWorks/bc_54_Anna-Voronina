@@ -41,13 +41,12 @@ export const LoginForm = () => {
     dispatch(logInThunk(value))
       .unwrap()
       .then(data => {
+        resetForm();
         toast.success(`You entered now owe us 1.000.000$ ${data.user.username}`);
       })
       .catch(error => {
         toast.error(error.message);
       });
-
-    resetForm();
   };
 
   return (
