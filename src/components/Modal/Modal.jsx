@@ -49,4 +49,5 @@ export const Modal = ({ children, closeReducer }) => {
 
 Modal.propTypes = {
   children: PropTypes.node.isRequired,
+  closeReducer: PropTypes.func.isRequired
 };

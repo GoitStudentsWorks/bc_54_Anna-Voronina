@@ -1,10 +1,18 @@
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
+import { registerSchema } from 'services/validation/validationRegisterSchema';
+import { usePasswordToggle } from 'hooks/usePasswordToggle';
 import { signUpThunk } from 'redux/auth/authOperations';
+
 import { Button } from 'components/Button/Button';
 import { FormError } from 'components/FormError/FormError';
 import { Logo } from 'components/Logo/Logo';
-import { registerSchema } from 'services/validation/validationRegisterSchema';
+import { IndicatorPasswordStrenghtatyled } from 'components/IndicatorPasswordStrenght/IndicatorPasswordStrenght';
+
+import { ConfirmPasswordIndicator } from 'components/ConfirmPasswordIndicator/ConfirmPasswordIndicator';
+import { LinkStyled, NameRegisterIcon } from './RegisterForm.styled';
 import {
   EmailIcon,
   FieldStyled,
@@ -19,21 +27,9 @@ import {
   WrapperIcon3,
 } from 'components/LoginForm/LoginForm.styled';
 
-import { LinkStyled, NameRegisterIcon } from './RegisterForm.styled';
-
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { usePasswordToggle } from 'hooks/usePasswordToggle';
-
-import { IndicatorPasswordStrenghtatyled } from 'components/IndicatorPasswordStrenght/IndicatorPasswordStrenght';
-import { ConfirmPasswordIndicator } from 'components/ConfirmPasswordIndicator/ConfirmPasswordIndicator';
-
 export const RegisterForm = () => {
-  const {
-    showPassword1,
-    showPassword2,
-    togglePasswordVisibility1,
-    togglePasswordVisibility2,
-  } = usePasswordToggle();
+  const { showPassword1, showPassword2, togglePasswordVisibility1, togglePasswordVisibility2 } =
+    usePasswordToggle();
 
   const dispatch = useDispatch();
 
@@ -63,22 +59,12 @@ export const RegisterForm = () => {
           <FormStyled autoComplete="off">
             <WrapperField>
               <WrapperIcon>
-                <FieldStyled
-                  type="text"
-                  name="username"
-                  placeholder="First name"
-                  required
-                />
+                <FieldStyled type="text" name="username" placeholder="First name" required />
                 <NameRegisterIcon />
               </WrapperIcon>
               <FormError name="username" touched={touched} errors={errors} />
               <WrapperIcon>
-                <FieldStyled
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  required
-                />
+                <FieldStyled type="email" name="email" placeholder="Email" required />
                 <EmailIcon />
               </WrapperIcon>
               <FormError name="email" touched={touched} errors={errors} />
@@ -130,8 +116,7 @@ export const RegisterForm = () => {
               <ConfirmPasswordIndicator
                 values={values}
                 passwordsMatch={
-                  values.password === values.confirmPassword &&
-                  values.confirmPassword !== ''
+                  values.password === values.confirmPassword && values.confirmPassword !== ''
                 }
               />
               <FormError name="confirmPassword" />
