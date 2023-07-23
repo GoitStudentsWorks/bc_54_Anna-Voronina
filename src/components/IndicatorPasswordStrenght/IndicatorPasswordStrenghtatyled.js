@@ -20,9 +20,10 @@ export const PasswordStrengthIndicator = styled.div`
   animation: ${passwordStrengthAnimation} 0.5s ease;
   width: ${props => props.width};
   background-color: ${props => props.color};
-  ${props => css`
-    background-color: ${props.color};
-  `}
+  transition: all 0.4s ease-out
+    ${props => css`
+      background-color: ${props.color};
+    `};
 `;
 
 export const PasswordStrengthText = styled.p`

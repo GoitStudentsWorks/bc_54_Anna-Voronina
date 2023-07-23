@@ -31,6 +31,15 @@ export const LinkStyled = styled(Link)`
   border-radius: ${({ theme }) => theme.radii.button};
   box-shadow: ${({ theme }) => theme.shadows.secondary};
   cursor: pointer;
+  transition: transform 250ms ease-in-out;
+
+  &:focus,
+  &:hover {
+    border-radius: 18px;
+    border: 2px solid yellow;
+    transform: scale(1.01);
+    box-shadow: 1px 5px 8px 0px rgba(0, 0, 0, 0.5);
+  }
 `;
 
 export const NameRegisterIcon = styled(BiSolidUserRectangle)`

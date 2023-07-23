@@ -26,6 +26,8 @@ import {
   StyledLabelWrapper,
 } from './ModalAddTransaction.styled';
 import { useCategoriesType } from 'hooks/categoriesFilter';
+import { transactionsSchema } from 'services/validation/validationTransactions';
+import { FormError } from 'components/FormError/FormError';
 
 export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
@@ -62,7 +64,6 @@ export const ModalAddTransaction = () => {
       }`,
     };
     dispatch(addTransactionThunk(newData));
-    dispatch(closeModalAddTransaction());
   };
 
   const handleChangeSelect = item => {
@@ -77,11 +78,14 @@ export const ModalAddTransaction = () => {
   const changeTypeOfTransaction = () => {
     setSelectedType(prev => !prev);
   };
-  console.log(selectedType);
   return (
     <ModalAddWrapper>
       <ModalTransactionTitle>Add transaction</ModalTransactionTitle>
-      <Formik onSubmit={handleSubmit} initialValues={initialValues}>
+      <Formik
+        validationSchema={transactionsSchema}
+        onSubmit={handleSubmit}
+        initialValues={initialValues}
+      >
         <StyledForm>
           {/* ========================= Radio Buttons ========================= */}
           <RadioWrapperChoose>
@@ -113,15 +117,28 @@ export const ModalAddTransaction = () => {
               placeholder="0.00"
               weight="600"
               required
+              autoComplete="off"
+              autoFocus={true}
             />
-            <StyledField type="date" name="transactionDate" />
+            <StyledField
+              autoComplete="off"
+              type="date"
+              name="transactionDate"
+            />
           </InputWrapper>
-          <StyledField type="text" name="comment" placeholder="Comment" />
+          <StyledField
+            autoComplete="off"
+            type="text"
+            name="comment"
+            placeholder="Comment"
+          />
 
           {/* ========================= BUTTONS ========================= */}
           <ButtonWrapper>
+            <FormError name="amount" />
             <Button text="ADD" type="submit" />
             <Button
+              name="cancel"
               text="CANCEL"
               variant="secondary"
               onClick={() => dispatch(closeModalAddTransaction())}
