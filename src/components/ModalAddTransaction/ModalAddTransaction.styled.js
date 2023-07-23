@@ -2,15 +2,6 @@ import { Field, Form } from 'formik';
 import { BsPlusLg } from 'react-icons/bs';
 import { HiOutlineMinus } from 'react-icons/hi';
 import styled from 'styled-components';
-import { keyframes } from 'styled-components';
-const fadeIn = keyframes`
-  0% {
-    left: -3%;
-  }
-  100% {
-    left: 53%;
-  }
-`;
 
 export const ModalAddWrapper = styled.div`
   text-align: center;
@@ -73,14 +64,9 @@ export const RoundedButton = styled.div`
   left: -3%;
   top: -5%;
 
-  /* transform: ${({ type }) =>
-    type === 'true'
-      ? 'translateY(-50%) translateX(0)'
-      : 'translateY(-50%) translateX(100%)'};
-  transition: ${({ theme }) => theme.transitions.color}; */
-
-  animation: ${({ type }) =>
-    type === 'true' ? `1s ${fadeIn} ease-out` : `1s ${fadeIn} ease-out`};
+  transform: ${({ type }) =>
+    type === 'true' ? 'translateX(0) rotateY(180deg)' : 'translateX(100%) '};
+  transition: ${({ theme }) => theme.transitions.color};
 `;
 
 export const PlusButton = styled(BsPlusLg)`
