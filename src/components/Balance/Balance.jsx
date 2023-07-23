@@ -15,7 +15,7 @@ export const Balance = () => {
   const dispatch = useDispatch();
   const date = useRef(getMonthAndYear());
   const transaction = useSelector(selectTransactions);
-  const [currentTotalBalance, setcurrentTotalBalance] = useState();
+  const [currentTotalBalance, setcurrentTotalBalance] = useState(0);
 
   useEffect(() => {
     dispatch(getSummaryThunk(date)).then(data =>

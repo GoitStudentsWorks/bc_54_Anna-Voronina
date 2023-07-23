@@ -4,13 +4,14 @@ import 'modern-normalize';
 export const GlobalStyle = createGlobalStyle`
 body {
   min-height: 100vh;
+  
   margin: 0;
   font-family: 'PoppinsRegular', sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 1.2;
   color: #FBFBFB;
-  overflow: hidden;
+  
   
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
