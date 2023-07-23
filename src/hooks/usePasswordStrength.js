@@ -1,66 +1,43 @@
 export const usePasswordStrength = () => {
   const getPasswordStrengthWidth = password => {
-    if (password?.length >= 1 && password?.length <= 2) {
-      return '10%';
-    } else if (password?.length > 2 && password?.length <= 3) {
-      return '20%';
-    } else if (password?.length > 3 && password?.length <= 4) {
-      return '30%';
-    } else if (password?.length > 4 && password?.length <= 5) {
-      return '40%';
-    } else if (password?.length > 5 && password?.length <= 6) {
-      return '50%';
-    } else if (password?.length > 6 && password?.length <= 7) {
-      return '60%';
-    } else if (password?.length > 7 && password?.length <= 8) {
-      return '70%';
-    } else if (password?.length > 8 && password?.length <= 9) {
-      return '80%';
-    } else if (password?.length > 9 && password?.length <= 10) {
-      return '90%';
-    } else if (password?.length > 10 && password?.length <= 10) {
-      return '100%';
-    } else if (password?.length > 10) {
-      return '100%';
-    }
-    return '0%';
+    const maxLength = 10;
+    const passwordLength = password?.length || 0;
+    const strengthPercentage = (passwordLength / maxLength) * 100;
+    return `${Math.min(strengthPercentage, 100)}%`;
   };
 
   const getPasswordStrengthColor = password => {
-    if (password?.length >= 1 && password?.length <= 2) {
-      return '#FD450B';
-    } else if (password?.length > 2 && password?.length <= 3) {
-      return '#FF6231';
-    } else if (password?.length > 3 && password?.length <= 4) {
-      return '#F37952';
-    } else if (password?.length > 4 && password?.length <= 5) {
-      return '#FC675D';
-    } else if (password?.length > 5 && password?.length <= 6) {
-      return '#F6C881';
-    } else if (password?.length > 6 && password?.length <= 7) {
-      return '#FBEC67';
-    } else if (password?.length > 7 && password?.length <= 8) {
-      return '#F8E32B';
-    } else if (password?.length > 8 && password?.length <= 9) {
-      return '#CAF98F';
-    } else if (password?.length > 9 && password?.length <= 10) {
-      return '#52E54F';
-    } else if (password?.length > 10) {
-      return '#099E06';
-    }
+    const passwordStrengthRanges = [
+      { length: 1, color: '#FD450B' },
+      { length: 3, color: '#FF6231' },
+      { length: 4, color: '#F37952' },
+      { length: 5, color: '#FC675D' },
+      { length: 6, color: '#F6C881' },
+      { length: 7, color: '#FBEC67' },
+      { length: 8, color: '#F8E32B' },
+      { length: 9, color: '#CAF98F' },
+      { length: 10, color: '#52E54F' },
+      { length: Infinity, color: '#099E06' }, // Для довжини більше 10
+    ];
 
-    return 'transparent';
+    const { color } = passwordStrengthRanges.find(range => password?.length <= range.length) || {
+      color: 'transparent',
+    };
+    return color;
   };
 
   const getPasswordStrengthText = password => {
-    if (password?.length >= 2 && password?.length <= 6) {
-      return 'Weak Password';
-    } else if (password?.length > 6 && password?.length <= 10) {
-      return 'Medium Strength Password';
-    } else if (password?.length > 10) {
-      return 'Strong Password';
-    }
-    return '';
+    const passwordStrengthRanges = [
+      { min: 2, max: 6, text: 'Weak Password' },
+      { min: 7, max: 10, text: 'Medium Strength Password' },
+      { min: 11, max: Infinity, text: 'Strong Password' },
+    ];
+
+    const { text } = passwordStrengthRanges.find(
+      range => password?.length >= range.min && password?.length <= range.max
+    ) || { text: '' };
+
+    return text;
   };
 
   return {
