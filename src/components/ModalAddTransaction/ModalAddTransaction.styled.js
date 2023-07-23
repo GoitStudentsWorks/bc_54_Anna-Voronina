@@ -63,7 +63,6 @@ export const RoundedButton = styled.div`
   position: absolute;
   left: -3%;
   top: 50%;
-
   transform: ${({ type }) =>
     type === 'true'
       ? 'translateY(-50%) translateX(0)'
@@ -105,6 +104,10 @@ export const StyledField = styled(Field)`
   width: 100%;
   padding: ${({ theme }) => theme.spacing(2)};
   font-weight: ${({ weight }) => weight};
+  appearance: none;
+  &:focus-visible {
+    outline: none;
+  }
   &::placeholder {
     color: currentColor;
   }
@@ -112,6 +115,7 @@ export const StyledField = styled(Field)`
     filter: invert(0.6);
   }
 `;
+
 export const ButtonWrapper = styled.div`
   display: flex;
   gap: 20px;
