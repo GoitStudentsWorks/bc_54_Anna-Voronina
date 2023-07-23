@@ -21,6 +21,8 @@ import {
   TableWrapper,
   AllTransactionsDetails,
   SumEl,
+  Thead,
+  TableTop,
 } from './Transactions.styled';
 // import { formatMoney } from 'utils/formatMoney';
 
@@ -71,13 +73,12 @@ const Transactions = () => {
     dispatch(openModalEditTransaction());
   }; // wait till adding real data will be able to addd and if there are bugs, fix them
 
-  // const handleDeleteTransaction = id => {
-  //   dispatch(delTransactionThunk(id)).then(dispatch(getAllTransactionsThunk()));
-  // };
-
   const formatDate = date => {
-    const dateArr = date.split('-');
-    const [year, month, day] = dateArr;
+    const transactionDate = new Date(date);
+    const day = String(transactionDate.getDate()).padStart(2, '0');
+    const month = String(transactionDate.getMonth() + 1).padStart(2, '0');
+    const year = String(transactionDate.getFullYear()).slice(-2);
+
     return `${day}.${month}.${year}`;
   };
 
@@ -95,7 +96,11 @@ const Transactions = () => {
                     <TransactionDetailsItemTitle>
                       Date
                     </TransactionDetailsItemTitle>
-                    <span>{formatDate(transaction.transactionDate)}</span>
+                    <span>
+                      <span>
+                        {formatDate(Date(transaction.transactionDate))}
+                      </span>
+                    </span>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
                     <TransactionDetailsItemTitle>
@@ -168,7 +173,7 @@ const Transactions = () => {
 
       <MediaQuery minWidth={768}>
         <TableWrapper>
-          <Table>
+          <TableTop>
             <thead>
               <TableHead>
                 <TableHeader>Date</TableHeader>
@@ -178,13 +183,14 @@ const Transactions = () => {
                 <TableHeader>Sum</TableHeader>
               </TableHead>
             </thead>
-
+          </TableTop>
+          <Table>
             <tbody>
               {sortedTransactions.map(transaction => {
                 return (
                   <TableRow key={transaction.id}>
                     <TableDash>
-                      {formatDate(transaction.transactionDate)}
+                      {formatDate(Date(transaction.transactionDate))}
                     </TableDash>
                     <TableDash>
                       {transaction.type === 'INCOME' ? '+' : '-'}
