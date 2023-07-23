@@ -61,7 +61,7 @@ const Transactions = () => {
   }; // wait till adding real data will be able to addd and if there are bugs, fix them
 
   const handleDeleteTransaction = id => {
-    dispatch(delTransactionThunk(id)).then(dispatch(getAllTransactionsThunk()));
+    dispatch(delTransactionThunk(id));
     // dispatch(getAllTransactionsThunk());
   }; // wait till adding real data will be able to addd and if there are bugs, fix them
   const formatDate = date => {
@@ -84,6 +84,7 @@ const Transactions = () => {
                     <TransactionDetailsItemTitle>
                       Date
                     </TransactionDetailsItemTitle>
+
                     <span>{formatDate(transaction.transactionDate)}</span>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
