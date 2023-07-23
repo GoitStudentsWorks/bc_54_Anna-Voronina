@@ -64,6 +64,9 @@ export const Table = styled.table`
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     margin-top: 20px;
   }
+  & thead {
+    position: sticky;
+  }
 `;
 export const TableBody = styled.tbody`
   display: block;
@@ -83,6 +86,7 @@ export const TableHead = styled.tr`
   border-radius: 8px;
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(50px);
+  position: sticky;
 `;
 
 export const TableHeader = styled.th`
@@ -230,4 +234,9 @@ export const NoTransactions = styled.div`
   padding-bottom: 40px;
   max-width: 200px;
   margin: 0 auto;
+`;
+export const Thead = styled.thead`
+  position: sticky;
+  top: 0;
+  z-index: 1;
 `;
