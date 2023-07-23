@@ -26,6 +26,8 @@ import {
   StyledLabelWrapper,
 } from './ModalAddTransaction.styled';
 import { useCategoriesType } from 'hooks/categoriesFilter';
+import { transactionsSchema } from 'services/validation/validationTransactions';
+import { FormError } from 'components/FormError/FormError';
 
 export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
@@ -37,8 +39,7 @@ export const ModalAddTransaction = () => {
   }, [dispatch]);
 
   const allCategories = useSelector(selectCategories);
-  const [expenseCategories, incomeCategories] =
-    useCategoriesType(allCategories);
+  const [expenseCategories, incomeCategories] = useCategoriesType(allCategories);
 
   const initialValues = {
     transactionDate: new Date().toISOString().slice(0, 10),
@@ -52,14 +53,8 @@ export const ModalAddTransaction = () => {
     const newData = {
       ...value,
       type: selectedType ? 'INCOME' : 'EXPENSE',
-      amount: `${
-        !selectedType ? Number(value.amount) * -1 : Number(value.amount)
-      }`,
-      categoryId: `${
-        !selectedType
-          ? selectedOption?.id ?? defCategoryId
-          : incomeCategories[0].id
-      }`,
+      amount: `${!selectedType ? Number(value.amount) * -1 : Number(value.amount)}`,
+      categoryId: `${!selectedType ? selectedOption?.id ?? defCategoryId : incomeCategories[0].id}`,
     };
     dispatch(addTransactionThunk(newData));
     dispatch(closeModalAddTransaction());
@@ -81,7 +76,11 @@ export const ModalAddTransaction = () => {
   return (
     <ModalAddWrapper>
       <ModalTransactionTitle>Add transaction</ModalTransactionTitle>
-      <Formik onSubmit={handleSubmit} initialValues={initialValues}>
+      <Formik
+        validationSchema={transactionsSchema}
+        onSubmit={handleSubmit}
+        initialValues={initialValues}
+      >
         <StyledForm>
           {/* ========================= Radio Buttons ========================= */}
           <RadioWrapperChoose>
@@ -107,19 +106,15 @@ export const ModalAddTransaction = () => {
 
           {/* ========================= INPUTS ========================= */}
           <InputWrapper>
-            <StyledField
-              type="number"
-              name="amount"
-              placeholder="0.00"
-              weight="600"
-              required
-            />
+            <StyledField type="number" name="amount" placeholder="0.00" weight="600" required />
+
             <StyledField type="date" name="transactionDate" />
           </InputWrapper>
           <StyledField type="text" name="comment" placeholder="Comment" />
 
           {/* ========================= BUTTONS ========================= */}
           <ButtonWrapper>
+            <FormError name="amount" />
             <Button text="ADD" type="submit" />
             <Button
               text="CANCEL"

@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 import { registerSchema } from 'services/validation/validationRegisterSchema';
 import { usePasswordToggle } from 'hooks/usePasswordToggle';
@@ -61,12 +60,24 @@ export const RegisterForm = () => {
           <FormStyled autoComplete="off">
             <WrapperField>
               <WrapperIcon>
-                <FieldStyled type="text" name="username" placeholder="First name" required />
+                <FieldStyled
+                  type="text"
+                  name="username"
+                  placeholder="First name"
+                  autoComplete="off"
+                  required
+                />
                 <NameRegisterIcon />
               </WrapperIcon>
               <FormError name="username" touched={touched} errors={errors} />
               <WrapperIcon>
-                <FieldStyled type="email" name="email" placeholder="Email" required />
+                <FieldStyled
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  autoComplete="off"
+                  required
+                />
                 <EmailIcon />
               </WrapperIcon>
               <FormError name="email" touched={touched} errors={errors} />
@@ -82,6 +93,7 @@ export const RegisterForm = () => {
                     value={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    autoComplete="off"
                   />
                   <PasswordlIcon />
                 </WrapperIcon2>
@@ -103,6 +115,7 @@ export const RegisterForm = () => {
                     name="confirmPassword"
                     title="Enter the password more difficult, letter, digit, capital letter."
                     placeholder="confirmPassword"
+                    autoComplete="off"
                     required
                   />
                   <PasswordlIcon />
