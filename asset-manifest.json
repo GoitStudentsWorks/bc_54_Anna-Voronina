@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/bc_54_Anna-Voronina/static/css/main.1a24fdc4.css",
-    "main.js": "/bc_54_Anna-Voronina/static/js/main.98368216.js",
+    "main.js": "/bc_54_Anna-Voronina/static/js/main.ea1f2634.js",
     "static/js/37.ce1f3414.chunk.js": "/bc_54_Anna-Voronina/static/js/37.ce1f3414.chunk.js",
     "static/js/434.b7267ec3.chunk.js": "/bc_54_Anna-Voronina/static/js/434.b7267ec3.chunk.js",
     "static/js/807.4f5dda2b.chunk.js": "/bc_54_Anna-Voronina/static/js/807.4f5dda2b.chunk.js",
@@ -40,7 +40,7 @@
     "index.html": "/bc_54_Anna-Voronina/index.html",
     "static/media/moneyGuardLogo.svg": "/bc_54_Anna-Voronina/static/media/moneyGuardLogo.dbc52635efdf8219ee1a2f3c5f17f1d2.svg",
     "main.1a24fdc4.css.map": "/bc_54_Anna-Voronina/static/css/main.1a24fdc4.css.map",
-    "main.98368216.js.map": "/bc_54_Anna-Voronina/static/js/main.98368216.js.map",
+    "main.ea1f2634.js.map": "/bc_54_Anna-Voronina/static/js/main.ea1f2634.js.map",
     "37.ce1f3414.chunk.js.map": "/bc_54_Anna-Voronina/static/js/37.ce1f3414.chunk.js.map",
     "434.b7267ec3.chunk.js.map": "/bc_54_Anna-Voronina/static/js/434.b7267ec3.chunk.js.map",
     "807.4f5dda2b.chunk.js.map": "/bc_54_Anna-Voronina/static/js/807.4f5dda2b.chunk.js.map",
@@ -61,6 +61,6 @@
   },
   "entrypoints": [
     "static/css/main.1a24fdc4.css",
-    "static/js/main.98368216.js"
+    "static/js/main.ea1f2634.js"
   ]
 }
