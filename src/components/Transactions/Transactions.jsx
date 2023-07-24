@@ -66,16 +66,13 @@ const Transactions = () => {
   });
 
   const handleEditClick = obj => {
-    // dispatch(openModalEditTransaction(object));
     dispatch(setUpdatedTransaction(obj));
     dispatch(openModalEditTransaction());
   }; // wait till adding real data will be able to addd and if there are bugs, fix them
 
   const formatDate = date => {
-    const transactionDate = new Date(date);
-    const day = String(transactionDate.getDate()).padStart(2, '0');
-    const month = String(transactionDate.getMonth() + 1).padStart(2, '0');
-    const year = String(transactionDate.getFullYear()).slice(-2);
+    const dateArr = date.split('-');
+    const [year, month, day] = dateArr;
 
     return `${day}.${month}.${year}`;
   };
@@ -95,9 +92,7 @@ const Transactions = () => {
                       Date
                     </TransactionDetailsItemTitle>
                     <span>
-                      <span>
-                        {formatDate(Date(transaction.transactionDate))}
-                      </span>
+                      <span>{formatDate(transaction.transactionDate)}</span>
                     </span>
                   </TransactionDetailsItem>
                   <TransactionDetailsItem>
@@ -188,7 +183,7 @@ const Transactions = () => {
                 return (
                   <TableRow key={transaction.id}>
                     <TableDash>
-                      {formatDate(Date(transaction.transactionDate))}
+                      {formatDate(transaction.transactionDate)}
                     </TableDash>
                     <TableDash>
                       {transaction.type === 'INCOME' ? '+' : '-'}

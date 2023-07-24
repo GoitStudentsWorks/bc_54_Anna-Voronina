@@ -8,26 +8,32 @@ import {
   getAllTransactionsThunk,
 } from 'redux/transaction/transactionOperations';
 import {
-  ButtonWrapper,
   ModalContainer,
   ModalWrapper,
   Title,
 } from './ModalDeleteTransaction.styled';
+
 import { selectUser } from 'redux/auth/authSelectors';
+import { ButtonWrapper } from 'components/ModalAddTransaction/ModalAddTransaction.styled';
 
 const ModalDeleteTransaction = ({ transactionId }) => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
   const handleDeleteTransaction = () => {
-    dispatch(delTransactionThunk(transactionId)).then(() => dispatch(getAllTransactionsThunk()));
+    dispatch(delTransactionThunk(transactionId)).then(() =>
+      dispatch(getAllTransactionsThunk())
+    );
     dispatch(closeModalDeleteTransaction());
   };
 
   return (
     <ModalWrapper>
       <ModalContainer>
-        <Title>{user.username}, are you sure that you want to delete this transaction?</Title>
+        <Title>
+          {user.username}, are you sure that you want to delete this
+          transaction?
+        </Title>
         <ButtonWrapper>
           <Button
             type="button"
@@ -35,7 +41,11 @@ const ModalDeleteTransaction = ({ transactionId }) => {
             text="Cancel"
             variant={'secondary'}
           />
-          <Button type="button" onClick={handleDeleteTransaction} text="Delete" />
+          <Button
+            type="button"
+            onClick={handleDeleteTransaction}
+            text="Delete"
+          />
         </ButtonWrapper>
       </ModalContainer>
     </ModalWrapper>
