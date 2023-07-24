@@ -32,7 +32,7 @@ import { FormError } from 'components/FormError/FormError';
 export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
   const [selectedOption, setSelectedOption] = useState('Car');
-  const [selectedType, setSelectedType] = useState(true);
+  const [selectedType, setSelectedType] = useState(false);
 
   useEffect(() => {
     dispatch(getTransactionsCategoriesThunk());

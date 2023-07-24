@@ -75,7 +75,6 @@ export const NavLinkStyledDesktop = styled(NavLink)`
   &:hover svg {
     fill: ${({ theme }) => theme.colors.primaryFont};
   }
-
   &.active div,
   &:focus div,
   &:hover div {

@@ -62,11 +62,10 @@ export const RoundedButton = styled.div`
 
   position: absolute;
   left: -3%;
-  top: 50%;
+  top: -5%;
+
   transform: ${({ type }) =>
-    type === 'true'
-      ? 'translateY(-50%) translateX(0)'
-      : 'translateY(-50%) translateX(100%)'};
+    type === 'true' ? 'translateX(0) rotateY(180deg)' : 'translateX(100%) '};
   transition: ${({ theme }) => theme.transitions.color};
 `;
 
