@@ -1,12 +1,16 @@
 import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
-
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { loginSchema } from 'services/validation/validationLoginSchema';
 import { usePasswordToggle } from 'hooks/usePasswordToggle';
 import { logInThunk } from 'redux/auth/authOperations';
+
+import { Button } from 'components/Button/Button';
+import { Logo } from 'components/Logo/Logo';
+import { FormError } from 'components/FormError/FormError';
+import { TogglePasswordIcon } from 'components/TogglePasswordVisibility/TogglePasswordVisibility';
 
 import {
   EmailIcon,
@@ -20,11 +24,6 @@ import {
   WrapperIcon2,
   WrapperIcon3,
 } from './LoginForm.styled';
-import { Logo } from 'components/Logo/Logo';
-import { FormError } from 'components/FormError/FormError';
-
-import { Button } from 'components/Button/Button';
-import { TogglePasswordIcon } from 'components/TogglePasswordVisibility/TogglePasswordVisibility';
 
 export const LoginForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1', 'password2']);
@@ -40,7 +39,7 @@ export const LoginForm = () => {
       .unwrap()
       .then(data => {
         resetForm();
-        toast.success(`You entered now owe us 1.000.000$ ${data.user.username}`);
+        toast.success(`${data.user.username}, welcome back!`);
       })
       .catch(error => {
         toast.error(error.message);

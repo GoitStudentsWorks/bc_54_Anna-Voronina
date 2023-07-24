@@ -16,14 +16,14 @@ export const Chart = ({ colorStyle, resp }) => {
     labels: [],
     datasets: [
       {
-        data: !expenseCategories.length ? [1] : expenseCategories.map(item => item.total),
+        label: `${expenseCategories.name}`,
+        data: !expenseCategories.length
+          ? [1]
+          : expenseCategories.map(item => item.total),
         backgroundColor: colorStyle,
         borderColor: colorStyle,
         borderWidth: 1,
         borderJoinStyle: 'round',
-        // borderRadius: 8,
-        // spacing: 4,
-        // borderDash: ['600'],
         borderAlign: 'inner',
       },
     ],
@@ -31,7 +31,6 @@ export const Chart = ({ colorStyle, resp }) => {
   const options = {
     cutout: '75%',
   };
-
   return (
     <ChartWrapper>
       {Number(periodTotal) === 0 ? (

@@ -29,9 +29,6 @@ export const DiagramTab = () => {
     dispatch(getSummaryThunk(date));
   }, [dispatch]);
 
-  //Stepka@Stepka.com
-  //Stepka123
-
   return (
     <>
       <StyledTitle>Statistics</StyledTitle>

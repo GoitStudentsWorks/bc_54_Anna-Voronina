@@ -1,5 +1,5 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchCurrencyRates } from "services/api/api";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { fetchCurrencyRates } from 'services/api/api';
 
 export const fetchCurrencyRatesAsync = createAsyncThunk(
   'currency/fetchCurrencyRates',
