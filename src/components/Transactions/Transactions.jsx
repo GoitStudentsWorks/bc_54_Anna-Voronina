@@ -60,20 +60,17 @@ const Transactions = () => {
   };
 
   const sortedTransactions = [...transactions].sort((a, b) => {
-    console.log(transactions);
     return (
       getDateForSort(b.transactionDate) - getDateForSort(a.transactionDate)
     );
   });
 
   const handleEditClick = obj => {
-    // dispatch(openModalEditTransaction(object));
     dispatch(setUpdatedTransaction(obj));
     dispatch(openModalEditTransaction());
   }; // wait till adding real data will be able to addd and if there are bugs, fix them
 
   const formatDate = date => {
-    console.log(date);
     const dateArr = date.split('-');
     const [year, month, day] = dateArr;
 

@@ -4,6 +4,8 @@ export const ModalWrapper = styled.div``;
 
 export const ModalContainer = styled.div`
   display: flex;
+  justify-content: center;
+  gap: ${({ theme }) => theme.spacing(10)};
   flex-wrap: wrap;
 `;
 
@@ -14,15 +16,6 @@ export const Title = styled.p`
   @media screen and (max-width: 425px) {
     font-size: 24px;
   }
-`;
-
-export const ButtonWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-items: center;
-  justify-content: center;
-  margin-top: 90px;
 `;
 
 export const CloseBtn = styled.button``;
