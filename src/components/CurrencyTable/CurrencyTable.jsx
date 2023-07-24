@@ -1,17 +1,10 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCurrencyRatesAsync } from 'redux/currency/currencyOperations';
+import { useSelector } from 'react-redux';
 import { selectCurrencyData } from 'redux/currency/currencySelectors';
 import { CurrencyTableBody, CurrencyTableStyled } from './CurrencyTable.styled';
 import { nanoid } from '@reduxjs/toolkit';
 
 const CurrencyTable = ({ data }) => {
-  // const dispatch = useDispatch();
   const { loading, error } = useSelector(selectCurrencyData);
-
-  // useEffect(() => {
-  //   dispatch(fetchCurrencyRatesAsync());
-  // }, [dispatch]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -20,10 +13,6 @@ const CurrencyTable = ({ data }) => {
   if (error) {
     return <div>Error: {error}</div>;
   }
-
-  // const getCurrencyRates = () => {
-  //   return rates;
-  // };
 
   const filteredRates = data.filter(rate => {
     return (
