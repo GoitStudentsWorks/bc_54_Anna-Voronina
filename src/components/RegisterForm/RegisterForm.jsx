@@ -28,7 +28,10 @@ import {
 import { toast } from 'react-toastify';
 
 export const RegisterForm = () => {
-  const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1', 'password2']);
+  const { showPasswords, togglePasswordVisibility } = usePasswordToggle([
+    'password1',
+    'password2',
+  ]);
 
   const dispatch = useDispatch();
 
@@ -45,7 +48,9 @@ export const RegisterForm = () => {
       .unwrap()
       .then(data => {
         resetForm();
-        toast.success(`Отличная работа!${data.user.username}. Вы успешно вошли в систему`);
+        toast.success(
+          `${data.user.username}, thanks for signing up. Welcome to Money Guard! We are happy to have you on board.`
+        );
       })
       .catch(error => {
         toast.error(error.message);
@@ -130,7 +135,8 @@ export const RegisterForm = () => {
               <ConfirmPasswordIndicator
                 values={values}
                 passwordsMatch={
-                  values.password === values.confirmPassword && values.confirmPassword !== ''
+                  values.password === values.confirmPassword &&
+                  values.confirmPassword !== ''
                 }
               />
               <FormError name="confirmPassword" />
