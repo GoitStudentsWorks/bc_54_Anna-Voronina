@@ -42,8 +42,8 @@ export const CurrencyChart = ({ currentRates }) => {
     );
   });
 
-  const filteredBye = filteredRates.map(el => {
-    return el.rateBuy;
+  const filteredSell = filteredRates.map(el => {
+    return el.rateSell;
   });
 
   return (
@@ -51,8 +51,8 @@ export const CurrencyChart = ({ currentRates }) => {
       <CircleSpanLeft></CircleSpanLeft>
       <CircleSpanRight></CircleSpanRight>
       <SpanWrapper>
-        <StyledSpanLeft>{filteredBye[0]}</StyledSpanLeft>
-        <StyledSpanRight>{filteredBye[1]}</StyledSpanRight>
+        <StyledSpanLeft>{Number(filteredSell[0]).toFixed(2)}</StyledSpanLeft>
+        <StyledSpanRight>{Number(filteredSell[1]).toFixed(2)}</StyledSpanRight>
       </SpanWrapper>
 
       <StyledPicture>
