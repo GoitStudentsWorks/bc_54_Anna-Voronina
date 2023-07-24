@@ -4,7 +4,7 @@ import { selectCurrencyData } from 'redux/currency/currencySelectors';
 import { CurrencyTableBody, CurrencyTableStyled } from './CurrencyTable.styled';
 import { nanoid } from '@reduxjs/toolkit';
 
-const CurrencyTable = ({ data }) => {
+const CurrencyTable = ({ data = [] }) => {
   const { loading, error } = useSelector(selectCurrencyData);
 
   if (loading) {
@@ -45,9 +45,7 @@ const CurrencyTable = ({ data }) => {
 };
 
 CurrencyTable.propTypes = {
-  data: PropTypes.shape({
-    filter: PropTypes.func,
-  }).isRequired,
+  data: PropTypes.array.isRequired,
 };
 
 export default CurrencyTable;
