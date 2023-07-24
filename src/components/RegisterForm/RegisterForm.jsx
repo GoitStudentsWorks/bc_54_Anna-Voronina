@@ -25,9 +25,13 @@ import {
   WrapperIcon2,
   WrapperIcon3,
 } from 'components/LoginForm/LoginForm.styled';
+import { toast } from 'react-toastify';
 
 export const RegisterForm = () => {
-  const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1', 'password2']);
+  const { showPasswords, togglePasswordVisibility } = usePasswordToggle([
+    'password1',
+    'password2',
+  ]);
 
   const dispatch = useDispatch();
 
@@ -40,8 +44,17 @@ export const RegisterForm = () => {
 
   const handleSubmit = (value, { resetForm }) => {
     const { username, email, password } = value;
-    dispatch(signUpThunk({ username, email, password }));
-    console.log(value);
+    dispatch(signUpThunk({ username, email, password }))
+      .unwrap()
+      .then(data => {
+        resetForm();
+        toast.success(
+          `${data.user.username}, thanks for signing up. Welcome to Money Guard! We are happy to have you on board.`
+        );
+      })
+      .catch(error => {
+        toast.error(error.message);
+      });
     resetForm();
   };
 
@@ -122,7 +135,8 @@ export const RegisterForm = () => {
               <ConfirmPasswordIndicator
                 values={values}
                 passwordsMatch={
-                  values.password === values.confirmPassword && values.confirmPassword !== ''
+                  values.password === values.confirmPassword &&
+                  values.confirmPassword !== ''
                 }
               />
               <FormError name="confirmPassword" />

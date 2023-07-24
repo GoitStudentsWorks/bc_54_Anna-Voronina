@@ -5,6 +5,22 @@ export const AllTransactionsDetails = styled.ul`
   list-style: none;
   height: 75vh;
   overflow: auto;
+  &::-webkit-scrollbar {
+    width: 2px;
+    opacity: 0.3;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #734aef;
+    border-radius: 20px;
+    opacity: 0.3;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ff868d;
+    border-radius: 20px;
+    opacity: 0.3;
+  }
 `;
 
 export const TransactionDetails = styled.ul`
