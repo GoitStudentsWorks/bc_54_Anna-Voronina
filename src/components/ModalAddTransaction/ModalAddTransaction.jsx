@@ -28,6 +28,7 @@ import {
 import { useCategoriesType } from 'hooks/categoriesFilter';
 import { transactionsSchema } from 'services/validation/validationTransactions';
 import { FormError } from 'components/FormError/FormError';
+import { toast } from 'react-toastify';
 
 export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
@@ -63,7 +64,16 @@ export const ModalAddTransaction = () => {
           : incomeCategories[0].id
       }`,
     };
-    dispatch(addTransactionThunk(newData));
+    dispatch(addTransactionThunk(newData))
+      .unwrap()
+      .then(data =>
+        toast.success(
+          `${
+            data.type.charAt(0) + data.type.slice(1).toLowerCase()
+          } transaction added to your list.`
+        )
+      )
+      .catch(error => toast.error('Something went wrong, please try again!'));
   };
 
   const handleChangeSelect = item => {
