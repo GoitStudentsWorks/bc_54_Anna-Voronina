@@ -55,6 +55,7 @@ export const ModalAddTransaction = () => {
     const newData = {
       ...value,
       type: selectedType ? 'INCOME' : 'EXPENSE',
+      transactionDate: new Date().toISOString(),
       amount: `${
         !selectedType ? Number(value.amount) * -1 : Number(value.amount)
       }`,
