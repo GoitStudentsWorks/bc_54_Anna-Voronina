@@ -16,7 +16,6 @@ export const Chart = ({ colorStyle, resp }) => {
     labels: [],
     datasets: [
       {
-        label: `${expenseCategories.name}`,
         data: !expenseCategories.length
           ? [1]
           : expenseCategories.map(item => item.total),
