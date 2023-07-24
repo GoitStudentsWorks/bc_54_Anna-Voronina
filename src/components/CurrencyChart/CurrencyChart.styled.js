@@ -17,17 +17,18 @@ export const SpanWrapper = styled.div`
 export const StyledSpanLeft = styled.span`
   display: flex;
   position: absolute;
-  left: 8.5%;
-  transform: translateY(-100%);
+  left: 8.3%;
+  transform: translateY(-70%);
 
   color: #ff868d;
   font-size: 12px;
   font-weight: 400;
   @media only screen and (min-width: 768px) {
     left: 8.5%;
-    transform: translateY(-80%);
+    transform: translateY(-65%);
     @media only screen and (min-width: 1280px) {
-      left: 10%;
+      left: 9.8%;
+      transform: translateY(-40%);
     }
   }
 `;
@@ -38,15 +39,14 @@ export const StyledSpanRight = styled.span`
   font-weight: 400;
   margin-right: 98px;
 
-  top: 0%;
-  left: 72%;
+  left: 71.9%;
   transform: translateY(-230%);
 
   @media only screen and (min-width: 768px) {
     left: 72%;
   }
   @media only screen and (min-width: 1280px) {
-    transform: translate(21%, -300%);
+    transform: translate(23%, -270%);
   }
 `;
 
