@@ -45,7 +45,7 @@ export const RegisterForm = () => {
       .unwrap()
       .then(data => {
         resetForm();
-        toast.success(`${data.user.username}, welcome back!`);
+        toast.success(`Отличная работа!${data.user.username}. Вы успешно вошли в систему`);
       })
       .catch(error => {
         toast.error(error.message);

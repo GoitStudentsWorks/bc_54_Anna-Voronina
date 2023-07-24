@@ -45,10 +45,7 @@ export const Header = () => {
               <ExitText>Exit</ExitText>
             </ExitBtn>
             {isModalOpen && (
-              <Modal
-                closeReducer={closeModalLogout}
-                onAfterOpen={disableScroll}
-              >
+              <Modal closeReducer={closeModalLogout} onAfterOpen={disableScroll}>
                 <ModalLogOut />
               </Modal>
             )}
