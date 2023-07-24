@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { selectCurrencyData } from 'redux/currency/currencySelectors';
 import { CurrencyTableBody, CurrencyTableStyled } from './CurrencyTable.styled';
 import { nanoid } from '@reduxjs/toolkit';
