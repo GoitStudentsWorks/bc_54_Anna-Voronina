@@ -27,7 +27,10 @@ import {
 } from 'components/LoginForm/LoginForm.styled';
 
 export const RegisterForm = () => {
-  const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1', 'password2']);
+  const { showPasswords, togglePasswordVisibility } = usePasswordToggle([
+    'password1',
+    'password2',
+  ]);
 
   const dispatch = useDispatch();
 
@@ -41,7 +44,6 @@ export const RegisterForm = () => {
   const handleSubmit = (value, { resetForm }) => {
     const { username, email, password } = value;
     dispatch(signUpThunk({ username, email, password }));
-    console.log(value);
     resetForm();
   };
 
@@ -122,7 +124,8 @@ export const RegisterForm = () => {
               <ConfirmPasswordIndicator
                 values={values}
                 passwordsMatch={
-                  values.password === values.confirmPassword && values.confirmPassword !== ''
+                  values.password === values.confirmPassword &&
+                  values.confirmPassword !== ''
                 }
               />
               <FormError name="confirmPassword" />
