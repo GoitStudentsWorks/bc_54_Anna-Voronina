@@ -23,6 +23,7 @@ import {
 } from './EditTransactions.styled.js';
 import { transactionsSchema } from 'services/validation/validationTransactions.js';
 import { FormError } from 'components/FormError/FormError.jsx';
+import { toast } from 'react-toastify';
 
 export const EditTransactions = () => {
   const dispatch = useDispatch();
@@ -66,7 +67,16 @@ export const EditTransactions = () => {
       }`,
     };
 
-    dispatch(editTransactionThunk({ transactionId: id, transaction: newData }));
+    dispatch(editTransactionThunk({ transactionId: id, transaction: newData }))
+      .unwrap()
+      .then(data =>
+        toast.success(
+          `${
+            data.type.charAt(0) + data.type.slice(1).toLowerCase()
+          } transaction edited successfully.`
+        )
+      )
+      .catch(error => toast.error('Something went wrong, please try again!'));
   };
 
   const handleChangeType = value => {
