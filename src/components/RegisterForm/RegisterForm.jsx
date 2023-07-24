@@ -9,8 +9,9 @@ import { Button } from 'components/Button/Button';
 import { FormError } from 'components/FormError/FormError';
 import { Logo } from 'components/Logo/Logo';
 import { IndicatorPasswordStrenghtatyled } from 'components/IndicatorPasswordStrenght/IndicatorPasswordStrenght';
-
+import { TogglePasswordIcon } from 'components/TogglePasswordVisibility/TogglePasswordVisibility';
 import { ConfirmPasswordIndicator } from 'components/ConfirmPasswordIndicator/ConfirmPasswordIndicator';
+
 import { LinkStyled, NameRegisterIcon } from './RegisterForm.styled';
 import {
   EmailIcon,
@@ -24,7 +25,6 @@ import {
   WrapperIcon2,
   WrapperIcon3,
 } from 'components/LoginForm/LoginForm.styled';
-import { TogglePasswordIcon } from 'components/TogglePasswordVisibility/TogglePasswordVisibility';
 
 export const RegisterForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1', 'password2']);
