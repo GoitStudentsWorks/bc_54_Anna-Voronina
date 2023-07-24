@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCurrencyRatesAsync } from 'redux/currency/currencyOperations';
@@ -52,6 +53,12 @@ const CurrencyTable = ({ data }) => {
       </CurrencyTableBody>
     </CurrencyTableStyled>
   );
+};
+
+CurrencyTable.propTypes = {
+  data: PropTypes.shape({
+    filter: PropTypes.func,
+  }).isRequired,
 };
 
 export default CurrencyTable;

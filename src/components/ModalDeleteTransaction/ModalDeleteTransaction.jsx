@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'components/Button/Button';
@@ -19,19 +20,14 @@ const ModalDeleteTransaction = ({ transactionId }) => {
   const dispatch = useDispatch();
 
   const handleDeleteTransaction = () => {
-    dispatch(delTransactionThunk(transactionId)).then(() =>
-      dispatch(getAllTransactionsThunk())
-    );
+    dispatch(delTransactionThunk(transactionId)).then(() => dispatch(getAllTransactionsThunk()));
     dispatch(closeModalDeleteTransaction());
   };
 
   return (
     <ModalWrapper>
       <ModalContainer>
-        <Title>
-          {user.username}, are you sure that you want to delete this
-          transaction?
-        </Title>
+        <Title>{user.username}, are you sure that you want to delete this transaction?</Title>
         <ButtonWrapper>
           <Button
             type="button"
@@ -39,15 +35,15 @@ const ModalDeleteTransaction = ({ transactionId }) => {
             text="Cancel"
             variant={'secondary'}
           />
-          <Button
-            type="button"
-            onClick={handleDeleteTransaction}
-            text="Delete"
-          />
+          <Button type="button" onClick={handleDeleteTransaction} text="Delete" />
         </ButtonWrapper>
       </ModalContainer>
     </ModalWrapper>
   );
+};
+
+ModalDeleteTransaction.propTypes = {
+  transactionId: PropTypes.string.isRequired,
 };
 
 export default ModalDeleteTransaction;

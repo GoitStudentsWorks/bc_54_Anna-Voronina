@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Triangle } from 'react-loader-spinner';
 
 export const BigLoader = ({ styles = {} }) => {
@@ -12,4 +13,8 @@ export const BigLoader = ({ styles = {} }) => {
       visible={true}
     />
   );
+};
+
+BigLoader.propTypes = {
+  styles: PropTypes.object,
 };
