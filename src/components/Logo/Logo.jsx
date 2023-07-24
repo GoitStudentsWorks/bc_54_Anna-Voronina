@@ -1,6 +1,7 @@
 import React from 'react';
 import { TitleLogo, WrapperLogo } from './Logo.styled';
 import moneyGuardLogo from 'assets/images/moneyGuardLogo.svg';
+
 export const Logo = () => {
   return (
     <WrapperLogo>

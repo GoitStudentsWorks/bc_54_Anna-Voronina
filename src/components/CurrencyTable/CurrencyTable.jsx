@@ -43,4 +43,10 @@ const CurrencyTable = ({ data }) => {
   );
 };
 
+CurrencyTable.propTypes = {
+  data: PropTypes.shape({
+    filter: PropTypes.func,
+  }).isRequired,
+};
+
 export default CurrencyTable;
