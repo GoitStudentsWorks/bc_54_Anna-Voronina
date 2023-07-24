@@ -39,9 +39,7 @@ export const LoginForm = () => {
       .unwrap()
       .then(data => {
         resetForm();
-        toast.success(
-          `Thanks for signing up. Welcome to Bookshelf! ${data.user.username}. We are happy to have you on board.`
-        );
+        toast.success(`Well done  ${data.user.username}! You have signed in successfully.`);
       })
       .catch(error => {
         toast.error(error.message);
